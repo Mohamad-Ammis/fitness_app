@@ -7,14 +7,23 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // ignore: must_be_immutable
-class RegisterPageForm extends StatelessWidget {
-  RegisterPageForm({super.key});
+class RegisterPageForm extends StatefulWidget {
+  const RegisterPageForm({super.key});
+
+  @override
+  State<RegisterPageForm> createState() => _RegisterPageFormState();
+}
+
+class _RegisterPageFormState extends State<RegisterPageForm> {
   GlobalKey<FormState>formKey=GlobalKey();
+
+  var autovalidateMode= AutovalidateMode.disabled;
+
   @override
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
-      autovalidateMode: AutovalidateMode.always,
+      autovalidateMode: autovalidateMode,
         child: Column(
       children: [
         CustomTextField(
@@ -74,6 +83,12 @@ class RegisterPageForm extends StatelessWidget {
           onTap: () {
             if(formKey.currentState!.validate()){
               print('validate');
+            }
+            else{
+              setState(() {
+              autovalidateMode= AutovalidateMode.always;
+                
+              });
             }
           },
         ),

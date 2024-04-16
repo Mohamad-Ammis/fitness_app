@@ -1,6 +1,7 @@
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/views/auth_pages/widgets/auth_custom_button.dart';
 import 'package:fitnessapp/views/auth_pages/widgets/auth_footer.dart';
+import 'package:fitnessapp/views/workout_page/workout_page.dart';
 import 'package:fitnessapp/widgets/Custom_text_field.dart';
 import 'package:fitnessapp/widgets/custom_pass_text_field.dart';
 import 'package:flutter/material.dart';
@@ -60,6 +61,7 @@ class LoginForm extends StatelessWidget {
             child: AuthCustomButton(
               buttonText: 'Login',
               onTap: () {
+                Get.offAll(WorkoutPage());
                 if (formKey.currentState!.validate()) {
                   print('validate');
                 }
