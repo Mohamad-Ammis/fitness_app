@@ -12,7 +12,7 @@ class CustomPasswordTextField extends StatefulWidget {
       required this.labelStyle,
       required this.filled,
       required this.fillColor,
-      required this.focusedBorderColor});
+      required this.focusedBorderColor, this.onChanged});
   final TextStyle textStyle;
   final Color cursorColor;
   final String label;
@@ -20,7 +20,7 @@ class CustomPasswordTextField extends StatefulWidget {
   final bool filled;
   final Color fillColor;
   final Color focusedBorderColor;
-
+  final void Function(String)? onChanged;
   @override
   State<CustomPasswordTextField> createState() =>
       _CustomPasswordTextFieldState();
@@ -32,6 +32,7 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged:widget.onChanged ,
       validator: (value) {
         return FormValidators().strongPasswordValidator(value);
       },

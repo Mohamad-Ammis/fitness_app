@@ -53,15 +53,15 @@ class OnBoardingPageBody extends StatelessWidget {
   void handelSkipButton() {
     if (index == 0) {
       pageController.animateToPage(3,
-          duration: const Duration(milliseconds: 2000),
+          duration: const Duration(milliseconds: 1500),
           curve: Curves.decelerate);
     } else if (index == 1) {
       pageController.animateToPage(3,
-          duration: const Duration(milliseconds: 1500),
+          duration: const Duration(milliseconds: 1100),
           curve: Curves.decelerate);
     } else if (index == 2) {
       pageController.animateToPage(3,
-          duration: const Duration(milliseconds: 1000),
+          duration: const Duration(milliseconds: 500),
           curve: Curves.decelerate);
     } else {}
   }

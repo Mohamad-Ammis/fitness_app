@@ -1,26 +1,41 @@
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/controller/auth_controller.dart';
 import 'package:fitnessapp/views/auth_pages/widgets/auth_custom_button.dart';
 import 'package:fitnessapp/views/auth_pages/widgets/auth_footer.dart';
-import 'package:fitnessapp/views/workout_page/workout_page.dart';
+import 'package:fitnessapp/views/data_page/data.dart';
 import 'package:fitnessapp/widgets/Custom_text_field.dart';
 import 'package:fitnessapp/widgets/custom_pass_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 // ignore: must_be_immutable
-class LoginForm extends StatelessWidget {
+class LoginForm extends StatefulWidget {
   LoginForm({
     super.key,
   });
+
+  @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
   GlobalKey<FormState> formKey = GlobalKey();
+
+  final authController = Get.put(AuthController());
+
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+
   @override
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
-      autovalidateMode: AutovalidateMode.always,
+      autovalidateMode: autovalidateMode,
       child: Column(
         children: [
           CustomTextField(
+            onChanged: (value) {
+              authController.email = value;
+            },
             isEmail: true,
             textStyle: const TextStyle(color: Colors.white),
             cursorColor: Constans.secondryColor,
@@ -36,6 +51,10 @@ class LoginForm extends StatelessWidget {
             height: 20,
           ),
           CustomPasswordTextField(
+            onChanged: (value) {
+              authController.password = value;
+              debugPrint('authController.password: ${authController.password}');
+            },
             textStyle: const TextStyle(color: Colors.white),
             cursorColor: Constans.secondryColor,
             label: 'Password',
@@ -60,10 +79,20 @@ class LoginForm extends StatelessWidget {
           Center(
             child: AuthCustomButton(
               buttonText: 'Login',
-              onTap: () {
-                Get.offAll(WorkoutPage());
+              onTap: () async {
+                //WorkoutPage()
                 if (formKey.currentState!.validate()) {
-                  print('validate');
+                  bool status=await authController.logIn(
+                      authController.email, authController.password,context);
+                     if(status){
+                  Get.offAll(Data());
+                     }
+                     else{
+                     }
+                } else {
+                  setState(() {
+                    autovalidateMode = AutovalidateMode.always;
+                  });
                 }
               },
             ),
@@ -74,7 +103,7 @@ class LoginForm extends StatelessWidget {
             onPressed: () {
               Get.offAllNamed('/register');
             },
-          )
+          ),
         ],
       ),
     );

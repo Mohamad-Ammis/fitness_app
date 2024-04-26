@@ -12,7 +12,7 @@ class WorkoutPage extends StatelessWidget {
     return GetBuilder<NavigationController>(builder: (navigationController) {
       return Scaffold(
           backgroundColor: const Color(0xFFF3F4F6),
-          appBar: AppBar(
+          appBar:navigationController.selectedIndex>0? AppBar(
             title: const Text(
               "Home Workout",
               style: TextStyle(
@@ -22,10 +22,9 @@ class WorkoutPage extends StatelessWidget {
             ),
             backgroundColor: Colors.transparent,
             elevation: 0,scrolledUnderElevation: 0,
-          ),
+          ):null,
           bottomNavigationBar: CustomNavigationBar(),
-          body:
-              navigationController.screens[navigationController.selectedIndex]);
+          body:navigationController.screens[navigationController.selectedIndex]);
     });
   }
 }

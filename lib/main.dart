@@ -1,11 +1,11 @@
 import 'dart:async';
-
 import 'package:fitnessapp/utils/app_images.dart';
 import 'package:fitnessapp/views/auth_pages/login_page/login_page.dart';
 import 'package:fitnessapp/views/auth_pages/register_page/register_page.dart';
 import 'package:fitnessapp/views/on_boarding/on_boarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -45,13 +45,6 @@ class _MyAppState extends State<MyApp> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(Assets.imagesSplash),
-              // const Text(
-              //   'Fitness Center',
-              //   style: TextStyle(
-              //       fontFamily: Constans.fontFamily,
-              //       fontWeight: FontWeight.bold,
-              //       fontSize: 36),
-              // )
             ],
           ),
         ),

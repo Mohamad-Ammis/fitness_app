@@ -15,6 +15,7 @@ class CustomTextField extends StatelessWidget {
     required this.suffixIcon,
     this.isEmail,
     this.isUserName,
+    this.onChanged
   });
   final TextStyle textStyle;
   final Color cursorColor;
@@ -26,9 +27,11 @@ class CustomTextField extends StatelessWidget {
   final IconData suffixIcon;
   final bool? isEmail;
   final bool? isUserName;
+  final void Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged:onChanged ,
       validator: (value) {
         if (isEmail ?? false) {
           return FormValidators().emailValidator(value);
