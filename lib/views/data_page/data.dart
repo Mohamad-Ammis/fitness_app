@@ -5,7 +5,7 @@ import 'package:fitnessapp/views/data_page/datawidget/catrow.dart';
 import 'package:fitnessapp/views/data_page/datawidget/days.dart';
 import 'package:fitnessapp/views/data_page/datawidget/focarea.dart';
 import 'package:fitnessapp/views/data_page/datawidget/gender.dart';
-import 'package:fitnessapp/views/data_page/datawidget/height-weight.dart';
+import 'package:fitnessapp/views/data_page/datawidget/height_weight.dart';
 import 'package:fitnessapp/views/data_page/datawidget/illness.dart';
 import 'package:fitnessapp/views/data_page/datawidget/target.dart';
 import 'package:flutter/material.dart';

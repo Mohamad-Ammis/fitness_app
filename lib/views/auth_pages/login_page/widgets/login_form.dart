@@ -1,5 +1,6 @@
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/auth_controller.dart';
+import 'package:fitnessapp/views/auth_pages/forgot_password/forgot_password.dart';
 import 'package:fitnessapp/views/auth_pages/widgets/auth_custom_button.dart';
 import 'package:fitnessapp/views/auth_pages/widgets/auth_footer.dart';
 import 'package:fitnessapp/views/data_page/data.dart';
@@ -10,7 +11,7 @@ import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class LoginForm extends StatefulWidget {
-  LoginForm({
+  const LoginForm({
     super.key,
   });
 
@@ -33,6 +34,7 @@ class _LoginFormState extends State<LoginForm> {
       child: Column(
         children: [
           CustomTextField(
+            enabledBorderColor: Colors.transparent,
             onChanged: (value) {
               authController.email = value;
             },
@@ -62,13 +64,15 @@ class _LoginFormState extends State<LoginForm> {
                 TextStyle(color: Constans.subTitleColor.withOpacity(0.5)),
             filled: true,
             fillColor: const Color(0xFF1F1E28),
-            focusedBorderColor: Constans.secondryColor,
+            focusedBorderColor: Constans.secondryColor, enabledBorderColor: Colors.transparent,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(const ForgotPassword());
+                  },
                   child: const Text("Forget password ?",
                       style: TextStyle(color: Constans.secondryColor))),
             ],

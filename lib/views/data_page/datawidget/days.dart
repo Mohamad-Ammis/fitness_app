@@ -34,7 +34,7 @@ class Days extends StatelessWidget {
       builder:(contr)=> Container(
                   height: cont.maxHeight * 0.35,
                   width: cont.maxWidth,
-                  margin: EdgeInsets.only(left: 20, top: 15),
+                  margin: const EdgeInsets.only(left: 20, top: 15),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -142,7 +142,7 @@ class Days extends StatelessWidget {
         overlayColor: MaterialStatePropertyAll(Colors.white.withOpacity(0)),
         child: Card(
           color: Colors.white,
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
           elevation: 10,

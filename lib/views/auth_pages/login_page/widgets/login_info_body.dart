@@ -9,12 +9,12 @@ class LoginInfoBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+    return const Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
+          Text(
             "Welcome!",
             style: TextStyle(
                 color: Constans.secondryColor,
@@ -22,11 +22,11 @@ class LoginInfoBody extends StatelessWidget {
                 fontFamily: Constans.fontFamily,
                 fontWeight: FontWeight.bold),
           ),
-          const SizedBox(
+          SizedBox(
             height: 20,
           ),
           LoginForm(),
-          const SizedBox(
+          SizedBox(
             height: 5,
           ),
           

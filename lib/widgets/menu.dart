@@ -1,5 +1,5 @@
-import 'package:fitnessapp/models/menuItem.dart';
-import 'package:fitnessapp/models/menuitems.dart';
+import 'package:fitnessapp/models/menu_item.dart';
+import 'package:fitnessapp/models/menu_items.dart';
 import 'package:flutter/material.dart';
 
 class Menupage extends StatelessWidget {

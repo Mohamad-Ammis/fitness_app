@@ -16,8 +16,9 @@ class WorkoutPageController extends GetxController {
         days.add(DateTime(2024, DateTime.now().month, i));
       }
     }
+      debugPrint('daysInMonth: $daysInMonth');
 
-    print("this month days = $daysInMonth");
+    
     return days;
   }
 

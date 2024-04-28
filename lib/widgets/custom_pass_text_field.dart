@@ -12,7 +12,9 @@ class CustomPasswordTextField extends StatefulWidget {
       required this.labelStyle,
       required this.filled,
       required this.fillColor,
-      required this.focusedBorderColor, this.onChanged});
+      required this.focusedBorderColor,
+      this.onChanged,
+      required this.enabledBorderColor, this.suffixIconColor});
   final TextStyle textStyle;
   final Color cursorColor;
   final String label;
@@ -20,6 +22,8 @@ class CustomPasswordTextField extends StatefulWidget {
   final bool filled;
   final Color fillColor;
   final Color focusedBorderColor;
+  final Color enabledBorderColor;
+  final Color? suffixIconColor;
   final void Function(String)? onChanged;
   @override
   State<CustomPasswordTextField> createState() =>
@@ -32,7 +36,7 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      onChanged:widget.onChanged ,
+      onChanged: widget.onChanged,
       validator: (value) {
         return FormValidators().strongPasswordValidator(value);
       },
@@ -45,20 +49,20 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
         labelStyle: widget.labelStyle,
         filled: widget.filled,
         fillColor: widget.fillColor,
-        enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.all(Radius.circular(16))),
+        enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: widget.enabledBorderColor, width: 0.4),
+            borderRadius: const BorderRadius.all(Radius.circular(16))),
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: widget.focusedBorderColor),
+            borderSide: BorderSide(color: widget.focusedBorderColor, width: 0.5),
             borderRadius: const BorderRadius.all(Radius.circular(16))),
         errorBorder: const OutlineInputBorder(
-            borderSide: BorderSide.none,
+            borderSide: BorderSide(color: Colors.red, width: 0.5),
             borderRadius: BorderRadius.all(Radius.circular(16))),
-            focusedErrorBorder: const OutlineInputBorder(
-            borderSide: BorderSide.none,
+        focusedErrorBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red, width: 0.5),
             borderRadius: BorderRadius.all(Radius.circular(16))),
         suffixIcon: Padding(
           padding: const EdgeInsets.only(right: 8.0),
@@ -76,7 +80,7 @@ class _CustomPasswordTextFieldState extends State<CustomPasswordTextField> {
             child: Icon(
               suffixIcon,
               size: 20,
-              color: Constans.subTitleColor.withOpacity(0.5),
+              color:widget.suffixIconColor?? Constans.subTitleColor.withOpacity(0.5),
             ),
           ),
         ),

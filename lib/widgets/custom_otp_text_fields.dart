@@ -25,7 +25,7 @@ class CustomOtpField extends StatelessWidget {
             fillColor: const Color(0xFFF0F1F2),
             borderWidth: 1,
             borderColor: Colors.transparent,
-            enabledBorderColor: Colors.transparent,
+            enabledBorderColor:controller.otpEnabledBorderColor,
             focusedBorderColor: controller.otpBorderColor,
             disabledBorderColor: Colors.transparent,
             autoFocus: autoFocus,

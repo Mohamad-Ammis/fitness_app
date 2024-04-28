@@ -29,6 +29,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
         child: Column(
           children: [
             CustomTextField(
+              enabledBorderColor: Colors.transparent,
               onChanged: (value) {
                 authController.email = value;
               },
@@ -41,6 +42,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
               filled: true,
               fillColor: const Color(0xFF1F1E28),
               focusedBorderColor: Constans.secondryColor,
+              
               suffixIcon: Icons.email,
             ),
             const SizedBox(
@@ -59,7 +61,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
               filled: true,
               fillColor: const Color(0xFF1F1E28),
               focusedBorderColor: Constans.secondryColor,
-              suffixIcon: Icons.person,
+              suffixIcon: Icons.person, enabledBorderColor: Colors.transparent,
             ),
             const SizedBox(
               height: 15,
@@ -75,7 +77,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                   TextStyle(color: Constans.subTitleColor.withOpacity(0.5)),
               filled: true,
               fillColor: const Color(0xFF1F1E28),
-              focusedBorderColor: Constans.secondryColor,
+              focusedBorderColor: Constans.secondryColor, enabledBorderColor: Colors.transparent,
             ),
             const SizedBox(
               height: 15,
@@ -91,7 +93,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                   TextStyle(color: Constans.subTitleColor.withOpacity(0.5)),
               filled: true,
               fillColor: const Color(0xFF1F1E28),
-              focusedBorderColor: Constans.secondryColor,
+              focusedBorderColor: Constans.secondryColor, enabledBorderColor: Colors.transparent,
             ),
             const SizedBox(
               height: 25,

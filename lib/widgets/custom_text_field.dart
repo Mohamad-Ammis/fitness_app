@@ -12,10 +12,11 @@ class CustomTextField extends StatelessWidget {
     required this.filled,
     required this.fillColor,
     required this.focusedBorderColor,
+    required this.enabledBorderColor,
     required this.suffixIcon,
     this.isEmail,
     this.isUserName,
-    this.onChanged
+    this.onChanged,
   });
   final TextStyle textStyle;
   final Color cursorColor;
@@ -24,7 +25,8 @@ class CustomTextField extends StatelessWidget {
   final bool filled;
   final Color fillColor;
   final Color focusedBorderColor;
-  final IconData suffixIcon;
+  final Color enabledBorderColor;
+  final IconData? suffixIcon;
   final bool? isEmail;
   final bool? isUserName;
   final void Function(String)? onChanged;
@@ -49,20 +51,20 @@ class CustomTextField extends StatelessWidget {
         labelStyle: labelStyle,
         filled: filled,
         fillColor: fillColor,
-        enabledBorder: const OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.all(Radius.circular(16))),
+        enabledBorder:  OutlineInputBorder(
+            borderSide: BorderSide(color:enabledBorderColor ,width: 0.4),
+            borderRadius:const BorderRadius.all(Radius.circular(16))),
         border: const OutlineInputBorder(
           borderSide: BorderSide.none,
         ),
         focusedBorder: OutlineInputBorder(
-            borderSide: BorderSide(color: focusedBorderColor),
+            borderSide: BorderSide(color: focusedBorderColor,width: 0.5),
             borderRadius: const BorderRadius.all(Radius.circular(16))),
         errorBorder: const OutlineInputBorder(
-            borderSide: BorderSide.none,
+            borderSide:  BorderSide(color: Colors.red,width: 0.5),
             borderRadius: BorderRadius.all(Radius.circular(16))),
         focusedErrorBorder: const OutlineInputBorder(
-            borderSide: BorderSide.none,
+            borderSide: BorderSide(color: Colors.red,width: 0.5),
             borderRadius: BorderRadius.all(Radius.circular(16))),
         suffixIcon: Padding(
           padding: const EdgeInsets.only(right: 8.0),

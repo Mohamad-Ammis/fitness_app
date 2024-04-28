@@ -70,7 +70,7 @@ class Target extends StatelessWidget {
             child: Container(
               height: cont.maxHeight*0.23,
               width: cont.maxWidth*0.85,
-              margin:e['id']=='1'? const EdgeInsets.only(top: 0):EdgeInsets.only(top: 10),
+              margin:e['id']=='1'? const EdgeInsets.only(top: 0):const EdgeInsets.only(top: 10),
               decoration: BoxDecoration(
                  gradient:(contr.selectgoal == e['id'])? LinearGradient(colors: [
                               contr.deepcolor.withOpacity(0.25),

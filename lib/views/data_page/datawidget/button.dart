@@ -31,7 +31,7 @@ class Button extends StatelessWidget {
                           ),
                         ),
                          child: childbutton("Next")):ElevatedButton(onPressed: (){
-                       Get.offAll(Home());
+                       Get.offAll(const Home());
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: controller.basiccolor,

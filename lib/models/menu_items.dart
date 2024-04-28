@@ -1,4 +1,4 @@
-import 'package:fitnessapp/models/menuItem.dart';
+import 'package:fitnessapp/models/menu_item.dart';
 import 'package:flutter/material.dart';
 
 
