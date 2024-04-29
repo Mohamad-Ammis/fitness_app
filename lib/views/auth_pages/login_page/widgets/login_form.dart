@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/auth_controller.dart';
+import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/views/auth_pages/forgot_password/forgot_password.dart';
 import 'package:fitnessapp/views/auth_pages/widgets/auth_custom_button.dart';
 import 'package:fitnessapp/views/auth_pages/widgets/auth_footer.dart';
@@ -64,7 +67,8 @@ class _LoginFormState extends State<LoginForm> {
                 TextStyle(color: Constans.subTitleColor.withOpacity(0.5)),
             filled: true,
             fillColor: const Color(0xFF1F1E28),
-            focusedBorderColor: Constans.secondryColor, enabledBorderColor: Colors.transparent,
+            focusedBorderColor: Constans.secondryColor,
+            enabledBorderColor: Colors.transparent,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -86,13 +90,16 @@ class _LoginFormState extends State<LoginForm> {
               onTap: () async {
                 //WorkoutPage()
                 if (formKey.currentState!.validate()) {
-                  var status=await authController.logIn(
-                      authController.email, authController.password,context);
-                     if(status.statusCode>=200 &&status.statusCode<300 ){
-                  Get.offAll(Data());
-                     }
-                     else{
-                     }
+                  var response = await authController.logIn(
+                      authController.email, authController.password, context);
+                  if (response.statusCode >= 200 && response.statusCode < 300) {
+                    var data = jsonDecode(response.body);
+                    var token = data['token'];
+                    userInfo.setString('token', token);
+                    debugPrint('token = ${userInfo.getString('token')}');
+                    Get.offAll(Data());
+
+                  } else {}
                 } else {
                   setState(() {
                     autovalidateMode = AutovalidateMode.always;

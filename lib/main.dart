@@ -1,13 +1,16 @@
 import 'dart:async';
-import 'package:fitnessapp/utils/app_images.dart';
+import 'package:fitnessapp/splash_screen.dart';
 import 'package:fitnessapp/views/auth_pages/login_page/login_page.dart';
 import 'package:fitnessapp/views/auth_pages/register_page/register_page.dart';
 import 'package:fitnessapp/views/on_boarding/on_boarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-
-void main() {
+  late SharedPreferences userInfo;
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  userInfo=await SharedPreferences.getInstance();
   runApp(const MyApp());
 }
 
@@ -35,20 +38,7 @@ class _MyAppState extends State<MyApp> {
         '/login': (p0) => const LogInPage()
       },
       // initialRoute: '/',
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        body: SizedBox(
-          width: MediaQuery.sizeOf(context).width,
-          height: MediaQuery.sizeOf(context).height,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(Assets.imagesSplash),
-            ],
-          ),
-        ),
-      ),
+      home:const  Splash(),
     );
   }
 }

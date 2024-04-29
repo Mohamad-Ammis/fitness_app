@@ -33,6 +33,7 @@ class AuthController extends GetxController {
         successContentType: ContentType.success,
         successDesc: 'You have been logged in Successfully',
         failureDesc: 'Error in email or password! ');
+        
     return data;
   }
   Future<http.Response> register(String name, String userEmail, String pass,
