@@ -9,10 +9,10 @@ class CustomSnackBar{
                 behavior: SnackBarBehavior.floating,
                 backgroundColor: Colors.transparent,
                 content: Container(
-                  padding:  const EdgeInsets.all(0),
+                  padding:  const EdgeInsets.symmetric(vertical:4),
                   height: 90,
-                  
-                  margin:const  EdgeInsets.symmetric(vertical: 20),
+                  width: double.infinity,
+                  margin:const  EdgeInsets.symmetric(horizontal: 0,vertical: 0),
                   child: AwesomeSnackbarContent(
                     
                     title: title,

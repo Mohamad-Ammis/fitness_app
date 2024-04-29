@@ -86,9 +86,9 @@ class _LoginFormState extends State<LoginForm> {
               onTap: () async {
                 //WorkoutPage()
                 if (formKey.currentState!.validate()) {
-                  bool status=await authController.logIn(
+                  var status=await authController.logIn(
                       authController.email, authController.password,context);
-                     if(status){
+                     if(status.statusCode>=200 &&status.statusCode<300 ){
                   Get.offAll(Data());
                      }
                      else{

@@ -61,11 +61,11 @@ class ForgotVerificationCode extends StatelessWidget {
                       authController.otpBorderColor = Colors.black;
                       authController.isLoading = true;
                       authController.update();
-                      bool status = await authController.verifyForgotPassword(
+                      var response = await authController.verifyForgotPassword(
                           verificationCode, context);
                       authController.isLoading = false;
                       authController.update();
-                      if (status) {
+                      if (response.statusCode>=200&&response.statusCode<300) {
                         authController.otpBorderColor = Colors.green;
                         authController.otpEnabledBorderColor = Colors.green;
                         authController.otpReadOnly = true;
@@ -74,6 +74,7 @@ class ForgotVerificationCode extends StatelessWidget {
                         Get.offAll(ResetPassword());
                         authController.otpReadOnly = false;
                         authController.otpBorderColor = Colors.black;
+                        authController.otpEnabledBorderColor=Colors.transparent;
                       } else {
                         authController.otpEnabledBorderColor = Colors.red;
                         authController.otpBorderColor = Colors.red;

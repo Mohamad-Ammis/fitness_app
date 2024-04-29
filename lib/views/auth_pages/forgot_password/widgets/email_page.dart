@@ -75,8 +75,8 @@ class EmailPage extends StatelessWidget {
                       buttonText: 'Reset Password',
                       onTap: ()  async {
                         if (formKey.currentState!.validate()) {
-                          var status=await authController.forgotPassword(authController.email, context);
-                          if(status){
+                          var response=await authController.forgotPassword(authController.email, context);
+                          if(response.statusCode>=200&&response.statusCode<300){
                         Get.to(ForgotVerificationCode());
                           }
                           authController.autovalidateMode=AutovalidateMode.disabled;

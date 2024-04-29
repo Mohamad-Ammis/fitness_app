@@ -102,13 +102,13 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
               buttonText: 'Register',
               onTap: () async {
                 if (formKey.currentState!.validate()) {
-                  bool status = await authController.register(
+                  var response = await authController.register(
                       authController.userName,
                       authController.email,
                       authController.password,
                       authController.confirmPassword,
                       context);
-                      if(status){
+                      if(response.statusCode>=200&&response.statusCode<300){
                   Get.to(VerificationPage());
                       }
                 } else {

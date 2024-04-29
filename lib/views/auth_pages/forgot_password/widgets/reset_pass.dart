@@ -92,13 +92,13 @@ class ResetPassword extends StatelessWidget {
                     buttonText: 'Update Password',
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
-                        var status = await authController.resetPassword(
+                        var response = await authController.resetPassword(
                             authController.email,
                             authController.verificationCode,
                             authController.password,
                             authController.confirmPassword,
                             context);
-                            if(status){
+                            if(response.statusCode>=200&&response.statusCode<300){
                               Get.offAll(const LogInPage());
                             }
                         authController.autovalidateMode =

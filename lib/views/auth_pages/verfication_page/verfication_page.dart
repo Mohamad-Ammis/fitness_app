@@ -54,11 +54,11 @@ class VerificationPage extends StatelessWidget {
                           authController.otpBorderColor = Colors.black;
                           authController.isLoading = true;
                           authController.update();
-                          bool status = await authController
+                          var response = await authController
                               .registerVerification(verificationCode, context);
                           authController.isLoading = false;
                           authController.update();
-                          if (status) {
+                          if (response.statusCode>=200&&response.statusCode<300) {
                             authController.otpEnabledBorderColor=Colors.green;
                             authController.otpBorderColor = Colors.green;
                             authController.otpReadOnly = true;
@@ -67,6 +67,7 @@ class VerificationPage extends StatelessWidget {
                             Get.to(const LogInPage());
                             authController.otpReadOnly = false;
                             authController.otpBorderColor = Colors.black;
+                            authController.otpEnabledBorderColor=Colors.transparent;
                           } else {
                             authController.otpEnabledBorderColor=Colors.red;
                             authController.otpBorderColor = Colors.red;
