@@ -1,32 +1,35 @@
 
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/models/muscle.dart';
 import 'package:flutter/material.dart';
 
 class ExerciseCardBody extends StatelessWidget {
   const ExerciseCardBody({
-    super.key,
+    super.key, required this.model,
   });
+  final Muscle model;
+  
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return  Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Chest Workout",
+          "${model.muscleName} WORKOUT",
           style: TextStyle(
               color: Colors.white,
               fontFamily: Constans.fontFamily,
               fontWeight: FontWeight.bold,
-              fontSize: 24),
+              fontSize: 22),
         ),
         Text(
-          "20Mins - 16Exercises",
+          "${model.totalTime}Mins - ${model.exerciseNumber}Exercises",
           style: TextStyle(
               color: Colors.white,
               fontFamily: Constans.fontFamily,
               fontWeight: FontWeight.w500,
-              fontSize: 14),
+              fontSize: 12),
         ),
         SizedBox(
           height: 10,

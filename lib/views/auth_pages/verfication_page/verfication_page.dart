@@ -6,7 +6,6 @@ import 'package:fitnessapp/views/auth_pages/login_page/login_page.dart';
 import 'package:fitnessapp/widgets/custom_otp_text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:lottie/lottie.dart';
 
 class VerificationPage extends StatelessWidget {
   VerificationPage({super.key});
@@ -32,10 +31,10 @@ class VerificationPage extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      Lottie.asset('assets/lottie/otp.json', width: 260),
-                      const SizedBox(
-                        height: 20,
-                      ),
+                      // Lottie.asset('assets/lottie/otp.json', width: 260),
+                      // const SizedBox(
+                      //   height: 20,
+                      // ),
                       const Text(
                         'Enter Verification Code',
                         style: TextStyle(

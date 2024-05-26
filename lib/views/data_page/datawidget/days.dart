@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 class Days extends StatelessWidget {
   Days({super.key});
-  final controller = Get.put(Datacontroller(), permanent: true);
+  final controller = Get.put(DataController(), permanent: true);
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -15,7 +15,7 @@ class Days extends StatelessWidget {
               child: Column(children: [
                 Container(
                     width: cont.maxWidth,
-                    height: cont.maxHeight*0.2,
+                    height: cont.maxHeight * 0.2,
                     alignment: Alignment.center,
                     margin: const EdgeInsets.only(top: 10),
                     child: Question(
@@ -24,65 +24,62 @@ class Days extends StatelessWidget {
                     )),
                 select_days(cont),
                 select_clock(cont, context)
-              ]), 
+              ]),
             ));
   }
 
   // ignore: non_constant_identifier_names
   Widget select_clock(BoxConstraints cont, BuildContext context) {
-    return GetBuilder<Datacontroller>(
-      builder:(contr)=> Container(
-                  height: cont.maxHeight * 0.35,
-                  width: cont.maxWidth,
-                  margin: const EdgeInsets.only(left: 20, top: 15),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Select reminder :",
-                        style: TextStyle(
-                          color: controller.twocolor,
-                          fontFamily: "WorkSans",
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          wordSpacing: 2,
-                        ),
-                      ),
-                      InkWell(
-                        overlayColor: MaterialStatePropertyAll(
-                          Colors.white.withOpacity(0)),
-                      onTap: () {
-                        showTimePicker(context: context, initialTime: TimeOfDay.now()).then((value) {
-                          contr.setclock(value!);
-                        });
-                      },
-                        child: Container(
-                          margin: const EdgeInsets.only(top: 20),
-                          width: cont.maxWidth,
-                          height: cont.maxHeight*0.23,
-                          alignment: Alignment.center,
-                          child: Container(
-                            alignment: Alignment.center,
-                            height: 100,
-                            width: 230,
-                            decoration: BoxDecoration(
-                              border: Border.all(
-                                width: 0.5 ,
-                                color: controller.twocolor
-                              ),
-                              borderRadius: BorderRadius.circular(15)
-                            ),
-                            
-                            child: Text(contr.time.format(context).toString(),style: TextStyle(
-                              color: controller.twocolor,
-                              fontSize: 40
-                            ),),
-                          ),
-                        ),
-                      ),
-                       ],
+    return GetBuilder<DataController>(
+      builder: (contr) => Container(
+        height: cont.maxHeight * 0.35,
+        width: cont.maxWidth,
+        margin: const EdgeInsets.only(left: 20, top: 15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Select reminder :",
+              style: TextStyle(
+                color: controller.twocolor,
+                fontFamily: "WorkSans",
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                wordSpacing: 2,
+              ),
+            ),
+            InkWell(
+              overlayColor:
+                  MaterialStatePropertyAll(Colors.white.withOpacity(0)),
+              onTap: () {
+                showTimePicker(context: context, initialTime: TimeOfDay.now())
+                    .then((value) {
+                  contr.setclock(value!);
+                });
+              },
+              child: Container(
+                margin: const EdgeInsets.only(top: 20),
+                width: cont.maxWidth,
+                height: cont.maxHeight * 0.23,
+                alignment: Alignment.center,
+                child: Container(
+                  alignment: Alignment.center,
+                  height: 100,
+                  width: 230,
+                  decoration: BoxDecoration(
+                      border:
+                          Border.all(width: 0.5, color: controller.twocolor),
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Text(
+                    contr.time.format(context).toString(),
+                    style: TextStyle(color: controller.twocolor, fontSize: 40),
                   ),
                 ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -134,7 +131,7 @@ class Days extends StatelessWidget {
 
   // ignore: non_constant_identifier_names
   Widget days_cont(BoxConstraints cont, String name, int num) {
-    return GetBuilder<Datacontroller>(
+    return GetBuilder<DataController>(
       builder: (contr) => InkWell(
         onTap: () {
           contr.setdays(num);
@@ -151,24 +148,26 @@ class Days extends StatelessWidget {
             width: cont.maxWidth * 0.18,
             alignment: Alignment.center,
             decoration: BoxDecoration(
-              color: Colors.white,
+                color: Colors.white,
                 gradient: contr.check(num)
                     ? LinearGradient(colors: [
                         contr.deepcolor.withOpacity(0.25),
-                        const Color.fromARGB(255, 165, 213, 222).withOpacity(0.3),
+                        const Color.fromARGB(255, 165, 213, 222)
+                            .withOpacity(0.3),
                         const Color(0xff281537).withOpacity(0.25)
                       ], begin: Alignment.topLeft, end: Alignment.bottomRight)
                     : null,
-                border: Border.all(width: 0.5, color: controller.twocolor.withOpacity(0.5)),
+                border: Border.all(
+                    width: 0.5, color: controller.twocolor.withOpacity(0.5)),
                 borderRadius: BorderRadius.circular(20)),
             child: Text(
               name,
               style: TextStyle(
-                  fontFamily: "WorkSans",
-                  fontSize: 25,
-                  color: controller.twocolor,
-                 // fontWeight: FontWeight.w600
-                  ),
+                fontFamily: "WorkSans",
+                fontSize: 25,
+                color: controller.twocolor,
+                // fontWeight: FontWeight.w600
+              ),
             ),
           ),
         ),

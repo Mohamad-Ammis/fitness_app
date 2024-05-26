@@ -1,12 +1,13 @@
 
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/models/muscle.dart';
 import 'package:flutter/material.dart';
 
 class ExerciseCardHeader extends StatelessWidget {
   const ExerciseCardHeader({
-    super.key,
+    super.key, required this.model,
   });
-
+final Muscle model;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -18,8 +19,8 @@ class ExerciseCardHeader extends StatelessWidget {
           decoration: BoxDecoration(
               color: const Color(0xFF9EA5AB).withOpacity(0.3),
               borderRadius: BorderRadius.circular(6)),
-          child: const Text(
-            "Beginner",
+          child:  Text(
+            model.level.toString().toUpperCase(),
             style: TextStyle(
                 color: Colors.white,
                 fontFamily: Constans.fontFamily,

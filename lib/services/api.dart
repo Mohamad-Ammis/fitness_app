@@ -1,8 +1,11 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:convert';
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:fitnessapp/helper/custom_snack_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class Api {
@@ -54,5 +57,18 @@ class Api {
             failureDesc ?? 'Some thing went wrong!', ContentType.failure));
       return data;
     }
+  }
+  Future getData(String? token,String url) async {
+    final response=await http.get(Uri.parse(url),headers: token != null
+          ? <String, String>{
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer $token'
+            }
+          : <String, String>{
+              'Content-Type': 'application/json',
+            },);
+            if(response.statusCode==200){
+              return jsonDecode(response.body);
+            }
   }
 }

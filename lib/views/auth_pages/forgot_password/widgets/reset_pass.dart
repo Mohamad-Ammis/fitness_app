@@ -31,7 +31,7 @@ class ResetPassword extends StatelessWidget {
                 children: [
                   const Text(
                     'Set a new password',
-                    style: const TextStyle(
+                    style: TextStyle(
                         fontFamily: Constans.fontFamily,
                         fontSize: 28,
                         fontWeight: FontWeight.w600),

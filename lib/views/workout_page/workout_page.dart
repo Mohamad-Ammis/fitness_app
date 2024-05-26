@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 
 class WorkoutPage extends StatelessWidget {
   WorkoutPage({super.key});
-  final navigationController = Get.put(NavigationController());
+  final navigationController = Get.put(NavigationController(),permanent: true);
   @override
   Widget build(BuildContext context) {
     return GetBuilder<NavigationController>(builder: (navigationController) {

@@ -8,8 +8,8 @@ class Pre extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: ()=>ZoomDrawer.of(context)!.toggle(), icon: Icon(Icons.menu)),
-        title: Text("premium"),
+        leading: IconButton(onPressed: ()=>ZoomDrawer.of(context)!.toggle(), icon: const Icon(Icons.menu)),
+        title: const Text("premium"),
       ),
     );
   }

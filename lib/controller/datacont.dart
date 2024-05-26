@@ -1,12 +1,12 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
- import 'package:image_picker/image_picker.dart'; 
+import 'package:image_picker/image_picker.dart';
 
-class Datacontroller extends GetxController {
-  Color basiccolor = const Color.fromARGB(255, 38, 164, 170) ;
-  Color deepcolor = const Color.fromARGB(255, 27, 118, 122) ;
-  Color twocolor = Colors.black ;
+class DataController extends GetxController {
+  Color basiccolor = const Color.fromARGB(255, 38, 164, 170);
+  Color deepcolor = const Color.fromARGB(255, 27, 118, 122);
+  Color twocolor = Colors.black;
 
   int index = 0;
 
@@ -14,38 +14,36 @@ class Datacontroller extends GetxController {
     index = value;
     update();
   }
-   
-   double percent = 1/6 ;
-   void nextpercent(){
-    percent += 1/6 ;
-    update();
-   }
 
-   void previouspercent(){
-    percent -= 1/6 ;
+  double percent = 1 / 6;
+  void nextpercent() {
+    percent += 1 / 6;
     update();
-   }
-  
-   
+  }
+
+  void previouspercent() {
+    percent -= 1 / 6;
+    update();
+  }
+
   final control = PageController();
 
-  double heightman =350 ;
+  double heightman = 350;
   double heightwoman = 340;
-   void setwidth (double widthScreen , double heightScreen ){
-   if (man == 0) {
-     heightman = heightScreen*0.445 ;
-   heightwoman = heightScreen*0.425;
-   }else if(man == 1){
-     heightman = heightScreen*0.5 ;
-     heightwoman = 220;
-   }else{
-    heightwoman = heightScreen*0.48;
-    heightman = 220;
-   }
+  void setwidth(double widthScreen, double heightScreen) {
+    if (man == 0) {
+      heightman = heightScreen * 0.445;
+      heightwoman = heightScreen * 0.425;
+    } else if (man == 1) {
+      heightman = heightScreen * 0.5;
+      heightwoman = 220;
+    } else {
+      heightwoman = heightScreen * 0.48;
+      heightman = 220;
+    }
+  }
 
-   }
-
- //gender page 
+  //gender page
   Color crman = Colors.black;
   double sizeman = 25;
   FontWeight weightman = FontWeight.normal;
@@ -56,11 +54,11 @@ class Datacontroller extends GetxController {
   //350
   double leftman = 60;
   double bottomman = 30;
-  
+
   double opacityman = 1;
   double rightwoman = 60;
   double bottomwoman = 30;
-  
+
   double opacitywoman = 1;
 
   void selectman(
@@ -85,7 +83,7 @@ class Datacontroller extends GetxController {
     crwoman = crw;
     sizewoman = sizew;
     weightwoman = weightw;
-     man = m;
+    man = m;
     leftman = leftm;
     bottomman = bottomm;
     heightman = heightm;
@@ -97,90 +95,89 @@ class Datacontroller extends GetxController {
     update();
   }
 
+  //target page
+  String selectgoal = '';
 
-   //target page 
-   String selectgoal =''; 
-
-   void setselectgoal(String value){
-     selectgoal = value ;
-     update();
-   }
-
-
- // focus area page 
- int selectfocusarea = 0 ;
-
- void setfocusarea(int value){
-    selectfocusarea = value ;
+  void setselectgoal(String value) {
+    selectgoal = value;
     update();
- }
+  }
 
+  // focus area page
+  int selectfocusarea = 0;
 
- //weight and height 
- int totalhieght = 250;
- int initheight = 160;
- int currentheight = 160;
-
- int totalwieght = 150;
- int initweight = 60;
- int currentweight = 60;
-
- void setheight(int value){
-    currentheight = value ;
-    initheight = value ;
+  void setfocusarea(int value) {
+    selectfocusarea = value;
     update();
- }
+  }
 
- void setweight(int value){
-    currentweight = value ;
-    initweight = value ;
+  //weight and height
+  int totalhieght = 250;
+  int initheight = 160;
+  int currentheight = 160;
+
+  int totalwieght = 150;
+  int initweight = 60;
+  int currentweight = 60;
+
+  void setheight(int value) {
+    currentheight = value;
+    initheight = value;
     update();
- }
+  }
 
-//image picker 
-final imagepicker = ImagePicker();
-File? pickedimage ;
+  void setweight(int value) {
+    currentweight = value;
+    initweight = value;
+    update();
+  }
 
-void fetchimage()async{
- XFile? image = await imagepicker.pickImage(source: ImageSource.gallery);
- if(image == null){return;}
- pickedimage = File(image.path);
- update();
-}
+//image picker
+  final imagepicker = ImagePicker();
+  File? pickedimage;
 
+  void fetchimage() async {
+    XFile? image = await imagepicker.pickImage(source: ImageSource.gallery);
+    if (image == null) {
+      return;
+    }
+    pickedimage = File(image.path);
+    update();
+  }
 
 //Days page
-List days =[];
+  List days = [];
 
-bool check(int a){
-  if(days.contains(a)){
-    return true;
-  }else{return false ;}
-}
-
-void setdays(int a ){
-  if(days.contains(a)){
-    days.remove(a);
-  }else{
-    days.add(a);
+  bool check(int a) {
+    if (days.contains(a)) {
+      return true;
+    } else {
+      return false;
+    }
   }
-  update();
-}
 
-TimeOfDay time = TimeOfDay.now();
+  void setdays(int a) {
+    if (days.contains(a)) {
+      days.remove(a);
+    } else {
+      days.add(a);
+    }
+    update();
+  }
 
- void setclock (TimeOfDay s){
-  time = s;
-  update();
- }
+  TimeOfDay time = TimeOfDay.now();
 
-//illness page 
+  void setclock(TimeOfDay s) {
+    time = s;
+    update();
+  }
 
-String selectill =''; 
+//illness page
 
-   void setselectill(String value){
-     selectill = value ;
-     update();
-   }
+  String selectill = '';
 
+  void setselectill(String value) {
+    selectill = value;
+    update();
+  }
 }

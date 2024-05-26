@@ -8,11 +8,12 @@ import 'package:get/get.dart';
 class ExercisesCategoryItem extends StatelessWidget {
   ExercisesCategoryItem({
     super.key,
-    required this.itemModel,
+    required this.itemModel, required this.index,
+    
   });
+  final int index;
   final controller = Get.put(WorkoutPageController());
   final ExerciseCategoryItemModel itemModel;
-  bool selected = false;
   @override
   Widget build(BuildContext context) {
     return GetBuilder<WorkoutPageController>(builder: (controller) {
@@ -20,7 +21,11 @@ class ExercisesCategoryItem extends StatelessWidget {
         padding: const EdgeInsets.only(right: 8),
         child: GestureDetector(
             onTap: () {
-              selected = !(selected);
+              controller.selectedCategory = index;
+                controller.update();
+              if(controller.selectedCategory==index){
+                controller.changeFilterList(index);
+              }
               controller.update();
             },
             child: Container(
@@ -29,7 +34,7 @@ class ExercisesCategoryItem extends StatelessWidget {
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(
                       width: 0.4, color: Colors.black.withOpacity(0.3)),
-                  color: selected ? Colors.black : null),
+                  color: controller.selectedCategory==index ? Colors.black : null),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -38,7 +43,7 @@ class ExercisesCategoryItem extends StatelessWidget {
                     backgroundColor: Colors.transparent,
                     child: Image.asset(
                       itemModel.image,
-                      color: selected ? Colors.white : null,
+                      color: controller.selectedCategory==index ? Colors.white : null,
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -48,7 +53,7 @@ class ExercisesCategoryItem extends StatelessWidget {
                         fontSize: 15,
                         fontFamily: Constans.fontFamily,
                         fontWeight: FontWeight.w500,
-                        color: selected ? Colors.white : null),
+                        color: controller.selectedCategory==index ? Colors.white : null),
                   )
                 ],
               ),
