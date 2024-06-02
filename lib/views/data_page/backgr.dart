@@ -55,7 +55,7 @@ class Back extends StatelessWidget {
                   height: 200,
                   width: 120,
                   decoration:  BoxDecoration(
-                    color:const Color.fromARGB(255, 23, 83, 86).withOpacity(0.13),
+                    color:Color.fromARGB(255, 23, 83, 86).withOpacity(0.13),
                     borderRadius:const BorderRadius.only(topLeft: Radius.circular(100) , bottomLeft:Radius.circular(100) )
                   ),
                 ),

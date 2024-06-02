@@ -1,6 +1,14 @@
 class Assets {
   Assets._();
   
+  /// Assets for imagesAbsIcon1
+  /// assets/images/absIcon1.png
+  static const String imagesAbsIcon1 = "assets/images/absIcon1.png";
+
+  /// Assets for imagesAbsIcon2
+  /// assets/images/absIcon2.png
+  static const String imagesAbsIcon2 = "assets/images/absIcon2.png";
+
   /// Assets for imagesAppe
   /// assets/images/appe.jpg
   static const String imagesAppe = "assets/images/appe.jpg";
@@ -32,6 +40,10 @@ class Assets {
   /// Assets for imagesB4
   /// assets/images/b4.jpg
   static const String imagesB4 = "assets/images/b4.jpg";
+
+  /// Assets for imagesB6
+  /// assets/images/b6.jpg
+  static const String imagesB6 = "assets/images/b6.jpg";
 
   /// Assets for imagesBack
   /// assets/images/back.png
@@ -93,6 +105,10 @@ class Assets {
   /// assets/images/fruits.jpg
   static const String imagesFruits = "assets/images/fruits.jpg";
 
+  /// Assets for imagesFullbodyIcon
+  /// assets/images/fullbodyIcon.png
+  static const String imagesFullbodyIcon = "assets/images/fullbodyIcon.png";
+
   /// Assets for imagesGluteus
   /// assets/images/gluteus.png
   static const String imagesGluteus = "assets/images/gluteus.png";
@@ -116,6 +132,14 @@ class Assets {
   /// Assets for imagesLman
   /// assets/images/lman.png
   static const String imagesLman = "assets/images/lman.png";
+
+  /// Assets for imagesLoad
+  /// assets/images/load.gif
+  static const String imagesLoad = "assets/images/load.gif";
+
+  /// Assets for imagesLoading
+  /// assets/images/loading.gif
+  static const String imagesLoading = "assets/images/loading.gif";
 
   /// Assets for imagesLoginFitMan
   /// assets/images/login_fit_man.jpg
@@ -229,8 +253,6 @@ class Assets {
   /// assets/images/musman.png
   static const String imagesMusman = "assets/images/musman.png";
 
-  /// Assets for imagesNew folderMan
- 
   /// Assets for imagesOffice
   /// assets/images/office.jpg
   static const String imagesOffice = "assets/images/office.jpg";
@@ -238,6 +260,10 @@ class Assets {
   /// Assets for imagesOldman
   /// assets/images/oldman.jpg
   static const String imagesOldman = "assets/images/oldman.jpg";
+
+  /// Assets for imagesPers
+  /// assets/images/pers.png
+  static const String imagesPers = "assets/images/pers.png";
 
   /// Assets for imagesPicc
   /// assets/images/picc.png
@@ -283,9 +309,33 @@ class Assets {
   /// assets/images/sun.jpg
   static const String imagesSun = "assets/images/sun.jpg";
 
+  /// Assets for imagesT1
+  /// assets/images/t1.gif
+  static const String imagesT1 = "assets/images/t1.gif";
+
+  /// Assets for imagesT2
+  /// assets/images/t2.gif
+  static const String imagesT2 = "assets/images/t2.gif";
+
+  /// Assets for imagesT3
+  /// assets/images/t3.png
+  static const String imagesT3 = "assets/images/t3.png";
+
+  /// Assets for imagesT4
+  /// assets/images/t4.png
+  static const String imagesT4 = "assets/images/t4.png";
+
+  /// Assets for imagesT5
+  /// assets/images/t5.png
+  static const String imagesT5 = "assets/images/t5.png";
+
   /// Assets for imagesTest
   /// assets/images/test.jpg
   static const String imagesTest = "assets/images/test.jpg";
+
+  /// Assets for imagesTestt
+  /// assets/images/testt.jpg
+  static const String imagesTestt = "assets/images/testt.jpg";
 
   /// Assets for imagesTt
   /// assets/images/tt.png

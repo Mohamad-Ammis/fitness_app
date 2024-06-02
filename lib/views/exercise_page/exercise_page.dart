@@ -28,7 +28,7 @@ class ExercisePage extends StatelessWidget {
         ],
         centerTitle: true,
       ),
-      body: const ExercisePageBody(),
+      body:Container(),
     );
   }
 }

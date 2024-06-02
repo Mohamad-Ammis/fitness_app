@@ -1,17 +1,24 @@
 import 'dart:async';
+import 'package:fitnessapp/views/exercises_playing_page/playing_exercise.dart';
+import 'package:fitnessapp/views/workout_page/workout_page.dart';
+
+import '../controller/datacont.dart';
+import 'package:fitnessapp/home.dart';
 import 'package:fitnessapp/splash_screen.dart';
 import 'package:fitnessapp/views/auth_pages/login_page/login_page.dart';
 import 'package:fitnessapp/views/auth_pages/register_page/register_page.dart';
-import 'package:fitnessapp/views/exercises_playing_page/playing_exercise.dart';
-import 'package:fitnessapp/views/workout_page/workout_page.dart';
+import 'package:fitnessapp/views/on_boarding/on_boarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-  late SharedPreferences userInfo;
-Future<void> main() async {
+SharedPreferences? preference;
+ SharedPreferences? userInfo;
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  userInfo=await SharedPreferences.getInstance();
+  preference = await SharedPreferences.getInstance();
+   userInfo=await SharedPreferences.getInstance();
   runApp(const MyApp());
 }
 
@@ -23,10 +30,21 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final controller = Get.put(Datacontroller() , permanent: true);
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 2), () => Get.offAll(WorkoutPage()));
+    Timer(const Duration(seconds: 3), () {
+      if(preference!.getInt("man")!= null){
+        controller.setmemoryman(preference!.getInt("man")!);
+        if(preference!.getString("image")!= null){controller.setmemoryimage(preference!.getString("image")!);}
+        Get.offAll(Home());
+      }
+     else{
+      Get.offAll(OnBoarding()) ;
+     }
+    //  Get.offAll(OnBoarding()) ;
+    } );
   }
 
   // This widget is the root of your application.
@@ -39,7 +57,7 @@ class _MyAppState extends State<MyApp> {
         '/login': (p0) => const LogInPage()
       },
       // initialRoute: '/',
-      home:const  Splash(),
+      home: const Splash()
     );
   }
 }

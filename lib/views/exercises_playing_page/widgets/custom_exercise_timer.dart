@@ -1,4 +1,5 @@
 import 'package:custom_timer/custom_timer.dart';
+import 'package:fitnessapp/models/exersice.dart';
 import 'package:fitnessapp/views/exercises_playing_page/widgets/exercise_timer_info_section.dart';
 import 'package:flutter/material.dart';
 
@@ -7,11 +8,12 @@ class CustomExerciseTimer extends StatefulWidget {
     super.key,
     required this.outerPageController,
     required this.index,
-    required this.lastIndex,
+    required this.lastIndex, required this.model,
   });
   final PageController outerPageController;
   final int index;
   final int lastIndex;
+  final ExerciseModel model;
   @override
   State<CustomExerciseTimer> createState() => _CustomExerciseTimerState();
 }
@@ -20,7 +22,7 @@ class _CustomExerciseTimerState extends State<CustomExerciseTimer>
     with SingleTickerProviderStateMixin {
   late final CustomTimerController _controller = CustomTimerController(
     vsync: this,
-    begin: const Duration(seconds: 5),
+    begin:  Duration(seconds: int.parse(widget.model.time)),
     end: const Duration(),
   );
   @override
@@ -44,7 +46,7 @@ class _CustomExerciseTimerState extends State<CustomExerciseTimer>
               controller: _controller,
               outerPageController: widget.outerPageController,
               index: widget.index,
-              lastIndex: widget.lastIndex,
+              lastIndex: widget.lastIndex, model: widget.model,
             ),
           ),
         ],

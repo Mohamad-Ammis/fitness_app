@@ -1,8 +1,8 @@
 import 'package:custom_timer/custom_timer.dart';
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/models/exersice.dart';
 import 'package:fitnessapp/views/exercise_page/widgets/exercise_page_body.dart';
 import 'package:fitnessapp/views/exercises_playing_page/widgets/custom_timer_button.dart';
-import 'package:fitnessapp/views/workout_page/workout_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,11 +10,11 @@ class InfoSection extends StatelessWidget {
   const InfoSection({
     super.key,
     required CustomTimerController controller,
-    required this.outerPageController, required this.index, required this.lastIndex,
+    required this.outerPageController, required this.index, required this.lastIndex, required this.model,
   }) : _controller = controller;
   final int index;
   final int lastIndex;
-
+  final ExerciseModel model;
   final CustomTimerController _controller;
   final PageController outerPageController;
   @override
@@ -29,12 +29,12 @@ class InfoSection extends StatelessWidget {
               isScrollControlled: true,
               SizedBox(
                   height: MediaQuery.sizeOf(context).height - 50,
-                  child: ExercisePageBody())),
+                  child: ExercisePageBody(model: model,))),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
-                'CHEST PRESS',
+               Text(
+                model.name,
                 style: TextStyle(
                     fontFamily: Constans.fontFamily,
                     fontSize: 25,
@@ -45,7 +45,7 @@ class InfoSection extends StatelessWidget {
               ),
               Icon(
                 Icons.info_outline,
-                color: Colors.grey,
+                color: Colors.black,
                 size: 26,
               )
             ],
@@ -77,7 +77,8 @@ class InfoSection extends StatelessWidget {
                     if (state == CustomTimerState.counting) {
                       _controller.pause();
                     } else if (state == CustomTimerState.finished&&index==lastIndex-1) {
-                      Get.offAll(WorkoutPage());
+                      Get.back();
+                      Get.back();
                     } else {
                       _controller.start();
                     }

@@ -1,6 +1,7 @@
 class Muscle {
   final int? id;
   final String? muscleName;
+  final String? dess;
   final String? muscleImageMan;
   final String? muscleImageWoman;
   final int? exerciseNumber;
@@ -11,6 +12,7 @@ class Muscle {
   factory Muscle.fromJson(json) {
     return Muscle(
         id: json['id'],
+        dess: json['description'],
         muscleName: json['muscle_area'],
         muscleImageMan: json['men_image'],
         muscleImageWoman: json['women_image'],
@@ -22,6 +24,7 @@ class Muscle {
 
   Muscle({
     required this.id,
+    required this.dess,
     required this.muscleName,
     required this.muscleImageMan,
     required this.muscleImageWoman,

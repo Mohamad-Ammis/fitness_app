@@ -1,14 +1,15 @@
 
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/models/exersice.dart';
 import 'package:fitnessapp/views/exercise_page/widgets/custom_info_column.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class MiddleInfoBar extends StatelessWidget {
   const MiddleInfoBar({
-    super.key,
+    super.key, required this.model,
   });
-  
+  final ExerciseModel model;
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -26,13 +27,13 @@ class MiddleInfoBar extends StatelessWidget {
           color:Constans.test.withAlpha(170),
           borderRadius: BorderRadius.circular(16),
         ),
-        child: const Row(
+        child:  Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CustomInfo(
               title: 'Burns',
-              subTitle: '190Cal',
+              subTitle: '${model.calories}KCal',
               icon: FontAwesomeIcons.fire,
             ),
             VerticalDivider(
@@ -43,7 +44,7 @@ class MiddleInfoBar extends StatelessWidget {
             ),
             CustomInfo(
               title: 'Duration',
-              subTitle: '00:30',
+              subTitle: '00:${model.time}',
               icon: FontAwesomeIcons.clock,
             ),
           ],

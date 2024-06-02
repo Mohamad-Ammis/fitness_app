@@ -1,16 +1,17 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/models/exersice.dart';
 import 'package:fitnessapp/views/exercises_playing_page/widgets/custom_circular_timer.dart';
 import 'package:flutter/material.dart';
 
 class ReadyExercisePage extends StatelessWidget {
   ReadyExercisePage({
     super.key,
-    required this.pageController,
+    required this.pageController, required this.model,
   });
   final PageController pageController;
   final CountDownController _controller = CountDownController();
-
+final ExerciseModel model;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -35,11 +36,11 @@ class ReadyExercisePage extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          const Text(
-            'CHEST PRESS',
+           Text(
+            model.name,
             style: TextStyle(
                 fontFamily: Constans.fontFamily,
-                fontSize: 20,
+                fontSize: 24,
                 fontWeight: FontWeight.bold),
           ),
           const SizedBox(

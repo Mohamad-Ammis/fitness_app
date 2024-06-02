@@ -72,7 +72,10 @@ class EmailPage extends StatelessWidget {
                       titleColor: Colors.white,
                       width: MediaQuery.sizeOf(context).width,
                       borderRadius: 12,
-                      buttonText: 'Reset Password',
+                      buttonText: Text(
+          'Reset Password',
+          style:   TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.black),
+        ),
                       onTap: ()  async {
                         if (formKey.currentState!.validate()) {
                           var response=await authController.forgotPassword(authController.email, context);

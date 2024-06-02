@@ -1,5 +1,6 @@
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/exercise_page_controller.dart';
+import 'package:fitnessapp/models/exersice.dart';
 import 'package:fitnessapp/views/exercise_page/widgets/focuse_area_body_image.dart';
 import 'package:fitnessapp/views/exercise_page/widgets/focused_area_item.dart';
 import 'package:flutter/material.dart';
@@ -7,8 +8,9 @@ import 'package:get/get.dart';
 
 class ExerciseInfoSection extends StatelessWidget {
   ExerciseInfoSection({
-    super.key,
+    super.key, required this.model,
   });
+  final ExerciseModel model;
   final exerciseController = Get.put(ExerciseController());
   @override
   Widget build(BuildContext context) {
@@ -43,15 +45,15 @@ class ExerciseInfoSection extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Text(
-                        'Bench Press',
+                       Text(
+                        model.name,
                         style: TextStyle(
                             fontFamily: Constans.fontFamily,
                             fontSize: 24,
                             fontWeight: FontWeight.w600),
                       ),
                       Text(
-                        ' Very Long Description Very Long Description Very Long Description V Very Long Description Very Long Description Very Long Description Very Long Description Very Long Description Very Long Description Very Long Description Very Long Description Very Long Description Very Long Description',
+                        model.des,
                         style: TextStyle(
                             height: 1.5,
                             fontFamily: Constans.fontFamily,
@@ -76,15 +78,15 @@ class ExerciseInfoSection extends StatelessWidget {
                         child: GridView.builder(
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
-                                    crossAxisCount: 3, childAspectRatio: 2.7),
-                            itemCount: 5,
+                                    crossAxisCount: 2, childAspectRatio: 3.7,mainAxisSpacing: 0,crossAxisSpacing: 10),
+                            itemCount: model.focus_area_name?.length??0,
                             // scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
-                              return const FocusedAreaItem();
+                              return  FocusedAreaItem(title:model.focus_area_name?[index]??'', areaNumber: model.focus_area?[index]??1,);
                             }),
                       ),
                       FocuseAreaBodyImage(
-                        muscle: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                        muscle: model.focus_area?? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
                       )
                     ],
                   ),

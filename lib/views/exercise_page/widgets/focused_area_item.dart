@@ -8,9 +8,10 @@ import 'package:get/get.dart';
 
 class FocusedAreaItem extends StatefulWidget {
   const FocusedAreaItem({
-    super.key,
+    super.key, required this.title, required this.areaNumber,
   });
-
+  final String title;
+  final int areaNumber;
   @override
   State<FocusedAreaItem> createState() => _FocusedAreaItemState();
 }
@@ -25,7 +26,7 @@ class _FocusedAreaItemState extends State<FocusedAreaItem> {
           if (iconOff == FontAwesomeIcons.lightbulb) {
             setState(()  {
             iconOff=FontAwesomeIcons.solidLightbulb;
-          controller.setarea(1);
+          controller.setarea(widget.areaNumber);
           controller.setbasic(Colors.black);
           Timer(const Duration(milliseconds: 800), () {
             controller.setbasic(
@@ -47,9 +48,10 @@ setState(() {
         
       },
       child: Container(
+        clipBehavior: Clip.hardEdge,
         height: 15,
-        margin: const EdgeInsets.only(right: 8, top: 4, bottom: 4, left: 4),
-        padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+         margin: const EdgeInsets.only(right: 8, top: 4, bottom: 4, left: 4),
+         padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         decoration: BoxDecoration(
             color: Color.fromARGB(70, 184, 229, 231).withOpacity(0.2),
             borderRadius: BorderRadius.circular(999)),
@@ -64,8 +66,9 @@ setState(() {
               width: 5,
             ),
             Text(
-              'Chest',
+              widget.title,
               style: TextStyle(
+                overflow: TextOverflow.ellipsis,
                   color: Colors.black,
                   fontFamily: Constans.fontFamily,
                   fontWeight: FontWeight.w600),

@@ -40,8 +40,10 @@ class ExercisesCategoryItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
+                    
                     backgroundColor: Colors.transparent,
                     child: Image.asset(
+                      width: 35,
                       itemModel.image,
                       color: controller.selectedCategory==index ? Colors.white : null,
                       fit: BoxFit.cover,

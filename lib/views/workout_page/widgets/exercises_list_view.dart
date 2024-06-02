@@ -1,7 +1,5 @@
-import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/controller/workout_page_controller.dart';
-import 'package:fitnessapp/models/muscle.dart';
 import 'package:fitnessapp/views/workout_page/widgets/exercises_card.dart';
 import 'package:fitnessapp/widgets/shimmer/shimmer_custom_container.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +11,7 @@ class ExercisesListView extends StatelessWidget {
   });
 
   final controller = Get.put(WorkoutPageController());
-  final dataController = Get.put(DataController());
+  final dataController = Get.put(Datacontroller());
 
   @override
   Widget build(BuildContext context) {

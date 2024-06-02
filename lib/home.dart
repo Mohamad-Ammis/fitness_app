@@ -1,5 +1,5 @@
-import 'package:fitnessapp/models/menu_item.dart';
-import 'package:fitnessapp/models/menu_items.dart';
+import 'package:fitnessapp/models/menuItem.dart';
+import 'package:fitnessapp/models/menuitems.dart';
 import 'package:fitnessapp/views/food/food.dart';
 import 'package:fitnessapp/views/gym_pre/pre.dart';
 import 'package:fitnessapp/views/media/media.dart';
@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
                borderRadius: 40,
                showShadow: true,
               angle: /* -12.0 */-8.0,
-              drawerShadowsBackgroundColor:/* Color.fromARGB(255, 103, 185, 189) */const Color.fromARGB(255, 62, 82, 83)  ,
+              drawerShadowsBackgroundColor:/* Color.fromARGB(255, 103, 185, 189) */Color.fromARGB(255, 62, 82, 83)  ,
               slideWidth: MediaQuery.of(context).size.width * 0.73,
                 );
   }
@@ -51,13 +51,13 @@ class _HomeState extends State<Home> {
       case Menuitems.home :
       return WorkoutPage() ;
       case Menuitems.shop :
-      return const Shop();
+      return Shop();
       case Menuitems.food :
-      return const Food();
+      return Food();
       case Menuitems.media :
-      return const media();
+      return media();
       default:
-      return const Pre();
+      return Pre();
     }
   }
 

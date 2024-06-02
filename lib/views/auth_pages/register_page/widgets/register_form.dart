@@ -3,8 +3,8 @@ import 'package:fitnessapp/controller/auth_controller.dart';
 import 'package:fitnessapp/views/auth_pages/verfication_page/verfication_page.dart';
 import 'package:fitnessapp/views/auth_pages/widgets/auth_custom_button.dart';
 import 'package:fitnessapp/views/auth_pages/widgets/auth_footer.dart';
-import 'package:fitnessapp/widgets/Custom_text_field.dart';
 import 'package:fitnessapp/widgets/custom_pass_text_field.dart';
+import 'package:fitnessapp/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -18,7 +18,7 @@ class RegisterPageForm extends StatefulWidget {
 
 class _RegisterPageFormState extends State<RegisterPageForm> {
   GlobalKey<FormState> formKey = GlobalKey();
-
+  bool isLoading = false;
   var autovalidateMode = AutovalidateMode.disabled;
   final authController = Get.put(AuthController());
   @override
@@ -99,23 +99,43 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
               height: 25,
             ),
             AuthCustomButton(
-              buttonText: 'Register',
+              buttonText:isLoading? CircularProgressIndicator(color: Colors.black,):Text(
+          'Register',
+          style:   TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.black),
+        ),
               onTap: () async {
                 if (formKey.currentState!.validate()) {
-                  var response = await authController.register(
-                      authController.userName,
-                      authController.email,
-                      authController.password,
-                      authController.confirmPassword,
-                      context);
-                      if(response.statusCode>=200&&response.statusCode<300){
-                  Get.to(VerificationPage());
-                      }
+                  isLoading=true;
+                  setState(() {
+                    
+                  });
+                  try {
+  var response = await authController.register(
+      authController.userName,
+      authController.email,
+      authController.password,
+      authController.confirmPassword,
+      context);
+      if(response.statusCode>=200&&response.statusCode<300){
+        isLoading=false;
+        setState(() {
+          
+        });
+  Get.to(VerificationPage());
+      }
+      isLoading=false;
+        setState(() {
+          
+        });
+} on Exception catch (e) {
+  debugPrint('e: ${e.toString()}');
+}
                 } else {
                   setState(() {
                     autovalidateMode = AutovalidateMode.always;
                   });
                 }
+                
               },
             ),
             //SizedBox(height: 5,),

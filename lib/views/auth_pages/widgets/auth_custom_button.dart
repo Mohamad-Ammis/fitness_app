@@ -5,7 +5,7 @@ class AuthCustomButton extends StatelessWidget {
   const AuthCustomButton({
     super.key, required this.buttonText, required this.onTap, this.width, this.borderRadius, this.backgroundColor, this.titleColor,  
   });
-  final String buttonText;
+  final Widget buttonText;
   final void  Function()? onTap;
   final double? width;
   final double? borderRadius;
@@ -22,10 +22,7 @@ class AuthCustomButton extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(borderRadius??32)),
             color:backgroundColor?? Constans.secondryColor),
         child:  Center(
-            child: Text(
-          buttonText,
-          style:   TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: titleColor??Colors.black),
-        )),
+            child:buttonText ),
       ),
     );
   }

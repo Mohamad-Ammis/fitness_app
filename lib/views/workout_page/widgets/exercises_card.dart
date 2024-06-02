@@ -1,12 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/muscle.dart';
-import 'package:fitnessapp/views/exercise_page/widgets/exercise_page_body.dart';
-import 'package:fitnessapp/views/exercises_playing_page/playing_exercise.dart';
+import 'package:fitnessapp/views/workout_page/exer.dart';
 import 'package:fitnessapp/views/workout_page/widgets/exercise_card_header.dart';
 import 'package:fitnessapp/views/workout_page/widgets/exercises_card_body.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:get/get.dart';
 
 class ExcercisesCard extends StatelessWidget {
@@ -19,10 +19,15 @@ class ExcercisesCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(PlayingExercises());
+        Get.to(Exercise(image:preference!.getInt("man")==1? model.muscleImageMan!:model.muscleImageWoman!, title: model.muscleName!,
+         des: model.dess!,
+          id: model.id.toString(),
+          level:model.level
+          ));
       },
       child: Container(
         width: double.infinity,
+        clipBehavior: Clip.hardEdge,
         height: 150,
         constraints: const BoxConstraints(minHeight: 140, maxHeight: 180),
         margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
@@ -39,7 +44,7 @@ class ExcercisesCard extends StatelessWidget {
         child: Stack(
           children: [
              CachedNetworkImage(
-  imageUrl: "http://${Constans.host}:8000/Uploads/${model.muscleImageMan}",
+  imageUrl: "http://${Constans.host}:8000/Uploads/${preference!.getInt("man")==1? model.muscleImageMan!:model.muscleImageWoman!}",
   imageBuilder: (context, imageProvider) => Container(
     decoration: BoxDecoration(
       image: DecorationImage(

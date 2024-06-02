@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class FocuseAreaBodyImage extends StatelessWidget {
-  List<int> muscle;
+  List<dynamic> muscle;
   FocuseAreaBodyImage({super.key, required this.muscle});
 
   final controller = Get.put(Musclecontroller(), permanent: true);

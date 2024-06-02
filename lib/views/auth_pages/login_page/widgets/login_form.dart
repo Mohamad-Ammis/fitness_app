@@ -7,8 +7,9 @@ import 'package:fitnessapp/views/auth_pages/forgot_password/forgot_password.dart
 import 'package:fitnessapp/views/auth_pages/widgets/auth_custom_button.dart';
 import 'package:fitnessapp/views/auth_pages/widgets/auth_footer.dart';
 import 'package:fitnessapp/views/data_page/data.dart';
-import 'package:fitnessapp/widgets/Custom_text_field.dart';
+
 import 'package:fitnessapp/widgets/custom_pass_text_field.dart';
+import 'package:fitnessapp/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -28,7 +29,7 @@ class _LoginFormState extends State<LoginForm> {
   final authController = Get.put(AuthController());
 
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -86,26 +87,42 @@ class _LoginFormState extends State<LoginForm> {
           ),
           Center(
             child: AuthCustomButton(
-              buttonText: 'Login',
-              onTap: () async {
+              buttonText:isLoading? CircularProgressIndicator(color: Colors.black,):Text(
+          'Login',
+          style:   TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.black),
+        ),
+              onTap:!isLoading? () async {
                 //WorkoutPage()
                 if (formKey.currentState!.validate()) {
+                  isLoading=true;
+                  setState(() {
+                    
+                  });
                   var response = await authController.logIn(
                       authController.email, authController.password, context);
                   if (response.statusCode >= 200 && response.statusCode < 300) {
+                    print("kkk");
                     var data = jsonDecode(response.body);
                     var token = data['token'];
-                    userInfo.setString('token', token);
-                    debugPrint('token = ${userInfo.getString('token')}');
+                    userInfo?.setString('token', token);
+                    print("okkkk");
+                    debugPrint('token = ${userInfo?.getString('token')}');
+                    print("lllll");
                     Get.offAll(Data());
 
-                  } else {}
+                  } else {
+                    print("iiii");
+                  }
+                    isLoading=false;
+                    setState(() {
+                      
+                    });
                 } else {
                   setState(() {
                     autovalidateMode = AutovalidateMode.always;
                   });
                 }
-              },
+              }:null,
             ),
           ),
           AuthFooter(

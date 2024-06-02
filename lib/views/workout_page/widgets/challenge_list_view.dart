@@ -18,7 +18,7 @@ class ChallengesListView extends StatelessWidget {
     return GetBuilder<WorkoutPageController>(
       builder: (controller) {
         return SizedBox(
-          height: 150,
+          height: 160,
           child: ListView.builder(
               itemCount:controller.shimmerLoading?3: data.length,
               scrollDirection: Axis.horizontal,

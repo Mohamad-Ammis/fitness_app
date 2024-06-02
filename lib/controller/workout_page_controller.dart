@@ -1,10 +1,10 @@
 import 'dart:convert';
-
-import 'package:fitnessapp/constans.dart';
-import 'package:fitnessapp/models/exercises_category_item_model.dart';
-import 'package:fitnessapp/models/muscle.dart';
-import 'package:fitnessapp/services/api.dart';
-import 'package:fitnessapp/utils/app_images.dart';
+import 'package:fitnessapp/controller/datacont.dart';
+import '../constans.dart';
+import '../models/exercises_category_item_model.dart';
+import '../models/muscle.dart';
+import '../services/api.dart';
+import '../utils/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -12,6 +12,7 @@ import 'package:http/http.dart' as http;
 class WorkoutPageController extends GetxController {
   int selectedCategory = 0;
     bool shimmerLoading=false;
+    final controller = Get.put(Datacontroller() , permanent: true);
 
   @override
   onInit() async {
@@ -21,34 +22,42 @@ class WorkoutPageController extends GetxController {
     armExercise = [];
     absExercise = [];
     allExercise = [];
+    print("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
     final beginnerResponse = await http.get(
       Uri.parse(
-          'http://${Constans.host}:8000/api/allArea?muscle_area=beginner'),
+          'http://${Constans.host}:8000/api/muscle/allArea?level=beginner'),
       headers: <String, String>{
         'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${controller.token}',
       },
     );
+   print(beginnerResponse.body);
     final intermediateResponse = await http.get(
       Uri.parse(
-          'http://${Constans.host}:8000/api/allArea?muscle_area=intermediate'),
+          'http://${Constans.host}:8000/api/muscle/allArea?level=intermediate'),
       headers: <String, String>{
         'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${controller.token}',
       },
     );
+   // print(intermediateResponse.body);
     final advancedResponse = await http.get(
       Uri.parse(
-          'http://${Constans.host}:8000/api/allArea?muscle_area=advanced'),
+          'http://${Constans.host}:8000/api/muscle/allArea?level=advanced'),
       headers: <String, String>{
         'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${controller.token}',
       },
     );
+   // print(advancedResponse.body);
+    print(beginnerResponse.statusCode);
     if (beginnerResponse.statusCode == 200 &&
         intermediateResponse.statusCode == 200 &&
         advancedResponse.statusCode == 200) {
-      var beginnerData = jsonDecode(beginnerResponse.body)['muscle_stats'][0];
+      var beginnerData = jsonDecode(beginnerResponse.body)['muscle_stats'];
       var intermediateData =
-          jsonDecode(intermediateResponse.body)['muscle_stats'][0];
-      var advancedData = jsonDecode(advancedResponse.body)['muscle_stats'][0];
+          jsonDecode(intermediateResponse.body)['muscle_stats'];
+      var advancedData = jsonDecode(advancedResponse.body)['muscle_stats'];
       for (var i = 0; i < beginnerData.length; i++) {
         if (beginnerData[i]['muscle_area'].toString() == 'CHEST') {
           final model = Muscle.fromJson(beginnerData[i]);
@@ -142,6 +151,7 @@ class WorkoutPageController extends GetxController {
           backExercise +
           legExercise;
       finalList = allExercise;
+      print(finalList);
       super.onInit();
     }
   }
@@ -183,11 +193,12 @@ class WorkoutPageController extends GetxController {
     Assets.imagesWomanChest4,
   ];
   final List exercisesCategoryItems = [
+    ExerciseCategoryItemModel(image: Assets.imagesFullbodyIcon, title: 'All '),
     ExerciseCategoryItemModel(image: Assets.imagesChest, title: 'Chest'),
     ExerciseCategoryItemModel(image: Assets.imagesBack, title: 'Back'),
     ExerciseCategoryItemModel(image: Assets.imagesArms, title: 'Arms'),
     ExerciseCategoryItemModel(image: Assets.imagesLegs, title: 'Legs'),
-    ExerciseCategoryItemModel(image: Assets.imagesGluteus, title: 'Gluteus'),
+    ExerciseCategoryItemModel(image: Assets.imagesAbsIcon1, title: 'Abs '),
   ];
   List chestExercise = [];
   List backExercise = [];

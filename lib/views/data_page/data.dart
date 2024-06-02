@@ -5,47 +5,62 @@ import 'package:fitnessapp/views/data_page/datawidget/catrow.dart';
 import 'package:fitnessapp/views/data_page/datawidget/days.dart';
 import 'package:fitnessapp/views/data_page/datawidget/focarea.dart';
 import 'package:fitnessapp/views/data_page/datawidget/gender.dart';
-import 'package:fitnessapp/views/data_page/datawidget/height_weight.dart';
+import 'package:fitnessapp/views/data_page/datawidget/height-weight.dart';
 import 'package:fitnessapp/views/data_page/datawidget/illness.dart';
 import 'package:fitnessapp/views/data_page/datawidget/target.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+
+
 
 // ignore: must_be_immutable, use_key_in_widget_constructors
 class Data extends StatelessWidget {
-  List pages = [Gender(), Target(), Illness(), Focusarea(), Height(), Days()];
+  List pages = [
+    Gender(),
+    Target(),
+    Illness(),
+    Focusarea(),
+    Height(),
+    Days()
+  ];
 
-  final controller = Get.put(DataController(), permanent: true);
+  final controller = Get.put(Datacontroller() , permanent: true);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Stack(children: [
-          const Back(),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Catrow(),
-              Expanded(
-                  child: GetBuilder<DataController>(
-                builder: (con) => PageView(
-                  onPageChanged: (value) {
-                    controller.changed(value);
-                  },
-                  physics: const NeverScrollableScrollPhysics(),
-                  controller: con.control,
-                  children: pages
-                      .map((item) => Container(
-                            child: item,
-                          ))
-                      .toList(),
+        body: Stack(
+          children:[
+           const Back(),
+             GetBuilder<Datacontroller>(
+              builder: (con) => con.isloading==false? Column(
+                 mainAxisAlignment: MainAxisAlignment.center,
+                 children: [
+                   Catrow(),
+                   Expanded(child:  PageView(
+                       onPageChanged: (value) {
+                        controller.changed(value);
+                       },
+                       physics:const NeverScrollableScrollPhysics(),
+                       controller: con.control,
+                       children: pages.map((item) => Container(
+                         child: item,
+                       ) ).toList(),
+                     ),
+                   ),
+                   Button(),
+                 ],
+               ):Center(
+                child: SizedBox(
+                  height: MediaQuery.of(context).size.height*0.3,
+                  width: MediaQuery.of(context).size.width*0.6,
+                  child: /* CircularProgressIndicator() */Image.asset("assets/images/loading.gif"),
                 ),
-              )),
-              Button(),
-            ],
-          ),
-        ]),
+               ),
+             ),]
+        ),
       ),
     );
   }
