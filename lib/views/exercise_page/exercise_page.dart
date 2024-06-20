@@ -1,5 +1,4 @@
 import 'package:fitnessapp/constans.dart';
-import 'package:fitnessapp/views/exercise_page/widgets/exercise_page_body.dart';
 import 'package:flutter/material.dart';
 
 // import 'package:youtube_player_flutter/youtube_player_flutter.dart';

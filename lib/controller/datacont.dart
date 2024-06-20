@@ -19,14 +19,14 @@ class Datacontroller extends GetxController {
     update();
   }
    
-   double percent = 1/6 ;
+   double percent = 1/7 ;
    void nextpercent(){
-    percent += 1/6 ;
+    percent += 1/7 ;
     update();
    }
 
    void previouspercent(){
-    percent -= 1/6 ;
+    percent -= 1/7 ;
     update();
    }
   
@@ -212,6 +212,7 @@ bool checkill(int num ){
     'gender':'',
     'target':'',
     'diseases':'',
+    'activity':'',
     'focus_area':'',
     'tall':'',
     'weight':'',
@@ -251,8 +252,19 @@ bool checkill(int num ){
     User_data['diseases'] = 'knee';
    }else if(selectill == 2){
      User_data['diseases'] = 'heart';
-   }else{
+   }else if(selectill == 3){
     User_data['diseases'] = 'breath';
+   }else if(selectill == 4){
+     User_data['diseases'] = 'diabetes';
+   }else{
+     User_data['diseases'] = 'blood_pressure';
+   }
+   if(activity == 1){
+    User_data['activity'] = 'Sedentary';
+   }else if(activity == 2){
+    User_data['activity'] = 'Lightly_Active';
+   }else{
+    User_data['activity'] = 'Very_Active';
    }
    User_data['preferred_time'] = "${time.hour.toString()}:${time.minute.toString()}";
   }
@@ -333,6 +345,16 @@ void setlogout(){
    update();
 
 }
+
+//activity
+
+int activity = 0 ; 
+
+   void setactivity(int value){
+     activity = value ;
+     update();
+   }
+
 
 
 

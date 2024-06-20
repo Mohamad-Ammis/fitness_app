@@ -186,7 +186,7 @@ class Articalpage extends StatelessWidget {
                   topRight: Radius.circular(40),
                   bottomRight: Radius.circular(100)
                 ),
-                child: Image.network("http://192.168.1.7:8000/uploads/$img", fit: BoxFit.cover,),)
+                child: Image.network("http://${controller.ip}:8000/uploads/$img", fit: BoxFit.cover,),)
              );
   }
 }

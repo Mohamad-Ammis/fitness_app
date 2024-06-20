@@ -34,8 +34,13 @@ class _ExerciseState extends State<Exercise> {
       });
       Timer(Duration(milliseconds: 0), () async{ 
        try{
-        control.gender();
-          await control.getexer(widget.id , widget.level);
+        if(control.random == false){
+          control.gender();
+         await control.getexer(widget.id , widget.level);
+        }else{
+          print("from random");
+          await control.getexrciserandom(widget.id);
+        }
       }catch(error){
        showDialog(
             context: context,
@@ -94,7 +99,7 @@ class _ExerciseState extends State<Exercise> {
             primary: false,
             shrinkWrap: true,
             children: [
-             .../* exer */control.exercise.map((item) => allexer(context, item)),
+             ...control.exercise.map((item) => allexer(context, item)),
             ],
           ):ListView.builder(
             itemCount: 4,

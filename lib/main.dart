@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:fitnessapp/views/exercises_playing_page/playing_exercise.dart';
+import 'package:fitnessapp/views/gym_pre/pre.dart';
 import 'package:fitnessapp/views/workout_page/workout_page.dart';
 
 import '../controller/datacont.dart';
@@ -35,15 +36,15 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 3), () {
-      if(preference!.getInt("man")!= null){
+      /* if(preference!.getInt("man")!= null){
         controller.setmemoryman(preference!.getInt("man")!);
         if(preference!.getString("image")!= null){controller.setmemoryimage(preference!.getString("image")!);}
         Get.offAll(Home());
       }
      else{
       Get.offAll(OnBoarding()) ;
-     }
-    //  Get.offAll(OnBoarding()) ;
+     } */
+      Get.offAll(Pre()) ;
     } );
   }
 

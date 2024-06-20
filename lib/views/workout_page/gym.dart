@@ -2,9 +2,9 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
+import 'package:fitnessapp/controller/exercontrol.dart';
 import 'package:fitnessapp/controller/gymcon.dart';
 import 'package:fitnessapp/main.dart';
-import 'package:fitnessapp/models/ranex.dart';
 import 'package:fitnessapp/shimmer/shimmergym.dart';
 import 'package:fitnessapp/views/workout_page/artical.dart';
 import 'package:fitnessapp/views/workout_page/exer.dart';
@@ -23,20 +23,11 @@ class Home_gym extends StatefulWidget {
 
 // ignore: camel_case_types
 class _Home_gymState extends State<Home_gym> {
-final controller = Get.put(Datacontroller() , permanent: true);
+//final controller = Get.put(Datacontroller() , permanent: true);
 
-
-  List<Randomex> ran = <Randomex>[
-    Randomex(title: "on the bed", des: "can help build strength, endurance, and balance in different parts of body", img: "assets/images/bed.jpg"),
-    Randomex(title: "Kids Yoga", des: "It is a fun activities for a kids, offering a blend of yoga, mindfulness, and relaxation", img: "assets/images/kids.jpg"),
-    Randomex(title: "Sun salute ", des:"It is a yoga exercise that involves a sequence of poses Outdoors", img: "assets/images/sun.jpg"),
-    Randomex(title: "in the office", des: "Physical activities that help you stay fit and active while working", img: "assets/images/office.jpg"),
-    Randomex(title: "De-stress time", des: "To get rid of stress and get rest and relaxation", img: "assets/images/stress.jpg"),
-    Randomex(title: "prolong sleep", des: "Some easy and effective exercisees to promote better sleep", img: "assets/images/sleep.jpg"),
-    Randomex(title: "Facial exercises", des: "It can help tone and strengthen the muscles in your face", img:"assets/images/faical.jpg"),
-  ];
 final control = Get.put(Gymcontroller() , permanent: true);
 final datacont = Get.put(Datacontroller(),permanent: true);
+final execontrol = Get.put(Exercontroller() , permanent: true);
  bool isloading = false ;
  @override
   void initState() {
@@ -48,6 +39,7 @@ final datacont = Get.put(Datacontroller(),permanent: true);
        try{
       await control.getCat();
       await control.getartical();
+      await control.getrandomexercise();
       }catch(error){
        showDialog(
             context: context,
@@ -218,10 +210,10 @@ final datacont = Get.put(Datacontroller(),permanent: true);
             ),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(50),
-              child: controller.base64String==null? Image.asset(
+              child: datacont.base64String==null? Image.asset(
                   "assets/images/pers.png",
                   fit: BoxFit.cover,
-                ):Image.memory(base64Decode(controller.base64String!), fit: BoxFit.cover,)
+                ):Image.memory(base64Decode(datacont.base64String!), fit: BoxFit.cover,)
             ),
           ),
         ],
@@ -325,9 +317,11 @@ final datacont = Get.put(Datacontroller(),permanent: true);
     return ListView(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            children: ran.map((item) => InkWell(
+            children: control.randomexercise.map((item) => InkWell(
               onTap: (){
-              //  Get.to(Exercise(image: item.img, title: item.title,des: item.des,));
+                execontrol.fromrandom();
+                Get.to(Exercise(
+                  image: item.img, title: item.title, des: item.des, id: item.id, level: null));
               },
               child: Card(
                 color: Colors.white,
@@ -348,7 +342,7 @@ final datacont = Get.put(Datacontroller(),permanent: true);
                         ),child: SizedBox(
                           height:MediaQuery.of(context).size.height*0.128 ,
                           width:MediaQuery.of(context).size.width*0.35 ,
-                          child: Image.asset(item.img , fit: BoxFit.cover,),
+                          child:Image.network("http://${datacont.ip}:8000/uploads/${item.img}", fit: BoxFit.cover,),
                         ),
                        ),
                        Container(
