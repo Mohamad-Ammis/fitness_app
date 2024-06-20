@@ -18,7 +18,7 @@ class _PlayingExercisesState extends State<PlayingExercises> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: PageView.builder(
-          physics: NeverScrollableScrollPhysics(),
+          physics: const NeverScrollableScrollPhysics(),
             itemCount: controller.all_exer.length,
             controller: outerPageController,
             itemBuilder: (context, index) {

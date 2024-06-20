@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:fitnessapp/controller/workout_page_controller.dart';
 import 'package:fitnessapp/models/challenge_model.dart';
 import 'package:fitnessapp/views/workout_page/widgets/new_challenge_card.dart';

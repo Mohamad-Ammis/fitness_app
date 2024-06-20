@@ -26,7 +26,7 @@ class DateTimeLine extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                  
-                  controller.shimmerLoading?ShimmerContainer(width: 40, height: 20, circularRadius: 12): Text(
+                  controller.shimmerLoading?const ShimmerContainer(width: 40, height: 20, circularRadius: 12): Text(
                     '0/4',
                     style: TextStyle(
                         color: Constans.test,
@@ -46,7 +46,7 @@ class DateTimeLine extends StatelessWidget {
                         scrollDirection: Axis.horizontal,
                         itemCount: 5,
                         itemBuilder: (context, index) {
-                          return ShimmerContainer(
+                          return const ShimmerContainer(
                             width: 60,
                             height: 80,
                             circularRadius: 999,

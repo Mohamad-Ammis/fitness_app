@@ -34,7 +34,7 @@ class _CustomExerciseTimerState extends State<CustomExerciseTimer>
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       color: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,

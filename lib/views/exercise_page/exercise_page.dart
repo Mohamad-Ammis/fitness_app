@@ -1,5 +1,4 @@
 import 'package:fitnessapp/constans.dart';
-import 'package:fitnessapp/views/exercise_page/widgets/exercise_page_body.dart';
 import 'package:flutter/material.dart';
 
 // import 'package:youtube_player_flutter/youtube_player_flutter.dart';
@@ -18,8 +17,8 @@ class ExercisePage extends StatelessWidget {
           'Exercise',
           style: TextStyle(fontFamily: Constans.fontFamily),
         ),
-        actions: [
-          const IconButton(
+        actions: const [
+          IconButton(
               onPressed: null,
               icon: Icon(
                 Icons.favorite_outlined,

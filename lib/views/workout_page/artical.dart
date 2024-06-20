@@ -1,3 +1,4 @@
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -186,7 +187,7 @@ class Articalpage extends StatelessWidget {
                   topRight: Radius.circular(40),
                   bottomRight: Radius.circular(100)
                 ),
-                child: Image.network("http://192.168.1.7:8000/uploads/$img", fit: BoxFit.cover,),)
+                child: Image.network("http://${Constans.host}:8000/uploads/$img", fit: BoxFit.cover,),)
              );
   }
 }

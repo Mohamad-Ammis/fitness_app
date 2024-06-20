@@ -99,9 +99,9 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
               height: 25,
             ),
             AuthCustomButton(
-              buttonText:isLoading? CircularProgressIndicator(color: Colors.black,):Text(
+              buttonText:isLoading? const CircularProgressIndicator(color: Colors.black,):const Text(
           'Register',
-          style:   TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.black),
+          style:   const TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.black),
         ),
               onTap: () async {
                 if (formKey.currentState!.validate()) {
@@ -116,6 +116,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
       authController.password,
       authController.confirmPassword,
       context);
+      isLoading=false;
       if(response.statusCode>=200&&response.statusCode<300){
         isLoading=false;
         setState(() {
@@ -123,11 +124,11 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
         });
   Get.to(VerificationPage());
       }
-      isLoading=false;
         setState(() {
           
         });
 } on Exception catch (e) {
+  isLoading=false;
   debugPrint('e: ${e.toString()}');
 }
                 } else {

@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'package:fitnessapp/views/exercises_playing_page/playing_exercise.dart';
-import 'package:fitnessapp/views/workout_page/workout_page.dart';
 
 import '../controller/datacont.dart';
 import 'package:fitnessapp/home.dart';

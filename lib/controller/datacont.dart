@@ -4,13 +4,13 @@ import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
- import 'package:image_picker/image_picker.dart'; 
- import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart';
+import 'package:http/http.dart' as http;
 
 class Datacontroller extends GetxController {
-  Color basiccolor = Color.fromARGB(255, 38, 164, 170) ;
-  Color deepcolor = Color.fromARGB(255, 27, 118, 122) ;
-  Color twocolor = Colors.black ;
+  Color basiccolor = const Color.fromARGB(255, 38, 164, 170);
+  Color deepcolor = const Color.fromARGB(255, 27, 118, 122);
+  Color twocolor = Colors.black;
 
   int index = 0;
 
@@ -18,38 +18,36 @@ class Datacontroller extends GetxController {
     index = value;
     update();
   }
-   
-   double percent = 1/6 ;
-   void nextpercent(){
-    percent += 1/6 ;
-    update();
-   }
 
-   void previouspercent(){
-    percent -= 1/6 ;
+  double percent = 1 / 6;
+  void nextpercent() {
+    percent += 1 / 6;
     update();
-   }
-  
-   
+  }
+
+  void previouspercent() {
+    percent -= 1 / 6;
+    update();
+  }
+
   final control = PageController();
 
-  double heightman =350 ;
+  double heightman = 350;
   double heightwoman = 340;
-   void setwidth (double width_screen , double height_screen ){
-   if (man == 0) {
-     heightman = height_screen*0.445 ;
-   heightwoman = height_screen*0.425;
-   }else if(man == 1){
-     heightman = height_screen*0.5 ;
-     heightwoman = 220;
-   }else{
-    heightwoman = height_screen*0.48;
-    heightman = 220;
-   }
+  void setwidth(double widthScreen, double heightScreen) {
+    if (man == 0) {
+      heightman = heightScreen * 0.445;
+      heightwoman = heightScreen * 0.425;
+    } else if (man == 1) {
+      heightman = heightScreen * 0.5;
+      heightwoman = 220;
+    } else {
+      heightwoman = heightScreen * 0.48;
+      heightman = 220;
+    }
+  }
 
-   }
-
- //gender page 
+  //gender page
   Color crman = Colors.black;
   double sizeman = 25;
   FontWeight weightman = FontWeight.normal;
@@ -60,11 +58,11 @@ class Datacontroller extends GetxController {
   //350
   double leftman = 60;
   double bottomman = 30;
-  
+
   double opacityman = 1;
   double rightwoman = 60;
   double bottomwoman = 30;
-  
+
   double opacitywoman = 1;
 
   void selectman(
@@ -89,7 +87,7 @@ class Datacontroller extends GetxController {
     crwoman = crw;
     sizewoman = sizew;
     weightwoman = weightw;
-     man = m;
+    man = m;
     leftman = leftm;
     bottomman = bottomm;
     heightman = heightm;
@@ -101,239 +99,233 @@ class Datacontroller extends GetxController {
     update();
   }
 
+  //target page
+  String selectgoal = '';
 
-   //target page 
-   String selectgoal =''; 
-
-   void setselectgoal(String value){
-     selectgoal = value ;
-     update();
-   }
-
-
- // focus area page 
- int selectfocusarea = 0 ;
-
- void setfocusarea(int value){
-    selectfocusarea = value ;
+  void setselectgoal(String value) {
+    selectgoal = value;
     update();
- }
+  }
 
+  // focus area page
+  int selectfocusarea = 0;
 
- //weight and height 
- int totalhieght = 220;
- int initheight = 160;
- int currentheight = 160;
-
- int totalwieght = 220;
- int initweight = 60;
- int currentweight = 60;
-
- void setheight(int value){
-    currentheight = value ;
-    initheight = value ;
+  void setfocusarea(int value) {
+    selectfocusarea = value;
     update();
- }
+  }
 
- void setweight(int value){
-    currentweight = value ;
-    initweight = value ;
+  //weight and height
+  int totalhieght = 220;
+  int initheight = 160;
+  int currentheight = 160;
+
+  int totalwieght = 220;
+  int initweight = 60;
+  int currentweight = 60;
+
+  void setheight(int value) {
+    currentheight = value;
+    initheight = value;
     update();
- }
+  }
 
-//image picker 
-final imagepicker = ImagePicker();
-File? pickedimage ;
-List<int> imageBytes = [];
-String? base64String ;
+  void setweight(int value) {
+    currentweight = value;
+    initweight = value;
+    update();
+  }
 
-void fetchimage()async{
- XFile? image = await imagepicker.pickImage(source: ImageSource.gallery);
- if(image == null){return;}
- pickedimage = File(image.path);
- imageBytes = await pickedimage!.readAsBytes();
- base64String = base64Encode(imageBytes);
- update();
-}
+//image picker
+  final imagepicker = ImagePicker();
+  File? pickedimage;
+  List<int> imageBytes = [];
+  String? base64String;
 
+  void fetchimage() async {
+    XFile? image = await imagepicker.pickImage(source: ImageSource.gallery);
+    if (image == null) {
+      return;
+    }
+    pickedimage = File(image.path);
+    imageBytes = await pickedimage!.readAsBytes();
+    base64String = base64Encode(imageBytes);
+    update();
+  }
 
 //Days page
-List days =[];
+  List days = [];
 
-bool check(int a){
-  if(days.contains(a)){
-    return true;
-  }else{return false ;}
-}
-
-void setdays(int a ){
-  if(days.contains(a)){
-    days.remove(a);
-  }else{
-    days.add(a);
-  }
-  update();
-}
-
-TimeOfDay time = TimeOfDay.now();
-
- void setclock (TimeOfDay s){
-  time = s;
-  update();
- }
-
-//illness page 
-
-int selectill =0; 
-
-bool checkill(int num ){
-  if(selectill == num){
-    return true ;
-  }else{
-    return false;
-  }
-}
-
-   void setselectill(int value){
-    if(selectill == value){
-      selectill = 0;
-    }else{
-      selectill = value ;
+  bool check(int a) {
+    if (days.contains(a)) {
+      return true;
+    } else {
+      return false;
     }
-     update();
-   }
+  }
+
+  void setdays(int a) {
+    if (days.contains(a)) {
+      days.remove(a);
+    } else {
+      days.add(a);
+    }
+    update();
+  }
+
+  TimeOfDay time = TimeOfDay.now();
+
+  void setclock(TimeOfDay s) {
+    time = s;
+    update();
+  }
+
+//illness page
+
+  int selectill = 0;
+
+  bool checkill(int num) {
+    if (selectill == num) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  void setselectill(int value) {
+    if (selectill == value) {
+      selectill = 0;
+    } else {
+      selectill = value;
+    }
+    update();
+  }
 
 //
-  String ip=Constans.host;
-  String? token= userInfo?.getString("token") ;
-  String baseurl ="http://${Constans.host}:8000/api/";
- 
-  Map <String , String> User_data ={
-    'gender':'',
-    'target':'',
-    'diseases':'',
-    'focus_area':'',
-    'tall':'',
-    'weight':'',
-    'preferred_time':''
+  String ip = Constans.host;
+  String? token = userInfo?.getString("token");
+  String baseurl = "http://${Constans.host}:8000/api/";
+
+  Map<String, String> userData = {
+    'gender': '',
+    'target': '',
+    'diseases': '',
+    'focus_area': '',
+    'tall': '',
+    'weight': '',
+    'preferred_time': ''
   };
 
-
-  void setUser_Data(){
+  void setUserData() {
     if (man == 1) {
-       User_data["gender"]="male";
-    }else{
-      User_data["gender"]="female";
+      userData["gender"] = "male";
+    } else {
+      userData["gender"] = "female";
     }
-   if(selectgoal =="1"){
-     User_data["target"]="lose weight";
-   }else if(selectgoal == "2"){
-     User_data["target"]="build muscle";
-   }else{
-     User_data["target"]="keep fit";
-   }
-   User_data["tall"]=currentheight.toString();
-   User_data["weight"]=currentweight.toString();
-   if(selectfocusarea ==1){
-     User_data['focus_area'] = 'all';
-   }else if(selectfocusarea == 2){
-     User_data['focus_area'] = 'chest';
-   }else if (selectfocusarea == 3){
-    User_data['focus_area'] = 'abs';
-   }else if(selectfocusarea == 4){
-     User_data['focus_area'] = 'arm';
-   }else{
-    User_data['focus_area'] = 'leg';
-   }
-   if(selectill == 0){
-    User_data['diseases'] = 'none';
-   }else if(selectill == 1){
-    User_data['diseases'] = 'knee';
-   }else if(selectill == 2){
-     User_data['diseases'] = 'heart';
-   }else{
-    User_data['diseases'] = 'breath';
-   }
-   User_data['preferred_time'] = "${time.hour.toString()}:${time.minute.toString()}";
+    if (selectgoal == "1") {
+      userData["target"] = "lose weight";
+    } else if (selectgoal == "2") {
+      userData["target"] = "build muscle";
+    } else {
+      userData["target"] = "keep fit";
+    }
+    userData["tall"] = currentheight.toString();
+    userData["weight"] = currentweight.toString();
+    if (selectfocusarea == 1) {
+      userData['focus_area'] = 'all';
+    } else if (selectfocusarea == 2) {
+      userData['focus_area'] = 'chest';
+    } else if (selectfocusarea == 3) {
+      userData['focus_area'] = 'abs';
+    } else if (selectfocusarea == 4) {
+      userData['focus_area'] = 'arm';
+    } else {
+      userData['focus_area'] = 'leg';
+    }
+    if (selectill == 0) {
+      userData['diseases'] = 'none';
+    } else if (selectill == 1) {
+      userData['diseases'] = 'knee';
+    } else if (selectill == 2) {
+      userData['diseases'] = 'heart';
+    } else {
+      userData['diseases'] = 'breath';
+    }
+    userData['preferred_time'] =
+        "${time.hour.toString()}:${time.minute.toString()}";
   }
 
- Future Setdata ()async{
-  final String url = '${baseurl}trainer/info';
-  try{
-     final request = http.MultipartRequest('POST',Uri.parse(url));
-    
-    request.headers.addAll({'Accept':'application/json' ,
-      'Authorization': 'Bearer $token',
-      },);
-      request.fields.addAll(User_data);
-      if(pickedimage!= null){
-      request.files.add(await http.MultipartFile.fromPath("Image", pickedimage!.path));
+  Future setData() async {
+    final String url = '${baseurl}trainer/info';
+    try {
+      final request = http.MultipartRequest('POST', Uri.parse(url));
+
+      request.headers.addAll(
+        {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
+      );
+      request.fields.addAll(userData);
+      if (pickedimage != null) {
+        request.files
+            .add(await http.MultipartFile.fromPath("Image", pickedimage!.path));
       }
-     var res= await request.send();
-     var response = await http.Response.fromStream(res);
-     print(response.statusCode.toString());
-     if(response.statusCode == 500){
-      throw 'No Internet , Please try again';
-     }
-     }
-    catch(errore){
-      rethrow ;
+      var res = await request.send();
+      var response = await http.Response.fromStream(res);
+      print(response.statusCode.toString());
+      if (response.statusCode == 500) {
+        throw 'No Internet , Please try again';
+      }
+    } catch (errore) {
+      rethrow;
     }
- }
+  }
 
-bool isloading = false;
+  bool isloading = false;
 
-void Load(bool value){
-  isloading = value;
-  update();
-}
+  void load(bool value) {
+    isloading = value;
+    update();
+  }
 
-void setmemoryman(int value){
-  man = value ;
-  update();
-}
+  void setmemoryman(int value) {
+    man = value;
+    update();
+  }
 
-void setmemoryimage(String value){
-  base64String = value ;
-  update();
-}
+  void setmemoryimage(String value) {
+    base64String = value;
+    update();
+  }
 
-
-
-
-
-
-void setlogout(){
-  index = 0;
-   heightman =350 ;
-   heightwoman = 340;
-   crman = Colors.black;
-   sizeman = 25;
-   weightman = FontWeight.normal;
-   crwoman = Colors.black;
-   sizewoman = 25;
+  void setlogout() {
+    index = 0;
+    heightman = 350;
+    heightwoman = 340;
+    crman = Colors.black;
+    sizeman = 25;
+    weightman = FontWeight.normal;
+    crwoman = Colors.black;
+    sizewoman = 25;
     weightwoman = FontWeight.normal;
-   man = 0;
+    man = 0;
     leftman = 60;
-   bottomman = 30;
-   opacityman = 1;
-   rightwoman = 60;
-   bottomwoman = 30;
-   opacitywoman = 1;
-    selectgoal =''; 
-   selectfocusarea = 0 ;
-   initheight = 160;
-   initweight = 60;
-   pickedimage = null ;
-   days =[];
-   time = TimeOfDay.now();
-   selectill =0; 
-   percent = 1/6 ;
-   base64String= null ;
-   update();
-
-}
-
-
-
+    bottomman = 30;
+    opacityman = 1;
+    rightwoman = 60;
+    bottomwoman = 30;
+    opacitywoman = 1;
+    selectgoal = '';
+    selectfocusarea = 0;
+    initheight = 160;
+    initweight = 60;
+    pickedimage = null;
+    days = [];
+    time = TimeOfDay.now();
+    selectill = 0;
+    percent = 1 / 6;
+    base64String = null;
+    update();
+  }
 }

@@ -32,7 +32,7 @@ class _ExerciseState extends State<Exercise> {
      setState(() {
         isloading = true;
       });
-      Timer(Duration(milliseconds: 0), () async{ 
+      Timer(const Duration(milliseconds: 0), () async{ 
        try{
         control.gender();
           await control.getexer(widget.id , widget.level);
@@ -116,7 +116,7 @@ class _ExerciseState extends State<Exercise> {
                child: ElevatedButton(onPressed: (){
                 //control.all_exer
                 debugPrint(controller.all_exer.toString());
-                 Get.to(PlayingExercises());
+                 Get.to(const PlayingExercises());
                },
                style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 38, 164, 170),

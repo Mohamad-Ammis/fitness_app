@@ -5,6 +5,7 @@ class ChallengeModel {
   final String? counter;
   final String? type;
   final String? image;
+  final String? secondryImage;
   final String? gif;
 
   ChallengeModel(
@@ -14,6 +15,7 @@ class ChallengeModel {
       required this.counter,
       required this.type,
       required this.image,
+      required this.secondryImage,
       required this.gif});
   factory ChallengeModel.fromJson(json) {
     return ChallengeModel(
@@ -23,6 +25,7 @@ class ChallengeModel {
         counter: json['challenge_name'],
         type: json['type'],
         image: json['image'],
-        gif: json['gif']);
+        gif: json['gif'],
+        secondryImage: json['secondry_image']);
   }
 }

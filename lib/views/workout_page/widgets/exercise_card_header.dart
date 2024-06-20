@@ -21,7 +21,7 @@ final Muscle model;
               borderRadius: BorderRadius.circular(6)),
           child:  Text(
             model.level.toString().toUpperCase(),
-            style: TextStyle(
+            style: const TextStyle(
                 color: Colors.white,
                 fontFamily: Constans.fontFamily,
                 fontSize: 12),

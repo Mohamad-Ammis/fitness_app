@@ -21,7 +21,7 @@ class ExercisesCategoryListView extends StatelessWidget {
               itemCount:controller.shimmerLoading?4: controller.exercisesCategoryItems.length,
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return controller.shimmerLoading?ShimmerContainer(width: 100, height: 40, circularRadius: 12,margin: EdgeInsets.symmetric(horizontal: 8),) :GestureDetector(
+                return controller.shimmerLoading?const ShimmerContainer(width: 100, height: 40, circularRadius: 12,margin: EdgeInsets.symmetric(horizontal: 8),) :GestureDetector(
                   child: ExercisesCategoryItem(itemModel: controller.exercisesCategoryItems[index], index: index,));
               }),
         );

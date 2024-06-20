@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, prefer_contains
+
 import 'dart:convert';
 import 'package:fitnessapp/controller/datacont.dart';
 import '../constans.dart';

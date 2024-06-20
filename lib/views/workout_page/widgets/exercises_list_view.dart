@@ -28,7 +28,7 @@ class ExercisesListView extends StatelessWidget {
                       width: MediaQuery.sizeOf(context).width,
                       height: 150,
                       circularRadius: 12,
-                      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     );
                   });
       }

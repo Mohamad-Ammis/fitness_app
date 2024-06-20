@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/menuItem.dart';

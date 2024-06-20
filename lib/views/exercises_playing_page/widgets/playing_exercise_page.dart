@@ -41,14 +41,14 @@ class PlayingExercisePage extends StatelessWidget {
             child: IconButton(
                 onPressed: () {
                   Get.bottomSheet(
-                      enterBottomSheetDuration: Duration(milliseconds: 700),
-                      exitBottomSheetDuration: Duration(milliseconds: 700),
+                      enterBottomSheetDuration: const Duration(milliseconds: 700),
+                      exitBottomSheetDuration: const Duration(milliseconds: 700),
                       isScrollControlled: true,
                       SizedBox(
                           height: MediaQuery.sizeOf(context).height - 50,
                           child: ExercisePageBody(model: model,)));
                 },
-                icon: Icon(
+                icon: const Icon(
                   Icons.info_outline,
                   size: 30,
                   color: Colors.black,
