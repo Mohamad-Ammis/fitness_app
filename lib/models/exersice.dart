@@ -14,9 +14,9 @@ class ExerciseModel{
  String level ;
  String gender ;
  String? choose ;
- List? focus_area;
- List? focus_area_name;
- Pivot pivot ;
+ List focus_area;
+ List focus_area_name;
+ Pivot? pivot ;
 
  ExerciseModel({
   required this.id,

@@ -11,49 +11,42 @@ class Button extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.12,
-      child: Row(
-        children: [
-          const Spacer(),
-          GetBuilder<Datacontroller>(
-              builder: (cont) => Padding(
-                    padding: const EdgeInsets.only(right: 20, bottom: 20),
-                    child: Card(
-                      elevation: 10,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30)),
-                      child: (cont.index) <= 4
-                          ? ElevatedButton(
-                              onPressed: () {
-                                if (cont.index == 0) {
-                                  if (cont.man != 0) {
-                                    controller.control.nextPage(
-                                        duration: const Duration(seconds: 1),
-                                        curve: Curves.bounceOut);
-                                    controller.nextpercent();
-                                  }
-                                } else if (cont.index == 1) {
-                                  if (cont.selectgoal.isEmpty) {
-                                  } else {
-                                    controller.control.nextPage(
-                                        duration: const Duration(seconds: 1),
-                                        curve: Curves.bounceOut);
-                                    controller.nextpercent();
-                                  }
-                                } else if (cont.index == 2) {
-                                  controller.control.nextPage(
-                                      duration: const Duration(seconds: 1),
-                                      curve: Curves.bounceOut);
-                                  controller.nextpercent();
-                                } else if (cont.index == 3) {
-                                  if (cont.selectfocusarea != 0) {
-                                    controller.control.nextPage(
-                                        duration: const Duration(seconds: 1),
-                                        curve: Curves.bounceOut);
-                                    controller.nextpercent();
-                                  }
-                                } else if (cont.index == 4) {
-                                  /* if(cont.pickedimage != null ){
+              height: MediaQuery.of(context).size.height*0.12,
+              child: Row(
+                children: [
+                 const Spacer(),
+                  GetBuilder<Datacontroller>(
+                    builder: (cont)=> Padding(
+                      padding: const EdgeInsets.only(right: 20 , bottom: 20),
+                      child: Card(
+                        elevation: 10,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+                        child:(cont.index)<=5? ElevatedButton(onPressed: (){
+                          if(cont.index == 0){
+                            if(cont.man != 0){
+                             controller.control.nextPage(duration: const Duration(seconds: 1), curve: Curves.bounceOut);
+                          controller.nextpercent();
+                            }
+                          }else if(cont.index ==1){
+                            if(cont.selectgoal.isEmpty){}else{
+                             controller.control.nextPage(duration: const Duration(seconds: 1), curve: Curves.bounceOut);
+                             controller.nextpercent();
+                            }
+                          }else if (cont.index == 2){
+                            controller.control.nextPage(duration: const Duration(seconds: 1), curve: Curves.bounceOut);
+                            controller.nextpercent();
+                          }else if(cont.index == 3){
+                            if(controller.activity!=0){
+                            controller.control.nextPage(duration: const Duration(seconds: 1), curve: Curves.bounceOut);
+                            controller.nextpercent();
+                            }
+                          }else if(cont.index == 4){
+                            if(cont.selectfocusarea != 0){
+                               controller.control.nextPage(duration: const Duration(seconds: 1), curve: Curves.bounceOut);
+                               controller.nextpercent();
+                            }
+                          }else if(cont.index ==5){
+                            /* if(cont.pickedimage != null ){
                                controller.control.nextPage(duration: const Duration(seconds: 1), curve: Curves.bounceOut);
                                controller.nextpercent();
                             } */

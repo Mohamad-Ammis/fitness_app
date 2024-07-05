@@ -18,15 +18,15 @@ class Datacontroller extends GetxController {
     index = value;
     update();
   }
-
-  double percent = 1 / 6;
-  void nextpercent() {
-    percent += 1 / 6;
+   
+   double percent = 1/7 ;
+   void nextpercent(){
+    percent += 1/7 ;
     update();
   }
 
-  void previouspercent() {
-    percent -= 1 / 6;
+   void previouspercent(){
+    percent -= 1/7 ;
     update();
   }
 
@@ -202,57 +202,69 @@ class Datacontroller extends GetxController {
   }
 
 //
-  String ip = Constans.host;
-  String? token = userInfo?.getString("token");
-  String baseurl = "http://${Constans.host}:8000/api/";
-
-  Map<String, String> userData = {
-    'gender': '',
-    'target': '',
-    'diseases': '',
-    'focus_area': '',
-    'tall': '',
-    'weight': '',
-    'preferred_time': ''
+  String ip=Constans.host;
+  String? token= userInfo?.getString("token") ;
+  String baseurl ="http://${Constans.host}:8000/api/";
+ 
+  Map <String , String> User_data ={
+    'gender':'',
+    'target':'',
+    'diseases':'',
+    'activity':'',
+    'focus_area':'',
+    'tall':'',
+    'weight':'',
+    'preferred_time':''
   };
 
-  void setUserData() {
+
+  void setUser_Data(){
     if (man == 1) {
       userData["gender"] = "male";
     } else {
       userData["gender"] = "female";
     }
-    if (selectgoal == "1") {
-      userData["target"] = "lose weight";
-    } else if (selectgoal == "2") {
-      userData["target"] = "build muscle";
-    } else {
-      userData["target"] = "keep fit";
-    }
-    userData["tall"] = currentheight.toString();
-    userData["weight"] = currentweight.toString();
-    if (selectfocusarea == 1) {
-      userData['focus_area'] = 'all';
-    } else if (selectfocusarea == 2) {
-      userData['focus_area'] = 'chest';
-    } else if (selectfocusarea == 3) {
-      userData['focus_area'] = 'abs';
-    } else if (selectfocusarea == 4) {
-      userData['focus_area'] = 'arm';
-    } else {
-      userData['focus_area'] = 'leg';
-    }
-    if (selectill == 0) {
-      userData['diseases'] = 'none';
-    } else if (selectill == 1) {
-      userData['diseases'] = 'knee';
-    } else if (selectill == 2) {
-      userData['diseases'] = 'heart';
-    } else {
-      userData['diseases'] = 'breath';
-    }
-    userData['preferred_time'] =
-        "${time.hour.toString()}:${time.minute.toString()}";
+   if(selectgoal =="1"){
+     User_data["target"]="lose weight";
+   }else if(selectgoal == "2"){
+     User_data["target"]="build muscle";
+   }else{
+     User_data["target"]="keep fit";
+   }
+   User_data["tall"]=currentheight.toString();
+   User_data["weight"]=currentweight.toString();
+   if(selectfocusarea ==1){
+     User_data['focus_area'] = 'all';
+   }else if(selectfocusarea == 2){
+     User_data['focus_area'] = 'chest';
+   }else if (selectfocusarea == 3){
+    User_data['focus_area'] = 'abs';
+   }else if(selectfocusarea == 4){
+     User_data['focus_area'] = 'arm';
+   }else{
+    User_data['focus_area'] = 'leg';
+   }
+   if(selectill == 0){
+    User_data['diseases'] = 'none';
+   }else if(selectill == 1){
+    User_data['diseases'] = 'knee';
+   }else if(selectill == 2){
+     User_data['diseases'] = 'heart';
+   }else if(selectill == 3){
+    User_data['diseases'] = 'breath';
+   }else if(selectill == 4){
+     User_data['diseases'] = 'diabetes';
+   }else{
+     User_data['diseases'] = 'blood_pressure';
+   }
+   if(activity == 1){
+    User_data['activity'] = 'Sedentary';
+   }else if(activity == 2){
+    User_data['activity'] = 'Lightly_Active';
+   }else{
+    User_data['activity'] = 'Very_Active';
+   }
+   User_data['preferred_time'] = "${time.hour.toString()}:${time.minute.toString()}";
   }
 
   Future setData() async {
@@ -311,21 +323,35 @@ class Datacontroller extends GetxController {
     weightwoman = FontWeight.normal;
     man = 0;
     leftman = 60;
-    bottomman = 30;
-    opacityman = 1;
-    rightwoman = 60;
-    bottomwoman = 30;
-    opacitywoman = 1;
-    selectgoal = '';
-    selectfocusarea = 0;
-    initheight = 160;
-    initweight = 60;
-    pickedimage = null;
-    days = [];
-    time = TimeOfDay.now();
-    selectill = 0;
-    percent = 1 / 6;
-    base64String = null;
-    update();
-  }
+   bottomman = 30;
+   opacityman = 1;
+   rightwoman = 60;
+   bottomwoman = 30;
+   opacitywoman = 1;
+    selectgoal =''; 
+   selectfocusarea = 0 ;
+   initheight = 160;
+   initweight = 60;
+   pickedimage = null ;
+   days =[];
+   time = TimeOfDay.now();
+   selectill =0; 
+   percent = 1/6 ;
+   base64String= null ;
+   update();
+
+}
+
+//activity
+
+int activity = 0 ; 
+
+   void setactivity(int value){
+     activity = value ;
+     update();
+   }
+
+
+
+
 }

@@ -1,5 +1,6 @@
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/views/data_page/backgr.dart';
+import 'package:fitnessapp/views/data_page/datawidget/activity.dart';
 import 'package:fitnessapp/views/data_page/datawidget/button.dart';
 import 'package:fitnessapp/views/data_page/datawidget/catrow.dart';
 import 'package:fitnessapp/views/data_page/datawidget/days.dart';
@@ -20,6 +21,7 @@ class Data extends StatelessWidget {
     Gender(),
     Target(),
     Illness(),
+    Activity(),
     Focusarea(),
     Height(),
     Days()
