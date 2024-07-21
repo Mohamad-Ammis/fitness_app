@@ -47,7 +47,7 @@ class ExerciseInfoSection extends StatelessWidget {
                     children: [
                        Text(
                         model.name,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontFamily: Constans.fontFamily,
                             fontSize: 24,
                             fontWeight: FontWeight.w600),
@@ -79,14 +79,14 @@ class ExerciseInfoSection extends StatelessWidget {
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2, childAspectRatio: 3.7,mainAxisSpacing: 0,crossAxisSpacing: 10),
-                            itemCount: model.focus_area_name?.length??0,
+                            itemCount: model.focus_area_name.length,
                             // scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index) {
-                              return  FocusedAreaItem(title:model.focus_area_name?[index]??'', areaNumber: model.focus_area?[index]??1,);
+                              return  FocusedAreaItem(title:model.focus_area_name[index]??'', areaNumber: model.focus_area[index]??1,);
                             }),
                       ),
                       FocuseAreaBodyImage(
-                        muscle: model.focus_area?? [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+                        muscle: model.focus_area,
                       )
                     ],
                   ),
@@ -109,7 +109,7 @@ class ExerciseInfoSection extends StatelessWidget {
                   borderRadius: const BorderRadius.all(Radius.circular(16)),
                   color: Constans.test.withAlpha(170)),
               child: const Center(
-                  child: const Row(
+                  child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 // crossAxisAlignment: CrossAxisAlignment.center,
                 children: [

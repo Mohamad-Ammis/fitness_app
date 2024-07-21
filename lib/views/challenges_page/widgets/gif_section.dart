@@ -18,7 +18,7 @@ class ChallengeGifSection extends StatelessWidget {
       alignment: Alignment.topCenter,
       height: MediaQuery.sizeOf(context).height / 3 + 45,
       clipBehavior: Clip.hardEdge,
-      decoration: BoxDecoration(
+      decoration: const BoxDecoration(
           color: Colors.red,
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(35),

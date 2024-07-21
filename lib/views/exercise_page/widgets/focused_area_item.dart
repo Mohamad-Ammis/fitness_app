@@ -37,7 +37,7 @@ class _FocusedAreaItemState extends State<FocusedAreaItem> {
             setState(() {
               
             });
-            await Future.delayed(Duration(milliseconds:800 ));
+            await Future.delayed(const Duration(milliseconds:800 ));
 setState(() {
   
 });
@@ -53,7 +53,7 @@ setState(() {
          margin: const EdgeInsets.only(right: 8, top: 4, bottom: 4, left: 4),
          padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
         decoration: BoxDecoration(
-            color: Color.fromARGB(70, 184, 229, 231).withOpacity(0.2),
+            color: const Color.fromARGB(70, 184, 229, 231).withOpacity(0.2),
             borderRadius: BorderRadius.circular(999)),
         child: Row(
           children: [
@@ -62,12 +62,12 @@ setState(() {
               color: Constans.test.withOpacity(0.7),
               size: 18,
             ),
-            SizedBox(
+            const SizedBox(
               width: 5,
             ),
             Text(
               widget.title,
-              style: TextStyle(
+              style: const TextStyle(
                 overflow: TextOverflow.ellipsis,
                   color: Colors.black,
                   fontFamily: Constans.fontFamily,

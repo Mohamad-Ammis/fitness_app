@@ -5,9 +5,10 @@ import 'package:fitnessapp/widgets/warning.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+
 class Button extends StatelessWidget {
-  Button({super.key});
-  final controller = Get.put(Datacontroller(), permanent: true);
+   Button({super.key});
+  final controller = Get.put(Datacontroller() , permanent: true);
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -50,74 +51,67 @@ class Button extends StatelessWidget {
                                controller.control.nextPage(duration: const Duration(seconds: 1), curve: Curves.bounceOut);
                                controller.nextpercent();
                             } */
-                                  controller.control.nextPage(
-                                      duration: const Duration(seconds: 1),
-                                      curve: Curves.bounceOut);
-                                  controller.nextpercent();
-                                }
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: controller.basiccolor,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
-                              ),
-                              child: childbutton("Next"))
-                          : ElevatedButton(
-                              onPressed: () async {
-                                cont.load(true);
-                                for (int i = 0; i < cont.days.length; i++) {
-                                  cont.userData["training_days[${i + 1}]"] =
-                                      cont.days[i].toString();
-                                }
-                                cont.setUserData();
-                                try {
-                                  await cont.setData();
-                                } catch (error) {
-                                  showDialog(
-                                      context: context,
-                                      builder: (ctxx) => const Warning(
-                                          warn:
-                                              "This something wrong , Please Try Again"));
-                                }
-                                //  print(cont.User_data);
-                                cont.load(false);
-                                preference!.setInt("man", controller.man);
-                                if (controller.base64String != null) {
-                                  preference!.setString(
-                                      "image", controller.base64String!);
-                                }
-                                Get.offAll(const Home());
-                                print(preference!.getInt("is"));
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: controller.basiccolor,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
-                              ),
-                              child: childbutton("Done")),
-                    ),
-                  ))
-        ],
-      ),
-    );
+                             controller.control.nextPage(duration: const Duration(seconds: 1), curve: Curves.bounceOut);
+                               controller.nextpercent();
+                          }
+                          
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: controller.basiccolor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                         child: childbutton("Next")):ElevatedButton(onPressed: ()async{
+                          cont.Load(true);
+                       for(int i = 0 ; i<cont.days.length ; i++){
+                        cont.User_data["training_days[${i+1}]"] = cont.days[i].toString();
+                       }
+                       cont.setUser_Data();
+                        try{
+                         await cont.Setdata();
+                        }catch(error){
+                          showDialog(
+                            // ignore: use_build_context_synchronously
+                            context: context,
+                            builder: (ctxx) =>const Warning(warn: "This something wrong , Please Try Again"));
+                        }
+                     //  print(cont.User_data);
+                       cont.Load(false);
+                       preference!.setInt("man", controller.man);
+                       if(controller.base64String!= null){preference!.setString("image", controller.base64String!);}
+                       Get.offAll(const Home());
+                       print(preference!.getInt("is"));
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: controller.basiccolor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                       child: childbutton("Done")),
+                      ),
+                    )
+                  )
+                ],
+              ),
+            );
   }
+
 
   Container childbutton(String s) {
     return Container(
-      alignment: Alignment.center,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      height: 60,
-      width: 150,
-      child: Text(
-        s,
-        style: const TextStyle(
-            fontFamily: "WorkSans",
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-            color: Colors.white),
-      ),
-    );
+                    alignment: Alignment.center,
+                    padding:const EdgeInsets.symmetric(horizontal: 20 , vertical: 8),
+                    height: 60,
+                    width: 150,
+                    child:  Text(s , style: const TextStyle(
+                      fontFamily: "WorkSans",
+                      fontSize: 25 ,
+                      fontWeight: FontWeight.bold ,
+                      color: Colors.white
+                    ),),
+                   );
   }
+
 }

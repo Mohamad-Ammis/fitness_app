@@ -11,7 +11,7 @@ class ExerciseGifSection extends StatelessWidget {
  final ExerciseModel model;
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
         width: double.infinity,
         child: CachedNetworkImage(
   imageUrl: "http://${Constans.host}:8000/Uploads/${model.image}",

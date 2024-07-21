@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 
 class Constans {
   static const String fontFamily = 'Work Sans';
-  static const String host = '192.168.1.13';
+  static const String host = '192.168.115.225';
   static const String baseUrl = 'http://$host:8000/api/trainer/';
 
+  static const Color shopColor = Color(0xFF6F89E0);
+  static const Color shopLightColor = Color(0xFFCAD5FF);
   static const Color primaryColor = Colors.white;
   static const Color secondryColor = Color(0xFFC0D8F2);
   static Color subTitleColor = Colors.white.withOpacity(0.7);

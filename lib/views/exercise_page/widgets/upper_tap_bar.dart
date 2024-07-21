@@ -15,7 +15,7 @@ class TapbarSection extends StatelessWidget {
       width: MediaQuery.sizeOf(context).width,
       decoration: BoxDecoration(color: Colors.white, boxShadow: [
         BoxShadow(
-            offset: Offset(0, 0),
+            offset: const Offset(0, 0),
             blurRadius: 5,
             spreadRadius: 5,
             color: Colors.black.withOpacity(.1))

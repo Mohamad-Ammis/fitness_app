@@ -15,7 +15,7 @@ class Dealogcoach extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(40),
-            color:Color.fromARGB(255, 243, 252, 255),
+            color:const Color.fromARGB(255, 243, 252, 255),
           ),
           height: 370,
           width: MediaQuery.of(context).size.width * 0.9,
@@ -101,7 +101,7 @@ class Dealogcoach extends StatelessWidget {
                   child: ElevatedButton(
                       onPressed: () {
                         Navigator.of(context).pop();
-                        Get.to(Plan());
+                        Get.to(const Plan());
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: contr.color,
@@ -120,15 +120,15 @@ class Dealogcoach extends StatelessWidget {
 
   Container textt(BuildContext context, Precontroller contr , String s) {
     return Container(
-                margin: EdgeInsets.only(top: 10),
+                margin: const EdgeInsets.only(top: 10),
                height: 30,
                width: MediaQuery.of(context).size.width * 0.85,
                child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  SizedBox(width: 10,),
+                  const SizedBox(width: 10,),
                   Icon(Icons.task_alt_sharp , color: contr.color,size: 23,),
-                  SizedBox(width: 10,),
+                  const SizedBox(width: 10,),
                   Text(s ,
                   style: TextStyle(
                     fontSize: MediaQuery.of(context).size.width * 0.038,

@@ -101,7 +101,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
             AuthCustomButton(
               buttonText:isLoading? const CircularProgressIndicator(color: Colors.black,):const Text(
           'Register',
-          style:   const TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.black),
+          style:   TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.black),
         ),
               onTap: () async {
                 if (formKey.currentState!.validate()) {
