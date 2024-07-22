@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class Constans {
   static const String fontFamily = 'Work Sans';
-  static const String host = '192.168.115.225';
+  static const String host = '192.168.103.148';
   static const String baseUrl = 'http://$host:8000/api/trainer/';
 
   static const Color shopColor = Color(0xFF6F89E0);

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:fitnessapp/views/food/food.dart';
-import 'package:fitnessapp/views/media/media.dart';
 
 import '../controller/datacont.dart';
 import 'package:fitnessapp/home.dart';
@@ -13,13 +12,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 SharedPreferences? preference;
 SharedPreferences? userInfo;
-SharedPreferences? userInfo;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   preference = await SharedPreferences.getInstance();
   userInfo = await SharedPreferences.getInstance();
-  userInfo = await SharedPreferences.getInstance();
+
   runApp(const MyApp());
 }
 
@@ -32,7 +30,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final controller = Get.put(Datacontroller(), permanent: true);
-  final controller = Get.put(Datacontroller(), permanent: true);
+
   @override
   void initState() {
     super.initState();
@@ -44,7 +42,7 @@ class _MyAppState extends State<MyApp> {
         }
         Get.offAll(() => const Home());
       } else {
-        Get.offAll(() => Shop());
+        Get.offAll(() => Home());
       }
       // Get.offAll(Home()) ;
     });
@@ -54,13 +52,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        routes: {
-          '/register': (p0) => const RegisterPage(),
-          '/login': (p0) => const LogInPage()
-        },
-        // initialRoute: '/',
-        home: const Splash());
+
+        // initialRoute
         debugShowCheckedModeBanner: false,
         routes: {
           '/register': (p0) => const RegisterPage(),

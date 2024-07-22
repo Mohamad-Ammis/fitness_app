@@ -2,6 +2,7 @@ import 'package:fitnessapp/constans.dart';
 import 'package:flutter/material.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
+
 class CustomTimeLineTile extends StatelessWidget {
   const CustomTimeLineTile(
       {super.key,

@@ -29,11 +29,12 @@ class _OffersPageViewState extends State<OffersPageView> {
       } else {
         currentIndex = 0;
       }
-      controller.pageController.animateToPage(
-        currentIndex,
-        duration: const Duration(milliseconds: 300),
-        curve: Curves.easeIn,
-      );
+      if (controller.pageController.hasClients)
+        controller.pageController.animateToPage(
+          currentIndex,
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeIn,
+        );
     });
   }
 

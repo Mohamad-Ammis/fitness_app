@@ -54,7 +54,7 @@ class _HomeState extends State<Home> {
       case Menuitems.food:
         return const Food();
       case Menuitems.media:
-        return const media();
+        return  const Media();
       default:
         return Pre();
     }
