@@ -1,8 +1,6 @@
 
-import 'package:fitnessapp/views/challenges_page/challenges_page.dart';
 import 'package:fitnessapp/views/workout_page/widgets/challenge_card_body.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class WorkoutChallengeCard extends StatelessWidget {
   const WorkoutChallengeCard({

@@ -22,7 +22,7 @@ class _CounterChallengeBodyState extends State<CounterChallengeBody> {
                           setState(() {});
                         },
                         child: Container(
-                          padding: EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(8),
                           width: 200,
                           height: 200,
                           decoration: BoxDecoration(
@@ -33,7 +33,7 @@ class _CounterChallengeBodyState extends State<CounterChallengeBody> {
                           child: Center(
                               child: Text(
                             counter.toString(),
-                            style: TextStyle(
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontFamily: Constans.fontFamily,
                                 fontWeight: FontWeight.bold,
@@ -41,7 +41,7 @@ class _CounterChallengeBodyState extends State<CounterChallengeBody> {
                           )),
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       Text("Tap in circle to increase your count",
@@ -50,7 +50,7 @@ class _CounterChallengeBodyState extends State<CounterChallengeBody> {
                               fontSize: 14,
                               fontFamily: Constans.fontFamily,
                               fontWeight: FontWeight.normal)),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       GestureDetector(
@@ -78,7 +78,7 @@ class _CounterChallengeBodyState extends State<CounterChallengeBody> {
                           decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(999)),
-                          child: Center(
+                          child: const Center(
                             child: Text(
                               "E X I T ",
                               style: TextStyle(

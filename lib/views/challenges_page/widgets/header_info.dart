@@ -1,5 +1,4 @@
 
-import 'dart:ui';
 
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/models/challenge_model.dart';
@@ -18,7 +17,7 @@ final ChallengeModel model;
       children: [
         Text(
           model.name.toString().toUpperCase(),
-          style: TextStyle(
+          style: const TextStyle(
               fontFamily: Constans.fontFamily,
               fontSize: 22,
               fontWeight: FontWeight.bold,
@@ -26,7 +25,7 @@ final ChallengeModel model;
         ),
         Text(
           model.type.toString().toUpperCase()+" challenge".toUpperCase(),
-          style: TextStyle(
+          style: const TextStyle(
               fontFamily: Constans.fontFamily,
               fontSize: 10,
               fontWeight: FontWeight.normal,

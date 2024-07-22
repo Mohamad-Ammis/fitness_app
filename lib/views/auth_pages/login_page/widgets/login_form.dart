@@ -87,7 +87,7 @@ class _LoginFormState extends State<LoginForm> {
           ),
           Center(
             child: AuthCustomButton(
-              buttonText:isLoading? CircularProgressIndicator(color: Colors.black,):Text(
+              buttonText:isLoading? const CircularProgressIndicator(color: Colors.black,):const Text(
           'Login',
           style:   TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.black),
         ),
@@ -101,17 +101,14 @@ class _LoginFormState extends State<LoginForm> {
                   var response = await authController.logIn(
                       authController.email, authController.password, context);
                   if (response.statusCode >= 200 && response.statusCode < 300) {
-                    print("kkk");
                     var data = jsonDecode(response.body);
                     var token = data['token'];
                     userInfo?.setString('token', token);
-                    print("okkkk");
                     debugPrint('token = ${userInfo?.getString('token')}');
-                    print("lllll");
                     Get.offAll(Data());
 
                   } else {
-                    print("iiii");
+                    // debugPrint(response.body);
                   }
                     isLoading=false;
                     setState(() {

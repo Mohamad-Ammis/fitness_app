@@ -227,7 +227,7 @@ class WorkoutPageController extends GetxController {
     shimmerLoading=true;
     update();
     final data=await Api().getData(token, url);
-    debugPrint('challenges  : ${data}');
+    debugPrint('challenges  : $data');
     shimmerLoading=false;
     update();
     return data;

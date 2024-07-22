@@ -1,4 +1,3 @@
-import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

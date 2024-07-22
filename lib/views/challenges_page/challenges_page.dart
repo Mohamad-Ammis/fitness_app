@@ -29,7 +29,7 @@ class ChallengePage extends StatelessWidget {
                     fit: BoxFit.cover,
                     opacity: 0.2),
               ),
-              padding: EdgeInsets.fromLTRB(12, 40, 12, 8),
+              padding: const EdgeInsets.fromLTRB(12, 40, 12, 8),
               height: MediaQuery.sizeOf(context).height / 3 * 2 - 20,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -38,9 +38,9 @@ class ChallengePage extends StatelessWidget {
                     model: model,
                   ),
                   model.type != "timer"
-                      ? CounterChallengeBody()
-                      : TimerChallengeBody(),
-                  Text(""),
+                      ? const CounterChallengeBody()
+                      : const TimerChallengeBody(),
+                  const Text(""),
                 ],
               ),
             ),

@@ -74,7 +74,7 @@ class BottomTapBar extends StatelessWidget {
                   )
                 : Container(),
             index != lastIndex - 1
-                ? Container(
+                ? SizedBox(
                     width: MediaQuery.sizeOf(context).width / 3,
                     child: GestureDetector(
                       onTap: () {

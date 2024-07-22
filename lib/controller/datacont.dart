@@ -267,7 +267,7 @@ class Datacontroller extends GetxController {
         "${time.hour.toString()}:${time.minute.toString()}";
   }
 
-  Future setData() async {
+  Future Setdata() async {
     final String url = '${baseurl}trainer/info';
     try {
       final request = http.MultipartRequest('POST', Uri.parse(url));
@@ -296,7 +296,7 @@ class Datacontroller extends GetxController {
 
   bool isloading = false;
 
-  void load(bool value) {
+  void Load(bool value) {
     isloading = value;
     update();
   }

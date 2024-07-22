@@ -343,10 +343,10 @@ packages:
     dependency: transitive
     description:
       name: flutter_plugin_android_lifecycle
-      sha256: "8cf40eebf5dec866a6d1956ad7b4f7016e6c0cc69847ab946833b7d43743809f"
+      sha256: c6b0b4c05c458e1c01ad9bcc14041dd7b1f6783d487be4386f793f47a8a4d03e
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.19"
+    version: "2.0.20"
   flutter_rating_bar:
     dependency: "direct main"
     description:
@@ -405,6 +405,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.6.6"
+  google_nav_bar:
+    dependency: "direct main"
+    description:
+      name: google_nav_bar
+      sha256: "1c8e3882fa66ee7b74c24320668276ca23affbd58f0b14a24c1e5590f4d07ab0"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.6"
+  hero_animation:
+    dependency: "direct main"
+    description:
+      name: hero_animation
+      sha256: e862b27e3bddea486923922bd436cf52b9a28d1a35a342f150e91367647f3215
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.4"
   http:
     dependency: "direct main"
     description:
@@ -441,10 +457,10 @@ packages:
     dependency: transitive
     description:
       name: image_picker_android
-      sha256: "0f57fee1e8bfadf8cc41818bbcd7f72e53bb768a54d9496355d5e8a5681a19f1"
+      sha256: "8e75431a62b7feb4fd55cb4a5c6f0ac4564460ec5dc09f9c4a0d50a5ce7c4cb9"
       url: "https://pub.dev"
     source: hosted
-    version: "0.8.12+1"
+    version: "0.8.10"
   image_picker_for_web:
     dependency: transitive
     description:
@@ -625,10 +641,10 @@ packages:
     dependency: transitive
     description:
       name: path_provider_android
-      sha256: a248d8146ee5983446bf03ed5ea8f6533129a12b11f12057ad1b4a67a2b3b41d
+      sha256: bca87b0165ffd7cdb9cad8edd22d18d2201e886d9a9f19b4fb3452ea7df3a72a
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.4"
+    version: "2.2.6"
   path_provider_foundation:
     dependency: transitive
     description:
@@ -701,14 +717,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.8"
-  quickalert:
-    dependency: "direct main"
+  pointycastle:
+    dependency: transitive
     description:
-      name: quickalert
-      sha256: b5d62b1e20b08cc0ff5f40b6da519bdc7a5de6082f13d90572cf4e72eea56c5e
+      name: pointycastle
+      sha256: "79fbafed02cfdbe85ef3fd06c7f4bc2cbcba0177e61b765264853d4253b21744"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "3.9.0"
   rxdart:
     dependency: transitive
     description:
@@ -729,10 +745,10 @@ packages:
     dependency: transitive
     description:
       name: shared_preferences_android
-      sha256: "1ee8bf911094a1b592de7ab29add6f826a7331fb854273d55918693d5364a1f2"
+      sha256: "93d0ec9dd902d85f326068e6a899487d1f65ffcd5798721a95330b26c8131577"
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.2"
+    version: "2.2.3"
   shared_preferences_foundation:
     dependency: transitive
     description:
@@ -897,7 +913,7 @@ packages:
       sha256: "9955ae474176f7ac8ee4e989dadfb411a58c30415bcfb648fa04b2b8a03afa7f"
       url: "https://pub.dev"
     source: hosted
-    version: "0.7.0"
+    version: "0.6.1"
   toastification:
     dependency: "direct main"
     description:
@@ -986,6 +1002,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.1"
+  win32:
+    dependency: transitive
+    description:
+      name: win32
+      sha256: "0eaf06e3446824099858367950a813472af675116bf63f008a4c2a75ae13e9cb"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.5.0"
   xdg_directories:
     dependency: transitive
     description:
@@ -1011,5 +1035,5 @@ packages:
     source: hosted
     version: "9.0.1"
 sdks:
-  dart: ">=3.3.1 <4.0.0"
-  flutter: ">=3.19.0"
+  dart: ">=3.4.0 <4.0.0"
+  flutter: ">=3.22.0"

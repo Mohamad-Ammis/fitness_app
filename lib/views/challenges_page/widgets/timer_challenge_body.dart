@@ -18,8 +18,8 @@ class TimerChallengeBody extends StatefulWidget {
 class _TimerChallengeBodyState extends State<TimerChallengeBody>with SingleTickerProviderStateMixin {
   late final CustomTimerController _controller = CustomTimerController(
     vsync: this,
-    begin: Duration(seconds: 0),
-    end: Duration(days: 1000),
+    begin: const Duration(seconds: 0),
+    end: const Duration(days: 1000),
   );
   @override
   void dispose() {
@@ -80,7 +80,7 @@ class _TimerChallengeBodyState extends State<TimerChallengeBody>with SingleTicke
                                     icon: Icons.play_arrow)),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Container(
@@ -89,7 +89,7 @@ class _TimerChallengeBodyState extends State<TimerChallengeBody>with SingleTicke
               decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(999)),
-              child: Center(
+              child: const Center(
                 child: Text(
                   "E X I T ",
                   style: TextStyle(
