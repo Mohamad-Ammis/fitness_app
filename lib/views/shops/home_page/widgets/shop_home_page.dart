@@ -60,14 +60,3 @@ class ShopHomePage extends StatelessWidget {
     );
   }
 }
-
-// class ShopHomePage extends StatelessWidget {
-//   ShopHomePage({
-//     super.key,
-//   });
-
-//   final ShopController shopPageController = Get.put(ShopController());
-//   @override
-//   Widget build(BuildContext context) {
-//     return  }
-// }

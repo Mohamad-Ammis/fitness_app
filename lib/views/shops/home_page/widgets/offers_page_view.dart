@@ -58,43 +58,6 @@ class _OffersPageViewState extends State<OffersPageView> {
                 controller.images[index],
                 fit: BoxFit.cover,
               ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "u can\nsee me !".toUpperCase(),
-                      style: const TextStyle(
-                          height: 0,
-                          color: Colors.white,
-                          fontSize: 32,
-                          fontFamily: Constans.fontFamily,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      width: 140,
-                      padding: const EdgeInsets.all(8),
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          color: Colors.white.withOpacity(1)),
-                      child: const Center(
-                        child: Text('Try it',
-                            style: TextStyle(
-                                height: 0,
-                                color: Colors.black,
-                                fontSize: 20,
-                                fontFamily: Constans.fontFamily,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                    ),
-                  ],
-                ),
-              )
             ],
           );
         });
