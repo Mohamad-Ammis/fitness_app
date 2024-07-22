@@ -254,6 +254,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.2"
+  flutter_custom_clippers:
+    dependency: "direct main"
+    description:
+      name: flutter_custom_clippers
+      sha256: "473e3daf61c2a6cee0ad137393259a25223239d519a131c7ec1cac04d06e5407"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.1.0"
   flutter_inappwebview:
     dependency: transitive
     description:
@@ -665,10 +673,10 @@ packages:
     dependency: transitive
     description:
       name: path_provider_windows
-      sha256: "8bc9f22eee8690981c22aa7fc602f5c85b497a6fb2ceb35ee5a5e5ed85ad8170"
+      sha256: bd6f00dbd873bfb70d0761682da2b3a2c2fccc2b9e84c495821639601d81afe7
       url: "https://pub.dev"
     source: hosted
-    version: "2.2.1"
+    version: "2.3.0"
   pausable_timer:
     dependency: transitive
     description:
@@ -709,6 +717,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.1.8"
+  quickalert:
+    dependency: "direct main"
+    description:
+      name: quickalert
+      sha256: b5d62b1e20b08cc0ff5f40b6da519bdc7a5de6082f13d90572cf4e72eea56c5e
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.1.0"
   rxdart:
     dependency: transitive
     description:
@@ -806,10 +822,10 @@ packages:
     dependency: "direct main"
     description:
       name: smooth_page_indicator
-      sha256: "725bc638d5e79df0c84658e1291449996943f93bacbc2cec49963dbbab48d8ae"
+      sha256: eebe23a5bd887ca4bc7b9c6173362edb2c625e37aee6043a567a342973357a7b
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.0"
+    version: "1.2.0"
   source_span:
     dependency: transitive
     description:
@@ -926,10 +942,10 @@ packages:
     dependency: transitive
     description:
       name: uuid
-      sha256: "814e9e88f21a176ae1359149021870e87f7cddaf633ab678a5d2b0bff7fd1ba8"
+      sha256: "83d37c7ad7aaf9aa8e275490669535c8080377cfa7a7004c24dfac53afffaa90"
       url: "https://pub.dev"
     source: hosted
-    version: "4.4.0"
+    version: "4.4.2"
   vector_graphics:
     dependency: transitive
     description:
@@ -994,14 +1010,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.1"
-  win32:
-    dependency: transitive
-    description:
-      name: win32
-      sha256: a79dbe579cb51ecd6d30b17e0cae4e0ea15e2c0e66f69ad4198f22a6789e94f4
-      url: "https://pub.dev"
-    source: hosted
-    version: "5.5.1"
   xdg_directories:
     dependency: transitive
     description:

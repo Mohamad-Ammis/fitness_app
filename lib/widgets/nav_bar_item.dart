@@ -1,4 +1,3 @@
-
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/navigation_controller.dart';
 import 'package:flutter/material.dart';
@@ -6,9 +5,11 @@ import 'package:get/get.dart';
 
 class NavBarItem extends StatelessWidget {
   NavBarItem({
-    super.key, required this.index, required this.icon,
+    super.key,
+    required this.index,
+    required this.icon,
   });
-  final controller=Get.put(NavigationController());
+  final controller = Get.put(NavigationController());
   final int index;
   final IconData icon;
   @override
@@ -23,7 +24,11 @@ class NavBarItem extends StatelessWidget {
         backgroundColor: controller.selectedIndex == index
             ? Constans.test
             : Colors.transparent,
-        child: Icon(icon,color: controller.selectedIndex==index?Colors.white:Colors.white,),
+        child: Icon(
+          icon,
+          color:
+              controller.selectedIndex == index ? Colors.white : Colors.white,
+        ),
       ),
     );
   }
