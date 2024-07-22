@@ -17,8 +17,8 @@ class ExercisePage extends StatelessWidget {
           'Exercise',
           style: TextStyle(fontFamily: Constans.fontFamily),
         ),
-        actions: [
-          const IconButton(
+        actions: const [
+          IconButton(
               onPressed: null,
               icon: Icon(
                 Icons.favorite_outlined,

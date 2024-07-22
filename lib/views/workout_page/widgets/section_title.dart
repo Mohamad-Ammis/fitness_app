@@ -17,7 +17,7 @@ class SectionTitle extends StatelessWidget {
       builder: (controller) {
         return Padding(
           padding: const EdgeInsets.all(12),
-          child:controller.shimmerLoading? ShimmerContainer(width:80,height:30,circularRadius: 12,): Text(
+          child:controller.shimmerLoading? const ShimmerContainer(width:80,height:30,circularRadius: 12,): Text(
             title,
             style: const TextStyle(
                 fontFamily: Constans.fontFamily,

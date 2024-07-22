@@ -40,7 +40,7 @@ class CustomInfo extends StatelessWidget {
                   fontFamily: Constans.fontFamily, color: Colors.white,fontWeight: FontWeight.bold),
             ),
             Text(subTitle,
-                style: TextStyle(
+                style: const TextStyle(
                     fontFamily: Constans.fontFamily,
                     color: Colors.white,
                     fontSize: 13.5))

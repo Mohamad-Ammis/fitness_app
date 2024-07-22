@@ -10,7 +10,7 @@ class FocuseAreaBodyImage extends StatelessWidget {
   final controller = Get.put(Musclecontroller(), permanent: true);
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       // height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: Column(

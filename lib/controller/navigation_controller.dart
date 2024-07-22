@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 class NavigationController extends GetxController{
   int selectedIndex=0;
 List screens=[
-Home_gym(),
+const Home_gym(),
 WorkoutPageBody(),
 WorkoutPageBody(),
 WorkoutPageBody(),

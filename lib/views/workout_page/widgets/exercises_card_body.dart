@@ -17,7 +17,7 @@ class ExerciseCardBody extends StatelessWidget {
       children: [
         Text(
           "${model.muscleName} WORKOUT",
-          style: TextStyle(
+          style: const TextStyle(
               color: Colors.white,
               fontFamily: Constans.fontFamily,
               fontWeight: FontWeight.bold,
@@ -25,13 +25,13 @@ class ExerciseCardBody extends StatelessWidget {
         ),
         Text(
           "${model.totalTime}Mins - ${model.exerciseNumber}Exercises",
-          style: TextStyle(
+          style: const TextStyle(
               color: Colors.white,
               fontFamily: Constans.fontFamily,
               fontWeight: FontWeight.w500,
               fontSize: 12),
         ),
-        SizedBox(
+        const SizedBox(
           height: 10,
         )
       ],

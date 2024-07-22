@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:convert';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/controller/spec_day_controller.dart';

@@ -24,11 +24,11 @@ class BottomPageView extends StatelessWidget {
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.only(
+          borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(40), topRight: Radius.circular(40)),
           boxShadow: [
             BoxShadow(
-                offset: Offset(0, 0),
+                offset: const Offset(0, 0),
                 blurRadius: 5,
                 spreadRadius: 10,
                 color: Colors.black.withOpacity(0.1))

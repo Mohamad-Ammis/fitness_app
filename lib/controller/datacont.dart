@@ -8,8 +8,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:http/http.dart' as http;
 
 class Datacontroller extends GetxController {
-  Color basiccolor = Color.fromARGB(255, 38, 164, 170) ;
-  Color deepcolor = Color.fromARGB(255, 27, 118, 122) ;
+  Color basiccolor = const Color.fromARGB(255, 38, 164, 170) ;
+  Color deepcolor = const Color.fromARGB(255, 27, 118, 122) ;
   Color twocolor = Colors.black ;
 
   int index = 0;
@@ -66,15 +66,15 @@ class Datacontroller extends GetxController {
 
   double heightman =350 ;
   double heightwoman = 340;
-   void setwidth (double width_screen , double height_screen ){
+   void setwidth (double widthScreen , double heightScreen ){
    if (man == 0) {
-     heightman = height_screen*0.445 ;
-   heightwoman = height_screen*0.425;
+     heightman = heightScreen*0.445 ;
+   heightwoman = heightScreen*0.425;
    }else if(man == 1){
-     heightman = height_screen*0.5 ;
+     heightman = heightScreen*0.5 ;
      heightwoman = 220;
    }else{
-    heightwoman = height_screen*0.48;
+    heightwoman = heightScreen*0.48;
     heightman = 220;
    }
 

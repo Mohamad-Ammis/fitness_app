@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, prefer_contains
+
 import 'dart:convert';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/main.dart';
@@ -226,7 +228,7 @@ class WorkoutPageController extends GetxController {
     shimmerLoading=true;
     update();
     final data=await Api().getData(token, url);
-    debugPrint('challenges  : ${data}');
+    debugPrint('challenges  : $data');
     shimmerLoading=false;
     update();
     return data;

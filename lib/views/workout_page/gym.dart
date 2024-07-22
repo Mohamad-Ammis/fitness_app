@@ -96,7 +96,7 @@ final execontrol = Get.put(Exercontroller() , permanent: true);
         scrollDirection: Axis.horizontal,
         child: Row(
           children: control.category.map((item) => Container(
-                margin: EdgeInsets.only(right: 12),
+                margin: const EdgeInsets.only(right: 12),
                     height: MediaQuery.of(context).size.height * 0.12,
                     width: MediaQuery.of(context).size.width * 0.2,
                     child: InkWell(

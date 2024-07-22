@@ -89,7 +89,7 @@ class ResetPassword extends StatelessWidget {
                     titleColor: Colors.white,
                     width: MediaQuery.sizeOf(context).width,
                     borderRadius: 12,
-                    buttonText: Text(
+                    buttonText: const Text(
           'Update Password',
           style:   TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.black),
         ),

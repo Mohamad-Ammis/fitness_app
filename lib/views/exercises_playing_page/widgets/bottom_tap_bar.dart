@@ -22,13 +22,13 @@ class BottomTapBar extends StatelessWidget {
           color: Colors.transparent,
           boxShadow: [
             BoxShadow(
-                offset: Offset(0, 0),
+                offset: const Offset(0, 0),
                 blurRadius: 15,
                 spreadRadius: 10,
                 color: Colors.black.withOpacity(0.05))
           ],
         ),
-        padding: EdgeInsets.all(15),
+        padding: const EdgeInsets.all(15),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,7 +40,7 @@ class BottomTapBar extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         outerPageController.previousPage(
-                            duration: Duration(milliseconds: 400),
+                            duration: const Duration(milliseconds: 400),
                             curve: Curves.linear);
                       },
                       child: Row(
@@ -49,7 +49,7 @@ class BottomTapBar extends StatelessWidget {
                         children: [
                           Icon(Icons.skip_previous_sharp,
                               color: Colors.black.withOpacity(0.3)),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           Text(
@@ -74,12 +74,12 @@ class BottomTapBar extends StatelessWidget {
                   )
                 : Container(),
             index != lastIndex - 1
-                ? Container(
+                ? SizedBox(
                     width: MediaQuery.sizeOf(context).width / 3,
                     child: GestureDetector(
                       onTap: () {
                         outerPageController.nextPage(
-                            duration: Duration(milliseconds: 400),
+                            duration: const Duration(milliseconds: 400),
                             curve: Curves.linear);
                       },
                       child: Row(
@@ -94,7 +94,7 @@ class BottomTapBar extends StatelessWidget {
                                 color: Colors.black.withOpacity(0.3),
                                 fontWeight: FontWeight.w500),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           Icon(Icons.skip_next,
@@ -103,7 +103,7 @@ class BottomTapBar extends StatelessWidget {
                       ),
                     ),
                   )
-                : Text(''),
+                : const Text(''),
           ],
         )
       ),

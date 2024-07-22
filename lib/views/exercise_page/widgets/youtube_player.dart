@@ -16,18 +16,15 @@ class _YoutubePlayerSectionState extends State<YoutubePlayerSection> {
   final videoUrl=widget.url??'https://youtu.be/ZoFw08mu-mM?si=HYQRMkvxccowhDKe';
     final videoId=YoutubePlayer.convertUrlToId(videoUrl);
     _youtubePlayerController=YoutubePlayerController(initialVideoId: videoId!,
-    flags: YoutubePlayerFlags(autoPlay: false,));
+    flags: const YoutubePlayerFlags(autoPlay: false,));
 
     super.initState();
   }
   @override
   Widget build(BuildContext context) {
-    return Container(
-      // padding: EdgeInsets.symmetric(horizontal: 16),
-      child: YoutubePlayer(
-        controller: _youtubePlayerController,
-        showVideoProgressIndicator: true,
-      ),
+    return YoutubePlayer(
+      controller: _youtubePlayerController,
+      showVideoProgressIndicator: true,
     );
   }
 }

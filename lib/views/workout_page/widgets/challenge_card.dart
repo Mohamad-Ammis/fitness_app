@@ -9,12 +9,16 @@ class WorkoutChallengeCard extends StatelessWidget {
   final String image;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 12),
-      child: SizedBox(
-        
-        width: 320,
-        child: WorkoutChallengeCardBody(image: image),
+    return GestureDetector(
+      onTap: (){
+      },
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
+        child: SizedBox(
+          
+          width: 320,
+          child: WorkoutChallengeCardBody(image: image),
+        ),
       ),
     );
   }

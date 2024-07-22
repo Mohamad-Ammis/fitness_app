@@ -36,7 +36,7 @@ class MiddleInfoBar extends StatelessWidget {
               subTitle: '${model.calories}KCal',
               icon: FontAwesomeIcons.fire,
             ),
-            VerticalDivider(
+            const VerticalDivider(
               indent: 10,
               endIndent: 10,
               color: Colors.white,

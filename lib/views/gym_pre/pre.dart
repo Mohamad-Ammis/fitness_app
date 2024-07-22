@@ -339,8 +339,7 @@ class _PreState extends State<Pre> {
                         Positioned(
                             right: 15,
                             top: 8,
-                            child:
-                             AnimatedOpacity(
+                            child: AnimatedOpacity(
                               duration: Duration(milliseconds: 500),
                               opacity: control.opcitybio(index),
                               child: SizedBox(
@@ -457,7 +456,7 @@ class _PreState extends State<Pre> {
                       "Picks For You",
                       style: TextStyle(
                         fontSize: MediaQuery.of(context).size.width * 0.05,
-                        color: Color.fromARGB(255, 99, 209, 243),
+                        color: const Color.fromARGB(255, 99, 209, 243),
                         fontWeight: FontWeight.bold,
                         fontFamily: "WorkSans",
                       ),
@@ -520,7 +519,7 @@ class _PreState extends State<Pre> {
 
   Container top(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 5),
+      margin: const EdgeInsets.only(top: 5),
       height: 90,
       width: MediaQuery.of(context).size.width,
       child: Row(

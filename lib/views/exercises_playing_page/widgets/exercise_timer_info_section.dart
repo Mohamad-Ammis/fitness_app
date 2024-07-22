@@ -24,8 +24,8 @@ class InfoSection extends StatelessWidget {
       children: [
         GestureDetector(
           onTap: () => Get.bottomSheet(
-              enterBottomSheetDuration: Duration(milliseconds: 700),
-              exitBottomSheetDuration: Duration(milliseconds: 700),
+              enterBottomSheetDuration: const Duration(milliseconds: 700),
+              exitBottomSheetDuration: const Duration(milliseconds: 700),
               isScrollControlled: true,
               SizedBox(
                   height: MediaQuery.sizeOf(context).height - 50,
@@ -35,15 +35,15 @@ class InfoSection extends StatelessWidget {
             children: [
                Text(
                 model.name,
-                style: TextStyle(
+                style: const TextStyle(
                     fontFamily: Constans.fontFamily,
                     fontSize: 25,
                     fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
-              Icon(
+              const Icon(
                 Icons.info_outline,
                 color: Colors.black,
                 size: 26,
@@ -51,7 +51,7 @@ class InfoSection extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 20,
         ),
         CustomTimer(
@@ -59,7 +59,7 @@ class InfoSection extends StatelessWidget {
           builder: (state, time) {
             if (_controller.state.value == CustomTimerState.finished) {
               outerPageController.nextPage(
-                  duration: Duration(seconds: 1), curve: Curves.linear);
+                  duration: const Duration(seconds: 1), curve: Curves.linear);
                   
             }
             return Column(
@@ -69,7 +69,7 @@ class InfoSection extends StatelessWidget {
                         fontSize: 40.0,
                         fontFamily: Constans.fontFamily,
                         fontWeight: FontWeight.bold)),
-                SizedBox(
+                const SizedBox(
                   height: 15,
                 ),
                 GestureDetector(
@@ -85,7 +85,7 @@ class InfoSection extends StatelessWidget {
                   },
                   child: Container(
                     width: 200,
-                    padding: EdgeInsets.all(12),
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
                         color: state == CustomTimerState.finished
                             ? Constans.test
@@ -93,20 +93,20 @@ class InfoSection extends StatelessWidget {
                         borderRadius: BorderRadius.circular(999)),
                     child: Center(
                         child: state == CustomTimerState.finished
-                            ? CustomTimerButton(
+                            ? const CustomTimerButton(
                                 title: 'D O N E',
                                 icon: Icons.sports_gymnastics_rounded,
                               )
                             : state == CustomTimerState.counting
-                                ? CustomTimerButton(
+                                ? const CustomTimerButton(
                                     title: 'P A U S E',
                                     icon: Icons.pause,
                                   )
                                 : state == CustomTimerState.paused
-                                    ? CustomTimerButton(
+                                    ? const CustomTimerButton(
                                         title: 'P L A Y',
                                         icon: Icons.play_arrow_rounded)
-                                    : CustomTimerButton(
+                                    : const CustomTimerButton(
                                         title: 'S T A R T',
                                         icon: Icons.play_arrow)),
                   ),

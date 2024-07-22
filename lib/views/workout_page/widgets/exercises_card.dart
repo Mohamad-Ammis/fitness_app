@@ -58,11 +58,11 @@ class ExcercisesCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
-                  padding: EdgeInsets.only(left: 20, top: 10),
+                  padding: const EdgeInsets.only(left: 20, top: 10),
                   child: ExerciseCardHeader(model:model),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: 20, bottom: 10),
+                  padding: const EdgeInsets.only(left: 20, bottom: 10),
                   child: ExerciseCardBody(model:model),
                 )
               ],

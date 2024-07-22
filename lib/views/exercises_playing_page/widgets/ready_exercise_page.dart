@@ -38,7 +38,7 @@ final ExerciseModel model;
           ),
            Text(
             model.name,
-            style: TextStyle(
+            style: const TextStyle(
                 fontFamily: Constans.fontFamily,
                 fontSize: 24,
                 fontWeight: FontWeight.bold),
