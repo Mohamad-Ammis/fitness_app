@@ -2,6 +2,7 @@ import 'package:fitnessapp/controller/precontroller.dart';
 import 'package:fitnessapp/views/data_page/backgr.dart';
 import 'package:fitnessapp/views/gym_pre/dealogcoach.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 
 class Pre extends StatelessWidget {
@@ -16,8 +17,8 @@ class Pre extends StatelessWidget {
         children: [
           const Opacity(
             opacity: 0.5,
-            child:  Back(),
-            ),
+            child: Back(),
+          ),
           SizedBox(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
@@ -98,8 +99,8 @@ class Pre extends StatelessWidget {
                                 Container(
                                     height: 100,
                                     alignment: Alignment.topLeft,
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.46,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.46,
                                     color: Colors.white,
                                     child: Column(
                                         mainAxisAlignment:
@@ -125,7 +126,8 @@ class Pre extends StatelessWidget {
                                           ),
                                           Container(
                                               width: double.infinity,
-                                              margin: const EdgeInsets.only(left: 15),
+                                              margin: const EdgeInsets.only(
+                                                  left: 15),
                                               height: 65,
                                               child: Stack(children: [
                                                 AnimatedOpacity(
@@ -279,7 +281,8 @@ class Pre extends StatelessWidget {
                                 child: ElevatedButton(
                                     onPressed: () {
                                       showDialog(
-                                        context: context, builder: (context)=> Dealogcoach());
+                                          context: context,
+                                          builder: (context) => Dealogcoach());
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: control.color,
@@ -466,7 +469,7 @@ class Pre extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
-              // onTap: () => ZoomDrawer.of(context)!.toggle(),
+              onTap: () => ZoomDrawer.of(context)!.toggle(),
               child: Container(
                   margin: const EdgeInsets.only(left: 1, top: 10),
                   height: 50,

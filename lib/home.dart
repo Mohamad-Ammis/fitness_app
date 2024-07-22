@@ -23,42 +23,40 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return ZoomDrawer(
       duration: const Duration(microseconds: 500),
-            menuScreenWidth: MediaQuery.of(context).size.width,
-              menuScreen: Builder(
-                builder: (context) {
-                  return Menupage(
-                    currentitem: currentitem,
-                    onselecteditem: (value) {
-                      setState(() {
-                        currentitem = value ;
-                      //  ZoomDrawer.of(context)!.close();
-                      });
-                    },
-                  );
-                }
-              ),
-               mainScreen:getscreen() ,
-               borderRadius: 40,
-               showShadow: true,
-              angle: /* -12.0 */-8.0,
-              drawerShadowsBackgroundColor:/* Color.fromARGB(255, 103, 185, 189) */Color.fromARGB(255, 62, 82, 83)  ,
-              slideWidth: MediaQuery.of(context).size.width * 0.73,
-                );
+      menuScreenWidth: MediaQuery.of(context).size.width,
+      menuScreen: Builder(builder: (context) {
+        return Menupage(
+          currentitem: currentitem,
+          onselecteditem: (value) {
+            setState(() {
+              currentitem = value;
+              //  ZoomDrawer.of(context)!.close();
+            });
+          },
+        );
+      }),
+      mainScreen: getscreen(),
+      borderRadius: 40,
+      showShadow: true,
+      angle: /* -12.0 */ -8.0,
+      drawerShadowsBackgroundColor: /* Color.fromARGB(255, 103, 185, 189) */
+          Color.fromARGB(255, 62, 82, 83),
+      slideWidth: MediaQuery.of(context).size.width * 0.73,
+    );
   }
 
-  Widget getscreen(){
-    switch(currentitem){
-      case Menuitems.home :
-      return WorkoutPage() ;
-      case Menuitems.shop :
-      return Shop();
-      case Menuitems.food :
-      return Food();
-      case Menuitems.media :
-      return media();
+  Widget getscreen() {
+    switch (currentitem) {
+      case Menuitems.home:
+        return WorkoutPage();
+      case Menuitems.shop:
+        return Shop();
+      case Menuitems.food:
+        return Food();
+      case Menuitems.media:
+        return Media();
       default:
-      return Pre();
+        return Pre();
     }
   }
-
 }
