@@ -1,16 +1,19 @@
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/controller/exercontrol.dart';
+import 'package:fitnessapp/controller/pickscontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CustomSliverAppbarDelegate extends SliverPersistentHeaderDelegate{
+final bool picks;  
 final double expandedHeight ;
 final String img ;
 final String title ;
 final String des ;
- CustomSliverAppbarDelegate({required this.expandedHeight , required this.img , required this.title , required this.des});
+ CustomSliverAppbarDelegate({required this.expandedHeight , required this.img , required this.title , required this.des , required this.picks});
 final datacont = Get.put(Datacontroller() , permanent: true);
 final control = Get.put(Exercontroller() , permanent: true);
+final pickcontroller = Get.put(Pickscotroller(),permanent: true);
 @override
 Widget build(BuildContext context , double shrinkOffset , bool overlapsContent){
   const size = 85;
@@ -48,7 +51,9 @@ Widget build(BuildContext context , double shrinkOffset , bool overlapsContent){
                 width: MediaQuery.of(context).size.width,
                 child: Opacity(
                   opacity: 0.6,
-                  child: Image.network("http://${datacont.ip}:8000/uploads/$img", fit: BoxFit.cover,))),
+                  child:picks==false? Image.network("http://${datacont.ip}:8000/uploads/$img", fit: BoxFit.cover,):
+                  Image.asset(img, fit: BoxFit.cover,)
+                  )),
                 Positioned(
                   left: 0,
                   bottom: 60,
@@ -125,9 +130,9 @@ Widget build(BuildContext context , double shrinkOffset , bool overlapsContent){
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(child: buildButton(text: '${control.time} S', icon: Icons.timer_sharp)),
-                  Expanded(child: buildButton(text: '${control.numexer} Exe', icon: null)),
-                  Expanded(child: buildButton(text: '${control.calories} cal', icon: Icons.local_fire_department_sharp)),
+                  Expanded(child: buildButton(text:picks==false? '${control.time} S':'${pickcontroller.time} S', icon: Icons.timer_sharp)),
+                  Expanded(child: buildButton(text:picks==false? '${control.numexer} Exe':'${pickcontroller.numexer} Exe', icon: null)),
+                  Expanded(child: buildButton(text:picks==false? '${control.calories} cal':'${pickcontroller.calories} cal', icon: Icons.local_fire_department_sharp)),
                 ],
               ),
             ),

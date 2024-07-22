@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fitnessapp/controller/datacont.dart';
+import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/ranex.dart';
 import 'package:get/get.dart';
  import 'package:http/http.dart' as http;
@@ -57,7 +58,7 @@ final controller = Get.put(Datacontroller() , permanent: true);
      final res = await http.get(Uri.parse(url) ,       
      headers: {
       'Accept':'application/json', 
-      'Authorization': 'Bearer ${controller.token}',
+      'Authorization': 'Bearer ${userInfo!.getString('token')}',
      }
      );
    if(res.statusCode==200){

@@ -67,7 +67,8 @@ class Menupage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(40)
               ),
                child: TextButton(onPressed: (){
-                preference!.clear();
+                userInfo!.clear();
+                print(userInfo!.getString("token"));
                 controller.setlogout();
                 Get.offAll(OnBoarding());
                },

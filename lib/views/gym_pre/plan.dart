@@ -1,155 +1,222 @@
-//import 'package:fitnessapp/views/gym_pre/customclipperimage.dart';
+import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/controller/precontroller.dart';
+import 'package:fitnessapp/controller/spec_day_controller.dart';
+import 'package:fitnessapp/main.dart';
+import 'package:fitnessapp/views/gym_pre/my_timeline_tile.dart';
 import 'package:fitnessapp/views/gym_pre/rate.dart';
 import 'package:fitnessapp/views/gym_pre/waveclipper.dart';
+import 'package:fitnessapp/views/gym_pre/weekcard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:get/get.dart';
 
-class Plan extends StatelessWidget {
-  const Plan({super.key});
+
+class Plan extends StatefulWidget {
+   const Plan({super.key});
+
+  @override
+  State<Plan> createState() => _PlanState();
+}
+
+class _PlanState extends State<Plan> {
+   final controller = Get.put(Precontroller(), permanent: true);
+
+   final control = Get.put(SpecDay(),permanent: true);
+
+   @override
+   void initState() {
+    try{
+      controller.initrate(control.coachid);
+    }catch(error){
+        showDialog(
+            context: context,
+            builder: (ctxx) => AlertDialog(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40)),
+                  title: const Text(
+                    'Warning',
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 252, 93, 93), fontSize: 25),
+                    textAlign: TextAlign.center,
+                  ),
+                  content: Text(error.toString()),
+                ));
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          top(context),
-         /*  Expanded(
-            child: Container(
-              color: Colors.amber,
-              child: Stepper(
-        currentStep: 0, // يُمكن  أن  تُعيّن  `currentStep`  بِـ  0  لِـ  عرض  الخطوات  كلها
-        steps: [
-          Step(
-            title: const Text('test 1'),
-            content: const Text('contain'),
-            isActive: true,
+      body: SingleChildScrollView(
+        child: Container(
+          color:Colors.white,
+          height: 1100,
+          width: MediaQuery.of(context).size.width,
+          child: Stack(
+            children: [
+              Positioned(
+                top: 0,
+                child: top(context)),
+                Positioned(
+                top:185 ,
+                child:Container(
+                height: 855,
+                width: MediaQuery.of(context).size.width,
+                child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: ListView(
+                 shrinkWrap: true,
+                 physics: const NeverScrollableScrollPhysics(),
+                 children:const [
+                  Mytimelinetile(isfirst: true, islast: false, ispast: true , textt: "WEEK 1",),
+                  Mytimelinetile(isfirst: false, islast: false, ispast: true, textt: "WEEK 2",),
+                  Mytimelinetile(isfirst: false, islast: false, ispast: true, textt: "WEEK 3",),
+                  Mytimelinetile(isfirst: false, islast: false, ispast: false, textt: "WEEK 4",),
+                  Mytimelinetile(isfirst: false, islast: true, ispast: false, textt: "END",),
+                 ],
+                ),
+              ),
+            ) ),
+            Positioned(
+                top:295 ,
+                child:Container(
+                height: 855,
+                width: MediaQuery.of(context).size.width,
+                child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: ListView(
+                 shrinkWrap: true,
+                 physics: const NeverScrollableScrollPhysics(),
+                 children: [
+                   Weekcard(week: controller.week1, ispast: true),
+                   Weekcard(week: controller.week2, ispast: true),
+                   Weekcard(week: controller.week3, ispast: true),
+                   Weekcard(week: controller.week4, ispast: false),
+                 ],
+                ),
+              ),
+            ) ),
+            Positioned(
+                right: MediaQuery.of(context).size.width*0.11,
+                top: 190,
+                  child: SizedBox(
+                    height: 40,
+                    width: 200,
+                    child: GetBuilder<Precontroller>(
+                      init: Precontroller(),
+                      builder:(contr)=> starrate(context, contr)),
+                  )),
+
+            ],
           ),
-          Step(
-            title: const Text('test 1'),
-            content: const Text('contain'),
-            isActive: true,
-          ),
-          Step(
-            title: const Text('test 1'),
-            content: const Text('contain'),
-            isActive: true,
-          ),
-        ],
-        onStepTapped: (step) {
-          // يُمكن  أن  تُستخدم  هذه  الخاصية  لِـ  التحكم  في  الخطوة  المُختارة
-          // لكن  لا  تُغير  الطريقة  القياسية  لِـ  `Stepper`
-        },
-        onStepContinue: () {
-          // لا  يُستخدم  في  هذه  الحالة  لِـ  أن  الخطوات  مُفتوحة  دائمًا
-        },
-        onStepCancel: () {
-          // لا  يُستخدم  في  هذه  الحالة  لِـ  أن  الخطوات  مُفتوحة  دائمًا
-        },
-      ),
-            )) */
-        ],
-      ),
+        ),
+      )
     );
   }
 
-  Stack top(BuildContext context) {
+  Widget top(BuildContext context) {
     return Stack(
-          children: [
-            SizedBox(
-              height: 280,
-              width: MediaQuery.of(context).size.width,
-            ),
-            ClipPath(
-            clipper: WaveClipper(),
-            child: Container(
-            height: 230,
-            width: MediaQuery.of(context).size.width,
-            color: Colors.black87,
-            child: Opacity(
-              opacity: 0.4,
-              child: Image.asset("assets/images/pick.jpg" , fit: BoxFit.cover,),
+            children: [
+              SizedBox(
+                height: 260,
+                width: MediaQuery.of(context).size.width,
               ),
-                    ),
-            ),
-            Positioned(
-              left: 30,
-              bottom: 20,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(70)
+              ClipPath(
+              clipper: WaveClipper(),
+              child: Container(
+              height: 230,
+              width: MediaQuery.of(context).size.width,
+              color: Colors.black87,
+              child: Opacity(
+                opacity: 0.4,
+                child: Image.asset("assets/images/pick.jpg" , fit: BoxFit.cover,),
                 ),
-                elevation: 10,
-                child: Container(
-                  height: 100,
-                  width: 100,
-                  decoration: BoxDecoration(
-                  border: Border.all(
-                    width: 0.5,
-                    color: Colors.black
-                  ),
+                      ),
+              ),
+              Positioned(
+                left: 30,
+                bottom:0,
+                child: Card(
+                  shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(70)
                   ),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(70),
-                    child: Image.asset("assets/images/c2.jpg",fit: BoxFit.cover,),
-                  ),
-                ),
-              )),
-              Positioned(
-              right: MediaQuery.of(context).size.width*0.11,
-              bottom:55,
-                child: SizedBox(
-                  height: 40,
-                  width: 200,
-                  child: starRate(context),
-                )),
-                Positioned(
-                  left: 10,
-                  top: 30,
-                  child: InkWell(
-                    onTap: (){
-                      Get.back();
-                    },
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(40),
-                        color: Colors.black54,
-                      ),
-                      child:Icon(Icons.arrow_back_ios_new_rounded , color: Colors.white,size: 30,) ,
+                  elevation: 10,
+                  child: Container(
+                    height: 100,
+                    width: 100,
+                    decoration: BoxDecoration(
+                    border: Border.all(
+                      width: 0.5,
+                      color: Colors.black
                     ),
-                  ))
-
-          ],
-        );
+                      borderRadius: BorderRadius.circular(70)
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(70),
+                      child: Image.network("http://${Constans.host}:8000/uploads/${controller.image}",fit: BoxFit.cover,),
+                    ),
+                  ),
+                )),
+                  Positioned(
+                    left: 10,
+                    top: 30,
+                    child: InkWell(
+                      onTap: (){
+                        Get.back();
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(40),
+                          color: Colors.black54,
+                        ),
+                        child:Icon(Icons.arrow_back_ios_new_rounded , color: Colors.white,size: 30,) ,
+                      ),
+                    ))
+      
+            ],
+          );
   }
 
-  starRate(context) {
-  return InkWell(
-    onTap: (){
-      showDialog(
-      context: context, builder: (context)=>Ratedialg() );
-    },
-    child: Transform.scale(
-      scale: 0.7,
-      child: RatingBar.builder(
-        initialRating: 0,
-        direction: Axis.horizontal,
-        itemCount: 5,
-        itemBuilder: (context, _) => const Icon(
-          Icons.star,
-          color: Colors.amber,
-        ),
-        onRatingUpdate: (rating) {},
-        ignoreGestures: true, // تعيين هذه القيمة إلى true لمنع تغيير التقييم
+  InkWell starrate(BuildContext context, Precontroller contr) {
+    return InkWell(
+     onTap: (){
+      if(userInfo!.getString("rate${control.coachid}")==null){
+          showDialog(
+    context: context, builder: (context)=>Ratedialg() );
+      }else{
+        showDialog(
+            context: context,
+            builder: (ctxx) => AlertDialog(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40)),
+                  title: const Text(
+                    'Sorry',
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 252, 93, 93), fontSize: 25),
+                    textAlign: TextAlign.center,
+                  ),
+                  content:const Text("You can rate only once"),
+                ));
+      }
+  },
+  child: Transform.scale(
+    scale: 0.7,
+    child: RatingBar.builder(
+      initialRating: contr.rate,
+      direction: Axis.horizontal,
+      itemCount: 5,
+      itemBuilder: (context, _) => const Icon(
+        Icons.star,
+        color: Colors.amber,
       ),
+      onRatingUpdate: (rating) {},
+      ignoreGestures: true, // تعيين هذه القيمة إلى true لمنع تغيير التقييم
     ),
-  );
-}
-
-
-
+  ),
+);
+  }
 }

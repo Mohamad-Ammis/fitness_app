@@ -75,12 +75,13 @@ class Button extends StatelessWidget {
                             context: context,
                             builder: (ctxx) =>Warning(warn: "This something wrong , Please Try Again"));
                         }
-                     //  print(cont.User_data);
                        cont.Load(false);
-                       preference!.setInt("man", controller.man);
-                       if(controller.base64String!= null){preference!.setString("image", controller.base64String!);}
+                       userInfo!.setInt("man", controller.man);
+                       userInfo!.setString("target", controller.User_data["target"]!);
+                       userInfo!.setString("illness", controller.User_data['diseases']!);
+                       if(controller.base64String!= null){userInfo!.setString("image", controller.base64String!);}
                        Get.offAll(Home());
-                       print(preference!.getInt("is"));
+                       print(userInfo!.getInt("is"));
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: controller.basiccolor,

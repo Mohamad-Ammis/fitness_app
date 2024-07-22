@@ -1,8 +1,4 @@
 import 'dart:async';
-import 'package:fitnessapp/views/exercises_playing_page/playing_exercise.dart';
-import 'package:fitnessapp/views/gym_pre/pre.dart';
-import 'package:fitnessapp/views/workout_page/workout_page.dart';
-
 import '../controller/datacont.dart';
 import 'package:fitnessapp/home.dart';
 import 'package:fitnessapp/splash_screen.dart';
@@ -13,12 +9,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-SharedPreferences? preference;
+// SharedPreferences? preference;
  SharedPreferences? userInfo;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  preference = await SharedPreferences.getInstance();
    userInfo=await SharedPreferences.getInstance();
   runApp(const MyApp());
 }
@@ -36,15 +31,15 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 3), () {
-      /* if(preference!.getInt("man")!= null){
-        controller.setmemoryman(preference!.getInt("man")!);
-        if(preference!.getString("image")!= null){controller.setmemoryimage(preference!.getString("image")!);}
+      if(userInfo!.getInt("man")!= null){
+        controller.setmemoryman(userInfo!.getInt("man")!);
+        if(userInfo!.getString("image")!= null){controller.setmemoryimage(userInfo!.getString("image")!);}
         Get.offAll(Home());
       }
      else{
       Get.offAll(OnBoarding()) ;
-     } */
-      Get.offAll(Pre()) ;
+     }
+    //  Get.offAll(Pre()) ;
     } );
   }
 

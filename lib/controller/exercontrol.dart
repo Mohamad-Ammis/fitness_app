@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:fitnessapp/controller/datacont.dart';
+import 'package:fitnessapp/controller/spec_day_controller.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/exersice.dart';
 import 'package:fitnessapp/models/pivot_exer.dart';
@@ -9,6 +10,8 @@ import 'package:get/get.dart';
 class Exercontroller extends GetxController {
   
 final controller = Get.put(Datacontroller() , permanent: true);
+final controll = Get.put(SpecDay() , permanent: true);
+
   
   String time ="0";
   String numexer = "0";
@@ -26,7 +29,7 @@ final controller = Get.put(Datacontroller() , permanent: true);
 
 
   void gender(){
-    if(preference!.getInt("man")==2){
+    if(userInfo!.getInt("man")==2){
      gen ="female";
     }else{
       gen = "male";
@@ -36,6 +39,14 @@ final controller = Get.put(Datacontroller() , permanent: true);
 
   List<dynamic> exercise =[];
   List<ExerciseModel> all_exer =[];
+
+
+
+ void setexerspesday(List<ExerciseModel> exer){
+  all_exer = exer ;
+ }
+
+
 
   Future getexer (String id , String? level)async{
    time ="0";
@@ -49,7 +60,7 @@ final controller = Get.put(Datacontroller() , permanent: true);
      headers:level==null? {'Accept':'application/json'
      }:{
       'Accept':'application/json',
-      'Authorization': 'Bearer ${controller.token}',
+      'Authorization': 'Bearer ${userInfo!.getString('token')}',
      },
      body:level==null? {
       'category_id': id,
@@ -150,7 +161,7 @@ final controller = Get.put(Datacontroller() , permanent: true);
       final res = await http.get(Uri.parse(url),
      headers:{
       'Accept':'application/json',
-      'Authorization': 'Bearer ${controller.token}',
+      'Authorization': 'Bearer ${userInfo!.getString('token')}',
      },);
       if(res.statusCode == 200){
         final resdata = json.decode(res.body);

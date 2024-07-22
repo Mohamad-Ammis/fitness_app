@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   curved_navigation_bar: ^1.0.3
   custom_timer: ^0.2.3
-  easy_date_timeline: 1.0.3
+  easy_date_timeline: ^1.0.3
   flutter:
     sdk: flutter
   flutter_otp_text_field: ^1.1.3+2
@@ -47,6 +47,7 @@ dependencies:
   font_awesome_flutter: ^10.7.0
   get: ^4.6.6
   http: ^1.2.1
+  timeline_tile: ^2.0.0
   image_picker: ^1.1.0
   lottie: ^3.1.2
   percent_indicator: ^4.2.3

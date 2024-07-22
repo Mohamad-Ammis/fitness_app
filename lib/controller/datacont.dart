@@ -4,8 +4,8 @@ import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
- import 'package:image_picker/image_picker.dart'; 
- import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart'; 
+import 'package:http/http.dart' as http;
 
 class Datacontroller extends GetxController {
   Color basiccolor = Color.fromARGB(255, 38, 164, 170) ;
@@ -13,6 +13,7 @@ class Datacontroller extends GetxController {
   Color twocolor = Colors.black ;
 
   int index = 0;
+  int count = 1 ;
 
   void changed(int value) {
     index = value;
@@ -21,12 +22,42 @@ class Datacontroller extends GetxController {
    
    double percent = 1/7 ;
    void nextpercent(){
-    percent += 1/7 ;
+    count+=1;
+    if(count == 1){
+      percent = 1/7;
+    }else if (count == 2){
+      percent = 2/7 ;
+    }else if(count == 3){
+      percent = 3/7;
+    }else if(count == 4){
+       percent = 4/7;
+    }else if(count == 5){
+      percent = 5/7;
+    }else if(count == 6){
+      percent = 6/7;
+    }else{
+      percent =1;
+    }
     update();
    }
 
    void previouspercent(){
-    percent -= 1/7 ;
+    count -=1 ;
+      if(count == 1){
+      percent = 1/7;
+    }else if (count == 2){
+      percent = 2/7 ;
+    }else if(count == 3){
+      percent = 3/7;
+    }else if(count == 4){
+       percent = 4/7;
+    }else if(count == 5){
+      percent = 5/7;
+    }else if(count == 6){
+      percent = 6/7;
+    }else{
+      percent =1;
+    }
     update();
    }
   
@@ -205,7 +236,6 @@ bool checkill(int num ){
 
 //
   String ip=Constans.host;
-  String? token= userInfo?.getString("token") ;
   String baseurl ="http://${Constans.host}:8000/api/";
  
   Map <String , String> User_data ={
@@ -227,11 +257,11 @@ bool checkill(int num ){
       User_data["gender"]="female";
     }
    if(selectgoal =="1"){
-     User_data["target"]="lose weight";
+     User_data["target"]="lose_weight";
    }else if(selectgoal == "2"){
-     User_data["target"]="build muscle";
+     User_data["target"]="build_muscle";
    }else{
-     User_data["target"]="keep fit";
+     User_data["target"]="keep_fit";
    }
    User_data["tall"]=currentheight.toString();
    User_data["weight"]=currentweight.toString();
@@ -275,15 +305,15 @@ bool checkill(int num ){
      final request = http.MultipartRequest('POST',Uri.parse(url));
     
     request.headers.addAll({'Accept':'application/json' ,
-      'Authorization': 'Bearer $token',
+      'Authorization': 'Bearer ${userInfo!.getString('token')}',
       },);
       request.fields.addAll(User_data);
+
       if(pickedimage!= null){
       request.files.add(await http.MultipartFile.fromPath("Image", pickedimage!.path));
       }
      var res= await request.send();
      var response = await http.Response.fromStream(res);
-     print(response.statusCode.toString());
      if(response.statusCode == 500){
       throw 'No Internet , Please try again';
      }

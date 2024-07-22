@@ -1,13 +1,12 @@
 class Coach{
-  String image ;
+  String? image ;
   int id ;
-  String bio ;
-  String name ;
-  String price ;
-  String age;
-  String des ;
-  String rate ;
-  String member ;
+  String? bio ;
+  String? name ;
+  String? price ;
+  String? age;
+  String? des ;
+  String? rate ;
 
   Coach({
     required this.image,
@@ -18,6 +17,5 @@ class Coach{
     required this.rate,
     required this.age,
     required this.des,
-    required this.member
   });
 }
