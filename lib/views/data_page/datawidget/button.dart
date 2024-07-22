@@ -5,9 +5,10 @@ import 'package:fitnessapp/widgets/warning.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+
 class Button extends StatelessWidget {
-  Button({super.key});
-  final controller = Get.put(Datacontroller(), permanent: true);
+   Button({super.key});
+  final controller = Get.put(Datacontroller() , permanent: true);
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -119,20 +120,20 @@ class Button extends StatelessWidget {
     );
   }
 
+
   Container childbutton(String s) {
     return Container(
-      alignment: Alignment.center,
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
-      height: 60,
-      width: 150,
-      child: Text(
-        s,
-        style: const TextStyle(
-            fontFamily: "WorkSans",
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-            color: Colors.white),
-      ),
-    );
+                    alignment: Alignment.center,
+                    padding:const EdgeInsets.symmetric(horizontal: 20 , vertical: 8),
+                    height: 60,
+                    width: 150,
+                    child:  Text(s , style: const TextStyle(
+                      fontFamily: "WorkSans",
+                      fontSize: 25 ,
+                      fontWeight: FontWeight.bold ,
+                      color: Colors.white
+                    ),),
+                   );
   }
+
 }
