@@ -252,9 +252,9 @@ bool checkill(int num ){
 
   void setUser_Data(){
     if (man == 1) {
-       User_data["gender"]="male";
-    }else{
-      User_data["gender"]="female";
+      User_data["gender"] = "male";
+    } else {
+      User_data["gender"] = "female";
     }
    if(selectgoal =="1"){
      User_data["target"]="lose_weight";
@@ -325,10 +325,10 @@ bool checkill(int num ){
 
 bool isloading = false;
 
-void Load(bool value){
-  isloading = value;
-  update();
-}
+  void Load(bool value) {
+    isloading = value;
+    update();
+  }
 
 void setmemoryman(int value){
   man = value ;
@@ -357,35 +357,30 @@ void setlogout(){
     weightwoman = FontWeight.normal;
    man = 0;
     leftman = 60;
-   bottomman = 30;
-   opacityman = 1;
-   rightwoman = 60;
-   bottomwoman = 30;
-   opacitywoman = 1;
-    selectgoal =''; 
-   selectfocusarea = 0 ;
-   initheight = 160;
-   initweight = 60;
-   pickedimage = null ;
-   days =[];
-   time = TimeOfDay.now();
-   selectill =0; 
-   percent = 1/6 ;
-   base64String= null ;
-   update();
-
-}
+    bottomman = 30;
+    opacityman = 1;
+    rightwoman = 60;
+    bottomwoman = 30;
+    opacitywoman = 1;
+    selectgoal = '';
+    selectfocusarea = 0;
+    initheight = 160;
+    initweight = 60;
+    pickedimage = null;
+    days = [];
+    time = TimeOfDay.now();
+    selectill = 0;
+    percent = 1 / 6;
+    base64String = null;
+    update();
+  }
 
 //activity
 
-int activity = 0 ; 
+  int activity = 0;
 
-   void setactivity(int value){
-     activity = value ;
-     update();
-   }
-
-
-
-
+  void setactivity(int value) {
+    activity = value;
+    update();
+  }
 }

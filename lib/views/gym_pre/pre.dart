@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/precontroller.dart';
 import 'package:fitnessapp/main.dart';
@@ -59,8 +58,8 @@ class _PreState extends State<Pre> {
         children: [
           const Opacity(
             opacity: 0.5,
-            child:  Back(),
-            ),
+            child: Back(),
+          ),
           SizedBox(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
@@ -143,8 +142,8 @@ class _PreState extends State<Pre> {
                                 Container(
                                     height: 100,
                                     alignment: Alignment.topLeft,
-                                    width:
-                                        MediaQuery.of(context).size.width * 0.46,
+                                    width: MediaQuery.of(context).size.width *
+                                        0.46,
                                     color: Colors.white,
                                     child: Column(
                                         mainAxisAlignment:
@@ -170,7 +169,8 @@ class _PreState extends State<Pre> {
                                           ),
                                           Container(
                                               width: double.infinity,
-                                              margin: const EdgeInsets.only(left: 15),
+                                              margin: const EdgeInsets.only(
+                                                  left: 15),
                                               height: 65,
                                               child: Stack(children: [
                                                 AnimatedOpacity(

@@ -178,7 +178,7 @@ final execontrol = Get.put(Exercontroller() , permanent: true);
               children: [
                const Spacer(),
                 Text(
-                  "Hi,Areej!",
+                  "Hi,${userInfo!.getString("name")}!",
                   style: TextStyle(
                     fontSize: MediaQuery.of(context).size.width * 0.06,
                     color: Colors.black,
