@@ -1,48 +1,40 @@
 import 'dart:async';
-
-import 'package:fitnessapp/controller/datacont.dart';
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/exercontrol.dart';
+import 'package:fitnessapp/controller/spec_day_controller.dart';
+import 'package:fitnessapp/models/exersice.dart';
 import 'package:fitnessapp/shimmer/shimmergym.dart';
 import 'package:fitnessapp/views/exercises_playing_page/playing_exercise.dart';
-import 'package:fitnessapp/views/workout_page/widgets/customsliver.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-// ignore: must_be_immutable
-class Exercise extends StatefulWidget {
-  String image;
-  String title;
-  String des ;
-  String id ;
-  String? level;
-  Exercise({super.key , required this.image , required this.title , required this.des,required this.id , required this.level});
-
+class Sportpart extends StatefulWidget {
+  final int id ;
+  const Sportpart({super.key , required this.id});
+  
   @override
-  State<Exercise> createState() => _ExerciseState();
+  State<Sportpart> createState() => _SportpartState();
 }
 
-class _ExerciseState extends State<Exercise> {
-  
-  bool test = false;
-  bool isloading = false ;
-  final control = Get.put(Exercontroller() , permanent: true);
-  final datacont = Get.put(Datacontroller() , permanent: true);
-  @override
-  void initState() {
-     setState(() {
-        isloading = true;
+class _SportpartState extends State<Sportpart> {
+
+
+   final controller = Get.put(SpecDay(), permanent: true);
+    final control = Get.put(Exercontroller(), permanent: true);
+
+   bool isloading = false ;
+    @override
+    void initState() {
+     if(controller.loadexer == 0){
+       setState(() {
+        isloading=true;
       });
-      Timer(const Duration(milliseconds: 0), () async{ 
-       try{
-        if(control.random == false){
-          control.gender();
-         await control.getexer(widget.id , widget.level);
-        }else{
-          print("from random");
-          await control.getexrciserandom(widget.id);
-        }
+    Timer(Duration(seconds: 0), () async{ 
+      try{
+        controller.setspecdayexer();
+        await controller.getexer();
       }catch(error){
-       showDialog(
+         showDialog(
             context: context,
             builder: (ctxx) => AlertDialog(
                   shape: RoundedRectangleBorder(
@@ -59,69 +51,52 @@ class _ExerciseState extends State<Exercise> {
       setState(() {
         isloading = false;
       });
-      });
+    });
+     }
     super.initState();
   }
 
+
+List<ExerciseModel> exercise =[];
+  
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body:SizedBox(
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        child: Column(
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height*0.89,
-              child: sliver_appbar(context),
-            ),
-            button(context)
-          ],
-        ),
-      )
-    );
-  }
-
-  // ignore: non_constant_identifier_names
-  CustomScrollView sliver_appbar(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverPersistentHeader(
-          pinned: true,
-          delegate:CustomSliverAppbarDelegate(expandedHeight: MediaQuery.of(context).size.height*0.37, img: widget.image , title: widget.title , des: widget.des , picks: false)),
-       SliverToBoxAdapter(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 0),
-          child:!isloading? ListView(
-            primary: false,
-            shrinkWrap: true,
+    return LayoutBuilder(
+      builder:(context,contr)=> Column(
+        children: [
+          SizedBox(
+            height: contr.maxHeight*0.02,
+          ),
+          SizedBox(
+            height: contr.maxHeight*0.85,
+            child:isloading==false?  ListView(
             children: [
-             ...control.exercise.map((item) => allexer(context, item)),
+             ...controller.exer.map((item) => allexer(context, item)),
             ],
           ):ListView.builder(
             itemCount: 4,
             primary: false,
             shrinkWrap: true,
             itemBuilder: (cont  , ind)=>loadallexer(context)),
-        )
-       ),
-      ],
+          ),
+           button(context , contr)
+        ],
+      )
     );
   }
 
-  Container button(BuildContext context) {
-    final controller =Get.put(Exercontroller());
+
+ Container button(BuildContext context , BoxConstraints cont) {
     return Container(
-               height: MediaQuery.of(context).size.height*0.11,
+               height: cont.maxHeight*0.13,
                alignment: Alignment.topCenter,
                padding: const EdgeInsets.only(top: 10),
                child: ElevatedButton(onPressed: (){
-                //control.all_exer
-                debugPrint(controller.all_exer.toString());
-                 Get.to(const PlayingExercises());
+                control.setexerspesday(controller.exer);
+                Get.to(PlayingExercises());
                },
                style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 38, 164, 170),
+                      backgroundColor: const Color.fromARGB(255, 50, 144, 173),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),),
@@ -140,37 +115,35 @@ class _ExerciseState extends State<Exercise> {
               );
   }
 
-  Column allexer(BuildContext context, item) {
+
+Column allexer(BuildContext context,ExerciseModel item) {
     return Column(
               children: [
                 Container(
                   margin: const EdgeInsets.only(top: 0 , bottom: 5 , left: 15 , right: 15),
                   height: MediaQuery.of(context).size.height*0.1,
                   width: MediaQuery.of(context).size.width,
-                 // color: Colors.amber,
                   child: Row(
                     children: [
                       Container(
                         padding: const EdgeInsets.only(top: 4 , ),
                         width: MediaQuery.of(context).size.width*0.35,
                         height: MediaQuery.of(context).size.height*0.1,
-                      //  color: Colors.pink,
-                        child: Image.network("http://${datacont.ip}:8000/uploads/${item["image"]}", fit: BoxFit.contain,),
+                        child: Image.network("http://${Constans.host}:8000/uploads/${item.image}", fit: BoxFit.contain,),
                       ),
                       Expanded(child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Container(
                             height: MediaQuery.of(context).size.height*0.07,
-                          //  color: Colors.black,
                             alignment: Alignment.centerLeft,
-                            child: Text(item["exercise_name"] , style: const TextStyle(
+                            child: Text(item.name , style: const TextStyle(
                               fontFamily: "WorkSans",
                               fontSize: 19,
                               color: Colors.black
                             ),),
                           ),
-                          Text("00:${item["time"]}" , style: const TextStyle(
+                          Text("00:${item.time}" , style: const TextStyle(
                             fontFamily: "WorkSans",
                             fontSize: 16,
                             color: Colors.black54
@@ -186,8 +159,7 @@ class _ExerciseState extends State<Exercise> {
               ],
              );
   }
-
-  Column loadallexer(BuildContext context) {
+Column loadallexer(BuildContext context) {
     return Column(
               children: [
                 Container(
@@ -230,7 +202,5 @@ class _ExerciseState extends State<Exercise> {
               ],
              );
   }
-
-
+  
 }
-

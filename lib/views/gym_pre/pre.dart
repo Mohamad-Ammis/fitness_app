@@ -1,14 +1,55 @@
+import 'dart:async';
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/precontroller.dart';
+import 'package:fitnessapp/main.dart';
+import 'package:fitnessapp/shimmer/shimmergym.dart';
 import 'package:fitnessapp/views/data_page/backgr.dart';
 import 'package:fitnessapp/views/gym_pre/dealogcoach.dart';
+import 'package:fitnessapp/views/gym_pre/picks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 
-class Pre extends StatelessWidget {
+class Pre extends StatefulWidget {
   Pre({super.key});
 
+  @override
+  State<Pre> createState() => _PreState();
+}
+
+class _PreState extends State<Pre> {
   final controller = Get.put(Precontroller(), permanent: true);
+  bool isloading = false;
+
+  @override
+  void initState() {
+    setState(() {
+      isloading = true ;
+    });
+     Timer(const Duration(milliseconds: 0), () async{ 
+       try{
+         await controller.getallcoaches();
+       }catch(error){
+         showDialog(
+            context: context,
+            builder: (ctxx) => AlertDialog(
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(40)),
+                  title: const Text(
+                    'Warning',
+                    style: TextStyle(
+                        color: Color.fromARGB(255, 252, 93, 93), fontSize: 25),
+                    textAlign: TextAlign.center,
+                  ),
+                  content: Text(error.toString()),
+                ));
+       }
+       setState(() {
+       isloading = false ;
+     });
+     });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +64,9 @@ class Pre extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: ListView(
-              children: [top(context), pick(context), title(context), coach()],
+              children: [top(context), pick(context), title(context),
+              isloading==false? coach(): loadcoach()
+              ],
             ),
           )
         ],
@@ -89,8 +132,8 @@ class Pre extends StatelessWidget {
                                     child: ClipRRect(
                                       borderRadius: const BorderRadius.all(
                                           Radius.circular(50)),
-                                      child: Image.asset(
-                                        control.coaches[index].image,
+                                      child: Image.network(
+                                        "http://${Constans.host}:8000/uploads/${control.coaches[index].image!}",
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -112,7 +155,7 @@ class Pre extends StatelessWidget {
                                             padding: const EdgeInsets.only(
                                                 top: 0, left: 15),
                                             child: Text(
-                                              control.coaches[index].name,
+                                              control.coaches[index].name!,
                                               style: TextStyle(
                                                 fontSize: MediaQuery.of(context)
                                                         .size
@@ -136,8 +179,7 @@ class Pre extends StatelessWidget {
                                                     opacity: control
                                                         .opcitydes(index),
                                                     child: Text(
-                                                        control
-                                                            .coaches[index].des,
+                                                        control.coaches[index].des!,
                                                         style: TextStyle(
                                                             fontSize: MediaQuery.of(
                                                                         context)
@@ -145,7 +187,7 @@ class Pre extends StatelessWidget {
                                                                     .width *
                                                                 0.03,
                                                             color:
-                                                                Colors.black54,
+                                                                /* Colors.black54 */control.color,
                                                             fontFamily:
                                                                 "WorkSans"))),
                                                 AnimatedOpacity(
@@ -154,8 +196,7 @@ class Pre extends StatelessWidget {
                                                     opacity: control
                                                         .opcitybio(index),
                                                     child: Text(
-                                                        control
-                                                            .coaches[index].bio,
+                                                        control.coaches[index].bio!,
                                                         style: TextStyle(
                                                             fontSize: MediaQuery.of(
                                                                         context)
@@ -190,7 +231,7 @@ class Pre extends StatelessWidget {
                                             color: control.color,
                                           ),
                                           Text(
-                                            control.coaches[index].age,
+                                            control.coaches[index].age!,
                                             style: TextStyle(
                                               fontSize: MediaQuery.of(context)
                                                       .size
@@ -216,8 +257,7 @@ class Pre extends StatelessWidget {
                                             color: Color.fromARGB(
                                                 255, 221, 203, 35),
                                           ),
-                                          Text(
-                                            control.coaches[index].rate,
+                                          Text(control.coaches[index].rate==null?"": double.parse(control.coaches[index].rate!).toStringAsFixed(1),
                                             style: TextStyle(
                                               fontSize: MediaQuery.of(context)
                                                       .size
@@ -239,7 +279,7 @@ class Pre extends StatelessWidget {
                                             MainAxisAlignment.spaceAround,
                                         children: [
                                           Text(
-                                            control.coaches[index].price,
+                                            control.coaches[index].price!,
                                             style: TextStyle(
                                               fontSize: MediaQuery.of(context)
                                                       .size
@@ -280,9 +320,9 @@ class Pre extends StatelessWidget {
                                 alignment: Alignment.bottomRight,
                                 child: ElevatedButton(
                                     onPressed: () {
+                                      control.chooseimage(control.coaches[index].image!);
                                       showDialog(
-                                          context: context,
-                                          builder: (context) => Dealogcoach());
+                                        context: context, builder: (context)=> Dealogcoach(coachid:  control.coaches[index].id,));
                                     },
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: control.color,
@@ -300,7 +340,7 @@ class Pre extends StatelessWidget {
                             right: 15,
                             top: 8,
                             child: AnimatedOpacity(
-                              duration: const Duration(milliseconds: 500),
+                              duration: Duration(milliseconds: 500),
                               opacity: control.opcitybio(index),
                               child: SizedBox(
                                 height: 30,
@@ -314,8 +354,10 @@ class Pre extends StatelessWidget {
                                       color: Color.fromARGB(255, 221, 203, 35),
                                       size: 20,
                                     ),
-                                    Text(
-                                      control.coaches[index].rate,
+                                     Text(
+                                    control.coaches[index].rate==null?"":double.parse(control.coaches[index].rate!).toStringAsFixed(1)
+                                    // "4"
+                                    ,
                                       style: TextStyle(
                                         fontSize:
                                             MediaQuery.of(context).size.width *
@@ -328,7 +370,8 @@ class Pre extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                            ))
+                            )
+                            )
                       ],
                     ),
                   ),
@@ -336,6 +379,18 @@ class Pre extends StatelessWidget {
               )),
     );
   }
+
+ Widget loadcoach(){
+   return ListView.builder(
+     primary: false,
+     shrinkWrap: true,
+    itemCount: 2,
+    itemBuilder: (cont , ind)=> const Padding(
+      padding:  EdgeInsets.only(bottom: 10, left: 15, right: 15),
+      child: Shimmergym.Rectangle(height: 100, width: double.infinity, radius: 30),
+      ));
+ }
+
 
   Container title(BuildContext context) {
     return Container(
@@ -413,7 +468,7 @@ class Pre extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width * 0.65,
                     child: Text(
-                      "Exercises with observance Knee pain",
+                      "Exercises with observance ${userInfo!.getString("illness")} pain",
                       style: TextStyle(
                         fontSize: MediaQuery.of(context).size.width * 0.045,
                         color: Colors.white,
@@ -428,7 +483,10 @@ class Pre extends StatelessWidget {
               bottom: 20,
               left: 85,
               child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(()=>Picks(image: "assets/images/picks.jpg", des: "These exercises are intended to help you cope with your illness and relieve the resulting pain. ",
+                     title: "${userInfo!.getString("illness")} pain"));
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: controller.color,
                     shape: RoundedRectangleBorder(
@@ -469,7 +527,7 @@ class Pre extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
-              onTap: () => ZoomDrawer.of(context)!.toggle(),
+               onTap: () => ZoomDrawer.of(context)!.toggle(),
               child: Container(
                   margin: const EdgeInsets.only(left: 1, top: 10),
                   height: 50,

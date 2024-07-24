@@ -1,9 +1,4 @@
 import 'package:fitnessapp/utils/app_images.dart';
-import 'package:fitnessapp/views/shops/favorite_page/favorite_page.dart';
-import 'package:fitnessapp/views/shops/home_page/shop.dart';
-import 'package:fitnessapp/views/shops/home_page/widgets/shop_home_page.dart';
-import 'package:fitnessapp/views/shops/order_details_page/order_details_page.dart';
-import 'package:fitnessapp/views/shops/order_page/order_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

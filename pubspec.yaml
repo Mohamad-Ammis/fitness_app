@@ -51,6 +51,7 @@ dependencies:
   google_nav_bar: ^5.0.6
   hero_animation: ^1.1.4
   http: ^1.2.1
+  timeline_tile: ^2.0.0
   image_picker: ^1.1.0
   lottie: ^3.1.2
   panara_dialogs: ^0.1.4
@@ -61,7 +62,6 @@ dependencies:
   simple_circular_progress_bar: ^1.0.2
   slide_countdown: ^1.6.1
   smooth_page_indicator: ^1.1.0
-  timeline_tile: ^2.0.0
   toastification: ^2.0.0
   wheel_slider: ^1.2.1
   youtube_player_flutter: ^9.0.1

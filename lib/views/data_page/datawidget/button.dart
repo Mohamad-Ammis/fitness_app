@@ -65,59 +65,51 @@ class Button extends StatelessWidget {
                                controller.control.nextPage(duration: const Duration(seconds: 1), curve: Curves.bounceOut);
                                controller.nextpercent();
                             } */
-                                  controller.control.nextPage(
-                                      duration: const Duration(seconds: 1),
-                                      curve: Curves.bounceOut);
-                                  controller.nextpercent();
-                                }
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: controller.basiccolor,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
-                              ),
-                              child: childbutton("Next"))
-                          : ElevatedButton(
-                              onPressed: () async {
-                                cont.Load(true);
-                                for (int i = 0; i < cont.days.length; i++) {
-                                  cont.User_data["training_days[${i + 1}]"] =
-                                      cont.days[i].toString();
-                                }
-                                cont.setUser_Data();
-                                try {
-                                  await cont.Setdata();
-                                } catch (error) {
-                                  showDialog(
-                                      // ignore: use_build_context_synchronously
-                                      context: context,
-                                      builder: (ctxx) => const Warning(
-                                          warn:
-                                              "This something wrong , Please Try Again"));
-                                }
-                                //  print(cont.User_data);
-                                cont.Load(false);
-                                preference!.setInt("man", controller.man);
-                                if (controller.base64String != null) {
-                                  preference!.setString(
-                                      "image", controller.base64String!);
-                                }
-                                Get.offAll(const Home());
-                                print(preference!.getInt("is"));
-                              },
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: controller.basiccolor,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30),
-                                ),
-                              ),
-                              child: childbutton("Done")),
-                    ),
-                  ))
-        ],
-      ),
-    );
+                             controller.control.nextPage(duration: const Duration(seconds: 1), curve: Curves.bounceOut);
+                               controller.nextpercent();
+                          }
+                          
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: controller.basiccolor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                        ),
+                         child: childbutton("Next")):ElevatedButton(onPressed: ()async{
+                          cont.Load(true);
+                       for(int i = 0 ; i<cont.days.length ; i++){
+                        cont.User_data["training_days[${i+1}]"] = cont.days[i].toString();
+                       }
+                       cont.setUser_Data();
+                        try{
+                         await cont.Setdata();
+                        }catch(error){
+                          showDialog(
+                            // ignore: use_build_context_synchronously
+                            context: context,
+                            builder: (ctxx) =>const Warning(warn: "This something wrong , Please Try Again"));
+                        }
+                       cont.Load(false);
+                       userInfo!.setInt("man", controller.man);
+                       userInfo!.setString("target", controller.User_data["target"]!);
+                       userInfo!.setString("illness", controller.User_data['diseases']!);
+                       if(controller.base64String!= null){userInfo!.setString("image", controller.base64String!);}
+                       Get.offAll(Home());
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: controller.basiccolor,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                       child: childbutton("Done")),
+                      ),
+                    )
+                  )
+                ],
+              ),
+            );
   }
 
 

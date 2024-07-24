@@ -29,7 +29,7 @@ class WorkoutPageBody extends StatelessWidget {
             const SectionTitle(title: 'CHALLENGES'),
             FutureBuilder(
                 future: controller.getChallenge(
-                    preference!.getString('token'),
+                    userInfo!.getString('token'),
                     'http://${Constans.host}:8000/api/trainer/challenge/getAll'),
                 builder: (context, snapshot) {
                   return ChallengesListView(data: snapshot.data);

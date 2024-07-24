@@ -17,7 +17,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  //final controller = Get.put(Datacontroller() , permanent: true);
   Menuitem currentitem = Menuitems.home;
   @override
   Widget build(BuildContext context) {

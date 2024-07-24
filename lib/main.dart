@@ -1,7 +1,5 @@
 import 'dart:async';
-import 'package:fitnessapp/views/food/food.dart';
 import 'package:fitnessapp/views/on_boarding/on_boarding.dart';
-
 import '../controller/datacont.dart';
 import 'package:fitnessapp/home.dart';
 import 'package:fitnessapp/splash_screen.dart';
@@ -11,14 +9,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-SharedPreferences? preference;
-SharedPreferences? userInfo;
+// SharedPreferences? preference;
+ SharedPreferences? userInfo;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  preference = await SharedPreferences.getInstance();
-  userInfo = await SharedPreferences.getInstance();
-
+   userInfo=await SharedPreferences.getInstance();
   runApp(const MyApp());
 }
 
@@ -36,23 +32,26 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 3), () {
-      if (preference!.getInt("man") != null) {
-        controller.setmemoryman(preference!.getInt("man")!);
-        if (preference!.getString("image") != null) {
-          controller.setmemoryimage(preference!.getString("image")!);
-        }
-        Get.offAll(() => const Home());
-      } else {
-        Get.offAll(() => OnBoarding());
+      if(userInfo!.getInt("man")!= null){
+        controller.setmemoryman(userInfo!.getInt("man")!);
+        if(userInfo!.getString("image")!= null){controller.setmemoryimage(userInfo!.getString("image")!);}
+        Get.offAll(Home());
       }
-      // Get.offAll(Home()) ;
-    });
+     else{
+      Get.offAll(OnBoarding()) ;
+     }
+    //  Get.offAll(Pre()) ;
+    } );
   }
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+        theme: ThemeData(
+          scaffoldBackgroundColor: Colors.white,
+          canvasColor: Colors.white
+        ),
 
         // initialRoute
         debugShowCheckedModeBanner: false,

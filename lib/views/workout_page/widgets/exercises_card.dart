@@ -19,7 +19,7 @@ class ExcercisesCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(Exercise(image:preference!.getInt("man")==1? model.muscleImageMan!:model.muscleImageWoman!, title: model.muscleName!,
+        Get.to(Exercise(image:userInfo!.getInt("man")==1? model.muscleImageMan!:model.muscleImageWoman!, title: model.muscleName!,
          des: model.dess!,
           id: model.id.toString(),
           level:model.level
@@ -44,7 +44,7 @@ class ExcercisesCard extends StatelessWidget {
         child: Stack(
           children: [
              CachedNetworkImage(
-  imageUrl: "http://${Constans.host}:8000/Uploads/${preference!.getInt("man")==1? model.muscleImageMan!:model.muscleImageWoman!}",
+  imageUrl: "http://${Constans.host}:8000/Uploads/${userInfo!.getInt("man")==1? model.muscleImageMan!:model.muscleImageWoman!}",
   imageBuilder: (context, imageProvider) => Container(
     decoration: BoxDecoration(
       image: DecorationImage(

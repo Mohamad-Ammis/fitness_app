@@ -1,15 +1,16 @@
+import 'dart:convert';
+import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/coach.dart';
+import 'package:fitnessapp/models/dayplan.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
 
 class Precontroller extends GetxController{
-  List <Coach> coaches = [
-    Coach(image: "assets/images/c1.jpg", name: "Areej Mahfouz", price: "200",member: "22" , des: "I am a graduate of the Sports Institute in Damascus and I have 10 years of experience in exercises", age: "21",rate: "5",id: 1,bio: "Do what you love to love what you do"),
-    Coach(image: "assets/images/c2.jpg", name: "Sedra Nader", price: "865",member: "14", des: "I am a graduate of the Sports Institute in Damascus and I have 10 years of experience in exercises", age: "25",rate: "3.6",id: 2,bio: "Athlete by day, dreamer by night. Never stop chasing your goals"),
-    Coach(image: "assets/images/c3.jpg", name: "Karam AL Madani", price: "430",member: "5", des: "I am a graduate of the Sports Institute in Damascus and I have 10 years of experience in exercises", age: "30",rate: "4.2",id: 3,bio: "Fearless on the field, unstoppable in pursuit. Witness the power of determination"),
-    Coach(image: "assets/images/c1.jpg", name: "Rabah Salam", price: "150",member: "21", des: "I am a graduate of the Sports Institute in Damascus and I have 10 years of experience in exercises", age: "28",rate: "2",id: 4,bio: "Heart of a champion, mind of a strategist. I play to win"),
-    Coach(image: "assets/images/c2.jpg", name: "Rahaf Mahfouz", price: "300",member: "13", des: "I am a graduate of the Sports Institute in Damascus and I have 10 years of experience in exercises", age: "39",rate: "4.5",id: 5,bio: "Game face on, ready to conquer. Join me on this journey to greatness"), 
-  ];
+  List <Coach> coaches = [];
+
+  List helper =[];
 
   final color =const Color.fromARGB(255, 50, 144, 173);
 
@@ -50,5 +51,114 @@ class Precontroller extends GetxController{
     update();
   }
 
+  String image = "";
+
+  void chooseimage(String value){
+    image = value ;
+    update();
+  }
+
+  double  rate =0 ;
+
+  void rating (double value , int coachid ){
+    rate = value ;
+    userInfo!.setString("rate$coachid", value.toString());
+    update();
+  }
+
+  void initrate(int coachid){
+    rate = userInfo!.getString("rate$coachid")==null? 0 : double.parse(userInfo!.getString("rate$coachid")!) ;
+  }
+
+  List<Dayplan> week1 =[
+    Dayplan(day: 1, id: 1),
+    Dayplan(day: 2, id: 2),
+    Dayplan(day: 3, id: 3),
+    Dayplan(day: 4, id: 4),
+    Dayplan(day: 5, id: 5),
+    Dayplan(day: 6, id: 6),
+    Dayplan(day: 7, id: 7),
+  ];
+
+  List<Dayplan> week2 =[
+    Dayplan(day: 1, id: 8),
+    Dayplan(day: 2, id: 9),
+    Dayplan(day: 3, id: 10),
+    Dayplan(day: 4, id: 11),
+    Dayplan(day: 5, id: 12),
+    Dayplan(day: 6, id: 13),
+    Dayplan(day: 7, id: 14),
+  ];
+
+  List<Dayplan> week3 =[
+    Dayplan(day: 1, id: 15),
+    Dayplan(day: 2, id: 16),
+    Dayplan(day: 3, id: 17),
+    Dayplan(day: 4, id: 18),
+    Dayplan(day: 5, id: 19),
+    Dayplan(day: 6, id: 20),
+    Dayplan(day: 7, id: 21),
+  ];
+
+  List<Dayplan> week4 =[
+    Dayplan(day: 1, id: 22),
+    Dayplan(day: 2, id: 23),
+    Dayplan(day: 3, id: 24),
+    Dayplan(day: 4, id: 25),
+    Dayplan(day: 5, id: 26),
+    Dayplan(day: 6, id: 27),
+    Dayplan(day: 7, id: 28),
+  ];
+
+
+ List plans =[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17];
+
+
+ int getweek(Dayplan d){
+  if(week1.contains(d)){
+    return 1 ;
+  }else if(week2.contains(d)){
+    return 2 ;
+  }else if(week3.contains(d)){
+    return 3 ;
+  }else{
+    return 4 ;
+  }
+ } 
+
+
+ Future getallcoaches ()async{
+    const String url = '${Constans.baseUrl}coach/allCoach';
+    try{
+     final res = await http.get(Uri.parse(url) ,       
+     headers: {
+      'Accept':'application/json', 
+      'Authorization': 'Bearer ${userInfo!.getString('token')}',
+     }
+     );
+   if(res.statusCode==200){
+    coaches = [] ;
+     final resdata = json.decode(res.body);
+     helper = resdata["coach"] as List<dynamic>;
+     for(int i = 1 ; i<helper.length ; i++){
+      Coach test = Coach(
+        image: helper[i]["image"],
+        name: helper[i]["name"],
+        bio: helper[i]["bio"],
+        id: helper[i]["id"],
+        price: helper[i]["price"],
+        rate: helper[i]["rating"],
+        age: helper[i]["age"],
+        des: helper[i]["description"],);
+        coaches.add(test);
+     }
+     update();
+   }else{
+    throw "Something wrong , please try again";
+   }
+    }catch(errore){
+       throw'$errore';
+    }
+  }
 
 } 

@@ -1,5 +1,6 @@
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/auth_controller.dart';
+import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/views/auth_pages/verfication_page/verfication_page.dart';
 import 'package:fitnessapp/views/auth_pages/widgets/auth_custom_button.dart';
 import 'package:fitnessapp/views/auth_pages/widgets/auth_footer.dart';
@@ -122,7 +123,8 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
         setState(() {
           
         });
-  Get.to(VerificationPage());
+       userInfo!.setString("name",authController.userName);
+       Get.to(VerificationPage());
       }
         setState(() {
           

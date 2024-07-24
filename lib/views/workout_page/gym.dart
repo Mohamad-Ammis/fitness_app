@@ -60,9 +60,6 @@ final execontrol = Get.put(Exercontroller() , permanent: true);
       });
       });
     }
-   /*  Future.delayed(/* Duration.zero */Duration(seconds: 2), () async {
-      
-    }); */
     super.initState();
   }
 
@@ -105,7 +102,7 @@ final execontrol = Get.put(Exercontroller() , permanent: true);
                     child: InkWell(
                       onTap: (){
                       //  print(preference!.getInt("man"));
-                       Get.to(Exercise(image:preference!.getInt("man")==2? item["women_image"]:item["men_image"],
+                       Get.to(Exercise(image:userInfo!.getInt("man")==2? item["women_image"]:item["men_image"],
                         title: item["category_name"], des: item["description"],
                         id: item["id"].toString(),
                         level:null
@@ -181,7 +178,7 @@ final execontrol = Get.put(Exercontroller() , permanent: true);
               children: [
                const Spacer(),
                 Text(
-                  "Hi,Areej!",
+                  "Hi,${userInfo!.getString("name")}!",
                   style: TextStyle(
                     fontSize: MediaQuery.of(context).size.width * 0.06,
                     color: Colors.black,
