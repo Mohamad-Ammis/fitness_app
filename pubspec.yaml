@@ -65,6 +65,11 @@ dependencies:
   toastification: ^2.0.0
   wheel_slider: ^1.2.1
   youtube_player_flutter: ^9.0.1
+  image_gallery_saver: ^2.0.3
+  path_provider: ^2.1.2
+  permission_handler: ^11.3.0
+  dio: ^5.4.1
+
 
 dev_dependencies:
   flutter_lints: ^3.0.0

@@ -1,4 +1,5 @@
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/helper/gallery_saver.dart';
 import 'package:fitnessapp/views/media/contra.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -6,9 +7,18 @@ import 'package:get/get_navigation/get_navigation.dart';
 
 // ignore: must_be_immutable
 class PostWidget extends StatefulWidget {
-  PostWidget({super.key, this.text, this.image});
+  PostWidget(
+      {super.key,
+      this.text,
+      this.image,
+      required this.hasImage,
+      required this.isNetworkImage,
+      required this.hasVideo});
   String? text;
   String? image;
+  bool hasImage;
+  bool isNetworkImage;
+  bool hasVideo;
 
   @override
   State<PostWidget> createState() => _PostWidgetState();
@@ -242,6 +252,21 @@ class _PostWidgetState extends State<PostWidget> {
                       ),
                     ),
                   ),
+                  widget.hasImage || widget.hasVideo
+                      ? GestureDetector(
+                          onTap: () {
+                            saveAsset(widget.image!, context);
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                top: 5, left: 25, bottom: 0),
+                            child: SizedBox(
+                                height: 25,
+                                width: 25,
+                                child: Icon(Icons.download)),
+                          ),
+                        )
+                      : Container(),
                   // const Padding(
                   //   padding: EdgeInsets.only(top: 5, left: 7, bottom: 0),
                   //   child: Text(
@@ -261,5 +286,18 @@ class _PostWidgetState extends State<PostWidget> {
         ),
       ),
     );
+  }
+
+  void saveAsset(String path, BuildContext context) {
+    if (widget.hasImage) {
+      if (widget.isNetworkImage) {
+        GallerySaverHelper().saveNetworkImage(path, context);
+      } else {
+        GallerySaverHelper().saveAssestImage(path, context);
+      }
+    }
+    if (widget.hasVideo) {
+      GallerySaverHelper().saveNetworkVideoFile(path, context);
+    }
   }
 }

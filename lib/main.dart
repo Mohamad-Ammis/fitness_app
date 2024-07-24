@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:fitnessapp/views/food/food.dart';
+import 'package:fitnessapp/views/on_boarding/on_boarding.dart';
 
 import '../controller/datacont.dart';
 import 'package:fitnessapp/home.dart';
@@ -42,7 +43,7 @@ class _MyAppState extends State<MyApp> {
         }
         Get.offAll(() => const Home());
       } else {
-        Get.offAll(() => Home());
+        Get.offAll(() => OnBoarding());
       }
       // Get.offAll(Home()) ;
     });

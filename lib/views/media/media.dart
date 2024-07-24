@@ -153,14 +153,23 @@ class Media extends StatelessWidget {
           itemCount: 1,
           itemBuilder: (context, index) {
             return PostWidget(
+              hasImage: false,
+            isNetworkImage: false,
+            hasVideo: false,
                 text: "Work smarter, not harder When I let go of what I am");
           },
         ),
         PostWidget(
+            hasImage: true,
+            isNetworkImage: false,
+            hasVideo: false,
             image: "assets/images/photomee.jpg",
             text: "Work smarter, not harder When I let go of what I am"),
-        PostWidget(image: "assets/images/mee.jpg"),
+        PostWidget(image: "assets/images/mee.jpg",isNetworkImage: false,hasImage: true,hasVideo: false,),
         PostWidget(
+          hasImage: false,
+            isNetworkImage: false,
+            hasVideo: false,
             text:
                 "Believe in yourself! Have faith in your abilities! Without a humble but reasonable confidence in your own powers you cannot be successful or happy."),
       ]),
