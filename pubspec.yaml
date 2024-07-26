@@ -50,7 +50,7 @@ dependencies:
   get: ^4.6.6
   google_nav_bar: ^5.0.6
   hero_animation: ^1.1.4
-  http: ^1.2.1
+  http: ^1.2.2
   timeline_tile: ^2.0.0
   image_picker: ^1.1.0
   lottie: ^3.1.2

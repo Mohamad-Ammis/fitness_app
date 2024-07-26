@@ -10,11 +10,12 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 // SharedPreferences? preference;
- SharedPreferences? userInfo;
+SharedPreferences? userInfo;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-   userInfo=await SharedPreferences.getInstance();
+  userInfo = await SharedPreferences.getInstance();
+  debugPrint(userInfo.toString());
   runApp(const MyApp());
 }
 
@@ -32,16 +33,17 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     super.initState();
     Timer(const Duration(seconds: 3), () {
-      if(userInfo!.getInt("man")!= null){
+      if (userInfo!.getInt("man") != null) {
         controller.setmemoryman(userInfo!.getInt("man")!);
-        if(userInfo!.getString("image")!= null){controller.setmemoryimage(userInfo!.getString("image")!);}
+        if (userInfo!.getString("image") != null) {
+          controller.setmemoryimage(userInfo!.getString("image")!);
+        }
         Get.offAll(Home());
+      } else {
+        Get.offAll(OnBoarding());
       }
-     else{
-      Get.offAll(OnBoarding()) ;
-     }
-    //  Get.offAll(Pre()) ;
-    } );
+      //  Get.offAll(Pre()) ;
+    });
   }
 
   // This widget is the root of your application.
@@ -49,9 +51,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
         theme: ThemeData(
-          scaffoldBackgroundColor: Colors.white,
-          canvasColor: Colors.white
-        ),
+            scaffoldBackgroundColor: Colors.white, canvasColor: Colors.white),
 
         // initialRoute
         debugShowCheckedModeBanner: false,

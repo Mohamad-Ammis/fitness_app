@@ -1,4 +1,4 @@
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/views/shops/product_page/widgets/appbar_icon.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +6,9 @@ import 'package:flutter/material.dart';
 class ProductPageImageSection extends StatelessWidget {
   const ProductPageImageSection({
     super.key,
+    required this.image,
   });
-
+  final String image;
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -19,12 +20,16 @@ class ProductPageImageSection extends StatelessWidget {
           children: [
             Container(
               width: double.infinity,
-              margin: const EdgeInsets.only(top: 80),
-              child: Image.asset(
-                "assets/images/pngegg.png",
-                // width: double.infinity,
-                fit: BoxFit.cover,
-              ),
+              margin: const EdgeInsets.only(top: 100),
+              child: CachedNetworkImage(
+                  imageUrl: "http://${Constans.host}:8000/Uploads/${image}",
+                  imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.fill,
+                        ),
+                      ))),
             ),
             Positioned(
                 top: 60,
@@ -41,8 +46,7 @@ class ProductPageImageSection extends StatelessWidget {
                       Text(
                         "Men's Jacjet",
                         style: TextStyle(
-                            fontFamily: Constans.fontFamily,
-                            fontSize: 24),
+                            fontFamily: Constans.fontFamily, fontSize: 24),
                       ),
                       Row(
                         children: [

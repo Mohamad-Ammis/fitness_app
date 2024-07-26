@@ -1,5 +1,6 @@
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/shop_controller.dart';
+import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/views/shops/cart_page/cart_page.dart';
 import 'package:fitnessapp/views/shops/favorite_page/favorite_page.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/category_list_view.dart';
@@ -40,7 +41,7 @@ class Shop extends StatelessWidget {
                 icon: const Icon(Icons.shopping_cart_outlined)),
             IconButton(
                 onPressed: () {
-                  Get.to(() => const FavoritePage());
+                  Get.to(() => FavoritePage());
                 },
                 icon: const Icon(Icons.favorite)),
             IconButton(

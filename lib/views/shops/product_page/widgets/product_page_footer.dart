@@ -1,4 +1,3 @@
-
 import 'package:fitnessapp/constans.dart';
 import 'package:flutter/material.dart';
 
@@ -16,12 +15,14 @@ class ProductPageFooter extends StatelessWidget {
             height: 60,
             padding: const EdgeInsets.all(12),
             decoration: BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.circular(16)),
+                color: Colors.transparent,
+                border: Border.all(color: Colors.black),
+                borderRadius: BorderRadius.circular(999)),
             child: const Center(
                 child: Icon(
-              Icons.favorite,
-              color: Colors.white,
+              Icons.add,
+              color: Colors.black,
+              size: 32,
             ))),
         const SizedBox(
           width: 20,
@@ -32,11 +33,10 @@ class ProductPageFooter extends StatelessWidget {
               height: 60,
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.circular(16)),
+                  color: Colors.black, borderRadius: BorderRadius.circular(16)),
               child: const Center(
                 child: Text(
-                  "Add To Cart",
+                  "Buy now",
                   style: TextStyle(
                       color: Colors.white,
                       fontFamily: Constans.fontFamily,

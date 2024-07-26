@@ -59,7 +59,7 @@ class ViewAllPageProductsList extends StatelessWidget {
       childrenDelegate: SliverChildBuilderDelegate(
         (context, index) => GestureDetector(
           onTap: () {},
-          child: const TrendProductCard(),
+          child: Container(),
         ),
         childCount: 10,
       ),

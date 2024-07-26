@@ -1,7 +1,7 @@
-
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/shop_controller.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/category_list_view.dart';
+import 'package:fitnessapp/views/shops/home_page/widgets/filter_product_list.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/offers_card_indicator.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/offers_page_view.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/trend_product_list.dart';
@@ -40,22 +40,11 @@ class ShopHomePage extends StatelessWidget {
                 ),
               ),
               CategoryListView(),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
-                child: Text(
-                  "Trending Product",
-                  style: TextStyle(
-                      height: 0,
-                      color: Colors.black,
-                      fontSize: 24,
-                      fontFamily: Constans.fontFamily,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
+              FilterProductsList()
             ],
           ),
         ),
-        const TrendProductList(),
+         TrendProductList(),
       ],
     );
   }
