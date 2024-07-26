@@ -100,10 +100,10 @@ class _FoodState extends State<Food> {
         ),
       ),
       body: ListView(children: [
-        const Padding(
-          padding: EdgeInsets.only(top: 15, left: 15),
+        Padding(
+          padding: const EdgeInsets.only(top: 15, left: 15),
           child: Stack(clipBehavior: Clip.none, children: [
-            Text(
+            const Text(
               "Balance Healthy Eating, with Plenty of  ",
               maxLines: 2,
               softWrap: true,
@@ -115,9 +115,9 @@ class _FoodState extends State<Food> {
                   fontWeight: FontWeight.bold),
             ),
             Positioned(
-              top: 36,
+              top: MediaQuery.of(context).size.height, //36,
               left: 112,
-              child: Text(
+              child: const Text(
                 "Physical Exercise ",
                 style: TextStyle(
                     fontSize: 25,

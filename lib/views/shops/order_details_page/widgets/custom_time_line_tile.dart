@@ -7,12 +7,8 @@ class CustomTimeLineTile extends StatelessWidget {
       {super.key,
       required this.isFirst,
       required this.isLast,
-<<<<<<< HEAD
       required this.isPast,
       required this.eventCard});
-=======
-      required this.isPast, required this.eventCard});
->>>>>>> d266931d926bc5b2496f95c6f532ed3bb659c797
   final bool isFirst;
   final bool isLast;
   final bool isPast;
