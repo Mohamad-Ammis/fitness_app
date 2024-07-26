@@ -1,11 +1,13 @@
 import 'package:fitnessapp/controller/precontroller.dart';
+import 'package:fitnessapp/controller/spec_day_controller.dart';
 import 'package:fitnessapp/views/gym_pre/plan.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class Dealogcoach extends StatelessWidget {
-  Dealogcoach({super.key});
-
+  final int coachid ;
+  Dealogcoach({super.key , required this.coachid});
+  final control = Get.put(SpecDay(), permanent: true);
   final controller = Get.put(Precontroller(), permanent: true);
 
   @override
@@ -100,6 +102,7 @@ class Dealogcoach extends StatelessWidget {
                   alignment: Alignment.bottomRight,
                   child: ElevatedButton(
                       onPressed: () {
+                        control.updatecoach(coachid);
                         Navigator.of(context).pop();
                         Get.to(const Plan());
                       },

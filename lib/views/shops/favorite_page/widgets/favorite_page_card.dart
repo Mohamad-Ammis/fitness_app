@@ -1,12 +1,22 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/controller/edit_userinfo_controller.dart';
+import 'package:fitnessapp/controller/shop_controller.dart';
+import 'package:fitnessapp/models/shop/product_model.dart';
 import 'package:fitnessapp/utils/app_images.dart';
+import 'package:fitnessapp/views/shops/home_page/widgets/shop_category_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class FavoritePageCard extends StatelessWidget {
-  const FavoritePageCard({
+  FavoritePageCard({
     super.key,
+    required this.model,
+    required this.index,
   });
-
+  final ProductModel model;
+  final int index;
+  final controller = Get.put(ShopController());
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -14,22 +24,27 @@ class FavoritePageCard extends StatelessWidget {
         Container(
           clipBehavior: Clip.hardEdge,
           margin: const EdgeInsets.all(16),
-          decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                    blurRadius: 10, color: Colors.black.withOpacity(.3))
-              ],
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16)),
+          decoration: BoxDecoration(boxShadow: [
+            BoxShadow(blurRadius: 10, color: Colors.black.withOpacity(.3))
+          ], color: Colors.white, borderRadius: BorderRadius.circular(16)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
-                child: Image.asset(
-                  Assets.imagesClothes2,
-                  fit: BoxFit.cover,
-                  height: 150,
+                child: Container(
+                  color: Constans.shopLightColor,
+                  child: CachedNetworkImage(
+                      height: 150,
+                      imageUrl:
+                          "http://${Constans.host}:8000/Uploads/${model.image}",
+                      imageBuilder: (context, imageProvider) => Container(
+                              decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: imageProvider,
+                              fit: BoxFit.cover,
+                            ),
+                          ))),
                 ),
               ),
               Expanded(
@@ -40,10 +55,10 @@ class FavoritePageCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(right: 16.0),
                         child: Text(
-                          "Men Jackets  ",
+                          model.name,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
                           style: TextStyle(
@@ -56,7 +71,37 @@ class FavoritePageCard extends StatelessWidget {
                         height: 4,
                       ),
                       Text(
-                        "A product  description is a form of marketing copy used to describe and explain the benefits of your product ",
+                        model.desc,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                        style: TextStyle(
+                            fontFamily: Constans.fontFamily,
+                            fontSize: 14,
+                            color: Colors.black.withOpacity(.5),
+                            fontWeight: FontWeight.normal),
+                      ),
+                      Text(
+                        "Stock = ${model.stock}",
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 4,
+                        style: TextStyle(
+                            fontFamily: Constans.fontFamily,
+                            fontSize: 14,
+                            color: Colors.black.withOpacity(.5),
+                            fontWeight: FontWeight.normal),
+                      ),
+                      Text(
+                        "views= ${model.viewCount}",
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 4,
+                        style: TextStyle(
+                            fontFamily: Constans.fontFamily,
+                            fontSize: 14,
+                            color: Colors.black.withOpacity(.5),
+                            fontWeight: FontWeight.normal),
+                      ),
+                      Text(
+                        "price = \$${model.price}",
                         overflow: TextOverflow.ellipsis,
                         maxLines: 4,
                         style: TextStyle(
@@ -75,17 +120,32 @@ class FavoritePageCard extends StatelessWidget {
         Positioned.fill(
             child: Align(
           alignment: Alignment.topRight,
-          child: Container(
-            decoration: const BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.only(
-                    topRight: Radius.circular(16),
-                    bottomLeft: Radius.circular(16))),
-            margin: const EdgeInsets.all(16),
-            padding: const EdgeInsets.all(8),
-            child: const Icon(
-              color: Colors.white,
-              Icons.remove,
+          child: GestureDetector(
+            onTap: () async {
+              var status =
+                  await controller.checkIfIsFavorites(model.id, context);
+              print(status);
+              if (status) {
+                bool deleted =
+                    await controller.deleteFromFavorites(model.id, context);
+                if (deleted) {
+                  controller.favoriteProducts.removeAt(index);
+                }
+              }
+              controller.update();
+            },
+            child: Container(
+              decoration: const BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(16),
+                      bottomLeft: Radius.circular(16))),
+              margin: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(8),
+              child: const Icon(
+                color: Colors.white,
+                Icons.remove,
+              ),
             ),
           ),
         ))

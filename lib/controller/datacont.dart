@@ -4,8 +4,8 @@ import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
- import 'package:image_picker/image_picker.dart'; 
- import 'package:http/http.dart' as http;
+import 'package:image_picker/image_picker.dart'; 
+import 'package:http/http.dart' as http;
 
 class Datacontroller extends GetxController {
   Color basiccolor = const Color.fromARGB(255, 38, 164, 170) ;
@@ -13,20 +13,51 @@ class Datacontroller extends GetxController {
   Color twocolor = Colors.black ;
 
   int index = 0;
+  int count = 1 ;
 
   void changed(int value) {
     index = value;
     update();
   }
-
-  double percent = 1 / 7;
-  void nextpercent() {
-    percent += 1 / 7;
+   
+   double percent = 1/7 ;
+   void nextpercent(){
+    count+=1;
+    if(count == 1){
+      percent = 1/7;
+    }else if (count == 2){
+      percent = 2/7 ;
+    }else if(count == 3){
+      percent = 3/7;
+    }else if(count == 4){
+       percent = 4/7;
+    }else if(count == 5){
+      percent = 5/7;
+    }else if(count == 6){
+      percent = 6/7;
+    }else{
+      percent =1;
+    }
     update();
    }
 
-  void previouspercent() {
-    percent -= 1 / 7;
+   void previouspercent(){
+    count -=1 ;
+      if(count == 1){
+      percent = 1/7;
+    }else if (count == 2){
+      percent = 2/7 ;
+    }else if(count == 3){
+      percent = 3/7;
+    }else if(count == 4){
+       percent = 4/7;
+    }else if(count == 5){
+      percent = 5/7;
+    }else if(count == 6){
+      percent = 6/7;
+    }else{
+      percent =1;
+    }
     update();
    }
   
@@ -204,71 +235,71 @@ bool checkill(int num ){
    }
 
 //
-  String ip = Constans.host;
-  String? token = userInfo?.getString("token");
-  String baseurl = "http://${Constans.host}:8000/api/";
-
-  Map<String, String> User_data = {
-    'gender': '',
-    'target': '',
-    'diseases': '',
-    'activity': '',
-    'focus_area': '',
-    'tall': '',
-    'weight': '',
-    'preferred_time': ''
+  String ip=Constans.host;
+  String baseurl ="http://${Constans.host}:8000/api/";
+ 
+  Map <String , String> User_data ={
+    'gender':'',
+    'target':'',
+    'diseases':'',
+    'activity':'',
+    'focus_area':'',
+    'tall':'',
+    'weight':'',
+    'preferred_time':''
   };
 
-  void setUser_Data() {
+
+  void setUser_Data(){
     if (man == 1) {
       User_data["gender"] = "male";
     } else {
       User_data["gender"] = "female";
     }
-    if (selectgoal == "1") {
-      User_data["target"] = "lose weight";
-    } else if (selectgoal == "2") {
-      User_data["target"] = "build muscle";
-    } else {
-      User_data["target"] = "keep fit";
-    }
-    User_data["tall"] = currentheight.toString();
-    User_data["weight"] = currentweight.toString();
-    if (selectfocusarea == 1) {
-      User_data['focus_area'] = 'all';
-    } else if (selectfocusarea == 2) {
-      User_data['focus_area'] = 'chest';
-    } else if (selectfocusarea == 3) {
-      User_data['focus_area'] = 'abs';
-    } else if (selectfocusarea == 4) {
-      User_data['focus_area'] = 'arm';
-    } else {
-      User_data['focus_area'] = 'leg';
-    }
-    if (selectill == 0) {
-      User_data['diseases'] = 'none';
-    } else if (selectill == 1) {
-      User_data['diseases'] = 'knee';
-    } else if (selectill == 2) {
-      User_data['diseases'] = 'heart';
-    } else if (selectill == 3) {
-      User_data['diseases'] = 'breath';
-    } else if (selectill == 4) {
-      User_data['diseases'] = 'diabetes';
-    } else {
-      User_data['diseases'] = 'blood_pressure';
-    }
-    if (activity == 1) {
-      User_data['activity'] = 'Sedentary';
-    } else if (activity == 2) {
-      User_data['activity'] = 'Lightly_Active';
-    } else {
-      User_data['activity'] = 'Very_Active';
-    }
-    User_data['preferred_time'] =
-        "${time.hour.toString()}:${time.minute.toString()}";
+   if(selectgoal =="1"){
+     User_data["target"]="lose_weight";
+   }else if(selectgoal == "2"){
+     User_data["target"]="build_muscle";
+   }else{
+     User_data["target"]="keep_fit";
+   }
+   User_data["tall"]=currentheight.toString();
+   User_data["weight"]=currentweight.toString();
+   if(selectfocusarea ==1){
+     User_data['focus_area'] = 'all';
+   }else if(selectfocusarea == 2){
+     User_data['focus_area'] = 'chest';
+   }else if (selectfocusarea == 3){
+    User_data['focus_area'] = 'abs';
+   }else if(selectfocusarea == 4){
+     User_data['focus_area'] = 'arm';
+   }else{
+    User_data['focus_area'] = 'leg';
+   }
+   if(selectill == 0){
+    User_data['diseases'] = 'none';
+   }else if(selectill == 1){
+    User_data['diseases'] = 'knee';
+   }else if(selectill == 2){
+     User_data['diseases'] = 'heart';
+   }else if(selectill == 3){
+    User_data['diseases'] = 'breath';
+   }else if(selectill == 4){
+     User_data['diseases'] = 'diabetes';
+   }else{
+     User_data['diseases'] = 'blood_pressure';
+   }
+   if(activity == 1){
+    User_data['activity'] = 'Sedentary';
+   }else if(activity == 2){
+    User_data['activity'] = 'Lightly_Active';
+   }else{
+    User_data['activity'] = 'Very_Active';
+   }
+   User_data['preferred_time'] = "${time.hour.toString()}:${time.minute.toString()}";
   }
 
+<<<<<<< HEAD
   Future Setdata() async {
     final String url = '${baseurl}trainer/info';
     try {
@@ -284,10 +315,23 @@ bool checkill(int num ){
       if (pickedimage != null) {
         request.files
             .add(await http.MultipartFile.fromPath("Image", pickedimage!.path));
+=======
+ Future Setdata ()async{
+  final String url = '${baseurl}trainer/info';
+  try{
+     final request = http.MultipartRequest('POST',Uri.parse(url));
+    
+    request.headers.addAll({'Accept':'application/json' ,
+      'Authorization': 'Bearer ${userInfo!.getString('token')}',
+      },);
+      request.fields.addAll(User_data);
+
+      if(pickedimage!= null){
+      request.files.add(await http.MultipartFile.fromPath("Image", pickedimage!.path));
+>>>>>>> 8f5b8c838a2980b8dcbf717d6883e5bf3ca10d2f
       }
      var res= await request.send();
      var response = await http.Response.fromStream(res);
-     print(response.statusCode.toString());
      if(response.statusCode == 500){
       throw 'No Internet , Please try again';
      }

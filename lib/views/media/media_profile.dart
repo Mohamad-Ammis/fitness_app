@@ -1,6 +1,4 @@
 import 'package:fitnessapp/constans.dart';
-import 'package:fitnessapp/views/food/widgets/meal_card.dart';
-import 'package:fitnessapp/views/media/Widgets/post.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';

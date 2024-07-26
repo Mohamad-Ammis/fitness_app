@@ -5,7 +5,7 @@ import 'package:fitnessapp/controller/favorites_controller.dart';
 import 'package:fitnessapp/models/meal.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/quickalert.dart';
 import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 // ignore: must_be_immutable

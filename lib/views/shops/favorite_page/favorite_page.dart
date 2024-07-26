@@ -1,9 +1,12 @@
+import 'package:fitnessapp/controller/shop_controller.dart';
+import 'package:fitnessapp/models/shop/product_model.dart';
 import 'package:fitnessapp/views/shops/favorite_page/widgets/favorite_page_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class FavoritePage extends StatelessWidget {
-  const FavoritePage({super.key});
-
+  FavoritePage({super.key});
+  final controller = Get.put(ShopController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,13 +16,23 @@ class FavoritePage extends StatelessWidget {
         title: const Text('Favorites'),
         centerTitle: true,
       ),
-      body: SizedBox(
-        height: MediaQuery.sizeOf(context).height,
-        child: ListView.builder(
-          itemBuilder: (context, index) => const FavoritePageCard(),
-        ),
-      ),
+      body: FutureBuilder(
+          future: controller.getFavoritesProduct(),
+          builder: (context, snapshot) {
+            controller.favoriteProducts = snapshot.data ?? [];
+            return SizedBox(
+              height: MediaQuery.sizeOf(context).height,
+              child: GetBuilder<ShopController>(builder: (controller) {
+                return ListView.builder(
+                  itemCount: controller.favoriteProducts.length,
+                  itemBuilder: (context, index) => FavoritePageCard(
+                    model: ProductModel.fromJson(
+                        controller.favoriteProducts[index]), index: index,
+                  ),
+                );
+              }),
+            );
+          }),
     );
   }
 }
-

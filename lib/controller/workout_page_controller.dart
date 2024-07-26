@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'package:fitnessapp/controller/datacont.dart';
+import 'package:fitnessapp/main.dart';
 import '../constans.dart';
 import '../models/exercises_category_item_model.dart';
 import '../models/muscle.dart';
@@ -30,7 +31,7 @@ class WorkoutPageController extends GetxController {
           'http://${Constans.host}:8000/api/muscle/allArea?level=beginner'),
       headers: <String, String>{
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${controller.token}',
+        'Authorization': 'Bearer ${userInfo!.getString('token')}',
       },
     );
    print(beginnerResponse.body);
@@ -39,7 +40,7 @@ class WorkoutPageController extends GetxController {
           'http://${Constans.host}:8000/api/muscle/allArea?level=intermediate'),
       headers: <String, String>{
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${controller.token}',
+        'Authorization': 'Bearer ${userInfo!.getString('token')}',
       },
     );
    // print(intermediateResponse.body);
@@ -48,7 +49,7 @@ class WorkoutPageController extends GetxController {
           'http://${Constans.host}:8000/api/muscle/allArea?level=advanced'),
       headers: <String, String>{
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${controller.token}',
+        'Authorization': 'Bearer ${userInfo!.getString('token')}',
       },
     );
    // print(advancedResponse.body);

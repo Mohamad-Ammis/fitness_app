@@ -60,9 +60,6 @@ class _ExerciseState extends State<Exercise> {
         isloading = false;
       });
       });
-   /*  Future.delayed(/* Duration.zero */Duration(seconds: 2), () async {
-      
-    }); */
     super.initState();
   }
 
@@ -91,7 +88,7 @@ class _ExerciseState extends State<Exercise> {
       slivers: [
         SliverPersistentHeader(
           pinned: true,
-          delegate:CustomSliverAppbarDelegate(expandedHeight: MediaQuery.of(context).size.height*0.37, img: widget.image , title: widget.title , des: widget.des)),
+          delegate:CustomSliverAppbarDelegate(expandedHeight: MediaQuery.of(context).size.height*0.37, img: widget.image , title: widget.title , des: widget.des , picks: false)),
        SliverToBoxAdapter(
         child: Padding(
           padding: const EdgeInsets.only(top: 0),

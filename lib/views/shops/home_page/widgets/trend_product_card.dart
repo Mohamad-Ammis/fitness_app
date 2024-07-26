@@ -1,11 +1,30 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/controller/shop_controller.dart';
+import 'package:fitnessapp/models/shop/product_model.dart';
 import 'package:fitnessapp/utils/app_images.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class TrendProductCard extends StatelessWidget {
-  const TrendProductCard({
+class TrendProductCard extends StatefulWidget {
+  TrendProductCard({
     super.key,
+    required this.model,
   });
+  final ProductModel model;
 
+  @override
+  State<TrendProductCard> createState() => _TrendProductCardState();
+}
+
+class _TrendProductCardState extends State<TrendProductCard> {
+  late bool isFavorite;
+  final controller = Get.put(ShopController());
+  @override
+  void initState() {
+    super.initState();
+    isFavorite = widget.model.isFavorite;
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -14,13 +33,18 @@ class TrendProductCard extends StatelessWidget {
             color: Colors.black, borderRadius: BorderRadius.circular(28)),
         child: Stack(
           children: [
-            Image.asset(
-              Assets.imagesMenClothing,
-              fit: BoxFit.fitHeight,
-              width: double.infinity,
-              height: double.infinity,
-              opacity: const AlwaysStoppedAnimation(.75),
-            ),
+            CachedNetworkImage(
+                imageUrl:
+                    "http://${Constans.host}:8000/Uploads/${widget.model.image}",
+                imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                          colorFilter: const ColorFilter.mode(
+                              Color.fromARGB(255, 10, 0, 0),
+                              BlendMode.lighten)),
+                    ))),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -37,60 +61,39 @@ class TrendProductCard extends StatelessWidget {
                               borderRadius: BorderRadius.circular(999),
                               color: Colors.black.withOpacity(0.15)),
                           child: IconButton(
-                              onPressed: () {},
+                              onPressed: () async {
+                                try {
+                                  var status =
+                                      await controller.checkIfIsFavorites(
+                                          widget.model.id, context);
+                                  print(status);
+                                  if (status) {
+                                    await controller.deleteFromFavorites(
+                                        widget.model.id, context);
+                                    setState(() {
+                                      isFavorite = false;
+                                    });
+                                  } else {
+                                    await controller.addToFavorites(
+                                        widget.model.id, context);
+                                    setState(() {
+                                      isFavorite = true;
+                                    });
+                                  }
+                                } catch (e) {
+                                  debugPrint(e.toString());
+                                }
+                              },
                               icon: Icon(
                                 Icons.favorite,
-                                color: Colors.white.withOpacity(.9),
+                                color: isFavorite
+                                    ? Colors.red
+                                    : Colors.white.withOpacity(.9),
                               )))
                     ],
                   ),
                 ),
                 const SizedBox(),
-                // Container(
-                //   padding: EdgeInsets.fromLTRB(8, 4, 8, 12),
-                //   width: double.infinity,
-                //   color: Colors.black.withOpacity(.15),
-                //   child: Column(
-                //     crossAxisAlignment: CrossAxisAlignment.start,
-                //     children: [
-                //       Row(
-                //         mainAxisAlignment:
-                //             MainAxisAlignment.spaceBetween,
-                //         children: [
-                //           Text(
-                //             "Mens Jackets",
-                //             style: TextStyle(
-                //                 height: 0,
-                //                 fontFamily: Constans.fontFamily,
-                //                 fontSize: 16,
-                //                 fontWeight: FontWeight.w600,
-                //                 color: Colors.white
-                //                     .withOpacity(.95)),
-                //           ),
-                //           Text(
-                //             "40\$",
-                //             style: TextStyle(
-                //                 height: 0,
-                //                 fontFamily: Constans.fontFamily,
-                //                 fontSize: 14,
-                //                 fontWeight: FontWeight.w600,
-                //                 color: Colors.white
-                //                     .withOpacity(.95)),
-                //           ),
-                //         ],
-                //       ),
-                //       Text(
-                //         "Pants",
-                //         style: TextStyle(
-                //             height: 0,
-                //             fontFamily: Constans.fontFamily,
-                //             fontSize: 12,
-                //             fontWeight: FontWeight.w400,
-                //             color: Colors.white.withOpacity(.6)),
-                //       )
-                //     ],
-                //   ),
-                // ),
               ],
             ),
             Positioned.fill(
@@ -99,8 +102,8 @@ class TrendProductCard extends StatelessWidget {
               child: Container(
                   decoration: BoxDecoration(
                       color: Colors.black.withOpacity(.3),
-                      borderRadius:
-                          const BorderRadius.only(topLeft: Radius.circular(16))),
+                      borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(16))),
                   padding: const EdgeInsets.all(8),
                   child: const Icon(
                     Icons.add,
