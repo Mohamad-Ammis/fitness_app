@@ -14,23 +14,16 @@ class ShopController extends GetxController {
     Assets.imagesShop1,
     Assets.imagesShop2,
     Assets.imagesShop3,
-    Assets.imagesShop4,
   ];
   final categoryImages = const [
     Assets.imagesTshirt1,
     Assets.imagesShorts,
     Assets.imagesPants,
-    Assets.imagesJackets,
-    Assets.imagesTshirt1,
-    Assets.imagesPants,
   ];
   final categoryNames = const [
-    "T-Shirt",
-    "shorts",
-    "Pants",
-    "Jackets",
-    "T-shirt",
-    "Pants",
+    "Clothes",
+    "Sports",
+    "food",
   ];
   final PageController pageController = PageController();
   // int selectedIndex = 0;
@@ -157,42 +150,47 @@ class ShopController extends GetxController {
     }
   }
 
-  List<AdsModel> allAds = [];
+  List<AdsModel> adsList = [];
+  bool adsLoading = false;
   Future getAllAds() async {
-    allAds = [];
-    final response = await http.get(
-      Uri.parse('${Constans.baseUrl}products/poster/all'),
-      headers: {
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ${userInfo!.getString('token')}',
-      },
-    );
+    adsLoading = true;
+    update();
+    final response = await http
+        .get(Uri.parse('${Constans.baseUrl}products/poster/all'), headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ${userInfo!.getString('token')}'
+    });
     var data = jsonDecode(response.body);
     if (response.statusCode == 200) {
-      debugPrint('data: ${data}');
+      adsList = [];
       for (var i = 0; i < data['data'].length; i++) {
-        allAds.add(AdsModel.fromJson(data['data'][i]));
+        adsList.add(AdsModel.fromJson(data['data'][i]));
       }
-      debugPrint('allAds: ${allAds}');
-      return allAds;
+      adsLoading = false;
+      update();
+      return adsList;
     } else {
-      debugPrint('error when get ads');
-      return [];
+      debugPrint('error when get all Ads');
+      return;
     }
   }
 
+  List<ProductModel> cartProducts = [];
+  double CartSubTotal = 0;
   @override
-  Future<void> onInit() async {
+  onInit() {
     super.onInit();
-    allProducts = await getAllProduct();
-    debugPrint('allProducts: ${allProducts.length}');
-    commonProducts = await getCommonProduct();
-    debugPrint('commonProducts: ${commonProducts.length}');
-    mostSalesProducts = await getMostSalesProduct();
-    debugPrint('mostSalesProducts: ${mostSalesProducts.length}');
-    showedList = allProducts;
-    allAds = await getAllAds();
-    debugPrint('allAds: ${allAds.length}');
-    update();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      allProducts = await getAllProduct();
+      debugPrint('allProducts: ${allProducts.length}');
+      commonProducts = await getCommonProduct();
+      debugPrint('commonProducts: ${commonProducts.length}');
+      mostSalesProducts = await getMostSalesProduct();
+      debugPrint('mostSalesProducts: ${mostSalesProducts.length}');
+      showedList = allProducts;
+      await getAllAds();
+      update();
+      debugPrint('allAds: ${adsList.length}');
+    });
   }
 }

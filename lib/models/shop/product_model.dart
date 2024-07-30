@@ -5,7 +5,7 @@ class ProductModel {
   final dynamic name;
   final dynamic desc;
   final dynamic brand;
-  final dynamic price;
+  final String price;
   final dynamic stock;
   final dynamic image;
   final dynamic weight;
@@ -15,6 +15,7 @@ class ProductModel {
   final dynamic viewCount;
   final dynamic expiredDate;
   final dynamic isFavorite;
+   dynamic count=0;
   final List<ColorsModel> colors;
   final List<SizeModel> sizes;
 

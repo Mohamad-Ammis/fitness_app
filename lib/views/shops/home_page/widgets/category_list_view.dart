@@ -15,22 +15,30 @@ class CategoryListView extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: SizedBox(
         height: 120,
-        child: ListView.builder(
-            itemCount: controller.categoryImages.length,
-            scrollDirection: Axis.horizontal,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.all(0),
-                child: GestureDetector(
-                  onTap: () {
-                    Get.to(ViewAllPage());
-                  },
-                  child: ShopCategoryCard(
-                    index: index,
-                  ),
-                ),
-              );
-            }),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            ShopCategoryCard(index: 0),
+            ShopCategoryCard(index: 1),
+            ShopCategoryCard(index: 2)
+          ],
+        ),
+        // ListView.builder(
+        //     itemCount: controller.categoryImages.length,
+        //     scrollDirection: Axis.horizontal,
+        //     itemBuilder: (context, index) {
+        //       return Padding(
+        //         padding: const EdgeInsets.all(0),
+        //         child: GestureDetector(
+        //           onTap: () {
+        //             Get.to(ViewAllPage());
+        //           },
+        //           child: ShopCategoryCard(
+        //             index: index,
+        //           ),
+        //         ),
+        //       );
+        //     }),
       ),
     );
   }

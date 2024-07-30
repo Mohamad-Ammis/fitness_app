@@ -105,9 +105,14 @@ class _TrendProductCardState extends State<TrendProductCard> {
                       borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(16))),
                   padding: const EdgeInsets.all(8),
-                  child: const Icon(
-                    Icons.add,
-                    color: Colors.white,
+                  child: GestureDetector(
+                    onTap: () {
+                      controller.cartProducts.indexOf(widget.model)==-1?controller.cartProducts.add(widget.model):debugPrint('Already exists');
+                    },
+                    child: const Icon(
+                      Icons.add,
+                      color: Colors.white,
+                    ),
                   )),
             ))
           ],

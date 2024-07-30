@@ -24,7 +24,7 @@ class CartPage extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          const Expanded(child: BillInfoSection())
+           Expanded(child: BillInfoSection())
         ],
       ),
     );
