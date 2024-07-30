@@ -1,4 +1,3 @@
-
 import 'package:fitnessapp/controller/shop_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -19,7 +18,7 @@ class OffersCardIndicator extends StatelessWidget {
       padding: const EdgeInsets.only(top: 5),
       child: SmoothPageIndicator(
         controller: dotPageController,
-        count: controller.images.length,
+        count: controller.allAds.length,
         effect: CustomizableEffect(
           dotDecoration: DotDecoration(
               width: MediaQuery.of(context).size.width / 5,

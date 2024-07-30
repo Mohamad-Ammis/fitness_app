@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/main.dart';
+import 'package:fitnessapp/models/shop/ads_model.dart';
 import 'package:fitnessapp/models/shop/product_model.dart';
 import 'package:fitnessapp/utils/app_images.dart';
 import 'package:flutter/material.dart';
@@ -86,18 +87,6 @@ class ShopController extends GetxController {
   List commonProducts = [];
   List mostSalesProducts = [];
   List showedList = [];
-  @override
-  Future<void> onInit() async {
-    super.onInit();
-    allProducts = await getAllProduct();
-    debugPrint('allProducts: ${allProducts.length}');
-    commonProducts = await getCommonProduct();
-    debugPrint('commonProducts: ${commonProducts.length}');
-    mostSalesProducts = await getMostSalesProduct();
-    debugPrint('mostSalesProducts: ${mostSalesProducts.length}');
-    showedList = allProducts;
-    update();
-  }
 
   List favoriteProducts = [];
   Future<List<dynamic>> getFavoritesProduct() async {
@@ -122,13 +111,6 @@ class ShopController extends GetxController {
         'Authorization': 'Bearer ${userInfo!.getString('token')}',
       },
     );
-    // if (response.statusCode == 200) {
-    //   ScaffoldMessenger.of(context)
-    //       .showSnackBar(SnackBar(content: Text('added to favorites ')));
-    // } else {
-    //   ScaffoldMessenger.of(context)
-    //       .showSnackBar(SnackBar(content: Text('Error Happened')));
-    // }
   }
 
   Future<bool> deleteFromFavorites(String id, BuildContext context) async {
@@ -149,7 +131,7 @@ class ShopController extends GetxController {
     } else {
       // ScaffoldMessenger.of(context)
       //     .showSnackBar(SnackBar(
-            
+
       //       content: Text('Error Happened')));
       return false;
     }
@@ -173,5 +155,44 @@ class ShopController extends GetxController {
     } else {
       throw Exception();
     }
+  }
+
+  List<AdsModel> allAds = [];
+  Future getAllAds() async {
+    allAds = [];
+    final response = await http.get(
+      Uri.parse('${Constans.baseUrl}products/poster/all'),
+      headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${userInfo!.getString('token')}',
+      },
+    );
+    var data = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      debugPrint('data: ${data}');
+      for (var i = 0; i < data['data'].length; i++) {
+        allAds.add(AdsModel.fromJson(data['data'][i]));
+      }
+      debugPrint('allAds: ${allAds}');
+      return allAds;
+    } else {
+      debugPrint('error when get ads');
+      return [];
+    }
+  }
+
+  @override
+  Future<void> onInit() async {
+    super.onInit();
+    allProducts = await getAllProduct();
+    debugPrint('allProducts: ${allProducts.length}');
+    commonProducts = await getCommonProduct();
+    debugPrint('commonProducts: ${commonProducts.length}');
+    mostSalesProducts = await getMostSalesProduct();
+    debugPrint('mostSalesProducts: ${mostSalesProducts.length}');
+    showedList = allProducts;
+    allAds = await getAllAds();
+    debugPrint('allAds: ${allAds.length}');
+    update();
   }
 }

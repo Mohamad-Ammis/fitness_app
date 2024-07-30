@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/shop_controller.dart';
 import 'package:flutter/material.dart';
@@ -50,15 +51,22 @@ class _OffersPageViewState extends State<OffersPageView> {
   Widget build(BuildContext context) {
     return PageView.builder(
         controller: widget.dotPageController,
-        itemCount: controller.images.length,
+        itemCount: controller.allAds.length,
         itemBuilder: (context, index) {
           return Stack(
             children: [
-              Image.asset(
-                width: double.infinity,
-                controller.images[index],
-                fit: BoxFit.cover,
-              ),
+              CachedNetworkImage(
+                  imageUrl:
+                      "http://${Constans.host}:8000/Uploads/${controller.allAds[index].image}",
+                  imageBuilder: (context, imageProvider) => Container(
+                          decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: imageProvider,
+                            fit: BoxFit.fill,
+                            colorFilter: const ColorFilter.mode(
+                                Color.fromARGB(255, 10, 0, 0),
+                                BlendMode.lighten)),
+                      ))),
             ],
           );
         });
