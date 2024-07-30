@@ -18,9 +18,27 @@ class CategoryListView extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            ShopCategoryCard(index: 0),
-            ShopCategoryCard(index: 1),
-            ShopCategoryCard(index: 2)
+            GestureDetector(
+                onTap: () async {
+                  Get.to(() => ViewAllPage());
+                  List products = await controller
+                      .getProdutcWithCategory(controller.categoriesApiNames[0]);
+                },
+                child: ShopCategoryCard(index: 0)),
+            GestureDetector(
+                onTap: () async {
+                  Get.to(() => ViewAllPage());
+                  List products = await controller
+                      .getProdutcWithCategory(controller.categoriesApiNames[1]);
+                },
+                child: ShopCategoryCard(index: 1)),
+            GestureDetector(
+                onTap: () async {
+                  Get.to(() => ViewAllPage());
+                  List products = await controller
+                      .getProdutcWithCategory(controller.categoriesApiNames[2]);
+                },
+                child: ShopCategoryCard(index: 2)),
           ],
         ),
         // ListView.builder(

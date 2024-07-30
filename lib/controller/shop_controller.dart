@@ -21,6 +21,13 @@ class ShopController extends GetxController {
     Assets.imagesPants,
   ];
   final categoryNames = const [
+    "shorts",
+    "pants",
+    "shirts",
+    "T-shirts",
+    "socks",
+  ];
+  final filterNames = const [
     "Clothes",
     "Sports",
     "food",
@@ -176,7 +183,115 @@ class ShopController extends GetxController {
   }
 
   List<ProductModel> cartProducts = [];
-  double CartSubTotal = 0;
+  double cartSubTotal = 0;
+  List<String> categoriesApiNames = const [
+    "Clothes",
+    "Sports_equipment",
+    "Food_Supplements"
+  ];
+  List viewAllProducts = [];
+  List tempViewAllProducts = [];
+  bool viewAllProductsLoading = false;
+
+  Future getProdutcWithCategory(String cat) async {
+    viewAllProductsLoading = true;
+    update();
+    final response = await http.post(
+        Uri.parse('${Constans.baseUrl}products/catWithProduct'),
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ${userInfo!.getString('token')}'
+        },
+        body: {
+          'category': cat
+        });
+    var data = jsonDecode(response.body);
+    debugPrint('All Products: ${data}');
+    if (response.statusCode == 200) {
+      viewAllProductsLoading = false;
+      viewAllProducts = data['data']['products'];
+      tempViewAllProducts = data['data']['products'];
+      update();
+      return data['data']['products'];
+    } else {
+      debugPrint('error when get all Ads');
+      return;
+    }
+  }
+
+  bool selected = false;
+  int selectedIndex = -1;
+
+  bool errorWhenSearch = false;
+  List searchList = [];
+  bool searchLoading = false;
+  Future productsSearch(String searchText) async {
+    searchLoading = true;
+    update();
+    final response = await http.post(
+        Uri.parse('${Constans.baseUrl}products/search'),
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ${userInfo!.getString('token')}'
+        },
+        body: selectedIndex != -1
+            ? {
+                'search_text': searchText,
+                'category': categoryNames[selectedIndex]
+              }
+            : {
+                'search_text': searchText,
+              });
+    var data = jsonDecode(response.body);
+    debugPrint('All Products: ${data}');
+    if (response.statusCode == 200) {
+      searchLoading = false;
+      errorWhenSearch = false;
+      searchList = data['data'];
+      update();
+      debugPrint('searchList: ${searchList}');
+      return data['data'];
+    } else {
+      debugPrint('error when get all Ads');
+      errorWhenSearch = true;
+      searchList = [];
+      update();
+      return;
+    }
+  }
+
+  Future productsCategorySearch() async {
+    searchLoading = true;
+    update();
+    final response =
+        await http.post(Uri.parse('${Constans.baseUrl}products/search'),
+            headers: {
+              'Accept': 'application/json',
+              'Authorization': 'Bearer ${userInfo!.getString('token')}'
+            },
+            body: selectedIndex != -1
+                ? {
+                    'category': categoryNames[selectedIndex],
+                  }
+                : null);
+    var data = jsonDecode(response.body);
+    debugPrint('All Products: ${data}');
+    if (response.statusCode == 200) {
+      searchLoading = false;
+      errorWhenSearch = false;
+      searchList = data['data'];
+      update();
+      debugPrint('searchList: ${searchList}');
+      return data['data'];
+    } else {
+      debugPrint('error when get all Ads');
+      errorWhenSearch = true;
+      searchList = [];
+      update();
+      return;
+    }
+  }
+
   @override
   onInit() {
     super.onInit();

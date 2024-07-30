@@ -11,11 +11,12 @@ class ProductModel {
   final dynamic weight;
   final dynamic measuringUnit;
   final dynamic protein;
+  final dynamic creatine;
   final dynamic salesCount;
   final dynamic viewCount;
   final dynamic expiredDate;
   final dynamic isFavorite;
-   dynamic count=0;
+  dynamic count = 0;
   final List<ColorsModel> colors;
   final List<SizeModel> sizes;
 
@@ -30,6 +31,7 @@ class ProductModel {
       required this.weight,
       required this.measuringUnit,
       required this.protein,
+      required this.creatine,
       required this.salesCount,
       required this.viewCount,
       required this.expiredDate,
@@ -60,7 +62,8 @@ class ProductModel {
       image: json['image'].toString(),
       weight: ['weight'].toString(),
       measuringUnit: ['measuring_unit'].toString(),
-      protein: ['protein'].toString(),
+      protein: json['protein'].toString(),
+      creatine: json['creatine'].toString(),
       salesCount: ['sales_count'].toString(),
       viewCount: json['view_count'].toString(),
       expiredDate: json['expiration_date'].toString(),

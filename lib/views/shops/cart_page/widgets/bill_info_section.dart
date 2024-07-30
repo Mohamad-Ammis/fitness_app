@@ -33,7 +33,7 @@ class BillInfoSection extends StatelessWidget {
                       fontSize: 18),
                 ),
                 Text(
-                  "\$${controller.CartSubTotal.toStringAsFixed(2)}",
+                  "\$${controller.cartSubTotal.toStringAsFixed(2)}",
                   style: TextStyle(
                       fontFamily: Constans.fontFamily,
                       fontWeight: FontWeight.bold,
@@ -85,7 +85,7 @@ class BillInfoSection extends StatelessWidget {
                       fontSize: 18),
                 ),
                 Text(
-                  "\$${controller.CartSubTotal.toStringAsFixed(2)}",
+                  "\$${controller.cartSubTotal.toStringAsFixed(2)}",
                   style: TextStyle(
                       fontFamily: Constans.fontFamily,
                       fontWeight: FontWeight.bold,

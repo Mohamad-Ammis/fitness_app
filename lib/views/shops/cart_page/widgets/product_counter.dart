@@ -32,11 +32,11 @@ class _CartProductCounterState extends State<CartProductCounter> {
                   if (widget.model.count > 1) {
                     widget.model.count--;
                     setState(() {});
-                    controller.CartSubTotal -=
+                    controller.cartSubTotal -=
                         (double.parse(widget.model.price));
                     controller.update();
                     debugPrint(
-                        'controller.CartSubTotal: ${controller.CartSubTotal}');
+                        'controller.CartSubTotal: ${controller.cartSubTotal}');
                   }
                 },
                 child: const Icon(
@@ -65,12 +65,12 @@ class _CartProductCounterState extends State<CartProductCounter> {
               child: GestureDetector(
                 onTap: () {
                   setState(() {});
-                  controller.CartSubTotal += (double.parse(widget.model.price));
+                  controller.cartSubTotal += (double.parse(widget.model.price));
                   widget.model.count++;
                   controller.update();
 
                   debugPrint(
-                      'controller.CartSubTotal: ${controller.CartSubTotal}');
+                      'controller.CartSubTotal: ${controller.cartSubTotal}');
                 },
                 child: const Icon(
                   Icons.add,

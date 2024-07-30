@@ -1,5 +1,8 @@
-
+import 'package:fitnessapp/controller/edit_userinfo_controller.dart';
+import 'package:fitnessapp/controller/search_controller.dart';
+import 'package:fitnessapp/controller/shop_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class CustomSearchBar extends StatefulWidget {
   const CustomSearchBar({super.key});
@@ -11,6 +14,7 @@ class CustomSearchBar extends StatefulWidget {
 class _CustomSearchBarState extends State<CustomSearchBar> {
   int counter = 0;
   bool showFilter = false;
+  final controller = Get.put(ShopController());
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -39,17 +43,27 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
                       // border: Border.all(color: Colors.grey, width: 0
                       // )
                       ),
-                    child: TextField(
-                      onChanged: (data) {},
-                      cursorColor: Colors.black,
-                      decoration: InputDecoration(
-                        hintText: "Search here...",
-                        hintStyle:
-                            TextStyle(color: Colors.black.withOpacity(0.2)),
-                        prefixIcon: const Icon(Icons.search),
-                        border: InputBorder.none,
-                      ),
+                  child: TextField(
+                    onSubmitted: (data) async {
+                      if (data.isNotEmpty) {
+                        controller.viewAllProducts =
+                            await controller.productsSearch(data);
+                        controller.update();
+                      } else {
+                        controller.viewAllProducts =
+                            controller.tempViewAllProducts;
+                        controller.update();
+                      }
+                    },
+                    cursorColor: Colors.black,
+                    decoration: InputDecoration(
+                      hintText: "Search here...",
+                      hintStyle:
+                          TextStyle(color: Colors.black.withOpacity(0.2)),
+                      prefixIcon: const Icon(Icons.search),
+                      border: InputBorder.none,
                     ),
+                  ),
                 ),
               ),
               Container(
@@ -75,31 +89,46 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
             ],
           ),
           showFilter
-              ? Center(
-                  child: Container(
-                    alignment: Alignment.center,
-                    height: 70,
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: 4,
-                        itemBuilder: (context, index) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: ChoiceChip(
-                              labelStyle: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold),
-                              backgroundColor: Colors.black,
-                              selectedColor: Colors.black,
-                              checkmarkColor: Colors.white,
-                              label: const Text('Hello boss'),
-                              onSelected: (value) {},
-                              selected: false,
-                            ),
-                          );
-                        }),
-                  ),
-                )
+              ? GetBuilder<ShopController>(builder: (controller) {
+                  return Center(
+                    child: Container(
+                      alignment: Alignment.center,
+                      height: 70,
+                      child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: controller.categoryNames.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ChoiceChip(
+                                labelStyle: const TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold),
+                                backgroundColor: Colors.black,
+                                selectedColor: Colors.black,
+                                checkmarkColor: Colors.white,
+                                label: Text(controller.categoryNames[index]),
+                                onSelected: (value) async {
+                                  if (controller.selectedIndex == index) {
+                                    controller.selectedIndex = -1;
+                                    controller.update();
+                                  } else {
+                                    controller.selectedIndex = index;
+                                    controller.update();
+                                  }
+                                  controller.viewAllProducts =
+                                      await controller.productsCategorySearch();
+                                  controller.update();
+                                },
+                                selected: controller.selectedIndex == index
+                                    ? true
+                                    : false,
+                              ),
+                            );
+                          }),
+                    ),
+                  );
+                })
               : Container()
         ],
       ),

@@ -65,13 +65,13 @@ class CartProductCard extends StatelessWidget {
                         GestureDetector(
                           onTap: () {
                             int index = controller.cartProducts.indexOf(model);
-                            controller.CartSubTotal -= (double.parse(
+                            controller.cartSubTotal -= (double.parse(
                                     controller.cartProducts[index].price) *
                                 controller.cartProducts[index].count);
                             controller.cartProducts.remove(model);
                             controller.update();
                             debugPrint(
-                                'controller.CartSubTotal: ${controller.CartSubTotal}');
+                                'controller.CartSubTotal: ${controller.cartSubTotal}');
                           },
                           child: Icon(
                             Icons.delete_forever,
