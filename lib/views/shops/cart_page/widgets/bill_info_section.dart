@@ -2,6 +2,7 @@ import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/shop_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BillInfoSection extends StatelessWidget {
   BillInfoSection({
@@ -44,7 +45,7 @@ class BillInfoSection extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
@@ -96,7 +97,26 @@ class BillInfoSection extends StatelessWidget {
             const Expanded(child: SizedBox()),
             GestureDetector(
               onTap: () async {
-                await controller.createOrder();
+                // var uri = Uri.parse("https://flutter.io");
+                // if (await canLaunchUrl(uri)) {
+                //   await launchUrl(uri, mode: LaunchMode.externalApplication);
+                // } else {
+                //   // can't launch url
+                // }
+                var orderId = await controller.createOrder();
+                debugPrint('orderId: ${orderId}');
+                if (orderId != '') {
+                  var url = await controller.payOrder(orderId.toString());
+                  if (url != '') {
+                    var uri = Uri.parse(url.toString());
+                    if (await canLaunchUrl(uri)) {
+                      await launchUrl(uri,
+                          mode: LaunchMode.externalApplication);
+                    } else {
+                      // can't launch url
+                    }
+                  }
+                }
               },
               child: Container(
                 width: double.infinity,

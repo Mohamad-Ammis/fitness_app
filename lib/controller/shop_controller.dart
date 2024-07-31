@@ -308,9 +308,28 @@ class ShopController extends GetxController {
       cartProducts = [];
       orderCartProducs = [];
       update();
+      return data['data']['id'];
     } else {
       debugPrint('Failed with status code: ${response.statusCode}');
       debugPrint('Response: ${response.body}');
+      return '';
+    }
+  }
+
+  Future payOrder(orderID) async {
+    final response = await http
+        .post(Uri.parse('http://${Constans.host}:8000/api/pay'), headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ${userInfo!.getString('token')}',
+    }, body: {
+      'order_id': orderID
+    });
+    var data = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      return data['Data']['InvoiceURL'];
+    } else {
+      debugPrint('error on invoice');
+      return '';
     }
   }
 

@@ -69,6 +69,7 @@ dependencies:
   path_provider: ^2.1.2
   permission_handler: ^11.3.0
   dio: ^5.4.1
+  url_launcher: ^6.3.0
 
 
 dev_dependencies:
