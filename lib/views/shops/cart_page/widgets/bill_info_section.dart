@@ -94,19 +94,24 @@ class BillInfoSection extends StatelessWidget {
               ],
             ),
             const Expanded(child: SizedBox()),
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                  color: Constans.shopColor,
-                  borderRadius: BorderRadius.circular(12)),
-              child: const Center(
-                  child: Text("Check Out",
-                      style: TextStyle(
-                          fontFamily: Constans.fontFamily,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18))),
+            GestureDetector(
+              onTap: () async {
+                await controller.createOrder();
+              },
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(16),
+                decoration: BoxDecoration(
+                    color: Constans.shopColor,
+                    borderRadius: BorderRadius.circular(12)),
+                child: const Center(
+                    child: Text("Check Out",
+                        style: TextStyle(
+                            fontFamily: Constans.fontFamily,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18))),
+              ),
             )
           ],
         ),

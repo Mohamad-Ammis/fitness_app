@@ -37,6 +37,11 @@ class _CartProductCounterState extends State<CartProductCounter> {
                     controller.update();
                     debugPrint(
                         'controller.CartSubTotal: ${controller.cartSubTotal}');
+                    controller.orderCartProducs[
+                            controller.cartProducts.indexOf(widget.model)]
+                        ['quantity'] = widget.model.count.toString();
+                    debugPrint(
+                        'controller.orderCartProducs: ${controller.orderCartProducs}');
                   }
                 },
                 child: const Icon(
@@ -71,6 +76,11 @@ class _CartProductCounterState extends State<CartProductCounter> {
 
                   debugPrint(
                       'controller.CartSubTotal: ${controller.cartSubTotal}');
+                  controller.orderCartProducs[
+                          controller.cartProducts.indexOf(widget.model)]
+                      ['quantity'] = widget.model.count.toString();
+                  debugPrint(
+                      'controller.orderCartProducs: ${controller.orderCartProducs}');
                 },
                 child: const Icon(
                   Icons.add,

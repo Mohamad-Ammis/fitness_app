@@ -25,6 +25,7 @@ class _TrendProductCardState extends State<TrendProductCard> {
     super.initState();
     isFavorite = widget.model.isFavorite;
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -107,7 +108,17 @@ class _TrendProductCardState extends State<TrendProductCard> {
                   padding: const EdgeInsets.all(8),
                   child: GestureDetector(
                     onTap: () {
-                      controller.cartProducts.indexOf(widget.model)==-1?controller.cartProducts.add(widget.model):debugPrint('Already exists');
+                      if (!controller.cartProducts.contains(widget.model)) {
+                        debugPrint('askdhkjsgdadsash');
+                        controller.orderCartProducs.add(
+                            {'product_id': widget.model.id, "quantity": '1'});
+                      }
+                      controller.cartProducts.indexOf(widget.model) == -1
+                          ? controller.cartProducts.add(widget.model)
+                          : debugPrint('Already exists');
+
+                      debugPrint(
+                          'controller.orderCartProducs: ${controller.orderCartProducs}');
                     },
                     child: const Icon(
                       Icons.add,

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/helper/custom_snack_bar.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/shop/ads_model.dart';
 import 'package:fitnessapp/models/shop/product_model.dart';
@@ -33,13 +34,6 @@ class ShopController extends GetxController {
     "food",
   ];
   final PageController pageController = PageController();
-  // int selectedIndex = 0;
-  // final screens = [
-  //   FavoritePage(),
-  //   OrderPage(),
-  //   ShopHomePage(),
-  //   OrderDetailsPage()
-  // ];
   int filterProductSelectedIndex = 0;
   Future<List<dynamic>> getAllProduct() async {
     const url = '${Constans.baseUrl}products/allProducts';
@@ -289,6 +283,34 @@ class ShopController extends GetxController {
       searchList = [];
       update();
       return;
+    }
+  }
+
+  List<Map<String, String>> orderCartProducs = [];
+  Future createOrder() async {
+    final response = await http.post(
+      Uri.parse('${Constans.baseUrl}products/order/create'),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ${userInfo!.getString('token')}',
+      },
+      body: jsonEncode({
+        'products': orderCartProducs,
+      }),
+    );
+
+    var data = jsonDecode(response.body);
+    debugPrint('order: $data');
+    if (response.statusCode == 200) {
+      Get.snackbar(
+          'order Created Successfully', 'we hope you are happy with us');
+      cartProducts = [];
+      orderCartProducs = [];
+      update();
+    } else {
+      debugPrint('Failed with status code: ${response.statusCode}');
+      debugPrint('Response: ${response.body}');
     }
   }
 
