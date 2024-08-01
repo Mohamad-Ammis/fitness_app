@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 
 class ProductModel {
   final dynamic id;
@@ -38,6 +37,7 @@ class ProductModel {
       required this.isFavorite,
       required this.colors,
       required this.sizes});
+
   factory ProductModel.fromJson(var json) {
     List<ColorsModel> tempColor = [];
     if (json['colors'] != null) {
@@ -72,6 +72,16 @@ class ProductModel {
       sizes: tempSizes,
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is ProductModel && other.id == id;
+  }
+
+  @override
+  int get hashCode => id.hashCode;
 }
 
 class ColorsModel {
@@ -79,6 +89,7 @@ class ColorsModel {
   final dynamic color;
 
   ColorsModel({required this.id, required this.color});
+
   factory ColorsModel.fromJson(var json) {
     return ColorsModel(
         id: json['id'].toString(), color: json['color'].toString());
@@ -90,6 +101,7 @@ class SizeModel {
   final dynamic size;
 
   SizeModel({required this.id, required this.size});
+
   factory SizeModel.fromJson(var json) {
     return SizeModel(id: json['id'].toString(), size: json['size'].toString());
   }

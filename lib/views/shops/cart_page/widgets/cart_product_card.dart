@@ -43,19 +43,19 @@ class CartProductCard extends StatelessWidget {
                   ),
                 ),
               ),
-              placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Icon(Icons.error),
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              errorWidget: (context, url, error) => const Icon(Icons.error),
             ),
           ),
           Expanded(
               flex: 2,
               child: Padding(
-                padding: EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     ProductInfo(model: model),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Row(
@@ -73,7 +73,7 @@ class CartProductCard extends StatelessWidget {
                             debugPrint(
                                 'controller.CartSubTotal: ${controller.cartSubTotal}');
                           },
-                          child: Icon(
+                          child: const Icon(
                             Icons.delete_forever,
                             color: Constans.shopColor,
                             size: 32,

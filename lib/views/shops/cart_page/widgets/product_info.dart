@@ -14,7 +14,7 @@ class ProductInfo extends StatelessWidget {
       children: [
          Text(
           model.name,
-          style: TextStyle(
+          style: const TextStyle(
               fontFamily: Constans.fontFamily,
               fontWeight: FontWeight.bold,
               fontSize: 22),
@@ -22,7 +22,7 @@ class ProductInfo extends StatelessWidget {
         const SizedBox(
           height: 8,
         ),
-        Container(
+        SizedBox(
           width: MediaQuery.sizeOf(context).width / 2,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

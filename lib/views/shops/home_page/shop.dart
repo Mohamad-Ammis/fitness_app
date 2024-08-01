@@ -1,15 +1,9 @@
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/shop_controller.dart';
-import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/views/shops/cart_page/cart_page.dart';
 import 'package:fitnessapp/views/shops/favorite_page/favorite_page.dart';
-import 'package:fitnessapp/views/shops/home_page/widgets/category_list_view.dart';
-import 'package:fitnessapp/views/shops/home_page/widgets/offers_card_indicator.dart';
-import 'package:fitnessapp/views/shops/home_page/widgets/offers_page_view.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/shop_home_page.dart';
-import 'package:fitnessapp/views/shops/home_page/widgets/trend_product_list.dart';
 import 'package:fitnessapp/views/shops/order_page/order_page.dart';
-import 'package:fitnessapp/views/shops/widgets/bottom_navbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -46,7 +40,7 @@ class Shop extends StatelessWidget {
                 icon: const Icon(Icons.favorite)),
             IconButton(
                 onPressed: () {
-                  Get.to(() => const OrderPage());
+                  Get.to(() =>  OrderPage());
                 },
                 icon: const Icon(FontAwesomeIcons.boxOpen)),
           ],

@@ -1,5 +1,6 @@
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/shop_controller.dart';
+import 'package:fitnessapp/views/auth_pages/widgets/auth_custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -25,7 +26,7 @@ class BillInfoSection extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   "Sub Total : ",
                   style: TextStyle(
                       color: Colors.black,
@@ -35,7 +36,7 @@ class BillInfoSection extends StatelessWidget {
                 ),
                 Text(
                   "\$${controller.cartSubTotal.toStringAsFixed(2)}",
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontFamily: Constans.fontFamily,
                       fontWeight: FontWeight.bold,
                       fontSize: 18),
@@ -45,7 +46,7 @@ class BillInfoSection extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
@@ -77,7 +78,7 @@ class BillInfoSection extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   "Total Price : ",
                   style: TextStyle(
                       color: Colors.black,
@@ -87,7 +88,7 @@ class BillInfoSection extends StatelessWidget {
                 ),
                 Text(
                   "\$${controller.cartSubTotal.toStringAsFixed(2)}",
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontFamily: Constans.fontFamily,
                       fontWeight: FontWeight.bold,
                       fontSize: 18),
@@ -96,44 +97,159 @@ class BillInfoSection extends StatelessWidget {
             ),
             const Expanded(child: SizedBox()),
             GestureDetector(
-              onTap: () async {
-                // var uri = Uri.parse("https://flutter.io");
-                // if (await canLaunchUrl(uri)) {
-                //   await launchUrl(uri, mode: LaunchMode.externalApplication);
-                // } else {
-                //   // can't launch url
-                // }
-                var orderId = await controller.createOrder();
-                debugPrint('orderId: ${orderId}');
-                if (orderId != '') {
-                  var url = await controller.payOrder(orderId.toString());
-                  if (url != '') {
-                    var uri = Uri.parse(url.toString());
-                    if (await canLaunchUrl(uri)) {
-                      await launchUrl(uri,
-                          mode: LaunchMode.externalApplication);
-                    } else {
-                      // can't launch url
-                    }
-                  }
-                }
-              },
+              onTap: controller.checkout
+                  ? null
+                  : () async {
+                      controller.checkout = true;
+                      controller.update();
+                      var data = await controller.createOrder(null, context);
+                      controller.checkout = false;
+                      controller.update();
+                      if (data != '') {
+                        var orderId = data['id'].toString();
+                        var productCount = data['product_count'].toString();
+                        var totalPrice = data['total'].toString();
+                        Get.bottomSheet(CustomPaymentBottoomSheet(
+                            orderId: orderId,
+                            totalPrice: totalPrice,
+                            productCount: productCount));
+                      }
+                    },
               child: Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(16),
                 decoration: BoxDecoration(
                     color: Constans.shopColor,
                     borderRadius: BorderRadius.circular(12)),
-                child: const Center(
-                    child: Text("Check Out",
-                        style: TextStyle(
-                            fontFamily: Constans.fontFamily,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18))),
+                child: Center(
+                    child: controller.checkout
+                        ? const Center(
+                            child: CircularProgressIndicator(
+                              color: Colors.white,
+                            ),
+                          )
+                        : const Text("Check Out",
+                            style: TextStyle(
+                                fontFamily: Constans.fontFamily,
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18))),
               ),
             )
           ],
+        ),
+      );
+    });
+  }
+}
+
+class CustomPaymentBottoomSheet extends StatelessWidget {
+  CustomPaymentBottoomSheet(
+      {super.key,
+      required this.orderId,
+      required this.totalPrice,
+      required this.productCount});
+  final String orderId;
+  final String totalPrice;
+  final String productCount;
+  final controller = Get.put(ShopController());
+  @override
+  Widget build(BuildContext context) {
+    return GetBuilder<ShopController>(builder: (controller) {
+      return IntrinsicHeight(
+        child: Container(
+          padding: const EdgeInsets.all(20),
+          decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(32), topRight: Radius.circular(32))),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                'complete payment steps to avoid lose your order',
+                style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: Constans.fontFamily),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Text(
+                'Order Number : $orderId',
+                style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: Constans.fontFamily),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Text(
+                'Products Count : $productCount',
+                style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: Constans.fontFamily),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Text(
+                'Total price : $totalPrice',
+                style: const TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                    fontFamily: Constans.fontFamily),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              AuthCustomButton(
+                  backgroundColor: Constans.shopColor,
+                  titleColor: Colors.white,
+                  width: MediaQuery.sizeOf(context).width,
+                  buttonText: controller.checkout
+                      ? const Center(
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                        )
+                      : const Text(
+                          'Pay',
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: Constans.fontFamily),
+                        ),
+                  onTap: controller.checkout
+                      ? null
+                      : () async {
+                          controller.checkout = true;
+                          controller.update();
+
+                          if (orderId != '') {
+                            var url =
+                                await controller.payOrder(orderId.toString());
+                            if (url != '') {
+                              var uri = Uri.parse(url.toString());
+                              if (await canLaunchUrl(uri)) {
+                                await launchUrl(uri,
+                                    mode: LaunchMode.externalApplication);
+                              } else {
+                                // can't launch url
+                              }
+                            }
+                          }
+                          controller.checkout = false;
+                          debugPrint(Get.isBottomSheetOpen.toString());
+                          controller.update();
+                        })
+            ],
+          ),
         ),
       );
     });

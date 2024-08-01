@@ -1,6 +1,5 @@
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/shop_controller.dart';
-import 'package:fitnessapp/models/shop/ads_model.dart';
 import 'package:fitnessapp/models/shop/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
@@ -54,7 +53,7 @@ class _CartProductCounterState extends State<CartProductCounter> {
           ),
           Text(
             widget.model.count.toString(),
-            style: TextStyle(
+            style: const TextStyle(
                 fontFamily: Constans.fontFamily,
                 fontWeight: FontWeight.bold,
                 fontSize: 22),

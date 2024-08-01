@@ -1,5 +1,4 @@
 import 'package:fitnessapp/constans.dart';
-import 'package:fitnessapp/controller/edit_userinfo_controller.dart';
 import 'package:fitnessapp/controller/shop_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -11,7 +10,7 @@ class FilterProductsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Item(
@@ -59,15 +58,15 @@ class Item extends StatelessWidget {
               controller.update();
             },
             child: Container(
-              padding: EdgeInsets.all(12),
+              padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                   border: controller.filterProductSelectedIndex == index
                       ? null
-                      : Border.all(color: Colors.black),
+                      : Border.all(color: Colors.black, width: .4),
                   color: controller.filterProductSelectedIndex == index
                       ? Colors.black
                       : Colors.transparent,
-                  borderRadius: BorderRadius.circular(12)),
+                  borderRadius: BorderRadius.circular(999)),
               child: Text(
                 title,
                 style: TextStyle(

@@ -70,6 +70,7 @@ dependencies:
   permission_handler: ^11.3.0
   dio: ^5.4.1
   url_launcher: ^6.3.0
+  elegant_notification: ^2.2.2
 
 
 dev_dependencies:

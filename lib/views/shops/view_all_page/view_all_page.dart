@@ -7,11 +7,14 @@ import 'package:fitnessapp/widgets/shimmer/shimmer_custom_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 
 class ViewAllPage extends StatefulWidget {
   const ViewAllPage({
     super.key,
+    required this.index,
   });
+  final int index;
   @override
   State<ViewAllPage> createState() => _ViewAllPageState();
 }
@@ -33,9 +36,11 @@ class _ViewAllPageState extends State<ViewAllPage> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const CustomSearchBar(),
+              CustomSearchBar(
+                index: widget.index,
+              ),
               controller.viewAllProducts.isEmpty
-                  ? Text('No Products to show')
+                  ? Center(child: Lottie.asset('assets/lottie/emptysearch.json'))
                   : Expanded(
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),

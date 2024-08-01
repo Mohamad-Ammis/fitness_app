@@ -1,4 +1,5 @@
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/controller/product_page_controller.dart';
 import 'package:fitnessapp/controller/shop_controller.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/category_list_view.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/filter_product_list.dart';
@@ -15,6 +16,7 @@ class ShopHomePage extends StatelessWidget {
   });
 
   final ShopController controller = Get.put(ShopController());
+  final ProductPageController contr = Get.put(ProductPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +54,37 @@ class ShopHomePage extends StatelessWidget {
                         ],
                       ),
                     ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  'Categories',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: Constans.fontFamily,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              const SizedBox(
+                height: 8,
+              ),
               CategoryListView(),
-              FilterProductsList()
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  'Products',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: Constans.fontFamily,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const FilterProductsList()
             ],
           ),
         ),

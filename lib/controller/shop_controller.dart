@@ -1,7 +1,9 @@
+// ignore_for_file: avoid_single_cascade_in_expression_statements
+
 import 'dart:convert';
 
 import 'package:fitnessapp/constans.dart';
-import 'package:fitnessapp/helper/custom_snack_bar.dart';
+import 'package:fitnessapp/helper/custom_toast_notification.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/shop/ads_model.dart';
 import 'package:fitnessapp/models/shop/product_model.dart';
@@ -33,6 +35,8 @@ class ShopController extends GetxController {
     "Sports",
     "food",
   ];
+  bool buyNow = false;
+  bool checkout = false;
   final PageController pageController = PageController();
   int filterProductSelectedIndex = 0;
   Future<List<dynamic>> getAllProduct() async {
@@ -98,6 +102,7 @@ class ShopController extends GetxController {
 
   Future<void> addToFavorites(String id, BuildContext context) async {
     var url = '${Constans.baseUrl}products/AddproductToFavoritesList/$id';
+    // ignore: unused_local_variable
     final response = await http.get(
       Uri.parse(url),
       headers: {
@@ -197,10 +202,10 @@ class ShopController extends GetxController {
           'Authorization': 'Bearer ${userInfo!.getString('token')}'
         },
         body: {
-          'category': cat
+          'category': cat,
         });
     var data = jsonDecode(response.body);
-    debugPrint('All Products: ${data}');
+    debugPrint('All Products: $data');
     if (response.statusCode == 200) {
       viewAllProductsLoading = false;
       viewAllProducts = data['data']['products'];
@@ -219,31 +224,30 @@ class ShopController extends GetxController {
   bool errorWhenSearch = false;
   List searchList = [];
   bool searchLoading = false;
-  Future productsSearch(String searchText) async {
+  Future productsSearch(String searchText, category) async {
     searchLoading = true;
     update();
-    final response = await http.post(
-        Uri.parse('${Constans.baseUrl}products/search'),
-        headers: {
-          'Accept': 'application/json',
-          'Authorization': 'Bearer ${userInfo!.getString('token')}'
-        },
-        body: selectedIndex != -1
-            ? {
-                'search_text': searchText,
-                'category': categoryNames[selectedIndex]
-              }
-            : {
-                'search_text': searchText,
-              });
+    final response =
+        await http.post(Uri.parse('${Constans.baseUrl}products/search'),
+            headers: {
+              'Accept': 'application/json',
+              'Authorization': 'Bearer ${userInfo!.getString('token')}'
+            },
+            body: selectedIndex != -1
+                ? {
+                    'search_text': searchText,
+                    'category': categoryNames[selectedIndex],
+                    'home_Category': category,
+                  }
+                : {'search_text': searchText, 'home_Category': category});
     var data = jsonDecode(response.body);
-    debugPrint('All Products: ${data}');
+    debugPrint('All Products: $data');
     if (response.statusCode == 200) {
       searchLoading = false;
       errorWhenSearch = false;
       searchList = data['data'];
       update();
-      debugPrint('searchList: ${searchList}');
+      debugPrint('searchList: $searchList');
       return data['data'];
     } else {
       debugPrint('error when get all Ads');
@@ -257,25 +261,26 @@ class ShopController extends GetxController {
   Future productsCategorySearch() async {
     searchLoading = true;
     update();
-    final response =
-        await http.post(Uri.parse('${Constans.baseUrl}products/search'),
-            headers: {
-              'Accept': 'application/json',
-              'Authorization': 'Bearer ${userInfo!.getString('token')}'
-            },
-            body: selectedIndex != -1
-                ? {
-                    'category': categoryNames[selectedIndex],
-                  }
-                : null);
+    final response = await http.post(
+        Uri.parse('${Constans.baseUrl}products/search'),
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ${userInfo!.getString('token')}'
+        },
+        body: selectedIndex != -1
+            ? {
+                'category': categoryNames[selectedIndex],
+                'home_Category': 'Clothes'
+              }
+            : {'home_Category': 'Clothes'});
     var data = jsonDecode(response.body);
-    debugPrint('All Products: ${data}');
+    debugPrint('All Products: $data');
     if (response.statusCode == 200) {
       searchLoading = false;
       errorWhenSearch = false;
       searchList = data['data'];
       update();
-      debugPrint('searchList: ${searchList}');
+      debugPrint('searchList: $searchList');
       return data['data'];
     } else {
       debugPrint('error when get all Ads');
@@ -287,7 +292,7 @@ class ShopController extends GetxController {
   }
 
   List<Map<String, String>> orderCartProducs = [];
-  Future createOrder() async {
+  Future createOrder(List<Map<String, String>>? products, context) async {
     final response = await http.post(
       Uri.parse('${Constans.baseUrl}products/order/create'),
       headers: {
@@ -295,9 +300,13 @@ class ShopController extends GetxController {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ${userInfo!.getString('token')}',
       },
-      body: jsonEncode({
-        'products': orderCartProducs,
-      }),
+      body: products == null
+          ? jsonEncode({
+              'products': orderCartProducs,
+            })
+          : jsonEncode({
+              'products': products,
+            }),
     );
 
     var data = jsonDecode(response.body);
@@ -307,18 +316,22 @@ class ShopController extends GetxController {
           'order Created Successfully', 'we hope you are happy with us');
       cartProducts = [];
       orderCartProducs = [];
+      cartSubTotal = 0;
       update();
-      return data['data']['id'];
+      return data['data'];
     } else {
       debugPrint('Failed with status code: ${response.statusCode}');
       debugPrint('Response: ${response.body}');
+      showErrorSnackBar('Error Happened', "there is products out of stock")
+        ..show(context);
+
       return '';
     }
   }
 
   Future payOrder(orderID) async {
     final response = await http
-        .post(Uri.parse('http://${Constans.host}:8000/api/pay'), headers: {
+        .post(Uri.parse('${Constans.baseUrl}products/order/pay'), headers: {
       'Accept': 'application/json',
       'Authorization': 'Bearer ${userInfo!.getString('token')}',
     }, body: {
@@ -329,7 +342,25 @@ class ShopController extends GetxController {
       return data['Data']['InvoiceURL'];
     } else {
       debugPrint('error on invoice');
+      debugPrint('data: $data');
       return '';
+    }
+  }
+
+  Future getAllOrders() async {
+    final response = await http
+        .get(Uri.parse('${Constans.baseUrl}products/order/index'), headers: {
+      'Accept': 'application/json',
+      'Authorization': 'Bearer ${userInfo!.getString('token')}'
+    });
+    var data = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      debugPrint('orders: ${data['data']}');
+
+      return data['data'];
+    } else {
+      debugPrint('Error when get orders');
+      return [];
     }
   }
 

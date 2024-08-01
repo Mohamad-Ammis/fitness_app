@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:fitnessapp/controller/shop_controller.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/shop_category_card.dart';
 import 'package:fitnessapp/views/shops/view_all_page/view_all_page.dart';
@@ -14,27 +16,33 @@ class CategoryListView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: SizedBox(
-        height: 120,
+        height: 110,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             GestureDetector(
                 onTap: () async {
-                  Get.to(() => ViewAllPage());
+                  Get.to(() => const ViewAllPage(
+                        index: 0,
+                      ));
                   List products = await controller
                       .getProdutcWithCategory(controller.categoriesApiNames[0]);
                 },
                 child: ShopCategoryCard(index: 0)),
             GestureDetector(
                 onTap: () async {
-                  Get.to(() => ViewAllPage());
+                  Get.to(() => const ViewAllPage(
+                        index: 1,
+                      ));
                   List products = await controller
                       .getProdutcWithCategory(controller.categoriesApiNames[1]);
                 },
                 child: ShopCategoryCard(index: 1)),
             GestureDetector(
                 onTap: () async {
-                  Get.to(() => ViewAllPage());
+                  Get.to(() => const ViewAllPage(
+                        index: 2,
+                      ));
                   List products = await controller
                       .getProdutcWithCategory(controller.categoriesApiNames[2]);
                 },

@@ -1,12 +1,8 @@
-import 'dart:convert';
 
 import 'package:fitnessapp/constans.dart';
-import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/meal.dart';
 import 'package:fitnessapp/services/api2.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:http/http.dart' as http;
 
 class ControllerSearch extends GetxController {
   List<Meal> searchlist = [];

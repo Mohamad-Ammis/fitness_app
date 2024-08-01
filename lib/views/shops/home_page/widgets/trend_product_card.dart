@@ -1,13 +1,15 @@
+// ignore_for_file: use_build_context_synchronously, avoid_single_cascade_in_expression_statements
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/shop_controller.dart';
+import 'package:fitnessapp/helper/custom_toast_notification.dart';
 import 'package:fitnessapp/models/shop/product_model.dart';
-import 'package:fitnessapp/utils/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TrendProductCard extends StatefulWidget {
-  TrendProductCard({
+  const TrendProductCard({
     super.key,
     required this.model,
   });
@@ -24,6 +26,7 @@ class _TrendProductCardState extends State<TrendProductCard> {
   void initState() {
     super.initState();
     isFavorite = widget.model.isFavorite;
+    debugPrint(widget.model.image.toString());
   }
 
   @override
@@ -67,7 +70,7 @@ class _TrendProductCardState extends State<TrendProductCard> {
                                   var status =
                                       await controller.checkIfIsFavorites(
                                           widget.model.id, context);
-                                  print(status);
+                                  debugPrint('status: $status');
                                   if (status) {
                                     await controller.deleteFromFavorites(
                                         widget.model.id, context);
@@ -112,10 +115,17 @@ class _TrendProductCardState extends State<TrendProductCard> {
                         debugPrint('askdhkjsgdadsash');
                         controller.orderCartProducs.add(
                             {'product_id': widget.model.id, "quantity": '1'});
+                        controller.cartProducts.add(widget.model);
+                        showSuccesSnackBar(
+                            'Added Successfully', 'product added to cart')
+                          ..show(context);
+                      } else {
+                        debugPrint('Already exists');
+                        showErrorSnackBar('Error happened',
+                            ' product is Alreday exists in your cart')
+                          ..show(context);
                       }
-                      controller.cartProducts.indexOf(widget.model) == -1
-                          ? controller.cartProducts.add(widget.model)
-                          : debugPrint('Already exists');
+                      // controller.cartProducts.indexOf(widget.model) == -1
 
                       debugPrint(
                           'controller.orderCartProducs: ${controller.orderCartProducs}');

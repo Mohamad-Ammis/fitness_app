@@ -1,12 +1,10 @@
-import 'package:fitnessapp/controller/edit_userinfo_controller.dart';
-import 'package:fitnessapp/controller/search_controller.dart';
 import 'package:fitnessapp/controller/shop_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CustomSearchBar extends StatefulWidget {
-  const CustomSearchBar({super.key});
-
+  const CustomSearchBar({super.key, required this.index});
+  final int index;
   @override
   State<CustomSearchBar> createState() => _CustomSearchBarState();
 }
@@ -47,7 +45,13 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
                     onSubmitted: (data) async {
                       if (data.isNotEmpty) {
                         controller.viewAllProducts =
-                            await controller.productsSearch(data);
+                            await controller.productsSearch(
+                                data,
+                                widget.index == 0
+                                    ? 'Clothes'
+                                    : widget.index == 1
+                                        ? 'Sports_equipment'
+                                        : 'Food_Supplements');
                         controller.update();
                       } else {
                         controller.viewAllProducts =
@@ -55,37 +59,40 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
                         controller.update();
                       }
                     },
+                    maxLines: 1,
                     cursorColor: Colors.black,
                     decoration: InputDecoration(
                       hintText: "Search here...",
-                      hintStyle:
-                          TextStyle(color: Colors.black.withOpacity(0.2)),
+                      hintStyle: TextStyle(
+                          height: 2, color: Colors.black.withOpacity(0.2)),
                       prefixIcon: const Icon(Icons.search),
                       border: InputBorder.none,
                     ),
                   ),
                 ),
               ),
-              Container(
-                  margin: const EdgeInsets.only(top: 10),
-                  decoration: BoxDecoration(
-                      color: Colors.black,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          if (counter.isEven) {
-                            showFilter = true;
-                          } else {
-                            showFilter = false;
-                          }
-                          counter++;
-                        });
-                      },
-                      icon: const Icon(
-                        Icons.filter_list,
-                        color: Colors.white,
-                      )))
+              widget.index == 0
+                  ? Container(
+                      margin: const EdgeInsets.only(top: 10),
+                      decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: IconButton(
+                          onPressed: () {
+                            setState(() {
+                              if (counter.isEven) {
+                                showFilter = true;
+                              } else {
+                                showFilter = false;
+                              }
+                              counter++;
+                            });
+                          },
+                          icon: const Icon(
+                            Icons.filter_list,
+                            color: Colors.white,
+                          )))
+                  : Container()
             ],
           ),
           showFilter

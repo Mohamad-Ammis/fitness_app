@@ -155,7 +155,7 @@ class _ExerciseState extends State<Exercise> {
                         width: MediaQuery.of(context).size.width*0.35,
                         height: MediaQuery.of(context).size.height*0.1,
                       //  color: Colors.pink,
-                        child: Image.network("http://${datacont.ip}:8000/uploads/${item["image"]}", fit: BoxFit.contain,),
+                        child: Image.network("http://${datacont.ip}:8000/uploads/${item["gif"]}", fit: BoxFit.contain,),
                       ),
                       Expanded(child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
