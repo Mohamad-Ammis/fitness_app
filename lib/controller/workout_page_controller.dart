@@ -14,8 +14,10 @@ import 'package:http/http.dart' as http;
 
 class WorkoutPageController extends GetxController {
   int selectedCategory = 0;
-    bool shimmerLoading=false;
-    final controller = Get.put(Datacontroller() , permanent: true);
+  bool shimmerLoading = false;
+  var alltime = 0;
+  var totalCalories = 0;
+  final controller = Get.put(Datacontroller(), permanent: true);
 
   @override
   onInit() async {
@@ -34,7 +36,7 @@ class WorkoutPageController extends GetxController {
         'Authorization': 'Bearer ${userInfo!.getString('token')}',
       },
     );
-   print(beginnerResponse.body);
+    print(beginnerResponse.body);
     final intermediateResponse = await http.get(
       Uri.parse(
           'http://${Constans.host}:8000/api/muscle/allArea?level=intermediate'),
@@ -43,7 +45,7 @@ class WorkoutPageController extends GetxController {
         'Authorization': 'Bearer ${userInfo!.getString('token')}',
       },
     );
-   // print(intermediateResponse.body);
+    // print(intermediateResponse.body);
     final advancedResponse = await http.get(
       Uri.parse(
           'http://${Constans.host}:8000/api/muscle/allArea?level=advanced'),
@@ -52,7 +54,7 @@ class WorkoutPageController extends GetxController {
         'Authorization': 'Bearer ${userInfo!.getString('token')}',
       },
     );
-   // print(advancedResponse.body);
+    // print(advancedResponse.body);
     print(beginnerResponse.statusCode);
     if (beginnerResponse.statusCode == 200 &&
         intermediateResponse.statusCode == 200 &&
@@ -224,13 +226,40 @@ class WorkoutPageController extends GetxController {
     finalList = filterList[index];
     update();
   }
-  getChallenge(String? token,url) async {
-    shimmerLoading=true;
+
+  getChallenge(String? token, url) async {
+    shimmerLoading = true;
     update();
-    final data=await Api().getData(token, url);
+    final data = await Api().getData(token, url);
     debugPrint('challenges  : $data');
-    shimmerLoading=false;
+    shimmerLoading = false;
     update();
     return data;
+  }
+
+  Future updateChallenge(id, type, timer, counter, name) async {
+    final response = await http.post(
+        Uri.parse('${Constans.baseUrl}challenge/updateChallenge/$id'),
+        headers: <String, String>{
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ${userInfo!.getString('token')}',
+        },
+        body: type == 'timer'
+            ? {
+                'type': type,
+                'timer': timer,
+                'challenge_name': name,
+              }
+            : {
+                'type': type,
+                'counter': counter,
+                'challenge_name': name,
+              });
+    var data = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      debugPrint('updated success $data');
+    } else {
+      debugPrint('error when update challenge $data');
+    }
   }
 }

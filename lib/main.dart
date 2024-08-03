@@ -1,4 +1,9 @@
 import 'dart:async';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:fitnessapp/firebase_options.dart';
+import 'package:fitnessapp/services/notification.dart';
+import 'package:fitnessapp/views/auth_pages/verfication_page/verfication_page.dart';
 import 'package:fitnessapp/views/on_boarding/on_boarding.dart';
 import '../controller/datacont.dart';
 import 'package:fitnessapp/home.dart';
@@ -14,6 +19,13 @@ SharedPreferences? userInfo;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  FirebaseMessaging.instance.getToken().then(((value) => {print(value)}));
+  listenToNotification();
+  debugPrint('token ${userInfo?.getString('token').toString()}');
+
   userInfo = await SharedPreferences.getInstance();
   debugPrint(userInfo.toString());
   runApp(const MyApp());
@@ -38,7 +50,7 @@ class _MyAppState extends State<MyApp> {
         if (userInfo!.getString("image") != null) {
           controller.setmemoryimage(userInfo!.getString("image")!);
         }
-        Get.offAll(Home());
+        Get.offAll(RegisterPage());
       } else {
         Get.offAll(OnBoarding());
       }

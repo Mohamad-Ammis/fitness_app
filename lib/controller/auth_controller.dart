@@ -1,8 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:convert';
 
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/services/api.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,9 +35,10 @@ class AuthController extends GetxController {
         successContentType: ContentType.success,
         successDesc: 'You have been logged in Successfully',
         failureDesc: 'Error in email or password! ');
-        
+
     return data;
   }
+
   Future<http.Response> register(String name, String userEmail, String pass,
       String confirmPass, BuildContext context) async {
     var data = Api().post(
@@ -53,7 +56,6 @@ class AuthController extends GetxController {
         failureDesc: 'Error in email or password! ');
     return data;
   }
-
 
   Future<http.Response> registerVerification(
       String code, BuildContext context) async {
@@ -78,6 +80,7 @@ class AuthController extends GetxController {
         successContentType: ContentType.help);
     return data;
   }
+
   Future<http.Response> verifyForgotPassword(
       String code, BuildContext context) async {
     var data = Api().post(
@@ -91,6 +94,7 @@ class AuthController extends GetxController {
         successDesc: 'Update your password');
     return data;
   }
+
   Future<http.Response> resetPassword(String userEmail, String code,
       String pass, String confirmPass, BuildContext context) async {
     var data = Api().post(
@@ -104,6 +108,38 @@ class AuthController extends GetxController {
         context: context,
         successTitle: 'Successfully',
         successDesc: 'Your Password has been updated successfully');
-    return data; 
+    return data;
+  }
+
+  Future<bool> logout() async {
+    final response = await http.get(
+      Uri.parse('${Constans.baseUrl}logout'),
+      headers: <String, String>{
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${userInfo!.getString('token')}',
+      },
+    );
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      debugPrint(jsonDecode(response.body));
+      return false;
+    }
+  }
+
+  Future<bool> resendCode() async {
+    final response = await http.post(
+        Uri.parse('${Constans.baseUrl}password/resend'),
+        headers: <String, String>{
+          'Accept': 'application/json',
+        },
+        body: {
+          'email': email
+        });
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

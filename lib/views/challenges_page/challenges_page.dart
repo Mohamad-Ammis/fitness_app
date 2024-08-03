@@ -38,8 +38,10 @@ class ChallengePage extends StatelessWidget {
                     model: model,
                   ),
                   model.type != "timer"
-                      ? const CounterChallengeBody()
-                      : const TimerChallengeBody(),
+                      ? CounterChallengeBody(model: model)
+                      : TimerChallengeBody(
+                          model: model,
+                        ),
                   const Text(""),
                 ],
               ),
