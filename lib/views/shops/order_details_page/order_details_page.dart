@@ -1,8 +1,12 @@
+import 'dart:ffi';
+
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/controller/shop_controller.dart';
 import 'package:fitnessapp/models/shop/order_model.dart';
 import 'package:fitnessapp/views/shops/order_details_page/widgets/custom_time_line_tile.dart';
 import 'package:fitnessapp/views/shops/order_details_page/widgets/event_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
 class OrderDetailsPage extends StatelessWidget {
@@ -28,19 +32,89 @@ class OrderDetailsPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Text(
-                "Order#${model.id}",
-                style: const TextStyle(
-                    color: Colors.black,
-                    fontFamily: Constans.fontFamily,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14),
-              ),
+              (model.status == "sent" || model.status == "received")
+                  ? Text(
+                      "Order#${model.id}",
+                      style: const TextStyle(
+                          color: Colors.black,
+                          fontFamily: Constans.fontFamily,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14),
+                    )
+                  : Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Order#${model.id}",
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontFamily: Constans.fontFamily,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14),
+                        ),
+                        (model.status != 'sent' && model.status != 'received')
+                            ? GetBuilder<ShopController>(builder: (controller) {
+                                return GestureDetector(
+                                  onTap: () async {
+                                    bool status = await controller.cancelOrder(
+                                        model.id, context);
+                                    if (status) {
+                                      Get.back();
+                                      controller.getAllOrders();
+                                    }
+                                  },
+                                  child: Container(
+                                    height: 35,
+                                    width: 180,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 16),
+                                    decoration: BoxDecoration(
+                                        color: Colors.red,
+                                        borderRadius:
+                                            BorderRadius.circular(32)),
+                                    child: controller.cancelOrderLoading
+                                        ? Center(
+                                            child: CircularProgressIndicator(
+                                            color: Colors.white,
+                                          ))
+                                        : Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                'C A N C E L',
+                                                style: TextStyle(
+                                                    fontFamily:
+                                                        Constans.fontFamily,
+                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.bold,
+                                                    fontSize: 18),
+                                              ),
+                                              Padding(
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        horizontal: 8.0),
+                                                child: Icon(
+                                                  Icons.cancel,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                  ),
+                                );
+                              })
+                            : Container(),
+                      ],
+                    ),
               (model.status == 'pending' || model.status == "send")
                   ? Lottie.asset('assets/lottie/order_sending.json')
                   : model.status == "preparing"
                       ? Lottie.asset('assets/lottie/preparing.json')
                       : Lottie.asset('assets/lottie/order_received.json'),
+              SizedBox(
+                height: 20,
+              ),
               CustomTimeLineTile(
                 isFirst: true,
                 isLast: false,
@@ -75,12 +149,10 @@ class OrderDetailsPage extends StatelessWidget {
                 isFirst: false,
                 isLast: true,
                 isPast: model.status == 'received' ? true : false,
-                eventCard:
-                    (model.status != "pending" && model.status != 'preparing')
-                        ? EventCard(
-                            title: "Order received",
-                            subtitle: '${model.orderDate}')
-                        : null,
+                eventCard: (model.status == 'received')
+                    ? EventCard(
+                        title: "Order received", subtitle: '${model.orderDate}')
+                    : null,
               ),
             ],
           ),

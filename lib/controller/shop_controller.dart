@@ -364,6 +364,38 @@ class ShopController extends GetxController {
     }
   }
 
+  bool cancelOrderLoading = false;
+  Future cancelOrder(id, context) async {
+    cancelOrderLoading = true;
+    update();
+    final response = await http.delete(
+        Uri.parse('${Constans.baseUrl}products/order/cancel/${id.toString()}'),
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ${userInfo!.getString('token')}'
+        });
+    cancelOrderLoading = false;
+    update();
+    var data = jsonDecode(response.body);
+    if (response.statusCode == 200) {
+      showSuccesSnackBar('تم بنجاح', data['message'].toString()).show(context);
+      return true;
+    } else {
+      showErrorSnackBar('حدث خطأ', data['message'].toString()).show(context);
+      return false;
+    }
+  }
+
+  Future showProduct(id) async {
+    final response = await http.get(
+        Uri.parse('${Constans.baseUrl}products/getByid/${id.toString()}'),
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ${userInfo!.getString('token')}'
+        });
+    debugPrint(jsonDecode(response.body).toString());
+  }
+
   @override
   onInit() {
     super.onInit();
