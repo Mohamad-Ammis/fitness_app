@@ -29,6 +29,7 @@ class AuthController extends GetxController {
         body: <String, dynamic>{
           'email': userEmail,
           'password': pass,
+          'fcm_token': userInfo!.getString('fcm_token')
         },
         context: context,
         successTitle: 'Congratulations',
@@ -47,7 +48,8 @@ class AuthController extends GetxController {
           'name': name,
           'email': userEmail,
           'password': pass,
-          'password_confirmation': confirmPass
+          'password_confirmation': confirmPass,
+          'fcm_token': userInfo!.getString('fcm_token')
         },
         context: context,
         successTitle: 'Greate job',
@@ -103,7 +105,7 @@ class AuthController extends GetxController {
           'email': userEmail,
           'code': code,
           'password': pass,
-          'password_confirmation': confirmPassword
+          'password_confirmation': confirmPassword,
         },
         context: context,
         successTitle: 'Successfully',

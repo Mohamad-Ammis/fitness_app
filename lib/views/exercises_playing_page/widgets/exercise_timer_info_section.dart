@@ -106,7 +106,7 @@ class InfoSection extends StatelessWidget {
                         height: 15,
                       ),
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async {
                           if (state == CustomTimerState.counting) {
                             _controller.pause();
                           } else if (state == CustomTimerState.finished &&
@@ -123,6 +123,7 @@ class InfoSection extends StatelessWidget {
                                 'workoutPageController.totalCalories: ${workoutPageController.totalCalories}');
                             Get.back();
                             Get.back();
+                            await workoutPageController.updateReport();
                           } else {
                             _controller.start();
                           }

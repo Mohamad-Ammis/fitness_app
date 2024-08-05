@@ -2,6 +2,8 @@
 
 import 'dart:convert';
 import 'package:fitnessapp/controller/datacont.dart';
+import 'package:fitnessapp/controller/exercise_page_controller.dart';
+import 'package:fitnessapp/controller/exercontrol.dart';
 import 'package:fitnessapp/main.dart';
 import '../constans.dart';
 import '../models/exercises_category_item_model.dart';
@@ -18,6 +20,30 @@ class WorkoutPageController extends GetxController {
   var alltime = 0;
   var totalCalories = 0;
   final controller = Get.put(Datacontroller(), permanent: true);
+  final exerciseController = Get.put(Exercontroller(), permanent: true);
+  formattedTime({required int timeInSecond}) {
+    int sec = timeInSecond % 60;
+    int min = (timeInSecond / 60).floor();
+    String minute = min.toString().length <= 1 ? "0$min" : "$min";
+    String second = sec.toString().length <= 1 ? "0$sec" : "$sec";
+    return "$minute:$second";
+  }
+
+  Future updateReport() async {
+    final response = await http.post(
+        Uri.parse('${Constans.baseUrl}report/creatReport'),
+        headers: <String, String>{
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ${userInfo!.getString('token')}',
+        },
+        body: {
+          'calories': totalCalories.toString(),
+          'Number_of_exercises': exerciseController.all_exer.length.toString(),
+          'total_time': "00:${formattedTime(timeInSecond: alltime)}"
+        });
+    var data = jsonDecode(response.body);
+    debugPrint('data: ${data}');
+  }
 
   @override
   onInit() async {
