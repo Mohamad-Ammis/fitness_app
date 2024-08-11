@@ -1,20 +1,21 @@
-import 'package:flutter/material.dart';
 
 class ProductModel {
   final dynamic id;
   final dynamic name;
   final dynamic desc;
   final dynamic brand;
-  final dynamic price;
+  final String price;
   final dynamic stock;
   final dynamic image;
   final dynamic weight;
   final dynamic measuringUnit;
   final dynamic protein;
+  final dynamic creatine;
   final dynamic salesCount;
   final dynamic viewCount;
   final dynamic expiredDate;
   final dynamic isFavorite;
+  dynamic count = 0;
   final List<ColorsModel> colors;
   final List<SizeModel> sizes;
 
@@ -29,12 +30,14 @@ class ProductModel {
       required this.weight,
       required this.measuringUnit,
       required this.protein,
+      required this.creatine,
       required this.salesCount,
       required this.viewCount,
       required this.expiredDate,
       required this.isFavorite,
       required this.colors,
       required this.sizes});
+
   factory ProductModel.fromJson(var json) {
     List<ColorsModel> tempColor = [];
     if (json['colors'] != null) {
@@ -59,7 +62,8 @@ class ProductModel {
       image: json['image'].toString(),
       weight: ['weight'].toString(),
       measuringUnit: ['measuring_unit'].toString(),
-      protein: ['protein'].toString(),
+      protein: json['protein'].toString(),
+      creatine: json['creatine'].toString(),
       salesCount: ['sales_count'].toString(),
       viewCount: json['view_count'].toString(),
       expiredDate: json['expiration_date'].toString(),
@@ -68,6 +72,16 @@ class ProductModel {
       sizes: tempSizes,
     );
   }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+
+    return other is ProductModel && other.id == id;
+  }
+
+  @override
+  int get hashCode => id.hashCode;
 }
 
 class ColorsModel {
@@ -75,6 +89,7 @@ class ColorsModel {
   final dynamic color;
 
   ColorsModel({required this.id, required this.color});
+
   factory ColorsModel.fromJson(var json) {
     return ColorsModel(
         id: json['id'].toString(), color: json['color'].toString());
@@ -86,6 +101,7 @@ class SizeModel {
   final dynamic size;
 
   SizeModel({required this.id, required this.size});
+
   factory SizeModel.fromJson(var json) {
     return SizeModel(id: json['id'].toString(), size: json['size'].toString());
   }

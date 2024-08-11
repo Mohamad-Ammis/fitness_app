@@ -1,7 +1,10 @@
 // ignore_for_file: use_build_context_synchronously
 
+import 'dart:convert';
+
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/services/api.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -26,8 +29,7 @@ class AuthController extends GetxController {
         body: <String, dynamic>{
           'email': userEmail,
           'password': pass,
-          'fcm_token':
-              "fhX-9JMpTlKyDL-hORJ0ZZ:APA91bHaFGzaWXjRb_cPjyLrlszKRqL5F4fk2GHMNmyjQ-QuSjPQMkf9fy3MvXoOJj5B8Y1YuJIPoMjK_53XVT7xK74cFNqRyeOn1Tu240-7mFSYVaLq4c64etv0CuEBb7oQxr7qqQBQ"
+          'fcm_token': userInfo!.getString('fcm_token')
         },
         context: context,
         successTitle: 'Congratulations',
@@ -47,8 +49,7 @@ class AuthController extends GetxController {
           'email': userEmail,
           'password': pass,
           'password_confirmation': confirmPass,
-          'fcm_token':
-              "fhX-9JMpTlKyDL-hORJ0ZZ:APA91bHaFGzaWXjRb_cPjyLrlszKRqL5F4fk2GHMNmyjQ-QuSjPQMkf9fy3MvXoOJj5B8Y1YuJIPoMjK_53XVT7xK74cFNqRyeOn1Tu240-7mFSYVaLq4c64etv0CuEBb7oQxr7qqQBQ"
+          'fcm_token': userInfo!.getString('fcm_token')
         },
         context: context,
         successTitle: 'Greate job',
@@ -104,11 +105,43 @@ class AuthController extends GetxController {
           'email': userEmail,
           'code': code,
           'password': pass,
-          'password_confirmation': confirmPassword
+          'password_confirmation': confirmPassword,
         },
         context: context,
         successTitle: 'Successfully',
         successDesc: 'Your Password has been updated successfully');
     return data;
+  }
+
+  Future<bool> logout() async {
+    final response = await http.get(
+      Uri.parse('${Constans.baseUrl}logout'),
+      headers: <String, String>{
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${userInfo!.getString('token')}',
+      },
+    );
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      debugPrint(jsonDecode(response.body));
+      return false;
+    }
+  }
+
+  Future<bool> resendCode() async {
+    final response = await http.post(
+        Uri.parse('${Constans.baseUrl}password/resend'),
+        headers: <String, String>{
+          'Accept': 'application/json',
+        },
+        body: {
+          'email': email
+        });
+    if (response.statusCode == 200) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

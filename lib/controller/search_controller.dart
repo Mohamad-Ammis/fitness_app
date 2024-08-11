@@ -1,3 +1,4 @@
+
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/meal.dart';
@@ -28,4 +29,6 @@ class ControllerSearch extends GetxController {
       return null;
     }
   }
+
+
 }

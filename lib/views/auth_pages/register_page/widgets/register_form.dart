@@ -43,7 +43,6 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
               filled: true,
               fillColor: const Color(0xFF1F1E28),
               focusedBorderColor: Constans.secondryColor,
-              
               suffixIcon: Icons.email,
             ),
             const SizedBox(
@@ -62,7 +61,8 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
               filled: true,
               fillColor: const Color(0xFF1F1E28),
               focusedBorderColor: Constans.secondryColor,
-              suffixIcon: Icons.person, enabledBorderColor: Colors.transparent,
+              suffixIcon: Icons.person,
+              enabledBorderColor: Colors.transparent,
             ),
             const SizedBox(
               height: 15,
@@ -78,7 +78,8 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                   TextStyle(color: Constans.subTitleColor.withOpacity(0.5)),
               filled: true,
               fillColor: const Color(0xFF1F1E28),
-              focusedBorderColor: Constans.secondryColor, enabledBorderColor: Colors.transparent,
+              focusedBorderColor: Constans.secondryColor,
+              enabledBorderColor: Colors.transparent,
             ),
             const SizedBox(
               height: 15,
@@ -94,51 +95,55 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                   TextStyle(color: Constans.subTitleColor.withOpacity(0.5)),
               filled: true,
               fillColor: const Color(0xFF1F1E28),
-              focusedBorderColor: Constans.secondryColor, enabledBorderColor: Colors.transparent,
+              focusedBorderColor: Constans.secondryColor,
+              enabledBorderColor: Colors.transparent,
             ),
             const SizedBox(
               height: 25,
             ),
             AuthCustomButton(
-              buttonText:isLoading? const CircularProgressIndicator(color: Colors.black,):const Text(
-          'Register',
-          style:   TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.black),
-        ),
+              buttonText: isLoading
+                  ? const CircularProgressIndicator(
+                      color: Colors.black,
+                    )
+                  : const Text(
+                      'Register',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
               onTap: () async {
                 if (formKey.currentState!.validate()) {
-                  isLoading=true;
-                  setState(() {
-                    
-                  });
+                  isLoading = true;
+                  setState(() {});
                   try {
-  var response = await authController.register(
-      authController.userName,
-      authController.email,
-      authController.password,
-      authController.confirmPassword,
-      context);
-      isLoading=false;
-      if(response.statusCode>=200&&response.statusCode<300){
-        isLoading=false;
-        setState(() {
-          
-        });
-       userInfo!.setString("name",authController.userName);
-       Get.to(VerificationPage());
-      }
-        setState(() {
-          
-        });
-} on Exception catch (e) {
-  isLoading=false;
-  debugPrint('e: ${e.toString()}');
-}
+                    var response = await authController.register(
+                        authController.userName,
+                        authController.email,
+                        authController.password,
+                        authController.confirmPassword,
+                        context);
+                    isLoading = false;
+                    if (response.statusCode >= 200 &&
+                        response.statusCode < 300) {
+                      isLoading = false;
+                      setState(() {});
+                      userInfo!.setString("name", authController.userName);
+                      Get.to(VerificationPage());
+                    }
+                    setState(() {});
+                  } on Exception catch (e) {
+                    isLoading = false;
+                    debugPrint('e: ${e.toString()}');
+                  }
                 } else {
                   setState(() {
                     autovalidateMode = AutovalidateMode.always;
                   });
                 }
-                
+                isLoading = false;
+                setState(() {});
               },
             ),
             //SizedBox(height: 5,),

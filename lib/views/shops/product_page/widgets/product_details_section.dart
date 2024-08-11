@@ -62,7 +62,9 @@ class ProductPageDetailsSection extends StatelessWidget {
               sizes: model.sizes,
             ),
             const Expanded(child: SizedBox()),
-            const ProductPageFooter()
+            ProductPageFooter(
+              model: model,
+            )
           ],
         ),
       ),

@@ -1,10 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitnessapp/constans.dart';
-import 'package:fitnessapp/controller/edit_userinfo_controller.dart';
 import 'package:fitnessapp/controller/shop_controller.dart';
 import 'package:fitnessapp/models/shop/product_model.dart';
-import 'package:fitnessapp/utils/app_images.dart';
-import 'package:fitnessapp/views/shops/home_page/widgets/shop_category_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -56,12 +53,12 @@ class FavoritePageCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(right: 16.0),
+                        padding: const EdgeInsets.only(right: 16.0),
                         child: Text(
                           model.name,
                           overflow: TextOverflow.ellipsis,
                           maxLines: 2,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontFamily: Constans.fontFamily,
                               fontSize: 24,
                               fontWeight: FontWeight.bold),
@@ -124,12 +121,16 @@ class FavoritePageCard extends StatelessWidget {
             onTap: () async {
               var status =
                   await controller.checkIfIsFavorites(model.id, context);
-              print(status);
+              debugPrint('status: $status');
               if (status) {
                 bool deleted =
+                    // ignore: use_build_context_synchronously
                     await controller.deleteFromFavorites(model.id, context);
                 if (deleted) {
                   controller.favoriteProducts.removeAt(index);
+                  controller.allProducts = await controller.getAllProduct();
+                  await controller.getCommonProduct();
+                  await controller.getMostSalesProduct();
                 }
               }
               controller.update();

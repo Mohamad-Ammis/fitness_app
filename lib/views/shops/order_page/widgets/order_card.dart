@@ -1,12 +1,13 @@
-
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/models/shop/order_model.dart';
 import 'package:flutter/material.dart';
 
 class OrderCard extends StatelessWidget {
   const OrderCard({
     super.key,
+    required this.model,
   });
-
+  final OrderModel model;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -14,8 +15,7 @@ class OrderCard extends StatelessWidget {
         Container(
           margin: const EdgeInsets.fromLTRB(15, 30, 15, 15),
           decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(16)),
+              color: Colors.white, borderRadius: BorderRadius.circular(16)),
           padding: const EdgeInsets.fromLTRB(16, 25, 16, 16),
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,18 +26,14 @@ class OrderCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment.start,
-                    crossAxisAlignment:
-                        CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                           padding: const EdgeInsets.all(6),
                           decoration: BoxDecoration(
-                              color: const Color.fromARGB(
-                                  255, 131, 218, 134),
-                              borderRadius:
-                                  BorderRadius.circular(999)),
+                              color: const Color.fromARGB(255, 131, 218, 134),
+                              borderRadius: BorderRadius.circular(999)),
                           child: const Icon(
                             Icons.price_check_sharp,
                             color: Colors.white,
@@ -46,27 +42,22 @@ class OrderCard extends StatelessWidget {
                         width: 10,
                       ),
                       Column(
-                        mainAxisAlignment:
-                            MainAxisAlignment.start,
-                        crossAxisAlignment:
-                            CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
                             'Price',
                             style: TextStyle(
                                 fontSize: 18,
-                                fontFamily:
-                                    Constans.fontFamily,
+                                fontFamily: Constans.fontFamily,
                                 fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            '\$412',
+                            '\$${model.totalPrics}',
                             style: TextStyle(
                                 fontSize: 16,
-                                color: Colors.black
-                                    .withOpacity(.2),
-                                fontFamily:
-                                    Constans.fontFamily,
+                                color: Colors.black.withOpacity(.2),
+                                fontFamily: Constans.fontFamily,
                                 fontWeight: FontWeight.bold),
                           ),
                         ],
@@ -77,17 +68,14 @@ class OrderCard extends StatelessWidget {
                     height: 20,
                   ),
                   Row(
-                    mainAxisAlignment:
-                        MainAxisAlignment.start,
-                    crossAxisAlignment:
-                        CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
                           padding: const EdgeInsets.all(6),
                           decoration: BoxDecoration(
                               color: const Color(0xFFA1B5F4),
-                              borderRadius:
-                                  BorderRadius.circular(999)),
+                              borderRadius: BorderRadius.circular(999)),
                           child: const Icon(
                             Icons.numbers_outlined,
                             color: Colors.white,
@@ -96,27 +84,22 @@ class OrderCard extends StatelessWidget {
                         width: 10,
                       ),
                       Column(
-                        mainAxisAlignment:
-                            MainAxisAlignment.start,
-                        crossAxisAlignment:
-                            CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const Text(
                             'Items Count',
                             style: TextStyle(
                                 fontSize: 16,
-                                fontFamily:
-                                    Constans.fontFamily,
+                                fontFamily: Constans.fontFamily,
                                 fontWeight: FontWeight.bold),
                           ),
                           Text(
-                            '21',
+                            '${model.itemCount}',
                             style: TextStyle(
                                 fontSize: 16,
-                                color: Colors.black
-                                    .withOpacity(.2),
-                                fontFamily:
-                                    Constans.fontFamily,
+                                color: Colors.black.withOpacity(.2),
+                                fontFamily: Constans.fontFamily,
                                 fontWeight: FontWeight.bold),
                           ),
                         ],
@@ -130,7 +113,7 @@ class OrderCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Date:22/10/2020',
+                    'Date:${model.createdAt}',
                     style: TextStyle(
                         color: Colors.black.withOpacity(.2),
                         fontSize: 16,
@@ -141,7 +124,7 @@ class OrderCard extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    'status : pending',
+                    'status : ${model.status}',
                     style: TextStyle(
                         fontSize: 16,
                         color: Colors.black.withOpacity(.2),
@@ -156,8 +139,7 @@ class OrderCard extends StatelessWidget {
                     height: 50,
                     decoration: BoxDecoration(
                         color: const Color(0xFFA1B5F4),
-                        borderRadius:
-                            BorderRadius.circular(16)),
+                        borderRadius: BorderRadius.circular(16)),
                     child: const Center(
                       child: Text(
                         'Click',

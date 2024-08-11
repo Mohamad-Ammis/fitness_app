@@ -8,7 +8,8 @@ class CustomExerciseTimer extends StatefulWidget {
     super.key,
     required this.outerPageController,
     required this.index,
-    required this.lastIndex, required this.model,
+    required this.lastIndex,
+    required this.model,
   });
   final PageController outerPageController;
   final int index;
@@ -20,11 +21,21 @@ class CustomExerciseTimer extends StatefulWidget {
 
 class _CustomExerciseTimerState extends State<CustomExerciseTimer>
     with SingleTickerProviderStateMixin {
-  late final CustomTimerController _controller = CustomTimerController(
-    vsync: this,
-    begin:  Duration(seconds: int.parse(widget.model.time)),
-    end: const Duration(),
-  );
+  late final CustomTimerController _controller;
+  late int totalTime;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    int secondes = int.parse(widget.model.time) % 60;
+    int minutes = (int.parse(widget.model.time) / 60).toInt();
+    _controller = CustomTimerController(
+      vsync: this,
+      begin: Duration(minutes: minutes, seconds: secondes),
+      end: const Duration(),
+    );
+  }
+
   @override
   void dispose() {
     _controller.dispose();
@@ -46,7 +57,8 @@ class _CustomExerciseTimerState extends State<CustomExerciseTimer>
               controller: _controller,
               outerPageController: widget.outerPageController,
               index: widget.index,
-              lastIndex: widget.lastIndex, model: widget.model,
+              lastIndex: widget.lastIndex,
+              model: widget.model,
             ),
           ),
         ],

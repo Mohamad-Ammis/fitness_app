@@ -1,10 +1,12 @@
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/controller/product_page_controller.dart';
 import 'package:fitnessapp/controller/shop_controller.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/category_list_view.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/filter_product_list.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/offers_card_indicator.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/offers_page_view.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/trend_product_list.dart';
+import 'package:fitnessapp/widgets/shimmer/shimmer_custom_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +15,8 @@ class ShopHomePage extends StatelessWidget {
     super.key,
   });
 
-  final ShopController shopPageController = Get.put(ShopController());
+  final ShopController controller = Get.put(ShopController());
+  final ProductPageController contr = Get.put(ProductPageController());
 
   @override
   Widget build(BuildContext context) {
@@ -23,28 +26,69 @@ class ShopHomePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
-                height: 230,
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.all(12),
-                clipBehavior: Clip.hardEdge,
-                decoration:
-                    BoxDecoration(borderRadius: BorderRadius.circular(16)),
-                child: Stack(
-                  children: [
-                    OffersPageView(
-                        dotPageController: shopPageController.pageController),
-                    OffersCardIndicator(
-                        dotPageController: shopPageController.pageController)
-                  ],
+              controller.adsLoading
+                  ? ShimmerContainer(
+                      width: MediaQuery.sizeOf(context).width,
+                      height: 230,
+                      circularRadius: 16,
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 16),
+                    )
+                  : Container(
+                      height: 230,
+                      width: MediaQuery.of(context).size.width,
+                      margin: const EdgeInsets.all(0),
+                      clipBehavior: Clip.hardEdge,
+                      decoration:
+                          BoxDecoration(borderRadius: BorderRadius.circular(0)),
+                      child: Stack(
+                        children: [
+                          OffersPageView(
+                            dotPageController: controller.pageController,
+                            adsList: controller.adsList,
+                          ),
+                          OffersCardIndicator(
+                            dotPageController: controller.pageController,
+                            adsList: controller.adsList,
+                          )
+                        ],
+                      ),
+                    ),
+              const SizedBox(
+                height: 10,
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  'Categories',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: Constans.fontFamily,
+                      fontWeight: FontWeight.bold),
                 ),
               ),
+              const SizedBox(
+                height: 8,
+              ),
               CategoryListView(),
-              FilterProductsList()
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: Text(
+                  'Products',
+                  style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: Constans.fontFamily,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const FilterProductsList()
             ],
           ),
         ),
-         TrendProductList(),
+        TrendProductList(),
       ],
     );
   }

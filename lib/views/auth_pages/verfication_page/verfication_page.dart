@@ -2,14 +2,57 @@ import 'dart:async';
 
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/auth_controller.dart';
+import 'package:fitnessapp/helper/custom_toast_notification.dart';
 import 'package:fitnessapp/views/auth_pages/login_page/login_page.dart';
 import 'package:fitnessapp/widgets/custom_otp_text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class VerificationPage extends StatelessWidget {
+class VerificationPage extends StatefulWidget {
   VerificationPage({super.key});
+
+  @override
+  State<VerificationPage> createState() => _VerificationPageState();
+}
+
+class _VerificationPageState extends State<VerificationPage> {
   final authController = Get.put(AuthController());
+  Timer? _timer;
+  int _start = 30;
+
+  void startTimer() {
+    _start = 30;
+    const oneSec = const Duration(seconds: 1);
+    _timer = Timer.periodic(
+      oneSec,
+      (Timer timer) {
+        if (_start == 0) {
+          setState(() {
+            timer.cancel();
+          });
+        } else {
+          setState(() {
+            _start--;
+          });
+        }
+        debugPrint(_start.toString());
+      },
+    );
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    startTimer();
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     String email = authController.email.substring(0, 2);
@@ -22,6 +65,7 @@ class VerificationPage extends StatelessWidget {
     return GetBuilder<AuthController>(builder: (authController) {
       return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white,
           elevation: 0,
           scrolledUnderElevation: 0,
         ),
@@ -57,18 +101,20 @@ class VerificationPage extends StatelessWidget {
                               .registerVerification(verificationCode, context);
                           authController.isLoading = false;
                           authController.update();
-                          if (response.statusCode>=200&&response.statusCode<300) {
-                            authController.otpEnabledBorderColor=Colors.green;
+                          if (response.statusCode >= 200 &&
+                              response.statusCode < 300) {
+                            authController.otpEnabledBorderColor = Colors.green;
                             authController.otpBorderColor = Colors.green;
                             authController.otpReadOnly = true;
                             authController.otpAutoFocuse = false;
-                             await Future.delayed(const Duration(seconds: 1));
+                            await Future.delayed(const Duration(seconds: 1));
                             Get.to(const LogInPage());
                             authController.otpReadOnly = false;
                             authController.otpBorderColor = Colors.black;
-                            authController.otpEnabledBorderColor=Colors.transparent;
+                            authController.otpEnabledBorderColor =
+                                Colors.transparent;
                           } else {
-                            authController.otpEnabledBorderColor=Colors.red;
+                            authController.otpEnabledBorderColor = Colors.red;
                             authController.otpBorderColor = Colors.red;
                             authController.update();
                           }
@@ -84,13 +130,40 @@ class VerificationPage extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
-                            Text(
-                              'Resend Code?',
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: Constans.fontFamily,
-                                  color: Constans.test),
+                            GestureDetector(
+                              onTap: _start == 0
+                                  ? () async {
+                                      bool status =
+                                          await authController.resendCode();
+                                      if (status) {
+                                      startTimer();
+                                        showSuccesSnackBar(
+                                                'Success', "check your email")
+                                            .show(context);
+                                      } else {
+                                        showErrorSnackBar('Error',
+                                                'some thing went wrong')
+                                            .show(context);
+                                      }
+                                    }
+                                  : null,
+                              child: Text(
+                                'ٌResend Code ? ',
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    fontFamily: Constans.fontFamily,
+                                    color: Constans.test),
+                              ),
                             ),
+                            _start != 0
+                                ? Text(
+                                    '  $_start',
+                                    style: TextStyle(
+                                        fontSize: 15,
+                                        fontFamily: Constans.fontFamily,
+                                        color: Constans.test),
+                                  )
+                                : Container(),
                           ],
                         ),
                       ),
