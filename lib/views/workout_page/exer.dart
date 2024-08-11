@@ -178,7 +178,7 @@ class _ExerciseState extends State<Exercise> {
                 height: MediaQuery.of(context).size.height * 0.1,
                 //  color: Colors.pink,
                 child: Image.network(
-                  "http://${datacont.ip}:8000/uploads/${item["gif"]}",
+                  "${Constans.mainbaseUrlimage}uploads/${item["gif"]}",
                   fit: BoxFit.contain,
                 ),
               ),

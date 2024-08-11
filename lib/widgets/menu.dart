@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/controller/auth_controller.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/helper/custom_toast_notification.dart';
 import 'package:fitnessapp/main.dart';

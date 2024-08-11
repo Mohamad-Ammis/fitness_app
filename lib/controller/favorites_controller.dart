@@ -1,4 +1,5 @@
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/meal.dart';
 import 'package:fitnessapp/services/api2.dart';
 import 'package:get/get.dart';
@@ -8,7 +9,7 @@ class ControllerFavorite extends GetxController {
   Future<void> addToFavorites(int? mealId) async {
     await Api().get(
         url: "${Constans.baseUrl}meal/AddMealToFavoritesList/$mealId",
-        token: Constans.token);
+        token: userInfo?.getString("token"));
   }
 
   Future<List<Meal>?> getFavoriteMeals() async {
@@ -34,6 +35,6 @@ class ControllerFavorite extends GetxController {
   Future<void> removeFavorites(int? mealId) async {
     await Api().delete(
         url: "${Constans.baseUrl}meal/deleteFromFavorite/$mealId",
-        token: Constans.token);
+        token: userInfo?.getString("token"));
   }
 }

@@ -1,4 +1,5 @@
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/meal.dart';
 import 'package:fitnessapp/services/api2.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -12,7 +13,7 @@ class ControllerCategory extends GetxController {
       Map<dynamic, dynamic> jsonData = await Api().post(
           url: "${Constans.baseUrl}admin/meal/showByCategory",
           body: {"categoryName": categoryName},
-          token: Constans.token);
+          token: userInfo?.getString("token"));
 
       for (var i = 0; i < jsonData["data"].length; i++) {
         categorylist.add(Meal.fromJson(jsonData["data"], i));
@@ -35,7 +36,7 @@ class ControllerCategory extends GetxController {
       Map<dynamic, dynamic> jsonData = await Api().post(
           url: "${Constans.baseUrl}admin/meal/show",
           body: {"categoryName": categoryName, "type": type},
-          token: Constans.token);
+          token: userInfo?.getString("token"));
       for (var i = 0; i < jsonData["data"].length; i++) {
         typeList.add(Meal.fromJson(jsonData["data"], i));
       }

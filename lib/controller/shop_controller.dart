@@ -338,6 +338,7 @@ class ShopController extends GetxController {
       'order_id': orderID
     });
     var data = jsonDecode(response.body);
+    debugPrint('data: ${data}');
     if (response.statusCode == 200) {
       return data['Data']['InvoiceURL'];
     } else {

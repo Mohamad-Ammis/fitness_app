@@ -62,48 +62,54 @@ class _FoodState extends State<Food> {
                 size: 30,
               )),
         ],
-        title: Row(
+        leading: Row(
           children: [
             InkWell(
               onTap: () => ZoomDrawer.of(context)!.toggle(),
               child: Container(
                   margin: const EdgeInsets.only(left: 5),
-                  height: MediaQuery.of(context).size.height * 0.05,
+                  height: MediaQuery.of(context).size.height * 0.11,
                   width: MediaQuery.of(context).size.width * 0.11,
                   child: Image.asset(
                     "assets/images/apps.png",
                     fit: BoxFit.contain,
                   )),
             ),
-            // InkWell(
-            //   onTap: () {
-            //     () => ZoomDrawer.of(context)!.toggle();
-            //   },
-            //   child: const Image(
-            //     image: AssetImage("assets/images/categoryicon.jpg"),
-            //     height: 22,
-            //     width: 22,
-            //   ),
-            // ),
-            const Padding(
-              padding: EdgeInsets.only(right: 70, left: 15),
-              child: Text(
-                "Food",
-                style: TextStyle(
-                    fontSize: 38,
-                    fontFamily: Constans.fontFamily,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
           ],
         ),
+        title: const Padding(
+          padding: EdgeInsets.only(right: 50, left: 0),
+          child: Text(
+            "Food",
+            style: TextStyle(
+                fontSize: 38,
+                fontFamily: Constans.fontFamily,
+                color: Colors.black,
+                fontWeight: FontWeight.bold),
+          ),
+        ),
+        // title: Row(
+        //   children: [
+
+        //     // InkWell(
+        //     //   onTap: () {
+        //     //     () => ZoomDrawer.of(context)!.toggle();
+        //     //   },
+        //     //   child: const Image(
+        //     //     image: AssetImage("assets/images/categoryicon.jpg"),
+        //     //     height: 22,
+        //     //     width: 22,
+        //     //   ),
+        //     // ),
+
+        //   ],
+        // ),
       ),
       body: ListView(children: [
-        const Padding(
-          padding: EdgeInsets.only(top: 15, left: 15),
+        Padding(
+          padding: const EdgeInsets.only(top: 15, left: 15),
           child: Stack(clipBehavior: Clip.none, children: [
-            Text(
+            const Text(
               "Balance Healthy Eating, with Plenty of  ",
               maxLines: 2,
               softWrap: true,
@@ -115,9 +121,9 @@ class _FoodState extends State<Food> {
                   fontWeight: FontWeight.bold),
             ),
             Positioned(
-              top: 36,
-              left: 112,
-              child: Text(
+              top: MediaQuery.of(context).size.height * 0.044, //36,
+              left: MediaQuery.of(context).size.width * 0.29,
+              child: const Text(
                 "Physical Exercise ",
                 style: TextStyle(
                     fontSize: 25,
@@ -135,7 +141,7 @@ class _FoodState extends State<Food> {
               Get.to(() => const SearchPage());
             },
             child: Card(
-              elevation: 15,
+              elevation: 4,
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
               clipBehavior: Clip.antiAlias,
@@ -201,8 +207,8 @@ class _FoodState extends State<Food> {
                           widg: GetBuilder<ControllerFavorite>(
                             builder: (cardController) {
                               return Positioned(
-                                top: 10,
-                                left: 300,
+                                top: MediaQuery.of(context).size.height * 0.01,
+                                left: MediaQuery.of(context).size.width * 0.77,
                                 child: CircleAvatar(
                                     backgroundColor:
                                         Colors.white.withOpacity(0.5),
@@ -414,8 +420,8 @@ class _FoodState extends State<Food> {
                           widg: GetBuilder<ControllerFavorite>(
                               builder: (cardController2) {
                             return Positioned(
-                                top: 10,
-                                left: 229,
+                                top: MediaQuery.of(context).size.height * 0.01,
+                                left: MediaQuery.of(context).size.width * 0.59,
                                 child: CircleAvatar(
                                     backgroundColor:
                                         Colors.white.withOpacity(0.4),

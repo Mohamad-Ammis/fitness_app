@@ -2,13 +2,13 @@ import 'package:fitnessapp/constans.dart';
 import 'package:flutter/material.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
-
 class CustomTimeLineTile extends StatelessWidget {
   const CustomTimeLineTile(
       {super.key,
       required this.isFirst,
       required this.isLast,
-      required this.isPast, required this.eventCard});
+      required this.isPast,
+      required this.eventCard});
   final bool isFirst;
   final bool isLast;
   final bool isPast;

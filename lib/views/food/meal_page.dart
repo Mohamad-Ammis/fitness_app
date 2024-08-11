@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quickalert/quickalert.dart';
 
+
 // ignore: must_be_immutable
 class MealPage extends StatefulWidget {
   Meal meal = Meal();
@@ -132,12 +133,14 @@ class _MealPageState extends State<MealPage> {
                               barrierColor: Colors.white.withOpacity(0.9),
                               context: context,
                               type: QuickAlertType.warning,
-                              widget: Text(
-                                widget.meal.warning!,
-                                style: const TextStyle(
-                                  fontSize: 18,
-                                  fontFamily: Constans.fontFamily,
-                                  color: Colors.black,
+                              widget: SingleChildScrollView(
+                                child: Text(
+                                  widget.meal.warning!,
+                                  style: const TextStyle(
+                                    fontSize: 18,
+                                    fontFamily: Constans.fontFamily,
+                                    color: Colors.black,
+                                  ),
                                 ),
                               ),
                               title: 'Warning!',

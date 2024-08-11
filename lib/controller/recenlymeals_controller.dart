@@ -1,4 +1,5 @@
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/meal.dart';
 import 'package:fitnessapp/services/api2.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -12,7 +13,7 @@ class ControllerRecently extends GetxController {
     try {
       Map<dynamic, dynamic> jsonData = await Api().get(
           url: "${Constans.baseUrl}admin/meal/latestMeals",
-          token: Constans.token);
+          token: userInfo?.getString("token"));
 
       jsonData.forEach((key, value) {
         recentlyList.add(Meal.fromJson1(value));

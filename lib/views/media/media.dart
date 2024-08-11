@@ -1,177 +1,210 @@
+import 'dart:convert';
+
 import 'package:fitnessapp/constans.dart';
-import 'package:fitnessapp/views/media/contra.dart';
+import 'package:fitnessapp/controller/add_post_controller.dart';
+import 'package:fitnessapp/controller/datacont.dart';
+import 'package:fitnessapp/main.dart';
+import 'package:fitnessapp/models/post_model.dart';
+import 'package:fitnessapp/shimmer/shimmergym.dart';
+import 'package:fitnessapp/views/media/Widgets/addpost_widget.dart';
 import 'package:fitnessapp/views/media/Widgets/post.dart';
 import 'package:fitnessapp/views/media/media_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 
-class Media extends StatelessWidget {
+class Media extends StatefulWidget {
   const Media({super.key});
+
+  @override
+  State<Media> createState() => _MediaState();
+}
+
+class _MediaState extends State<Media> {
+  ControllerAddPost con = Get.put(ControllerAddPost(), permanent: true);
+  Datacontroller conImage = Get.put(Datacontroller(), permanent: true);
+  String? userIdShared = userInfo?.getString('id');
+  String? usernameShared = userInfo?.getString('name');
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (!con.textFieldFocusNode.hasFocus) {
+      con.postsFuture = con.getAllPosts();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Constans.screen,
       appBar: AppBar(
-        toolbarHeight: 70,
-        backgroundColor: Constans.screen,
+        toolbarHeight: 65,
+        backgroundColor: Colors.white,
         elevation: 0,
         actions: [
           Padding(
-            padding: const EdgeInsets.only(right: 10, top: 3),
+            padding: const EdgeInsets.only(right: 10, top: 3, bottom: 3),
             child: GestureDetector(
               onTap: () {
-                Get.to(const MediaProfile());
+                Get.to(MediaProfile(
+                  isImage: true,
+                  userImage: conImage.base64String,
+                  username: usernameShared,
+                  userId: int.parse(userIdShared!),
+                ));
+                // con.navigateToProfile(int.parse(userIdShared!));
               },
-              child: const CircleAvatar(
-                radius: 30,
-                backgroundColor: Colors.white,
-                child: CircleAvatar(
-                    radius: 30,
-                    backgroundImage: AssetImage("assets/images/mee.jpg")),
-              ),
+              child: Container(
+                  height: 60,
+                  width: 60,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: const BoxDecoration(
+                      color: Colors.white, shape: BoxShape.circle),
+                  // child: widget.post.userimage != null
+                  //     ? CachedNetworkImage(
+                  //         width: MediaQuery.of(context).size.width,
+                  //         imageUrl:
+                  //             "http://${Constans.host}:8000/uploads/${widget.post.userimage}",
+                  //         fit: BoxFit.cover)
+                  child: conImage.base64String == null
+                      ? Image.asset(
+                          "assets/images/pers.png",
+                          fit: BoxFit.cover,
+                        )
+                      : Image.memory(
+                          base64Decode(conImage.base64String!),
+                          fit: BoxFit.cover,
+                        )),
             ),
           ),
         ],
-        title: Row(
+        leading: Row(
           children: [
             InkWell(
               onTap: () => ZoomDrawer.of(context)!.toggle(),
               child: Container(
                   margin: const EdgeInsets.only(left: 5),
-                  height: MediaQuery.of(context).size.height * 0.05,
+                  height: MediaQuery.of(context).size.height * 0.11,
                   width: MediaQuery.of(context).size.width * 0.11,
                   child: Image.asset(
                     "assets/images/apps.png",
                     fit: BoxFit.contain,
                   )),
             ),
-            const Padding(
-              padding: EdgeInsets.only(right: 70, left: 15),
-              child: Text(
-                "Media",
-                style: TextStyle(
-                    fontSize: 33,
-                    fontFamily: Constans.fontFamily,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
           ],
+        ),
+        title: const Padding(
+          padding: EdgeInsets.only(right: 50, left: 0),
+          child: Text(
+            "Media",
+            style: TextStyle(
+                fontSize: 35,
+                fontFamily: Constans.fontFamily,
+                color: Colors.black,
+                fontWeight: FontWeight.bold),
+          ),
         ),
       ),
       body: ListView(children: [
-        InkWell(
-          onTap: () {
-            Get.to(const Contra());
-          },
-          child: Padding(
-            padding:
-                const EdgeInsets.only(top: 15, left: 15, right: 10, bottom: 7),
-            child: Stack(children: [
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: const Color(0xffcfdef3)),
-                  gradient: const LinearGradient(colors: [
-                    Color(0xffe0eaf3),
-                    Color(0xffcfdef3),
-                    Color(0xffdae2f8)
-                  ]),
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(30),
-                  ),
-                ),
-                padding: const EdgeInsets.only(
-                  left: 15,
-                  top: 15,
-                ),
-                height: MediaQuery.of(context).size.height * 0.07,
-                width: MediaQuery.of(context).size.width * 0.98,
-                child: const Text(
-                  "What's on your mind...?",
-                  textAlign: TextAlign.start,
-                  style: TextStyle(
-                      color: Colors.black87,
-                      fontSize: 18,
-                      fontFamily: Constans.fontFamily),
-                ),
-              ),
-              Positioned(
-                top: MediaQuery.of(context).size.height * 0.009,
-                left: MediaQuery.of(context).size.width * 0.7,
-                child: Container(
-                  height: 40,
-                  width: 40,
-                  padding: const EdgeInsets.only(left: 2, right: 2),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(25)),
-                  child: const Padding(
-                    padding: EdgeInsets.all(5.0),
-                    child: Image(
-                      image: AssetImage("assets/images/gallery.png"),
-                    ),
-                  ),
-                ),
-              ),
-              Positioned(
-                top: MediaQuery.of(context).size.height * 0.009,
-                left: MediaQuery.of(context).size.width * 0.81,
-                child: Container(
-                  height: 40,
-                  width: 40,
-                  padding: const EdgeInsets.only(left: 2, right: 2),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(25)),
-                  child: const Padding(
-                    padding: EdgeInsets.all(6.0),
-                    child: Image(
-                      image: AssetImage("assets/images/video (1).png"),
-                    ),
-                  ),
-                ),
-              ),
-            ]),
-          ),
+        const Divider(
+          height: 5,
+          thickness: 5,
+          indent: 0,
+          endIndent: 0,
+          color: Constans.screen,
         ),
-        // const Padding(
-        //   padding: EdgeInsets.only(top: 10, left: 15, bottom: 9),
-        //   child: Text(
-        //     "Explore",
-        //     style: TextStyle(
-        //         fontSize: 26,
-        //         fontFamily: Constans.fontFamily,
-        //         color: Colors.black,
-        //         fontWeight: FontWeight.bold),
-        //   ),
-        // ),
-        ListView.builder(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          itemCount: 1,
-          itemBuilder: (context, index) {
-            return PostWidget(
-              hasImage: false,
-            isNetworkImage: false,
-            hasVideo: false,
-                text: "Work smarter, not harder When I let go of what I am");
-          },
+        Container(
+            color: Colors.white,
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.09,
+            child: AddPostWidget(
+              ontap: () {
+                con.navigateToAddPost();
+              },
+            )),
+        const Divider(
+          height: 5,
+          thickness: 11,
+          indent: 0,
+          endIndent: 0,
+          color: Constans.screen,
         ),
-        PostWidget(
-            hasImage: true,
-            isNetworkImage: false,
-            hasVideo: false,
-            image: "assets/images/photomee.jpg",
-            text: "Work smarter, not harder When I let go of what I am"),
-        PostWidget(image: "assets/images/mee.jpg",isNetworkImage: false,hasImage: true,hasVideo: false,),
-        PostWidget(
-          hasImage: false,
-            isNetworkImage: false,
-            hasVideo: false,
-            text:
-                "Believe in yourself! Have faith in your abilities! Without a humble but reasonable confidence in your own powers you cannot be successful or happy."),
+        GetBuilder<ControllerAddPost>(
+          builder: (controller) {
+            return FutureBuilder<List<PostModel>?>(
+                future: con.postsFuture,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemCount: 3,
+                      itemBuilder: (context, index) {
+                        return Padding(
+                          padding: const EdgeInsets.only(top: 5, bottom: 5),
+                          child: Shimmergym.Rectangle(
+                            height: MediaQuery.of(context).size.height * 0.5,
+                            width: MediaQuery.of(context).size.width * 0.9,
+                            radius: 1,
+                            cc: Colors.grey[300],
+                          ),
+                        );
+                      },
+                    );
+                  } else if (snapshot.hasError) {
+                    return Text('Error: ${snapshot.error}');
+                  } else if (snapshot.data == null) {
+                    return const Padding(
+                      padding: EdgeInsets.only(top: 250, left: 30, right: 20),
+                      child: Text(
+                        'No Internet,Please try again',
+                        style: TextStyle(
+                            fontFamily: "Lora",
+                            fontSize: 25,
+                            color: Colors.black),
+                      ),
+                    );
+                  } else if (snapshot.hasData) {
+                    List<PostModel> postsList = snapshot.data!;
+                    return postsList.isNotEmpty
+                        ? ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: con.postsList.length,
+                            itemBuilder: (context, index) {
+                              return PostWidget(
+                                post: con.postsList[index],
+                              );
+                            },
+                          )
+                        : Container(
+                            padding: const EdgeInsets.only(top: 250, left: 115),
+                            child: const Text(
+                              "No Posts yet ",
+                              style: TextStyle(
+                                  fontSize: 25,
+                                  fontFamily: "Lora",
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          );
+                  } else {
+                    return const Padding(
+                      padding: EdgeInsets.only(top: 250, left: 30, right: 20),
+                      child: Text(
+                        'No Internet,Please try again',
+                        style: TextStyle(
+                            fontFamily: "Lora",
+                            fontSize: 25,
+                            color: Colors.black),
+                      ),
+                    );
+                  }
+                });
+          },
+        )
       ]),
     );
   }

@@ -355,12 +355,14 @@ class _PopularCardState extends State<PopularCard> {
                                           color: Colors.black45,
                                           size: 25,
                                         ),
-                                        Text(
-                                          "${widget.cal!}cal",
-                                          style: const TextStyle(
-                                            fontSize: 18,
-                                            fontFamily: Constans.fontFamily,
-                                            color: Colors.black45,
+                                        SingleChildScrollView(
+                                          child: Text(
+                                            "${widget.cal!}cal",
+                                            style: const TextStyle(
+                                              fontSize: 18,
+                                              fontFamily: Constans.fontFamily,
+                                              color: Colors.black45,
+                                            ),
                                           ),
                                         ),
                                       ],
@@ -380,12 +382,14 @@ class _PopularCardState extends State<PopularCard> {
                                             width: 20,
                                           ),
                                         ),
-                                        Text(
-                                          "${widget.protien!}g",
-                                          style: const TextStyle(
-                                            fontSize: 18,
-                                            fontFamily: Constans.fontFamily,
-                                            color: Colors.black45,
+                                        SingleChildScrollView(
+                                          child: Text(
+                                            "${widget.protien!}g",
+                                            style: const TextStyle(
+                                              fontSize: 18,
+                                              fontFamily: Constans.fontFamily,
+                                              color: Colors.black45,
+                                            ),
                                           ),
                                         ),
                                       ],

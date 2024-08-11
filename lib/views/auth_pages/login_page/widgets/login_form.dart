@@ -110,15 +110,15 @@ class _LoginFormState extends State<LoginForm> {
                             context);
                         if (response.statusCode >= 200 &&
                             response.statusCode < 300) {
-                          debugPrint('iam hereeee');
                           var data = jsonDecode(response.body);
                           var token = data['token'];
-                          
                           userInfo?.setString('token', token);
+                          var id = data['user'];
+                          userInfo?.setString('id', id.toString());
                           debugPrint('token = ${userInfo?.getString('token')}');
                           Get.offAll(Data());
                         } else {
-                          debugPrint(response.body);
+                          // debugPrint(response.body);
                         }
                         isLoading = false;
                         setState(() {});

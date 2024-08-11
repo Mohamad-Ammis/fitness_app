@@ -55,7 +55,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final controller = Get.put(Datacontroller(), permanent: true);
-
   @override
   void initState() {
     super.initState();
@@ -65,11 +64,12 @@ class _MyAppState extends State<MyApp> {
         if (userInfo!.getString("image") != null) {
           controller.setmemoryimage(userInfo!.getString("image")!);
         }
+        // Get.offAll(OnBoarding());
         Get.offAll(Home());
       } else {
         Get.offAll(OnBoarding());
       }
-      //  Get.offAll(Pre()) ;
+      //  Get.offAll(Media()) ;
     });
   }
 

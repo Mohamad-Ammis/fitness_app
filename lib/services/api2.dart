@@ -17,10 +17,17 @@ class Api {
     try {
       final response = await http.get(Uri.parse(url), headers: headers);
       if (response.statusCode == 200) {
-        print(Constans.token);
+        print("suc");
+
+        return jsonDecode(response.body);
+      }
+      if (response.statusCode == 201) {
         return jsonDecode(response.body);
       }
       if (response.statusCode == 500) {
+        print("sucNO");
+
+        print(response.body);
         throw " No Intrnet, Try again";
       } else {
         print(
