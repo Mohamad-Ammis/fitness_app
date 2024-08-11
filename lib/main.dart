@@ -1,10 +1,6 @@
 import 'dart:async';
-<<<<<<< HEAD
-import 'package:fitnessapp/views/food/food.dart';
-
-=======
+import 'package:fitnessapp/views/media/media.dart';
 import 'package:fitnessapp/views/on_boarding/on_boarding.dart';
->>>>>>> 8f5b8c838a2980b8dcbf717d6883e5bf3ca10d2f
 import '../controller/datacont.dart';
 import 'package:fitnessapp/home.dart';
 import 'package:fitnessapp/splash_screen.dart';
@@ -20,10 +16,8 @@ SharedPreferences? userInfo;
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   userInfo = await SharedPreferences.getInstance();
-<<<<<<< HEAD
-=======
   debugPrint(userInfo.toString());
->>>>>>> 8f5b8c838a2980b8dcbf717d6883e5bf3ca10d2f
+  
   runApp(const MyApp());
 }
 
@@ -36,10 +30,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final controller = Get.put(Datacontroller(), permanent: true);
-<<<<<<< HEAD
-=======
-
->>>>>>> 8f5b8c838a2980b8dcbf717d6883e5bf3ca10d2f
   @override
   void initState() {
     super.initState();
@@ -51,13 +41,9 @@ class _MyAppState extends State<MyApp> {
         }
         Get.offAll(Home());
       } else {
-<<<<<<< HEAD
-        Get.offAll(() => Home());
-=======
         Get.offAll(OnBoarding());
->>>>>>> 8f5b8c838a2980b8dcbf717d6883e5bf3ca10d2f
       }
-      //  Get.offAll(Pre()) ;
+      //  Get.offAll(Media()) ;
     });
   }
 
@@ -65,11 +51,8 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-<<<<<<< HEAD
-=======
         theme: ThemeData(
             scaffoldBackgroundColor: Colors.white, canvasColor: Colors.white),
->>>>>>> 8f5b8c838a2980b8dcbf717d6883e5bf3ca10d2f
 
         // initialRoute
         debugShowCheckedModeBanner: false,

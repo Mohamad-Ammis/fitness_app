@@ -1,4 +1,5 @@
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/meal.dart';
 import 'package:fitnessapp/services/api2.dart';
 import 'package:get/get_core/src/get_main.dart';
@@ -10,7 +11,7 @@ class ControllerPopular extends GetxController {
   Future<List<Meal>?> getPopularMeal() async {
     try {
       Map<dynamic, dynamic> jsonData = await Api().get(
-          url: "${Constans.baseUrl}admin/meal/popular", token: Constans.token);
+          url: "${Constans.baseUrl}admin/meal/popular", token: userInfo?.getString("token"));
 
       for (var i = 0; i < jsonData["data"].length; i++) {
         popularList.add(Meal.fromJson(jsonData["data"], i));

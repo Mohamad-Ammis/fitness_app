@@ -87,39 +87,48 @@ class _LoginFormState extends State<LoginForm> {
           ),
           Center(
             child: AuthCustomButton(
-              buttonText:isLoading? const CircularProgressIndicator(color: Colors.black,):const Text(
-          'Login',
-          style:   TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: Colors.black),
-        ),
-              onTap:!isLoading? () async {
-                //WorkoutPage()
-                if (formKey.currentState!.validate()) {
-                  isLoading=true;
-                  setState(() {
-                    
-                  });
-                  var response = await authController.logIn(
-                      authController.email, authController.password, context);
-                  if (response.statusCode >= 200 && response.statusCode < 300) {
-                    var data = jsonDecode(response.body);
-                    var token = data['token'];
-                    userInfo?.setString('token', token);
-                    debugPrint('token = ${userInfo?.getString('token')}');
-                    Get.offAll(Data());
-
-                  } else {
-                    // debugPrint(response.body);
-                  }
-                    isLoading=false;
-                    setState(() {
-                      
-                    });
-                } else {
-                  setState(() {
-                    autovalidateMode = AutovalidateMode.always;
-                  });
-                }
-              }:null,
+              buttonText: isLoading
+                  ? const CircularProgressIndicator(
+                      color: Colors.black,
+                    )
+                  : const Text(
+                      'Login',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black),
+                    ),
+              onTap: !isLoading
+                  ? () async {
+                      //WorkoutPage()
+                      if (formKey.currentState!.validate()) {
+                        isLoading = true;
+                        setState(() {});
+                        var response = await authController.logIn(
+                            authController.email,
+                            authController.password,
+                            context);
+                        if (response.statusCode >= 200 &&
+                            response.statusCode < 300) {
+                          var data = jsonDecode(response.body);
+                          var token = data['token'];
+                          userInfo?.setString('token', token);
+                          var id = data['user'];
+                          userInfo?.setString('id', id.toString());
+                          debugPrint('token = ${userInfo?.getString('token')}');
+                          Get.offAll(Data());
+                        } else {
+                          // debugPrint(response.body);
+                        }
+                        isLoading = false;
+                        setState(() {});
+                      } else {
+                        setState(() {
+                          autovalidateMode = AutovalidateMode.always;
+                        });
+                      }
+                    }
+                  : null,
             ),
           ),
           AuthFooter(

@@ -1,4 +1,5 @@
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/meal.dart';
 import 'package:fitnessapp/services/api2.dart';
 import 'package:get/get.dart';
@@ -13,7 +14,7 @@ class ControllerSearch extends GetxController {
       Map<dynamic, dynamic> jsonData = await Api().post(
           url: "${Constans.baseUrl}admin/meal/search",
           body: {"search_text": mealName, "start": start, "limit": limit},
-          token: Constans.token);
+          token: userInfo?.getString("token"));
 
       for (var i = 0; i < jsonData["data"].length; i++) {
         searchlist.add(Meal.fromJson(jsonData["data"], i));

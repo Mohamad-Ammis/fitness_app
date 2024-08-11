@@ -77,9 +77,12 @@ class _CategoryPageState extends State<CategoryPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                buildRowCategory(0, 75.0, "All"),
-                buildRowCategory(1, 125.0, "Suger Free"),
-                buildRowCategory(2, 130.0, "Vegeterian")
+                buildRowCategory(
+                    0, MediaQuery.of(context).size.width * 0.18, "All"),
+                buildRowCategory(
+                    1, MediaQuery.of(context).size.width * 0.32, "Suger Free"),
+                buildRowCategory(
+                    2, MediaQuery.of(context).size.width * 0.34, "Vegeterian")
               ],
             ),
           ),

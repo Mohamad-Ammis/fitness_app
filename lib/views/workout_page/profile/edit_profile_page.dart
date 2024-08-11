@@ -225,9 +225,9 @@ class _EditProfileState extends State<EditProfile> {
 
                                                 controller.isLoadingFalse();
 
-                                                // controller.currentPass.clear();
-                                                // controller.confimPass.clear();
-                                                // controller.newPass.clear();
+                                                controller.currentPass.clear();
+                                                controller.confimPass.clear();
+                                                controller.newPass.clear();
                                               }
                                             },
                                             child: const Text(
@@ -506,15 +506,19 @@ class _EditProfileState extends State<EditProfile> {
                                   }
                                   controller.setData();
                                   try {
-                                    await controller.postUserInfo();
-                                    Get.snackbar(
-                                        'Success', 'Data updated successfully');
+                                    int status =
+                                        await controller.postUserInfo();
+                                    if (status == 200) {
+                                      Get.snackbar('Success',
+                                          'Data updated successfully');
+                                    }
                                   } catch (e) {
                                     Get.snackbar(
                                       'Error',
-                                      'No Internat ,Please try again later.',
+                                      'No Internet. Please try again later.',
                                     );
                                   }
+
                                   setState(() {
                                     isLoading = false;
                                   });

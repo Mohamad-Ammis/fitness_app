@@ -1,11 +1,15 @@
 import 'dart:io';
 // ignore_for_file: avoid_print
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/services/api2.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
+// import 'package:video_player/video_player.dart';
 
 class Controller extends GetxController {
   final picker = ImagePicker();
@@ -19,6 +23,24 @@ class Controller extends GetxController {
     }
     update();
   }
+
+  // VideoPlayerController? videoController;
+
+  // File? video;
+  // Future getVideo() async {
+  //   final pickedVideo = await picker.pickVideo(source: ImageSource.gallery);
+
+  //   if (pickedVideo != null) {
+  //     video = File(pickedVideo.path);
+  //     videoController = VideoPlayerController.file(video!)
+  //       ..initialize().then((_) {
+  //         update();
+  //         videoController!.play();
+  //       });
+  //   } else {
+  //     "No video";
+  //   }
+  // }
 
   bool? val;
   bool? sunday = false;
@@ -105,10 +127,10 @@ class Controller extends GetxController {
     data["weight"] = weight;
   }
 
-  Future<void> postUserInfo() async {
+  Future<int> postUserInfo() async {
     var headers = {
       'Accept': 'application/json',
-      'Authorization': 'Bearer ${Constans.token}'
+      'Authorization': 'Bearer ${userInfo?.getString("token")}'
     };
     try {
       var request =
@@ -120,16 +142,27 @@ class Controller extends GetxController {
 
       http.StreamedResponse response = await request.send();
       if (response.statusCode == 200) {
-        print("successful");
-        print(await response.stream.bytesToString());
+        print("successful $image");
+        return 200;
+        // print(await response.stream.bytesToString());
       }
-      if (response.statusCode == 500) {
+      else if (response.statusCode == 422) {
+        print("successful $image");
+        Get.snackbar(
+          'Error',
+          'Data not fetched',
+        );
+      }
+      else if (response.statusCode == 500) {
+        
         throw " No Intrnet, Try again";
+        
       } else {
-        print(response.reasonPhrase);
-        print(response.statusCode);
+        // print(response.reasonPhrase);
+        // print(response.statusCode.toString());
       }
       update();
+      return response.statusCode;
     } catch (e) {
       rethrow;
     }
@@ -144,7 +177,7 @@ class Controller extends GetxController {
           'password': newpass,
           'password_confirmation': confnewpass
         },
-        token: Constans.token);
+        token: userInfo?.getString("token"));
     update();
   }
 

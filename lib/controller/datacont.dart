@@ -299,23 +299,6 @@ bool checkill(int num ){
    User_data['preferred_time'] = "${time.hour.toString()}:${time.minute.toString()}";
   }
 
-<<<<<<< HEAD
-  Future Setdata() async {
-    final String url = '${baseurl}trainer/info';
-    try {
-      final request = http.MultipartRequest('POST', Uri.parse(url));
-
-      request.headers.addAll(
-        {
-          'Accept': 'application/json',
-          'Authorization': 'Bearer $token',
-        },
-      );
-      request.fields.addAll(User_data);
-      if (pickedimage != null) {
-        request.files
-            .add(await http.MultipartFile.fromPath("Image", pickedimage!.path));
-=======
  Future Setdata ()async{
   final String url = '${baseurl}trainer/info';
   try{
@@ -327,8 +310,7 @@ bool checkill(int num ){
       request.fields.addAll(User_data);
 
       if(pickedimage!= null){
-      request.files.add(await http.MultipartFile.fromPath("Image", pickedimage!.path));
->>>>>>> 8f5b8c838a2980b8dcbf717d6883e5bf3ca10d2f
+      request.files.add(await http.MultipartFile.fromPath("image", pickedimage!.path));
       }
      var res= await request.send();
      var response = await http.Response.fromStream(res);

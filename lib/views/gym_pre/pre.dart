@@ -185,7 +185,7 @@ class _PreState extends State<Pre> {
                                                                         context)
                                                                     .size
                                                                     .width *
-                                                                0.03,
+                                                                0.028,
                                                             color:
                                                                 /* Colors.black54 */control.color,
                                                             fontFamily:
@@ -202,7 +202,7 @@ class _PreState extends State<Pre> {
                                                                         context)
                                                                     .size
                                                                     .width *
-                                                                0.03,
+                                                                0.028,
                                                             color:
                                                                 Colors.black54,
                                                             fontFamily:

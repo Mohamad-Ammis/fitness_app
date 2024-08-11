@@ -1,6 +1,5 @@
 // ignore_for_file: use_build_context_synchronously
 
-
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/services/api.dart';
@@ -27,15 +26,18 @@ class AuthController extends GetxController {
         body: <String, dynamic>{
           'email': userEmail,
           'password': pass,
+          'fcm_token':
+              "fhX-9JMpTlKyDL-hORJ0ZZ:APA91bHaFGzaWXjRb_cPjyLrlszKRqL5F4fk2GHMNmyjQ-QuSjPQMkf9fy3MvXoOJj5B8Y1YuJIPoMjK_53XVT7xK74cFNqRyeOn1Tu240-7mFSYVaLq4c64etv0CuEBb7oQxr7qqQBQ"
         },
         context: context,
         successTitle: 'Congratulations',
         successContentType: ContentType.success,
         successDesc: 'You have been logged in Successfully',
         failureDesc: 'Error in email or password! ');
-        
+
     return data;
   }
+
   Future<http.Response> register(String name, String userEmail, String pass,
       String confirmPass, BuildContext context) async {
     var data = Api().post(
@@ -44,7 +46,9 @@ class AuthController extends GetxController {
           'name': name,
           'email': userEmail,
           'password': pass,
-          'password_confirmation': confirmPass
+          'password_confirmation': confirmPass,
+          'fcm_token':
+              "fhX-9JMpTlKyDL-hORJ0ZZ:APA91bHaFGzaWXjRb_cPjyLrlszKRqL5F4fk2GHMNmyjQ-QuSjPQMkf9fy3MvXoOJj5B8Y1YuJIPoMjK_53XVT7xK74cFNqRyeOn1Tu240-7mFSYVaLq4c64etv0CuEBb7oQxr7qqQBQ"
         },
         context: context,
         successTitle: 'Greate job',
@@ -53,7 +57,6 @@ class AuthController extends GetxController {
         failureDesc: 'Error in email or password! ');
     return data;
   }
-
 
   Future<http.Response> registerVerification(
       String code, BuildContext context) async {
@@ -78,6 +81,7 @@ class AuthController extends GetxController {
         successContentType: ContentType.help);
     return data;
   }
+
   Future<http.Response> verifyForgotPassword(
       String code, BuildContext context) async {
     var data = Api().post(
@@ -91,6 +95,7 @@ class AuthController extends GetxController {
         successDesc: 'Update your password');
     return data;
   }
+
   Future<http.Response> resetPassword(String userEmail, String code,
       String pass, String confirmPass, BuildContext context) async {
     var data = Api().post(
@@ -104,6 +109,6 @@ class AuthController extends GetxController {
         context: context,
         successTitle: 'Successfully',
         successDesc: 'Your Password has been updated successfully');
-    return data; 
+    return data;
   }
 }
