@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/ranex.dart';
@@ -14,7 +15,7 @@ class Gymcontroller extends GetxController {
   bool load = false;
 
   Future<void> getartical() async {
-    final String url = '${controller.baseurl}articl/allArticls';
+    final String url = '${Constans.mainbaseUrl}articl/allArticls';
     try {
       final res = await http.get(Uri.parse(url), headers: {
         'Accept': 'application/json',
@@ -31,7 +32,7 @@ class Gymcontroller extends GetxController {
   }
 
   Future<void> getCat() async {
-    final String url = '${controller.baseurl}category/show';
+    final String url = '${Constans.mainbaseUrl}category/show';
     try {
       final res = await http.get(Uri.parse(url), headers: {
         'Accept': 'application/json',
@@ -48,7 +49,7 @@ class Gymcontroller extends GetxController {
   }
 
   Future<void> getrandomexercise() async {
-    final String url = '${controller.baseurl}trainer/exerciseType/getType';
+    final String url = '${Constans.mainbaseUrl}trainer/exerciseType/getType';
     try{
      final res = await http.get(Uri.parse(url) ,       
      headers: {

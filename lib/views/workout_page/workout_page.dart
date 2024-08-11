@@ -13,7 +13,8 @@ class WorkoutPage extends StatelessWidget {
       return Scaffold(
           backgroundColor: const Color(0xFFF3F4F6),
           appBar: navigationController.selectedIndex > 0 &&
-                  navigationController.selectedIndex != 3
+                  navigationController.selectedIndex != 3 &&
+                  navigationController.selectedIndex !=2
               ? AppBar(
                   title: const Text(
                     "Home Workout",

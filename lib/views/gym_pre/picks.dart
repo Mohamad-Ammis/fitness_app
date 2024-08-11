@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/exercontrol.dart';
 import 'package:fitnessapp/controller/pickscontroller.dart';
@@ -123,7 +124,7 @@ final controller = Get.put(Pickscotroller(), permanent: true);
                   height: 60,
                   width: 250,
                   child: const Text("start" , style:  TextStyle(
-                    fontFamily: "WorkSans",
+                    fontFamily: Constans.fontFamily,
                     fontSize: 25 ,
                     fontWeight: FontWeight.w600 ,
                     color: Colors.white
@@ -147,7 +148,7 @@ final controller = Get.put(Pickscotroller(), permanent: true);
                         width: MediaQuery.of(context).size.width*0.35,
                         height: MediaQuery.of(context).size.height*0.1,
                       //  color: Colors.pink,
-                        child: Image.network("http://${Constans.host}:8000/uploads/${item.image}", fit: BoxFit.contain,),
+                        child:CachedNetworkImage(imageUrl:"${Constans.mainbaseUrlimage}uploads/${item.image}", fit: BoxFit.contain,)
                       ),
                       Expanded(child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,13 +158,13 @@ final controller = Get.put(Pickscotroller(), permanent: true);
                           //  color: Colors.black,
                             alignment: Alignment.centerLeft,
                             child: Text(item.name , style: const TextStyle(
-                              fontFamily: "WorkSans",
+                              fontFamily: Constans.fontFamily,
                               fontSize: 19,
                               color: Colors.black
                             ),),
                           ),
                           Text("00:${item.time}" , style: const TextStyle(
-                            fontFamily: "WorkSans",
+                            fontFamily: Constans.fontFamily,
                             fontSize: 16,
                             color: Colors.black54
                           ),)
@@ -194,6 +195,7 @@ final controller = Get.put(Pickscotroller(), permanent: true);
                         height: MediaQuery.of(context).size.height*0.1,
                         child: Shimmergym.Rectangle(height: MediaQuery.of(context).size.height*0.1,
                          width:MediaQuery.of(context).size.width*0.25,
+                         cc: Colors.grey[300],
                         radius: 30),
                       ),
                       Expanded(child: Column(
@@ -203,11 +205,13 @@ final controller = Get.put(Pickscotroller(), permanent: true);
                             height: MediaQuery.of(context).size.height*0.07,
                             alignment: Alignment.centerLeft,
                             child: Shimmergym.Rectangle(height:  MediaQuery.of(context).size.height*0.04,
+                            cc: Colors.grey[300],
                              width: 190,
                             radius: 10)
                           ),
                           Shimmergym.Rectangle(
                             height: MediaQuery.of(context).size.height*0.03,
+                            cc: Colors.grey[300],
                             width: 60,
                             radius: 10)
                           

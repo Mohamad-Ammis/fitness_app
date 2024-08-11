@@ -9,13 +9,23 @@ import 'package:http/http.dart' as http;
 
 class Precontroller extends GetxController{
   List <Coach> coaches = [];
+  List<Coach> mycoach = [];
+  List<Coach> avcoach = [];
+  
+
 
   List helper =[];
+  List helpertwo =[];
 
   final color =const Color.fromARGB(255, 50, 144, 173);
 
    List<int> expanded = [];
 
+
+   void disposeexpanded(){
+    expanded.clear();
+    update();
+   }
   
 
   void checkexpand(bool value , int index){
@@ -111,8 +121,46 @@ class Precontroller extends GetxController{
   ];
 
 
- List plans =[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17];
+ List plans =[1];
 
+ bool checkplansweek1(){
+  if(plans[plans.length-1]<=7 ){
+      return true;
+  }else{
+    return false ;
+  }
+ }
+ bool checkplansweek2(){
+  if(plans[plans.length-1]>7&&plans[plans.length-1]<=14 ){
+      return true;
+  }else{
+    return false ;
+  }
+ }
+ bool checkplansweek3(){
+  if(plans[plans.length-1]>14&&plans[plans.length-1]<=21 ){
+      return true;
+  }else{
+    return false ;
+  }
+ }
+ bool checkplansweek4(){
+  if(plans[plans.length-1]>21&&plans[plans.length-1]<=28 ){
+      return true;
+  }else{
+    return false ;
+  }
+ }
+
+
+  void updatecoach(bool value){
+    if(value==false){
+     coaches = avcoach;
+    }else{
+     coaches = mycoach ;
+    }
+    update();
+  }
 
  int getweek(Dayplan d){
   if(week1.contains(d)){
@@ -137,10 +185,10 @@ class Precontroller extends GetxController{
      }
      );
    if(res.statusCode==200){
-    coaches = [] ;
+    avcoach = [] ;
      final resdata = json.decode(res.body);
      helper = resdata["coach"] as List<dynamic>;
-     for(int i = 1 ; i<helper.length ; i++){
+     for(int i = 0 ; i<helper.length ; i++){
       Coach test = Coach(
         image: helper[i]["image"],
         name: helper[i]["name"],
@@ -149,10 +197,52 @@ class Precontroller extends GetxController{
         price: helper[i]["price"],
         rate: helper[i]["rating"],
         age: helper[i]["age"],
-        des: helper[i]["description"],);
-        coaches.add(test);
+        des: helper[i]["description"],
+        subscribe: helper[i]["subscribed"]
+        );
+        avcoach.add(test);
+     }
+     coaches = avcoach ;
+     update();
+   }else{
+    throw "Something wrong , please try again";
+   }
+    }catch(errore){
+       throw'gg $errore';
+    }
+  }
+
+  Future getmycoaches ()async{
+    const String url = '${Constans.baseUrl}subscription/index';
+    try{
+     final res = await http.get(Uri.parse(url) ,       
+     headers: {
+      'Accept':'application/json', 
+      'Authorization': 'Bearer ${userInfo!.getString('token')}',
+     }
+     );
+   if(res.statusCode==200){
+    mycoach = [] ;
+     final resdata = json.decode(res.body);
+     final hh = resdata["data"] as List<dynamic> ;
+     if( hh.isNotEmpty){
+       helpertwo = resdata["data"] as List<dynamic>;
+     for(int i = 0 ; i<helpertwo.length ; i++){
+      Coach test = Coach(
+        image: helpertwo[i]["image"],
+        name: helpertwo[i]["name"],
+        bio: helpertwo[i]["bio"],
+        id: helpertwo[i]["id"],
+        price: helpertwo[i]["price"],
+        rate: helpertwo[i]["rating"],
+        age: helpertwo[i]["age"],
+        des: helpertwo[i]["description"],
+        subscribe: true
+        );
+        mycoach.add(test);
      }
      update();
+     }
    }else{
     throw "Something wrong , please try again";
    }
@@ -160,5 +250,46 @@ class Precontroller extends GetxController{
        throw'$errore';
     }
   }
+
+String equ = "";
+List helperdays = [];
+
+Future setplandays (int coachid)async{
+      helperdays = [];
+      plans = [];
+      String url = '${Constans.baseUrl}subscription/progress/index';
+      if(userInfo!.getInt("equ[$coachid]")==1){
+      equ ="equipment";
+     }else{
+      equ ="no_equipment";
+     }
+      try{
+      final res = await http.post(Uri.parse(url),
+      headers:{
+      'Accept':'application/json',
+      'Authorization': 'Bearer ${userInfo!.getString('token')}',
+     },
+     body:{
+      "choose":equ
+     }
+     );
+     print(coachid);
+     print(equ);
+     if(res.statusCode==200){
+      final resdata = json.decode(res.body);
+      helperdays = resdata["data"] as List<dynamic >;
+      for(int i = 0 ; i<helperdays.length ; i++){
+        plans.add(helperdays[i]["id"]);
+      }
+      print(plans);
+     }else{
+      throw "Something wrong , please try again";
+     }
+      }catch(error){
+         throw'$error';
+      }
+
+   }
+
 
 } 

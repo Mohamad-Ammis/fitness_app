@@ -27,6 +27,7 @@ class AuthController extends GetxController {
         body: <String, dynamic>{
           'email': userEmail,
           'password': pass,
+          'fcm_token': "fhX-9JMpTlKyDL-hORJ0ZZ:APA91bHaFGzaWXjRb_cPjyLrlszKRqL5F4fk2GHMNmyjQ-QuSjPQMkf9fy3MvXoOJj5B8Y1YuJIPoMjK_53XVT7xK74cFNqRyeOn1Tu240-7mFSYVaLq4c64etv0CuEBb7oQxr7qqQBQ"
         },
         context: context,
         successTitle: 'Congratulations',
@@ -44,7 +45,8 @@ class AuthController extends GetxController {
           'name': name,
           'email': userEmail,
           'password': pass,
-          'password_confirmation': confirmPass
+          'password_confirmation': confirmPass,
+          'fcm_token': "fhX-9JMpTlKyDL-hORJ0ZZ:APA91bHaFGzaWXjRb_cPjyLrlszKRqL5F4fk2GHMNmyjQ-QuSjPQMkf9fy3MvXoOJj5B8Y1YuJIPoMjK_53XVT7xK74cFNqRyeOn1Tu240-7mFSYVaLq4c64etv0CuEBb7oQxr7qqQBQ"
         },
         context: context,
         successTitle: 'Greate job',
@@ -58,7 +60,7 @@ class AuthController extends GetxController {
   Future<http.Response> registerVerification(
       String code, BuildContext context) async {
     var data = Api().post(
-        url: 'http://${Constans.host}:8000/api/verfiy',
+        url: '${Constans.mainbaseUrl}verfiy',
         body: <String, dynamic>{'code': code},
         context: context,
         successDesc: 'You have been registered successfully');

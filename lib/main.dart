@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/views/on_boarding/on_boarding.dart';
+import 'package:flutter_gemini/flutter_gemini.dart';
 import '../controller/datacont.dart';
 import 'package:fitnessapp/home.dart';
 import 'package:fitnessapp/splash_screen.dart';
@@ -14,7 +16,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-   userInfo=await SharedPreferences.getInstance();
+  userInfo=await SharedPreferences.getInstance();
   runApp(const MyApp());
 }
 
@@ -40,7 +42,7 @@ class _MyAppState extends State<MyApp> {
      else{
       Get.offAll(OnBoarding()) ;
      }
-    //  Get.offAll(Pre()) ;
+   // Get.offAll(Reportpage()) ;
     } );
   }
 

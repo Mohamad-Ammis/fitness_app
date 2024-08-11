@@ -7,6 +7,7 @@ class Coach{
   String? age;
   String? des ;
   String? rate ;
+  bool subscribe ;
 
   Coach({
     required this.image,
@@ -17,5 +18,6 @@ class Coach{
     required this.rate,
     required this.age,
     required this.des,
+    required this.subscribe
   });
 }

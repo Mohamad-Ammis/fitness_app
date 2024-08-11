@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/controller/exercontrol.dart';
 import 'package:fitnessapp/controller/pickscontroller.dart';
@@ -51,7 +53,7 @@ Widget build(BuildContext context , double shrinkOffset , bool overlapsContent){
                 width: MediaQuery.of(context).size.width,
                 child: Opacity(
                   opacity: 0.6,
-                  child:picks==false? Image.network("http://${datacont.ip}:8000/uploads/$img", fit: BoxFit.cover,):
+                  child:picks==false?CachedNetworkImage(imageUrl:"${Constans.mainbaseUrlimage}uploads/$img", fit: BoxFit.cover,):
                   Image.asset(img, fit: BoxFit.cover,)
                   )),
                 Positioned(
@@ -73,7 +75,9 @@ Widget build(BuildContext context , double shrinkOffset , bool overlapsContent){
                       Text(
                         textAlign: TextAlign.center,
                         title,
-                        style:  TextStyle(fontSize: MediaQuery.of(context).size.width*0.065, color: Colors.white , fontWeight: FontWeight.bold),
+                        style:  TextStyle(fontSize: MediaQuery.of(context).size.width*0.065, color: Colors.white ,
+                        fontFamily: Constans.fontFamily,
+                         fontWeight: FontWeight.bold),
                         softWrap: true,
                         overflow: TextOverflow.fade,
                       ),
@@ -85,7 +89,7 @@ Widget build(BuildContext context , double shrinkOffset , bool overlapsContent){
                           textAlign: TextAlign.left,
                           des,
                           style:  TextStyle(
-                          fontFamily: "WorkSans",
+                          fontFamily: Constans.fontFamily,
                           fontSize: MediaQuery.of(context).size.width*0.03,
                           color: Colors.white,
                           ),
@@ -108,7 +112,7 @@ Widget build(BuildContext context , double shrinkOffset , bool overlapsContent){
           }, icon: const Icon(Icons.arrow_back , color: Colors.white,)),
           backgroundColor: /* Colors.black */const Color.fromARGB(255, 38, 164, 170),
           title: Text(title, style:const TextStyle(
-            fontFamily: "WorkSans",
+            fontFamily: Constans.fontFamily,
             fontSize: 25,
             color: Colors.white,
           ),),
@@ -128,7 +132,7 @@ Widget build(BuildContext context , double shrinkOffset , bool overlapsContent){
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Expanded(child: buildButton(text:picks==false? '${control.time} S':'${pickcontroller.time} S', icon: Icons.timer_sharp)),
                   Expanded(child: buildButton(text:picks==false? '${control.numexer} Exe':'${pickcontroller.numexer} Exe', icon: null)),
@@ -150,7 +154,7 @@ Widget build(BuildContext context , double shrinkOffset , bool overlapsContent){
         children: [
         icon==null? Container():  Icon(icon , color: Colors.white,),
           const SizedBox(width:4 ),
-          Text(text, style: const TextStyle(fontSize: 23.5 , fontFamily: "WorkSans", color: Colors.white )),
+          Text(text, style: const TextStyle(fontSize: 21 , fontFamily: Constans.fontFamily, color: Colors.white )),
         ],
       );
 

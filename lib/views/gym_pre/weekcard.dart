@@ -1,3 +1,4 @@
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/precontroller.dart';
 import 'package:fitnessapp/controller/spec_day_controller.dart';
 import 'package:fitnessapp/models/dayplan.dart';
@@ -106,7 +107,7 @@ class Weekcard extends StatelessWidget {
           fontSize: MediaQuery.of(context).size.width * 0.05,
           color:controller.plans.contains(d.id)? Color.fromARGB(255, 50, 144, 173):Color.fromARGB(255, 50, 144, 173).withOpacity(0.3),
           fontWeight: FontWeight.bold,
-          fontFamily: "WorkSans",
+          fontFamily: Constans.fontFamily,
         ),),
       ),
     );

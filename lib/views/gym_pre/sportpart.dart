@@ -25,7 +25,6 @@ class _SportpartState extends State<Sportpart> {
    bool isloading = false ;
     @override
     void initState() {
-     if(controller.loadexer == 0){
        setState(() {
         isloading=true;
       });
@@ -52,7 +51,6 @@ class _SportpartState extends State<Sportpart> {
         isloading = false;
       });
     });
-     }
     super.initState();
   }
 
@@ -106,7 +104,7 @@ List<ExerciseModel> exercise =[];
                   height: 60,
                   width: 250,
                   child: const Text("start" , style:  TextStyle(
-                    fontFamily: "WorkSans",
+                    fontFamily: Constans.fontFamily,
                     fontSize: 25 ,
                     fontWeight: FontWeight.w600 ,
                     color: Colors.white
@@ -129,7 +127,7 @@ Column allexer(BuildContext context,ExerciseModel item) {
                         padding: const EdgeInsets.only(top: 4 , ),
                         width: MediaQuery.of(context).size.width*0.35,
                         height: MediaQuery.of(context).size.height*0.1,
-                        child: Image.network("http://${Constans.host}:8000/uploads/${item.image}", fit: BoxFit.contain,),
+                        child: Image.network("${Constans.mainbaseUrlimage}uploads/${item.image}", fit: BoxFit.contain,),
                       ),
                       Expanded(child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,13 +136,13 @@ Column allexer(BuildContext context,ExerciseModel item) {
                             height: MediaQuery.of(context).size.height*0.07,
                             alignment: Alignment.centerLeft,
                             child: Text(item.name , style: const TextStyle(
-                              fontFamily: "WorkSans",
+                              fontFamily: Constans.fontFamily,
                               fontSize: 19,
                               color: Colors.black
                             ),),
                           ),
                           Text("00:${item.time}" , style: const TextStyle(
-                            fontFamily: "WorkSans",
+                            fontFamily: Constans.fontFamily,
                             fontSize: 16,
                             color: Colors.black54
                           ),)
@@ -173,6 +171,7 @@ Column loadallexer(BuildContext context) {
                         width: MediaQuery.of(context).size.width*0.35,
                         height: MediaQuery.of(context).size.height*0.1,
                         child: Shimmergym.Rectangle(height: MediaQuery.of(context).size.height*0.1,
+                        cc: Colors.grey[300],
                          width:MediaQuery.of(context).size.width*0.25,
                         radius: 30),
                       ),
@@ -183,11 +182,13 @@ Column loadallexer(BuildContext context) {
                             height: MediaQuery.of(context).size.height*0.07,
                             alignment: Alignment.centerLeft,
                             child: Shimmergym.Rectangle(height:  MediaQuery.of(context).size.height*0.04,
+                            cc: Colors.grey[300],
                              width: 190,
                             radius: 10)
                           ),
                           Shimmergym.Rectangle(
                             height: MediaQuery.of(context).size.height*0.03,
+                            cc: Colors.grey[300],
                             width: 60,
                             radius: 10)
                           

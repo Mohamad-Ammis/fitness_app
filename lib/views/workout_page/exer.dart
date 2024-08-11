@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/controller/exercontrol.dart';
 import 'package:fitnessapp/shimmer/shimmergym.dart';
@@ -131,7 +133,7 @@ class _ExerciseState extends State<Exercise> {
                   height: 60,
                   width: 250,
                   child: const Text("start" , style:  TextStyle(
-                    fontFamily: "WorkSans",
+                    fontFamily: Constans.fontFamily,
                     fontSize: 25 ,
                     fontWeight: FontWeight.w600 ,
                     color: Colors.white
@@ -155,7 +157,7 @@ class _ExerciseState extends State<Exercise> {
                         width: MediaQuery.of(context).size.width*0.35,
                         height: MediaQuery.of(context).size.height*0.1,
                       //  color: Colors.pink,
-                        child: Image.network("http://${datacont.ip}:8000/uploads/${item["image"]}", fit: BoxFit.contain,),
+                        child:CachedNetworkImage(imageUrl:"${Constans.mainbaseUrlimage}uploads/${item["gif"]}", fit: BoxFit.contain,)
                       ),
                       Expanded(child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -165,13 +167,13 @@ class _ExerciseState extends State<Exercise> {
                           //  color: Colors.black,
                             alignment: Alignment.centerLeft,
                             child: Text(item["exercise_name"] , style: const TextStyle(
-                              fontFamily: "WorkSans",
+                              fontFamily: Constans.fontFamily,
                               fontSize: 19,
                               color: Colors.black
                             ),),
                           ),
                           Text("00:${item["time"]}" , style: const TextStyle(
-                            fontFamily: "WorkSans",
+                            fontFamily: Constans.fontFamily,
                             fontSize: 16,
                             color: Colors.black54
                           ),)
@@ -201,6 +203,7 @@ class _ExerciseState extends State<Exercise> {
                         width: MediaQuery.of(context).size.width*0.35,
                         height: MediaQuery.of(context).size.height*0.1,
                         child: Shimmergym.Rectangle(height: MediaQuery.of(context).size.height*0.1,
+                        cc: Colors.grey[300],
                          width:MediaQuery.of(context).size.width*0.25,
                         radius: 30),
                       ),
@@ -211,11 +214,13 @@ class _ExerciseState extends State<Exercise> {
                             height: MediaQuery.of(context).size.height*0.07,
                             alignment: Alignment.centerLeft,
                             child: Shimmergym.Rectangle(height:  MediaQuery.of(context).size.height*0.04,
+                            cc: Colors.grey[300],
                              width: 190,
                             radius: 10)
                           ),
                           Shimmergym.Rectangle(
                             height: MediaQuery.of(context).size.height*0.03,
+                            cc: Colors.grey[300],
                             width: 60,
                             radius: 10)
                           

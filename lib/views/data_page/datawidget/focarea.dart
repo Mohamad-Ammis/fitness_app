@@ -1,3 +1,4 @@
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/views/data_page/datawidget/question.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -137,7 +138,7 @@ class Focusarea extends StatelessWidget {
                           ),
                           Text(s , style:TextStyle(
                             color: contr.twocolor,
-                            fontFamily: "WorkSans" ,
+                            fontFamily: Constans.fontFamily ,
                             fontSize: 15 ,
                             fontWeight: FontWeight.bold
                           ))

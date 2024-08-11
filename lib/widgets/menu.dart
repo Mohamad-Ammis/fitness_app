@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/menuItem.dart';
@@ -22,62 +23,62 @@ class Menupage extends StatelessWidget {
     return Theme(
       data: ThemeData.dark(),
       child: Scaffold(
+        backgroundColor: Colors.black,
         body: Stack(
           children:[ 
             Opacity(
-              opacity:  0.6 ,
+              opacity:  0.45 ,
               child: SizedBox(
                 height: MediaQuery.of(context).size.height,
                 width:MediaQuery.of(context).size.width ,
-                child: Image.asset("assets/images/b4.jpg" , fit: BoxFit.cover,),
+                child: Image.asset("assets/images/b6.jpg" , fit: BoxFit.cover,),
               ),
             ),
             Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            const Spacer(flex: 4,),
+            const Spacer(flex: 3,),
               ...Menuitems.all.map((item) =>ListTileTheme(
                 selectedTileColor: Color.fromARGB(255, 58, 76, 77),
-                selectedColor:Colors.black/* Color.fromARGB(255, 130, 218, 223) */,
+                selectedColor:Color.fromARGB(255, 172, 245, 242),
                 child: ListTile(
-                 // selectedTileColor: Colors.black,
-                 // splashColor: Colors.black,
                   style:ListTileStyle.drawer ,
                   selected: item == currentitem,
                   leading: Icon(item.icon , size:item == currentitem? 40:30,),
                   title: Text(item.title , style:item == currentitem?  TextStyle(
-                    fontSize:MediaQuery.of(context).size.width*0.06,
-                    fontFamily: "WorkSans",
+                    fontSize:MediaQuery.of(context).size.width*0.065,
+                    fontFamily: Constans.fontFamily,
                     fontWeight: FontWeight.bold
                   ): TextStyle(
-                    fontSize: MediaQuery.of(context).size.width*0.055,
-                    fontFamily: "WorkSans",
+                    fontSize: MediaQuery.of(context).size.width*0.057,
+                    fontFamily: Constans.fontFamily,
                   )),
                   onTap: ()=>onselecteditem(item),
                 ),
               ) ,).toList(),
-              SizedBox(height: 200,),
+              SizedBox(height: 150,),
              Container(
               margin: EdgeInsets.only(left: 20),
               padding: EdgeInsets.symmetric(horizontal: 20 ),
               decoration: BoxDecoration(
                 border: Border.all(
                   width: 1.5,
-                  color: Colors.black
+                  color: Colors.white
                 ),
                 borderRadius: BorderRadius.circular(40)
               ),
                child: TextButton(onPressed: (){
-                userInfo!.clear();
-                print(userInfo!.getString("token"));
+               // userInfo!.clear();
+               userInfo!.remove("token");
+               userInfo!.remove("man");
                 controller.setlogout();
                 Get.offAll(OnBoarding());
                },
                 child: Text("Logout" , style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                       fontSize: MediaQuery.of(context).size.width*0.05,
-                      fontFamily: "WorkSans",
+                      fontFamily: Constans.fontFamily,
                     )) ),
              ),
              

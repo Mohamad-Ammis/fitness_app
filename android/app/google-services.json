@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "786363053751",
+    "project_id": "home-workout-24924",
+    "storage_bucket": "home-workout-24924.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:786363053751:android:1fdbb5d2cd868896e3bf32",
+        "android_client_info": {
+          "package_name": "com.example.fitnessapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBF5gEi9qDGg1i0hvFTdHv0WKmQvf2e5HI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

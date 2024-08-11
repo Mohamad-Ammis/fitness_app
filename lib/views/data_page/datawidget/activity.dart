@@ -1,3 +1,4 @@
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/views/data_page/datawidget/question.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -90,7 +91,7 @@ class Activity extends StatelessWidget {
                     height: MediaQuery.of(context).size.height*0.05,
                     width: MediaQuery.of(context).size.width*0.45,
                     child: Text(name , style: TextStyle(
-                      fontFamily: "WorkSans",
+                      fontFamily: Constans.fontFamily,
                         fontSize: MediaQuery.of(context).size.width*0.058 ,
                         fontWeight: FontWeight.bold ,
                         wordSpacing: 2 ,
@@ -103,7 +104,7 @@ class Activity extends StatelessWidget {
                     height: MediaQuery.of(context).size.height*0.06,
                     width: MediaQuery.of(context).size.width*0.55,
                     child: Text(des , style: TextStyle(
-                      fontFamily: "WorkSans",
+                      fontFamily: Constans.fontFamily,
                       fontSize: MediaQuery.of(context).size.width*0.035 ,
                        wordSpacing: 2 ,
                        color: const Color.fromARGB(255, 66, 66, 66)

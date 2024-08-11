@@ -2,9 +2,8 @@ import 'dart:convert';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/precontroller.dart';
 import 'package:fitnessapp/main.dart';
-import 'package:fitnessapp/models/Ingredient.dart';
 import 'package:fitnessapp/models/exersice.dart';
-import 'package:fitnessapp/models/mealcoach.dart';
+import 'package:fitnessapp/models/meal.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
@@ -51,24 +50,21 @@ final controller = Get.put(Precontroller() , permanent: true);
     Map <String , String> specday ={
     'categoryName':'',
     'day_id':'',
-    'coach_id':'',
   };
 
 
   Map <String , String> specdayexer ={
     'choose':'',
     'day_id':'',
-    'coach_id':'',
   };
 
+
    void setspecday( String categoryName ){
-      specday["coach_id"] = coachid.toString() ;
       specday["day_id"] = dayid.toString() ;
       specday["categoryName"] = categoryName ;
    }
 
    void setspecdayexer(){
-      specdayexer["coach_id"] = coachid.toString() ;
       specdayexer["day_id"] = dayid.toString() ;
       if(controller.choosetypeexer ==1){
         specdayexer["choose"] = "equipment" ;
@@ -85,7 +81,7 @@ final controller = Get.put(Precontroller() , permanent: true);
    helperint = [];
    inte = [] ;
    testt = [];
-     const String url = '${Constans.baseUrl}coach/meal/show';
+      String url = '${Constans.baseUrl}coach/meal/show/${coachid.toString()}';
       try{
       final res = await http.post(Uri.parse(url),
       headers:{
@@ -108,6 +104,8 @@ final controller = Get.put(Precontroller() , permanent: true);
           image: helper[i]["image"],
           description: helper[i]["description"],
           warning: helper[i]["warning"],
+          isfavorite: false,
+          preparation: helper[i]["preparation_method"],
         );
         helperint = helper[i]["ingredients"]  as List<dynamic >;
         for(int i = 0 ; i < helperint.length ; i++){
@@ -146,7 +144,7 @@ final controller = Get.put(Precontroller() , permanent: true);
    Future getexer ()async{
     helperexer = [];
     exer = [];
-     const String url = '${Constans.baseUrl}exercise/exercisePlan';
+      String url = '${Constans.baseUrl}exercise/exercisePlan/${coachid.toString()}';
       try{
       final res = await http.post(Uri.parse(url),
       headers:{
@@ -155,6 +153,7 @@ final controller = Get.put(Precontroller() , permanent: true);
      },
      body: specdayexer
      );
+     print(specdayexer);
      if(res.statusCode==200){
      final resdata = json.decode(res.body);
       helperexer = resdata["data"] as List<dynamic >;
@@ -166,7 +165,7 @@ final controller = Get.put(Precontroller() , permanent: true);
           calories: helperexer[i]["calories"].toString(),
           time: helperexer[i]["time"],
           reps: helperexer[i]["reps"].toString(),
-          image: helperexer[i]["image"],
+          image: helperexer[i]["gif"],
           video_link: helperexer[i]["video_link"],
           target: helperexer[i]["target"],
           diseases: helperexer[i]["diseases"],

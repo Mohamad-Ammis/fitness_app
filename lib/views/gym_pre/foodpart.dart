@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/spec_day_controller.dart';
 import 'package:fitnessapp/shimmer/shimmergym.dart';
+import 'package:fitnessapp/views/food/meal_page.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +21,7 @@ class _FoodpartState extends State<Foodpart> {
 @override
   void initState() {
     Timer(const Duration(milliseconds: 0), () async{ 
-       if(controller.load==0){
+
         setState(() {
         isloading = true;
       });
@@ -52,8 +53,6 @@ class _FoodpartState extends State<Foodpart> {
       setState(() {
         isloading = false;
       });
-
-       }
     });
      super.initState();
   }
@@ -100,7 +99,9 @@ class _FoodpartState extends State<Foodpart> {
         shrinkWrap: true,
         children: controller.dinner.map((meal) => InkWell(
           overlayColor: MaterialStatePropertyAll(Colors.white.withOpacity(0)),
-          onTap: () {},
+          onTap: () {
+             Get.to(MealPage(meal: meal));
+          },
           child: Stack(
             alignment: Alignment.center,
             children: [
@@ -121,7 +122,7 @@ class _FoodpartState extends State<Foodpart> {
                    ),
               ),
               Text(meal.name!, style:const TextStyle(
-                fontFamily: "WorkSans",
+                fontFamily: Constans.fontFamily,
                 fontSize: 22 ,
                 fontWeight: FontWeight.bold,
                 color: Colors.white
@@ -142,7 +143,9 @@ class _FoodpartState extends State<Foodpart> {
           scrollDirection: Axis.horizontal,
           children: controller.lunch.map((meal) => InkWell(
             overlayColor: MaterialStatePropertyAll(Colors.white.withOpacity(0)),
-            onTap: () {},
+            onTap: () {
+              Get.to(MealPage(meal: meal));
+            },
             child: Stack(
               alignment: Alignment.center,
               children: [
@@ -176,7 +179,7 @@ class _FoodpartState extends State<Foodpart> {
                         Padding(
                           padding: const EdgeInsets.only(left: 10 , top: 4 , bottom: 6),
                           child: Text(meal.name!, style:const TextStyle(
-                            fontFamily: "WorkSans",
+                            fontFamily: Constans.fontFamily,
                             fontSize: 19 ,
                             color: Colors.white
                           ),),
@@ -185,7 +188,7 @@ class _FoodpartState extends State<Foodpart> {
                           children: [
                            const Spacer(),
                             Text(meal.calories! ,style:const TextStyle(
-                            fontFamily: "WorkSans",
+                            fontFamily: Constans.fontFamily,
                             fontSize: 19 ,
                             color: Colors.white
                           ), ),
@@ -193,7 +196,7 @@ class _FoodpartState extends State<Foodpart> {
                           const Icon(Icons.local_fire_department_rounded , size: 25 , color: Colors.white,),
                           const  Spacer(),
                             Text(meal.protein! ,style:const TextStyle(
-                            fontFamily: "WorkSans",
+                            fontFamily: Constans.fontFamily,
                             fontSize: 19 ,
                             color: Colors.white
                           ), ),
@@ -227,7 +230,9 @@ class _FoodpartState extends State<Foodpart> {
           ),
           child: InkWell(
             overlayColor: MaterialStatePropertyAll(Colors.white.withOpacity(0)),
-            onTap: () {},
+            onTap: () {
+               Get.to(MealPage(meal: meal));
+            },
             child: ClipRRect(
               borderRadius: BorderRadius.circular(30),
               child: Image.network("http://${Constans.host}:8000/uploads/${meal.image!}", fit: BoxFit.cover,),
@@ -247,7 +252,9 @@ class _FoodpartState extends State<Foodpart> {
           scrollDirection: Axis.horizontal,
           children: controller.breakfast.map((meal) => InkWell(
             overlayColor: MaterialStatePropertyAll(Colors.white.withOpacity(0)),
-            onTap: () {},
+            onTap: () {
+               Get.to(MealPage(meal: meal));
+            },
             child: Container(
               height: 100,
               width: contr.maxWidth*0.285,
@@ -282,7 +289,7 @@ class _FoodpartState extends State<Foodpart> {
             ),
            const SizedBox(width: 15,),
              Text(name , style:const TextStyle(
-             fontFamily: "WorkSans",
+             fontFamily: Constans.fontFamily,
              fontWeight: FontWeight.bold,
             fontSize: 22 ,
             color: Colors.black
@@ -308,7 +315,9 @@ class _FoodpartState extends State<Foodpart> {
              borderRadius: BorderRadius.circular(25),
             ),
             child: Shimmergym.Rectangle(height: 100,
-            width: contr.maxWidth*0.285,radius: 25)
+            width: contr.maxWidth*0.285,radius: 25,
+            cc: Colors.grey[300],
+            )
           ))
       );
   }
@@ -327,7 +336,7 @@ class _FoodpartState extends State<Foodpart> {
             borderRadius: BorderRadius.circular(30),
           ),
           child: Shimmergym.Rectangle( height: 145,
-          width: contr.maxWidth*0.55,radius: 30)
+          width: contr.maxWidth*0.55,radius: 30,cc: Colors.grey[300],)
         ))
       );
   }
@@ -351,7 +360,7 @@ Container loadlunch(BoxConstraints contr) {
               borderRadius: BorderRadius.circular(30),
               child: Shimmergym.Rectangle(height: 215,
             width: contr.maxWidth*0.85,
-                        radius: 30)
+                        radius: 30 , cc: Colors.grey[300],)
             ),
           ))
       );

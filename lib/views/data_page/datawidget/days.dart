@@ -1,3 +1,4 @@
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/views/data_page/datawidget/question.dart';
 import 'package:flutter/material.dart';
@@ -42,7 +43,7 @@ class Days extends StatelessWidget {
                         "Select reminder :",
                         style: TextStyle(
                           color: controller.twocolor,
-                          fontFamily: "WorkSans",
+                          fontFamily: Constans.fontFamily,
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
                           wordSpacing: 2,
@@ -164,7 +165,7 @@ class Days extends StatelessWidget {
             child: Text(
               name,
               style: TextStyle(
-                  fontFamily: "WorkSans",
+                  fontFamily: Constans.fontFamily,
                   fontSize: 25,
                   color: controller.twocolor,
                  // fontWeight: FontWeight.w600
