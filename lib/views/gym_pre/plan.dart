@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/precontroller.dart';
 import 'package:fitnessapp/controller/spec_day_controller.dart';
@@ -68,11 +69,11 @@ class _PlanState extends State<Plan> {
                 child: ListView(
                  shrinkWrap: true,
                  physics: const NeverScrollableScrollPhysics(),
-                 children:const [
-                  Mytimelinetile(isfirst: true, islast: false, ispast: true , textt: "WEEK 1",),
-                  Mytimelinetile(isfirst: false, islast: false, ispast: true, textt: "WEEK 2",),
-                  Mytimelinetile(isfirst: false, islast: false, ispast: true, textt: "WEEK 3",),
-                  Mytimelinetile(isfirst: false, islast: false, ispast: false, textt: "WEEK 4",),
+                 children: [
+                  Mytimelinetile(isfirst: true, islast: false, ispast: controller.checkplansweek1()  , textt: "WEEK 1",),
+                  Mytimelinetile(isfirst: false, islast: false, ispast: controller.checkplansweek2(), textt: "WEEK 2",),
+                  Mytimelinetile(isfirst: false, islast: false, ispast: controller.checkplansweek3(), textt: "WEEK 3",),
+                  Mytimelinetile(isfirst: false, islast: false, ispast: controller.checkplansweek4(), textt: "WEEK 4",),
                   Mytimelinetile(isfirst: false, islast: true, ispast: false, textt: "END",),
                  ],
                 ),
@@ -89,10 +90,10 @@ class _PlanState extends State<Plan> {
                  shrinkWrap: true,
                  physics: const NeverScrollableScrollPhysics(),
                  children: [
-                   Weekcard(week: controller.week1, ispast: true),
-                   Weekcard(week: controller.week2, ispast: true),
-                   Weekcard(week: controller.week3, ispast: true),
-                   Weekcard(week: controller.week4, ispast: false),
+                   Weekcard(week: controller.week1, ispast: controller.checkplansweek1()),
+                   Weekcard(week: controller.week2, ispast: controller.checkplansweek2()),
+                   Weekcard(week: controller.week3, ispast: controller.checkplansweek3()),
+                   Weekcard(week: controller.week4, ispast: controller.checkplansweek4()),
                  ],
                 ),
               ),
@@ -154,7 +155,7 @@ class _PlanState extends State<Plan> {
                     ),
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(70),
-                      child: Image.network("http://${Constans.host}:8000/uploads/${controller.image}",fit: BoxFit.cover,),
+                      child:CachedNetworkImage(imageUrl:"${Constans.mainbaseUrlimage}uploads/${controller.image}",fit: BoxFit.cover,)
                     ),
                   ),
                 )),

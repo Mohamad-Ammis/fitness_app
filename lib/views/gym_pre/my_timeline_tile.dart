@@ -1,3 +1,4 @@
+import 'package:fitnessapp/constans.dart';
 import 'package:flutter/material.dart';
 import 'package:timeline_tile/timeline_tile.dart';
 
@@ -31,8 +32,8 @@ class Mytimelinetile extends StatelessWidget {
         child: Text(textt , style: TextStyle(
           fontSize: MediaQuery.of(context).size.width * 0.05,
           fontWeight: FontWeight.bold,
-          color: ispast? const Color.fromARGB(255, 50, 144, 173):const Color.fromARGB(255, 50, 144, 173).withOpacity(0.2),
-          fontFamily: "WorkSans",
+          color: ispast? Color.fromARGB(255, 50, 144, 173):Color.fromARGB(255, 50, 144, 173).withOpacity(0.2),
+          fontFamily: Constans.fontFamily,
         ),)),
       ),
     );

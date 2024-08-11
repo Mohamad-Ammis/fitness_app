@@ -1,6 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
 
 import 'dart:convert';
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/controller/spec_day_controller.dart';
 import 'package:fitnessapp/main.dart';
@@ -56,7 +57,7 @@ final controll = Get.put(SpecDay() , permanent: true);
    calories = "0";
     exercise =[];
     all_exer = [];
-    final String url = level==null?'${controller.baseurl}category':'${controller.baseurl}trainer/exercise/gender';
+    final String url = level==null?'${Constans.mainbaseUrl}category':'${Constans.mainbaseUrl}trainer/exercise/gender';
     try{
      final res = await http.post(Uri.parse(url),
      headers:level==null? {'Accept':'application/json'
@@ -74,6 +75,7 @@ final controll = Get.put(SpecDay() , permanent: true);
      }
      );
     // print(controller.token);
+    print(res);
     if(res.statusCode==200){
      final resdata = json.decode(res.body);
      print(resdata);
@@ -137,11 +139,18 @@ final controll = Get.put(SpecDay() , permanent: true);
         all_exer.add(test);
       }
      }
-     print({
-      'muscle_id': id,
-      'gender': gen,
-      'level':level
-     });
+     print(all_exer[0].image);
+     print(all_exer[0].calories);
+     print(all_exer[0].choose);
+     print(all_exer[0].des);
+     print(all_exer[0].focus_area);
+     print(all_exer[0].diseases);
+     print(all_exer[0].focus_area_name);
+     print(all_exer[0].gender);
+     print(all_exer[0].id);
+     print(all_exer[0].level);
+     print(all_exer[0].name);
+     print(all_exer[0].pivot);
    }else{
     throw "Something wrong , please try again";
    }
@@ -158,7 +167,7 @@ final controll = Get.put(SpecDay() , permanent: true);
    calories = "0";
     exercise =[];
     all_exer = [];
-    final String url = '${controller.baseurl}trainer/exerciseType/getType/$id';
+    final String url = '${Constans.mainbaseUrl}trainer/exerciseType/getType/$id';
     try{
       final res = await http.get(Uri.parse(url),
      headers:{

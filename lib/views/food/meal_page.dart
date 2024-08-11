@@ -6,7 +6,6 @@ import 'package:fitnessapp/models/meal.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quickalert/quickalert.dart';
-import 'package:quickalert/widgets/quickalert_dialog.dart';
 
 // ignore: must_be_immutable
 class MealPage extends StatefulWidget {

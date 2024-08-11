@@ -20,21 +20,24 @@ class Datacontroller extends GetxController {
     update();
   }
    
-   double percent = 1/7 ;
+   double percent = 1/8 ;
    void nextpercent(){
     count+=1;
     if(count == 1){
-      percent = 1/7;
+      percent = 1/8;
     }else if (count == 2){
-      percent = 2/7 ;
+      percent = 2/8 ;
     }else if(count == 3){
-      percent = 3/7;
+      percent = 3/8;
     }else if(count == 4){
-       percent = 4/7;
+       percent = 4/8;
     }else if(count == 5){
-      percent = 5/7;
+      percent = 5/8;
     }else if(count == 6){
-      percent = 6/7;
+      percent = 6/8;
+    }
+    else if(count == 7){
+      percent = 7/8;
     }else{
       percent =1;
     }
@@ -44,17 +47,20 @@ class Datacontroller extends GetxController {
    void previouspercent(){
     count -=1 ;
       if(count == 1){
-      percent = 1/7;
+      percent = 1/8;
     }else if (count == 2){
-      percent = 2/7 ;
+      percent = 2/8 ;
     }else if(count == 3){
-      percent = 3/7;
+      percent = 3/8;
     }else if(count == 4){
-       percent = 4/7;
+       percent = 4/8;
     }else if(count == 5){
-      percent = 5/7;
+      percent = 5/8;
     }else if(count == 6){
-      percent = 6/7;
+      percent = 6/8;
+    }
+    else if(count == 7){
+      percent = 7/8;
     }else{
       percent =1;
     }
@@ -235,8 +241,7 @@ bool checkill(int num ){
    }
 
 //
-  String ip=Constans.host;
-  String baseurl ="http://${Constans.host}:8000/api/";
+ // String baseurl ="http://${Constans.host}:8000/api/";
  
   Map <String , String> User_data ={
     'gender':'',
@@ -296,11 +301,18 @@ bool checkill(int num ){
    }else{
     User_data['activity'] = 'Very_Active';
    }
+   if(level == 1){
+    User_data['level'] = 'beginner';
+   }else if(level == 2){
+    User_data['level'] = 'intermediate';
+   }else{
+    User_data['level'] = 'advanced';
+   }
    User_data['preferred_time'] = "${time.hour.toString()}:${time.minute.toString()}";
   }
 
  Future Setdata ()async{
-  final String url = '${baseurl}trainer/info';
+  final String url = '${Constans.baseUrl}info';
   try{
      final request = http.MultipartRequest('POST',Uri.parse(url));
     
@@ -310,7 +322,7 @@ bool checkill(int num ){
       request.fields.addAll(User_data);
 
       if(pickedimage!= null){
-      request.files.add(await http.MultipartFile.fromPath("Image", pickedimage!.path));
+      request.files.add(await http.MultipartFile.fromPath("image", pickedimage!.path));
       }
      var res= await request.send();
      var response = await http.Response.fromStream(res);
@@ -383,4 +395,15 @@ void setlogout(){
     activity = value;
     update();
   }
+
+//levels
+
+  int level = 0;
+
+  void setlevel(int value) {
+    level = value;
+    update();
+  }
+
+
 }

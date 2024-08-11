@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/controller/exercontrol.dart';
 import 'package:fitnessapp/controller/workout_page_controller.dart';
@@ -217,46 +219,48 @@ class _ExerciseState extends State<Exercise> {
 
   Column loadallexer(BuildContext context) {
     return Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.only(top: 0, bottom: 5, left: 15, right: 15),
-          height: MediaQuery.of(context).size.height * 0.1,
-          width: MediaQuery.of(context).size.width,
-          child: Row(
-            children: [
-              Container(
-                padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
-                width: MediaQuery.of(context).size.width * 0.35,
-                height: MediaQuery.of(context).size.height * 0.1,
-                child: Shimmergym.Rectangle(
-                    height: MediaQuery.of(context).size.height * 0.1,
-                    width: MediaQuery.of(context).size.width * 0.25,
-                    radius: 30),
-              ),
-              Expanded(
-                  child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                      height: MediaQuery.of(context).size.height * 0.07,
-                      alignment: Alignment.centerLeft,
-                      child: Shimmergym.Rectangle(
-                          height: MediaQuery.of(context).size.height * 0.04,
-                          width: 190,
-                          radius: 10)),
-                  Shimmergym.Rectangle(
-                      height: MediaQuery.of(context).size.height * 0.03,
-                      width: 60,
-                      radius: 10)
-                ],
-              ))
-            ],
-          ),
-        ),
-        Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: const Divider())
-      ],
-    );
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(top: 0 , bottom: 5 , left: 15 , right: 15),
+                  height: MediaQuery.of(context).size.height*0.1,
+                  width: MediaQuery.of(context).size.width,
+                  child: Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.only(top: 4 ,left: 16,right: 16 ),
+                        width: MediaQuery.of(context).size.width*0.35,
+                        height: MediaQuery.of(context).size.height*0.1,
+                        child: Shimmergym.Rectangle(height: MediaQuery.of(context).size.height*0.1,
+                        cc: Colors.grey[300],
+                         width:MediaQuery.of(context).size.width*0.25,
+                        radius: 30),
+                      ),
+                      Expanded(child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: MediaQuery.of(context).size.height*0.07,
+                            alignment: Alignment.centerLeft,
+                            child: Shimmergym.Rectangle(height:  MediaQuery.of(context).size.height*0.04,
+                            cc: Colors.grey[300],
+                             width: 190,
+                            radius: 10)
+                          ),
+                          Shimmergym.Rectangle(
+                            height: MediaQuery.of(context).size.height*0.03,
+                            cc: Colors.grey[300],
+                            width: 60,
+                            radius: 10)
+                          
+                        ],
+                      ))
+                    ],
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: const Divider())
+              ],
+             );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -15,7 +16,7 @@ class Question extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
             title: Text(que , style:  TextStyle(
-              fontFamily: "WorkSans",
+              fontFamily: Constans.fontFamily,
               fontSize: MediaQuery.of(context).size.width*0.07 ,
               fontWeight: FontWeight.bold ,
               wordSpacing: 2 ,
@@ -26,7 +27,7 @@ class Question extends StatelessWidget {
             subtitle:  Padding(
               padding: const EdgeInsets.only(top: 8),
               child: Text(subt , textAlign: TextAlign.center, style:  TextStyle(
-                fontFamily: "WorkSans",
+                fontFamily: Constans.fontFamily,
                 color: Colors.black45,
                 fontSize: MediaQuery.of(context).size.width*0.045
               ),

@@ -1,3 +1,4 @@
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/precontroller.dart';
 import 'package:fitnessapp/controller/ratecontroller.dart';
 import 'package:fitnessapp/controller/spec_day_controller.dart';
@@ -53,7 +54,7 @@ class _RatedialgState extends State<Ratedialg> {
                 style: TextStyle(
                   fontSize: MediaQuery.of(context).size.width * 0.04,
                   color: Colors.black,
-                  fontFamily: "WorkSans",
+                  fontFamily: Constans.fontFamily,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -67,7 +68,7 @@ class _RatedialgState extends State<Ratedialg> {
                 style: TextStyle(
                   fontSize: MediaQuery.of(context).size.width * 0.04,
                   color: Colors.black,
-                  fontFamily: "WorkSans",
+                  fontFamily: Constans.fontFamily,
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -180,7 +181,7 @@ class _RatedialgState extends State<Ratedialg> {
       child:isloading == false? Text(
         s,
         style: TextStyle(
-            fontFamily: "WorkSans",
+            fontFamily: Constans.fontFamily,
             fontSize: font,
             // fontWeight: FontWeight.bold,
             color: Colors.white),

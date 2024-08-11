@@ -1,3 +1,4 @@
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/views/data_page/datawidget/question.dart';
 import 'package:flutter/material.dart';
@@ -92,7 +93,7 @@ class Target extends StatelessWidget {
                 children: [
                  const Spacer(),
                    Text(e['name'] , style: const TextStyle(
-                    fontFamily: "WorkSans",
+                    fontFamily: Constans.fontFamily,
                     fontSize: 25 ,
                     color: Colors.black ,
                     fontWeight: FontWeight.w600

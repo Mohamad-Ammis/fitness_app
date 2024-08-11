@@ -1,3 +1,4 @@
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/views/data_page/datawidget/question.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -87,7 +88,7 @@ class Illness extends StatelessWidget {
                         ),
                         const SizedBox(height: 5,),
                        const Text("shortness of breath",style: TextStyle(
-                          fontFamily: "WorkSans",
+                          fontFamily: Constans.fontFamily,
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           wordSpacing: 2,
@@ -151,7 +152,7 @@ class Illness extends StatelessWidget {
                         ),
                         const SizedBox(height: 5,),
                         Text(item["name"],style: const TextStyle(
-                          fontFamily: "WorkSans",
+                          fontFamily: Constans.fontFamily,
                           fontSize: 15,
                           fontWeight: FontWeight.bold,
                           wordSpacing: 2,

@@ -4,7 +4,6 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:fitnessapp/firebase_options.dart';
 import 'package:fitnessapp/services/notification.dart';
-import 'package:fitnessapp/views/auth_pages/verfication_page/verfication_page.dart';
 import 'package:fitnessapp/views/on_boarding/on_boarding.dart';
 import '../controller/datacont.dart';
 import 'package:fitnessapp/home.dart';

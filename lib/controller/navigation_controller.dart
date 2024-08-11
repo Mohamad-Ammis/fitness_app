@@ -1,3 +1,4 @@
+import 'package:fitnessapp/views/report/report_page.dart';
 import 'package:fitnessapp/views/workout_page/gym.dart';
 import 'package:fitnessapp/views/workout_page/profile/profile_page.dart';
 import 'package:fitnessapp/views/workout_page/widgets/workout_page_body.dart';
@@ -8,7 +9,7 @@ class NavigationController extends GetxController {
   List screens = [
     const Home_gym(),
     WorkoutPageBody(),
-    WorkoutPageBody(),
+    Reportpage(),
     Profile(),
   ];
 }

@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:fitnessapp/constans.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wheel_slider/wheel_slider.dart';
@@ -45,7 +46,7 @@ class Height extends StatelessWidget {
                             const Text(
                               "Select your height :",
                               style: TextStyle(
-                                  fontFamily: "WorkSans",
+                                  fontFamily: Constans.fontFamily,
                                   fontSize: 23,
                                   fontWeight: FontWeight.bold,
                                   wordSpacing: 2,
@@ -54,7 +55,7 @@ class Height extends StatelessWidget {
                             Text(
                               " ${contr.currentheight}",
                               style: TextStyle(
-                                  fontFamily: "WorkSans",
+                                  fontFamily: Constans.fontFamily,
                                   fontSize: 28,
                                   fontWeight: FontWeight.bold,
                                   wordSpacing: 2,
@@ -127,7 +128,7 @@ class Height extends StatelessWidget {
                             const Text(
                               "Select your Weight :",
                               style: TextStyle(
-                                  fontFamily: "WorkSans",
+                                  fontFamily: Constans.fontFamily,
                                   fontSize: 23,
                                   fontWeight: FontWeight.bold,
                                   wordSpacing: 2,
@@ -136,7 +137,7 @@ class Height extends StatelessWidget {
                             Text(
                               " ${contr.currentweight}",
                               style: TextStyle(
-                                  fontFamily: "WorkSans",
+                                  fontFamily: Constans.fontFamily,
                                   fontSize: 28,
                                   fontWeight: FontWeight.bold,
                                   wordSpacing: 2,
@@ -223,7 +224,7 @@ class Height extends StatelessWidget {
                     "Please Choose picture for your profile ",
                     textAlign: TextAlign.left,
                     style: TextStyle(
-                        fontFamily: "WorkSans",
+                        fontFamily: Constans.fontFamily,
                         fontSize: MediaQuery.of(ctx).size.width*0.047,
                         fontWeight: FontWeight.bold,
                         wordSpacing: 2,
@@ -251,7 +252,7 @@ class Height extends StatelessWidget {
                           ),
                           Text("Choose picture ",
                               style: TextStyle(
-                                  fontFamily: "WorkSans",
+                                  fontFamily: Constans.fontFamily,
                                   fontSize: MediaQuery.of(ctx).size.width*0.04,
                                   // fontWeight: FontWeight.bold ,
                                   // wordSpacing: 2 ,

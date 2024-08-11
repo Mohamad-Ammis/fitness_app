@@ -1,3 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -74,7 +76,7 @@ class Articalpage extends StatelessWidget {
           child: SizedBox(
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
-            child: Image.network("http://${controller.ip}:8000/uploads/$img", fit: BoxFit.cover,),
+            child:CachedNetworkImage(imageUrl:"${Constans.mainbaseUrlimage}uploads/$img", fit: BoxFit.cover,)
           ),
         );
   }
@@ -94,7 +96,7 @@ class Articalpage extends StatelessWidget {
                     fontSize: MediaQuery.of(context).size.width * 0.044,
                     color: const Color.fromARGB(255, 34, 33, 33), 
                     fontWeight: FontWeight.w300 ,
-                    fontFamily: "WorkSans",
+                    fontFamily: Constans.fontFamily,
                     ),),
                     ),
         ),
@@ -121,7 +123,7 @@ class Articalpage extends StatelessWidget {
                         fontSize: MediaQuery.of(context).size.width * 0.04,
                         color: const Color.fromARGB(255, 9, 133, 139),
                         fontWeight: FontWeight.w400 ,
-                        fontFamily: "WorkSans",
+                        fontFamily: Constans.fontFamily,
                       ),),
                       ],
                     )
@@ -140,7 +142,7 @@ class Articalpage extends StatelessWidget {
                         fontSize: MediaQuery.of(context).size.width * 0.04,
                         color: const Color.fromARGB(255, 9, 133, 139),
                         fontWeight: FontWeight.w400 ,
-                        fontFamily: "WorkSans",
+                        fontFamily: Constans.fontFamily,
                       ),),
                       ],
                     )
@@ -163,7 +165,7 @@ class Articalpage extends StatelessWidget {
                 letterSpacing: 0.4,
                 color: Colors.black, 
                 fontWeight: FontWeight.bold ,
-                fontFamily: "WorkSans",
+                fontFamily: Constans.fontFamily,
               ),),
              );
   }
@@ -186,7 +188,7 @@ class Articalpage extends StatelessWidget {
                   topRight: Radius.circular(40),
                   bottomRight: Radius.circular(100)
                 ),
-                child: Image.network("http://${controller.ip}:8000/uploads/$img", fit: BoxFit.cover,),)
+                child:CachedNetworkImage(imageUrl:"${Constans.mainbaseUrlimage}uploads/$img", fit: BoxFit.cover,))
              );
   }
 }

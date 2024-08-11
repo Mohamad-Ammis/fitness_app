@@ -1,3 +1,4 @@
+import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/home.dart';
 import 'package:fitnessapp/main.dart';
@@ -23,7 +24,7 @@ class Button extends StatelessWidget {
                       elevation: 10,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30)),
-                      child: (cont.index) <= 5
+                      child: (cont.index) <= 6
                           ? ElevatedButton(
                               onPressed: () {
                                 if (cont.index == 0) {
@@ -53,14 +54,22 @@ class Button extends StatelessWidget {
                                         curve: Curves.bounceOut);
                                     controller.nextpercent();
                                   }
-                                } else if (cont.index == 4) {
+                                }else if (cont.index == 4) {
+                                  if (controller.level != 0) {
+                                    controller.control.nextPage(
+                                        duration: const Duration(seconds: 1),
+                                        curve: Curves.bounceOut);
+                                    controller.nextpercent();
+                                  }
+                                }
+                                 else if (cont.index == 5) {
                                   if (cont.selectfocusarea != 0) {
                                     controller.control.nextPage(
                                         duration: const Duration(seconds: 1),
                                         curve: Curves.bounceOut);
                                     controller.nextpercent();
                                   }
-                                } else if (cont.index == 5) {
+                                } else if (cont.index == 6) {
                                   /* if(cont.pickedimage != null ){
                                controller.control.nextPage(duration: const Duration(seconds: 1), curve: Curves.bounceOut);
                                controller.nextpercent();
@@ -68,6 +77,7 @@ class Button extends StatelessWidget {
                              controller.control.nextPage(duration: const Duration(seconds: 1), curve: Curves.bounceOut);
                                controller.nextpercent();
                           }
+                          
                           
                         },
                         style: ElevatedButton.styleFrom(
@@ -120,7 +130,7 @@ class Button extends StatelessWidget {
                     height: 60,
                     width: 150,
                     child:  Text(s , style: const TextStyle(
-                      fontFamily: "WorkSans",
+                      fontFamily: Constans.fontFamily,
                       fontSize: 25 ,
                       fontWeight: FontWeight.bold ,
                       color: Colors.white

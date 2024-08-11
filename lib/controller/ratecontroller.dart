@@ -10,7 +10,7 @@ class Ratecontroller extends GetxController{
 
 
 Future setrate (double rate)async{
-     const String url = '${Constans.baseUrl}rating/create';
+      String url = '${Constans.baseUrl}rating/create/${control.coachid.toString()}';
       try{
       final res = await http.post(Uri.parse(url),
       headers:{
@@ -18,10 +18,14 @@ Future setrate (double rate)async{
       'Authorization': 'Bearer ${userInfo!.getString('token')}',
      },
      body:{
-      "rateable_id":control.coachid.toString(),
       "rating":rate.toInt().toString()
      }
      );
+     print(userInfo!.getString('token'));
+     print({
+      "rating":rate.toInt().toString()
+     });
+     print(control.coachid.toString());
      if(res.statusCode==200){}else{
       throw "Something wrong , please try again";
      }

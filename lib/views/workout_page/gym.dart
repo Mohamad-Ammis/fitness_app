@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/controller/exercontrol.dart';
@@ -121,11 +122,8 @@ final execontrol = Get.put(Exercontroller() , permanent: true);
                                 
                                 color:Constans.test,
                                 borderRadius: BorderRadius.circular(18)),
-                            child: Image.network(
-                              "http://${datacont.ip}:8000/uploads/${item["image"]}",
-                              fit: BoxFit.contain,
-                            ),
-                          ),
+                            child:CachedNetworkImage(imageUrl:"${Constans.mainbaseUrlimage}uploads/${item["image"]}",
+                              fit: BoxFit.contain,)),
                           Container(
                             alignment: Alignment.center,
                             child: 
@@ -135,7 +133,7 @@ final execontrol = Get.put(Exercontroller() , permanent: true);
                                     fontSize:
                                         MediaQuery.of(context).size.width * 0.027,
                                     color: Colors.black,
-                                    fontFamily: "WorkSans",
+                                    fontFamily: Constans.fontFamily,
                                     fontWeight: FontWeight.bold),
                               ),
                             
@@ -183,7 +181,7 @@ final execontrol = Get.put(Exercontroller() , permanent: true);
                     fontSize: MediaQuery.of(context).size.width * 0.06,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
-                    fontFamily: "WorkSans",
+                    fontFamily: Constans.fontFamily,
                   ),
                 ),
                 Text(
@@ -231,6 +229,7 @@ final execontrol = Get.put(Exercontroller() , permanent: true);
             style: TextStyle(
               wordSpacing: 1,
               letterSpacing: 0.7,
+              fontFamily: Constans.fontFamily,
                 fontSize: MediaQuery.of(context).size.width * 0.06,
                 color:Colors.black,
                 fontWeight: FontWeight.bold),
@@ -267,9 +266,9 @@ final execontrol = Get.put(Exercontroller() , permanent: true);
                         width: double.infinity,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(30),
-                          child:item["image"]!=null?Image.network("http://${datacont.ip}:8000/uploads/${item["image"]}",
-                            fit: BoxFit.cover,
-                          ):Image.asset("assets/images/yogaa.jpg",
+                          child:item["image"]!=null?CachedNetworkImage(imageUrl:"${Constans.mainbaseUrlimage}uploads/${item["image"]}",
+                            fit: BoxFit.cover,)
+                         :Image.asset("assets/images/yogaa.jpg",
                           fit: BoxFit.cover,),
                         )),
                   ),
@@ -339,7 +338,7 @@ final execontrol = Get.put(Exercontroller() , permanent: true);
                         ),child: SizedBox(
                           height:MediaQuery.of(context).size.height*0.128 ,
                           width:MediaQuery.of(context).size.width*0.35 ,
-                          child:Image.network("http://${datacont.ip}:8000/uploads/${item.img}", fit: BoxFit.cover,),
+                          child:CachedNetworkImage(imageUrl:"${Constans.mainbaseUrlimage}uploads/${item.img}", fit: BoxFit.cover,)
                         ),
                        ),
                        Container(
@@ -355,7 +354,7 @@ final execontrol = Get.put(Exercontroller() , permanent: true);
                           fontSize: MediaQuery.of(context).size.width * 0.048,
                           color: Colors.black, 
                           fontWeight: FontWeight.w500 ,
-                          fontFamily: "WorkSans",
+                          fontFamily: Constans.fontFamily,
                         ) ),
                         Container(
                           height: MediaQuery.of(context).size.height*0.075,
@@ -366,7 +365,7 @@ final execontrol = Get.put(Exercontroller() , permanent: true);
                          style: TextStyle(
                           fontSize: MediaQuery.of(context).size.width * 0.0253,
                           color: Colors.black54, 
-                          fontFamily: "WorkSans",
+                          fontFamily: Constans.fontFamily,
                         ),)
                         )
                           ],
@@ -421,6 +420,7 @@ Container loadcat(BuildContext context) {
             child: Shimmergym.Rectangle(
               radius: 20,
              height: MediaQuery.of(context).size.height * 0.05,
+             cc: Colors.grey[300],
              width: MediaQuery.of(context).size.width * 0.18,),
           ),
         ),
@@ -437,6 +437,7 @@ Container loadcat(BuildContext context) {
           items:art.map((item) {
             return Shimmergym.Rectangle(
               height: MediaQuery.of(context).size.height * 0.27,
+              cc: Colors.grey[300],
               width: MediaQuery.of(context).size.width,
               radius: 30) ;
           }).toList(),
@@ -461,6 +462,7 @@ ListView loadexr(BuildContext context) {
         padding: const  EdgeInsets.only(bottom: 14 , left: 14 , right: 14) ,
         child: Shimmergym.Rectangle(
           radius: 20,
+          cc: Colors.grey[300],
          height:MediaQuery.of(context).size.height*0.128 ,
          width: MediaQuery.of(context).size.width ,),
       ),

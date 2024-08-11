@@ -8,6 +8,7 @@ import 'package:fitnessapp/views/data_page/datawidget/focarea.dart';
 import 'package:fitnessapp/views/data_page/datawidget/gender.dart';
 import 'package:fitnessapp/views/data_page/datawidget/height-weight.dart';
 import 'package:fitnessapp/views/data_page/datawidget/illness.dart';
+import 'package:fitnessapp/views/data_page/datawidget/level.dart';
 import 'package:fitnessapp/views/data_page/datawidget/target.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -21,6 +22,7 @@ class Data extends StatelessWidget {
     Target(),
     Illness(),
     Activity(),
+    Level(),
     Focusarea(),
     Height(),
     Days()

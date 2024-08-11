@@ -62,7 +62,7 @@ class AuthController extends GetxController {
   Future<http.Response> registerVerification(
       String code, BuildContext context) async {
     var data = Api().post(
-        url: 'http://${Constans.host}:8000/api/verfiy',
+        url: '${Constans.mainbaseUrl}verfiy',
         body: <String, dynamic>{'code': code},
         context: context,
         successDesc: 'You have been registered successfully');

@@ -30,6 +30,7 @@ class Pickscotroller extends GetxController {
       'Authorization': 'Bearer ${userInfo!.getString('token')}',
      },
      );
+     print(userInfo!.getString('token'));
      if(res.statusCode==200){
      final resdata = json.decode(res.body);
       helperexer = resdata["data"] as List<dynamic >;
@@ -41,7 +42,7 @@ class Pickscotroller extends GetxController {
           calories: helperexer[i]["calories"].toString(),
           time: helperexer[i]["time"],
           reps: helperexer[i]["reps"].toString(),
-          image: helperexer[i]["image"],
+          image: helperexer[i]["gif"],
           video_link: helperexer[i]["video_link"],
           target: helperexer[i]["target"],
           diseases: helperexer[i]["diseases"],

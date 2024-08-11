@@ -103,7 +103,8 @@ class _CategoryPageState extends State<CategoryPage> {
                         ),
                       );
                     } else if (snapshot.hasData) {
-                      List<Meal> categorylist = snapshot.data!;
+                      List<Meal> categorylist
+                       = snapshot.data!;
                       return categorylist.isNotEmpty
                           ? Padding(
                               padding: const EdgeInsets.only(left: 7, right: 5),
