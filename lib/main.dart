@@ -65,7 +65,8 @@ class _MyAppState extends State<MyApp> {
         if (userInfo!.getString("image") != null) {
           controller.setmemoryimage(userInfo!.getString("image")!);
         }
-        Get.offAll(Home());
+        Get.offAll(OnBoarding());
+        // Get.offAll(Home());
       } else {
         Get.offAll(OnBoarding());
       }
