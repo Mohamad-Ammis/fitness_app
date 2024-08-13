@@ -82,6 +82,7 @@ dependencies:
   firebase_core: ^2.10.0
   firebase_messaging: ^14.6.2
   firebase_analytics: ^10.10.7
+  confetti: ^0.7.0
 
 dev_dependencies:
   flutter_lints: ^3.0.0

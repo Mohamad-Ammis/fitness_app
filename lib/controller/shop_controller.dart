@@ -13,6 +13,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class ShopController extends GetxController {
+  late bool isProductFavorite = false;
   final images = const [
     Assets.imagesShop1,
     Assets.imagesShop2,
@@ -64,8 +65,13 @@ class ShopController extends GetxController {
     );
 
     var data = jsonDecode(response.body);
-
-    return data['data'];
+    debugPrint('data: ${data}');
+    if (response.statusCode == 200) {
+      if (data['data'] != null) {
+        return data['data'];
+      }
+    }
+    return [];
   }
 
   Future<List<dynamic>> getMostSalesProduct() async {
@@ -403,11 +409,11 @@ class ShopController extends GetxController {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       allProducts = await getAllProduct();
       debugPrint('allProducts: ${allProducts.length}');
+      showedList = allProducts;
       commonProducts = await getCommonProduct();
       debugPrint('commonProducts: ${commonProducts.length}');
       mostSalesProducts = await getMostSalesProduct();
       debugPrint('mostSalesProducts: ${mostSalesProducts.length}');
-      showedList = allProducts;
       await getAllAds();
       update();
       debugPrint('allAds: ${adsList.length}');

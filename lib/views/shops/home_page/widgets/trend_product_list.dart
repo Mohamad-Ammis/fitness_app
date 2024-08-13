@@ -33,7 +33,7 @@ class TrendProductList extends StatelessWidget {
           delegate: SliverChildBuilderDelegate(
             (context, index) => GestureDetector(
                 onTap: () => Get.to(
-                      ProductPage(
+                      () => ProductPage(
                         model:
                             ProductModel.fromJson(controller.showedList[index]),
                       ),

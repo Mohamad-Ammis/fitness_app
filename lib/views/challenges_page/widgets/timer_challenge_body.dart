@@ -92,6 +92,7 @@ class _TimerChallengeBodyState extends State<TimerChallengeBody>
             ),
             GestureDetector(
               onTap: () {
+                _controller.pause();
                 PanaraConfirmDialog.show(
                   context,
                   title: "Are you sure",
@@ -105,6 +106,9 @@ class _TimerChallengeBodyState extends State<TimerChallengeBody>
                     String updateTime =
                         (int.parse(time.minutes) + int.parse(time.seconds))
                             .toString();
+                        debugPrint('int.parse(time.minutes): ${int.parse(time.minutes)}');
+                        debugPrint('time.minutes: ${time.minutes}');
+                    debugPrint('updateTime: ${updateTime}');
                     await controller.updateChallenge(
                         widget.model.id.toString(),
                         widget.model.type.toString(),
@@ -113,6 +117,7 @@ class _TimerChallengeBodyState extends State<TimerChallengeBody>
                         widget.model.name);
                   },
                   onTapConfirm: () {
+                    _controller.start();
                     Navigator.pop(context);
                   },
                   panaraDialogType: PanaraDialogType.warning,

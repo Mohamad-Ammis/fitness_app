@@ -29,7 +29,7 @@ class WorkoutPageController extends GetxController {
     return "$minute:$second";
   }
 
-  Future updateReport() async {
+  Future updateReport(exersicesTotalCalories, exersicesTotalTime) async {
     final response = await http.post(
         Uri.parse('${Constans.baseUrl}report/creatReport'),
         headers: <String, String>{
@@ -39,7 +39,9 @@ class WorkoutPageController extends GetxController {
         body: {
           'calories': totalCalories.toString(),
           'Number_of_exercises': exerciseController.all_exer.length.toString(),
-          'total_time': "00:${formattedTime(timeInSecond: alltime)}"
+          'time': "00:${formattedTime(timeInSecond: alltime)}",
+          'total_calories': exersicesTotalCalories.toString(),
+          'total_time': "00:${formattedTime(timeInSecond: exersicesTotalTime)}"
         });
     var data = jsonDecode(response.body);
     debugPrint('data: ${data}');

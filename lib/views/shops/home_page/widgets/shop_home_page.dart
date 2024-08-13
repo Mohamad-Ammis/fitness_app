@@ -47,10 +47,14 @@ class ShopHomePage extends StatelessWidget {
                             dotPageController: controller.pageController,
                             adsList: controller.adsList,
                           ),
-                          OffersCardIndicator(
-                            dotPageController: controller.pageController,
-                            adsList: controller.adsList,
-                          )
+                          Positioned.fill(
+                              child: Align(
+                            alignment: Alignment.topCenter,
+                            child: OffersCardIndicator(
+                              dotPageController: controller.pageController,
+                              adsList: controller.adsList,
+                            ),
+                          ))
                         ],
                       ),
                     ),
@@ -71,6 +75,9 @@ class ShopHomePage extends StatelessWidget {
                 height: 8,
               ),
               CategoryListView(),
+              SizedBox(
+                height: 20,
+              ),
               const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: Text(

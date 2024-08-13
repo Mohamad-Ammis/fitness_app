@@ -62,9 +62,9 @@ class Item extends StatelessWidget {
               decoration: BoxDecoration(
                   border: controller.filterProductSelectedIndex == index
                       ? null
-                      : Border.all(color: Colors.black, width: .4),
+                      : Border.all(color: Constans.shopColor, width: .4),
                   color: controller.filterProductSelectedIndex == index
-                      ? Colors.black
+                      ? Constans.shopColor
                       : Colors.transparent,
                   borderRadius: BorderRadius.circular(999)),
               child: Text(

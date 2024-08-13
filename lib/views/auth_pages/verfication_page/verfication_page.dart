@@ -4,6 +4,7 @@ import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/auth_controller.dart';
 import 'package:fitnessapp/helper/custom_toast_notification.dart';
 import 'package:fitnessapp/views/auth_pages/login_page/login_page.dart';
+import 'package:fitnessapp/views/data_page/data.dart';
 import 'package:fitnessapp/widgets/custom_otp_text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -108,7 +109,7 @@ class _VerificationPageState extends State<VerificationPage> {
                             authController.otpReadOnly = true;
                             authController.otpAutoFocuse = false;
                             await Future.delayed(const Duration(seconds: 1));
-                            Get.to(const LogInPage());
+                            Get.to(Data());
                             authController.otpReadOnly = false;
                             authController.otpBorderColor = Colors.black;
                             authController.otpEnabledBorderColor =
@@ -136,7 +137,7 @@ class _VerificationPageState extends State<VerificationPage> {
                                       bool status =
                                           await authController.resendCode();
                                       if (status) {
-                                      startTimer();
+                                        startTimer();
                                         showSuccesSnackBar(
                                                 'Success', "check your email")
                                             .show(context);

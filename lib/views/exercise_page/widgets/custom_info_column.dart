@@ -1,4 +1,3 @@
-
 import 'package:fitnessapp/constans.dart';
 import 'package:flutter/material.dart';
 
@@ -7,11 +6,14 @@ class CustomInfo extends StatelessWidget {
     super.key,
     required this.title,
     required this.subTitle,
-    required this.icon,
+    required this.icon, this.textColor, this.avatarColor, this.iconColor,
   });
   final String title;
   final String subTitle;
   final IconData icon;
+  final Color? textColor;
+  final Color? avatarColor;
+  final Color? iconColor;
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +22,12 @@ class CustomInfo extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CircleAvatar(
-            backgroundColor: Colors.white,
+            backgroundColor:avatarColor?? Colors.white,
             radius: 16,
             child: Icon(
               icon,
               size: 18,
-              color: Colors.black,
+              color:iconColor?? Colors.black,
             )),
         const SizedBox(
           width: 5,
@@ -36,13 +38,15 @@ class CustomInfo extends StatelessWidget {
           children: [
             Text(
               title,
-              style: const TextStyle(
-                  fontFamily: Constans.fontFamily, color: Colors.white,fontWeight: FontWeight.bold),
+              style:  TextStyle(
+                  fontFamily: Constans.fontFamily,
+                  color:textColor?? Colors.white,
+                  fontWeight: FontWeight.bold),
             ),
             Text(subTitle,
-                style: const TextStyle(
+                style:  TextStyle(
                     fontFamily: Constans.fontFamily,
-                    color: Colors.white,
+                    color:textColor?? Colors.white,
                     fontSize: 13.5))
           ],
         ),
