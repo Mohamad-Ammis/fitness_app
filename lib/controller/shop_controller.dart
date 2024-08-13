@@ -8,6 +8,7 @@ import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/shop/ads_model.dart';
 import 'package:fitnessapp/models/shop/product_model.dart';
 import 'package:fitnessapp/utils/app_images.dart';
+import 'package:fitnessapp/views/shops/home_page/widgets/trend_product_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -51,7 +52,12 @@ class ShopController extends GetxController {
     );
 
     var data = jsonDecode(response.body);
-    return data['data'];
+    if (response.statusCode == 200) {
+      if (data['data'] != null) {
+        return data['data'];
+      }
+    }
+    return [];
   }
 
   Future<List<dynamic>> getCommonProduct() async {
@@ -84,7 +90,12 @@ class ShopController extends GetxController {
       },
     );
     var data = jsonDecode(response.body);
-    return data['data'];
+    if (response.statusCode == 200) {
+      if (data['data'] != null) {
+        return data['data'];
+      }
+    }
+    return [];
   }
 
   List allProducts = [];
@@ -403,18 +414,28 @@ class ShopController extends GetxController {
     debugPrint(jsonDecode(response.body).toString());
   }
 
+  bool refreshLoading = false;
+  Future getHomePageProducts() async {
+    refreshLoading = true;
+    update();
+    allProducts = await getAllProduct();
+    showedList = allProducts;
+
+    mostSalesProducts = await getMostSalesProduct();
+    commonProducts = await getCommonProduct();
+    adsList = await getAllAds();
+    refreshLoading = false;
+    update();
+  }
+
   @override
   onInit() {
     super.onInit();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      allProducts = await getAllProduct();
+      await getHomePageProducts();
       debugPrint('allProducts: ${allProducts.length}');
-      showedList = allProducts;
-      commonProducts = await getCommonProduct();
       debugPrint('commonProducts: ${commonProducts.length}');
-      mostSalesProducts = await getMostSalesProduct();
       debugPrint('mostSalesProducts: ${mostSalesProducts.length}');
-      await getAllAds();
       update();
       debugPrint('allAds: ${adsList.length}');
     });

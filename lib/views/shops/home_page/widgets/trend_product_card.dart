@@ -78,13 +78,13 @@ class _TrendProductCardState extends State<TrendProductCard> {
                                     await controller.deleteFromFavorites(
                                         widget.model.id, context);
                                     setState(() {
-                                      isFavorite = false;
+                                      widget.model.isFavorite = false;
                                     });
                                   } else {
                                     await controller.addToFavorites(
                                         widget.model.id, context);
                                     setState(() {
-                                      isFavorite = true;
+                                      widget.model.isFavorite = true;
                                     });
                                   }
                                 } catch (e) {
@@ -93,7 +93,7 @@ class _TrendProductCardState extends State<TrendProductCard> {
                               },
                               icon: Icon(
                                 Icons.favorite,
-                                color: isFavorite
+                                color: widget.model.isFavorite
                                     ? Colors.red
                                     : Colors.white.withOpacity(.9),
                               )))

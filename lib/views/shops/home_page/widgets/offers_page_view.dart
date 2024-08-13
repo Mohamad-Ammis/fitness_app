@@ -44,9 +44,7 @@ class _OffersPageViewState extends State<OffersPageView> {
     _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
       if (widget.dotPageController.hasClients) {
         final nextPage = (currentIndex + 1) %
-            (controller.adsList.isEmpty
-                ? 0
-                : controller.adsList.length);
+            (controller.adsList.isEmpty ? 0 : controller.adsList.length);
         widget.dotPageController.animateToPage(
           nextPage,
           duration: const Duration(milliseconds: 300),

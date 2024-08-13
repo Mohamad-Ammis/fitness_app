@@ -54,13 +54,17 @@ class ProductPageDetailsSection extends StatelessWidget {
             const SizedBox(
               height: 10,
             ),
-            ColorsListView(colors: model.colors),
+            model.colors.isNotEmpty
+                ? ColorsListView(colors: model.colors)
+                : SizedBox(),
             const SizedBox(
               height: 20,
             ),
-            SizeListView(
-              sizes: model.sizes,
-            ),
+            model.sizes.isNotEmpty
+                ? SizeListView(
+                    sizes: model.sizes,
+                  )
+                : SizedBox(),
             const Expanded(child: SizedBox()),
             ProductPageFooter(
               model: model,
