@@ -5,6 +5,7 @@ import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/controller/edit_userinfo_controller.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/views/workout_page/profile/edit_profile_page.dart';
+import 'package:fitnessapp/views/workout_page/profile/notification_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -248,9 +249,12 @@ class _ProfileState extends State<Profile> {
                   //   endIndent: 20,
                   //   color: Colors.black54,
                   // ),
-                  CustomListTile(
-                    text: "Notifications",
-                    icon: Icons.notifications_active_sharp,
+                  GestureDetector(
+                    onTap: () => Get.to(()=>NotificationPage()),
+                    child: CustomListTile(
+                      text: "Notifications",
+                      icon: Icons.notifications_active_sharp,
+                    ),
                   ),
                   const Divider(
                     height: 0.2,

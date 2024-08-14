@@ -261,16 +261,18 @@ class Precontroller extends GetxController {
         'Accept': 'application/json',
         'Authorization': 'Bearer ${userInfo!.getString('token')}',
       }, body: {
-        "choose": equ
+        "choose": equ ,
+        "coach_id":coachid.toString()
       });
-      print(coachid);
-      print(equ);
+      print({
+        "choose": equ ,
+        "coach_id":coachid.toString()
+      });
       final resdata = json.decode(res.body);
-      debugPrint('resdata: ${resdata}');
       if (res.statusCode == 200) {
         helperdays = resdata["data"] as List<dynamic>;
         for (int i = 0; i < helperdays.length; i++) {
-          plans.add(helperdays[i]["id"]);
+          plans.add(int.parse(helperdays[i]["day"]));
         }
         print(plans);
       } else {
@@ -280,4 +282,6 @@ class Precontroller extends GetxController {
       throw '$error';
     }
   }
+
+
 }

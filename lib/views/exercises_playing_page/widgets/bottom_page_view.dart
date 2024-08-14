@@ -9,13 +9,14 @@ class BottomPageView extends StatelessWidget {
   const BottomPageView({
     super.key,
     required this.innerPageController,
-    required this.outerPageController, required this.index, required this.lastIndex, required this.model,
+    required this.outerPageController, required this.index, required this.lastIndex, required this.model, required this.isCoachExercise,
   });
   final int index;
   final int lastIndex;
   final PageController innerPageController;
   final PageController outerPageController;
   final ExerciseModel model;
+  final bool isCoachExercise;
   @override
   Widget build(BuildContext context) {
     return Positioned(
@@ -46,6 +47,7 @@ class BottomPageView extends StatelessWidget {
             Stack(
               children: [
                 CustomExerciseTimer(
+                  isCoachExercise: isCoachExercise,
                   outerPageController: outerPageController, index: index, lastIndex: lastIndex, model: model,
                 ),
                 BottomTapBar(index: index, lastIndex: lastIndex, outerPageController: outerPageController,)

@@ -1,4 +1,5 @@
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/controller/reportcontroller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:kdgaugeview/kdgaugeview.dart';
@@ -13,8 +14,10 @@ class StepCalculate extends StatefulWidget {
 }
 
 class _StepCalculateState extends State<StepCalculate> {
+  final control = Get.put(Reportcontroller() , permanent: true);
     late Stream<StepCount> _stepCountStream;
-  String _steps = '0';
+  String _steps = "0" ;
+  double ss = 80 ;
 
   @override
   void initState() {
@@ -37,7 +40,9 @@ class _StepCalculateState extends State<StepCalculate> {
     print(event);
     setState(() {
       _steps = event.steps.toString();
-    });
+      key.currentState?.updateSpeed(double.parse(_steps));
+      });
+       
   }
 
   void onStepCountError(error) {
@@ -60,7 +65,7 @@ class _StepCalculateState extends State<StepCalculate> {
 
     if (!mounted) return;
   }
-
+   bool isloading = false ;
   final key = GlobalKey<KdGaugeViewState>();
   @override
   Widget build(BuildContext context) {
@@ -112,11 +117,11 @@ class _StepCalculateState extends State<StepCalculate> {
                       fontWeight: FontWeight.bold
                     ),
                     minSpeed: 0,
-                    maxSpeed: 100,
+                    maxSpeed: 1000,
                     speed:_steps=='Step Count not available'?0: double.parse(_steps),
                     animate: true,
                     duration:const Duration(seconds: 4),
-                    alertSpeedArray:const [0, 60],
+                    alertSpeedArray:const [0, 600],
                     alertColorArray:const [Color(0xff6AD4DD),Color(0xff7AA2E3)],
                    unitOfMeasurement: "",
                    innerCirclePadding: 25.0,
@@ -129,7 +134,7 @@ class _StepCalculateState extends State<StepCalculate> {
             ),
             info(context),
              Container(
-                  margin: const EdgeInsets.only(top: 15, right: 0, bottom: 20),
+                  margin: const EdgeInsets.only(top: 0, right: 0, bottom: 0),
                   height: 60,
                   width: MediaQuery.of(context).size.width,
                   decoration: const BoxDecoration(
@@ -142,6 +147,9 @@ class _StepCalculateState extends State<StepCalculate> {
                      const Spacer(),
                       ElevatedButton(
                           onPressed: () {
+                           /*  setState(() {
+                              key.currentState?.updateSpeed(ss+=10 );
+                            }); */
                             Get.back();
                           },
                           style: ElevatedButton.styleFrom(
@@ -150,17 +158,28 @@ class _StepCalculateState extends State<StepCalculate> {
                               borderRadius: BorderRadius.circular(30),
                             ),
                           ),
-                          child: childbutton(" Cancel ", 50, 85, 0, 16)),
+                          child: childbutton(" Cancel ", 50, 75, 0, 16)),
                         const  Spacer(),
                            ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () async{
+                        try{
+                          setState(() {
+                            isloading = true ;
+                          });
+                          await control.setsteps(_steps);
+                          Navigator.of(context).pop(_steps);
+                        }catch(error){
+                          print(error);
+                        }
+                        isloading = false ;
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor:const Color(0xff6AD4DD),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
                       ),
-                      child: childbutton("Confirm ", 50, 85, 0, 16)),
+                      child: childbutton("Confirm ", 50, 75, 0, 16)),
                     const  Spacer(),
                     ],
                   ),
@@ -228,7 +247,9 @@ class _StepCalculateState extends State<StepCalculate> {
       padding: EdgeInsets.symmetric(horizontal: hori, vertical: 8),
       height: height,
       width: width,
-      child: Text(
+      child:isloading==true? CircularProgressIndicator(
+        color: Colors.white,
+      ):Text(
         s,
         style: TextStyle(
             fontFamily: Constans.fontFamily,

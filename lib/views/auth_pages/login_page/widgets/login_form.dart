@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/auth_controller.dart';
+import 'package:fitnessapp/home.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/views/auth_pages/forgot_password/forgot_password.dart';
 import 'package:fitnessapp/views/auth_pages/widgets/auth_custom_button.dart';
@@ -115,8 +116,14 @@ class _LoginFormState extends State<LoginForm> {
                           userInfo?.setString('token', token);
                           var id = data['user']['id'];
                           userInfo?.setString('id', id.toString());
+                          int isMan = data['user']['gender'] == 'male' ? 1 : 2;
+                          userInfo!.setInt("man", isMan);
+                          userInfo!.setString(
+                              "target", data['user']["target"].toString());
+                          userInfo!.setString(
+                              "illness", data['user']['diseases'].toString());
                           debugPrint('token = ${userInfo?.getString('token')}');
-                          Get.offAll(Data());
+                          Get.offAll(Home());
                         } else {
                           // debugPrint(response.body);
                         }

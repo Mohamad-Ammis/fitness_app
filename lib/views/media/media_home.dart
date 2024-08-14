@@ -80,7 +80,7 @@ class _MediahState extends State<MediaHome> {
                 if (ZoomDrawer.of(context) != null) {
                   ZoomDrawer.of(context)!.toggle();
                 }
-              },
+              } ,
               child: Container(
                   margin: const EdgeInsets.only(left: 5),
                   height: MediaQuery.of(context).size.height * 0.11,

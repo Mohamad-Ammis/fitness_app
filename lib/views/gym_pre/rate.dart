@@ -92,6 +92,8 @@ class _RatedialgState extends State<Ratedialg> {
                       isloading = true ;
                     });
                       await ratecontrol.setrate(rate);
+                      await controller.getallcoaches();
+                      await controller.getmycoaches();
                       controller.rating(rate, control.coachid);
                       Navigator.of(context).pop();
                     } catch (error) {

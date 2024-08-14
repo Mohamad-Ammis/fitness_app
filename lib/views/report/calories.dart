@@ -1,9 +1,15 @@
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/views/report/circleprogress.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class Calories extends StatefulWidget {
-  const Calories({super.key});
+  final int calories ;
+  final int totalcalories ;
+  const Calories({super.key,
+  required this.calories,
+  required this.totalcalories
+  });
 
   @override
   State<Calories> createState() => _CaloriesState();
@@ -59,7 +65,7 @@ class _CaloriesState extends State<Calories> {
                   color: Constans.test,
                   red: 58,
                   width: 10,
-                  wid: const SizedBox(
+                  wid:  SizedBox(
                     height: 70,
                     width: 70,
                     child: Column(
@@ -67,7 +73,7 @@ class _CaloriesState extends State<Calories> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "280",
+                          widget.calories.toString(),
                           style: TextStyle(
                             color: Color.fromARGB(255, 235, 67, 98),
                             fontWeight: FontWeight.bold,
@@ -84,7 +90,7 @@ class _CaloriesState extends State<Calories> {
                           ),
                         ),
                         Text(
-                          "650",
+                          widget.totalcalories.toString(),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Color.fromARGB(255, 235, 67, 98),
@@ -95,7 +101,7 @@ class _CaloriesState extends State<Calories> {
                       ],
                     ),
                   ),
-                  per: 280 / 650,
+                  per: widget.calories / widget.totalcalories,
                   colors:const [
                     Color(0xffF26680),
                     Color(0xffE03741), 

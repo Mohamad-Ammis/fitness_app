@@ -38,7 +38,7 @@ class _ProductPageState extends State<ProductPage> {
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          ProductPageImageSection(image: widget.model.image),
+          ProductPageImageSection(model: widget.model,isFavorite: widget.model.isFavorite,),
           ProductPageDetailsSection(model: widget.model),
         ],
       ),

@@ -89,7 +89,7 @@ class Illness extends StatelessWidget {
                         const SizedBox(height: 5,),
                        const Text("shortness of breath",style: TextStyle(
                           fontFamily: Constans.fontFamily,
-                          fontSize: 15,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
                           wordSpacing: 2,
                           color: Colors.black
@@ -103,28 +103,28 @@ class Illness extends StatelessWidget {
 
   Container allitem(BoxConstraints cont, BuildContext context, Datacontroller contr) {
     return Container(
-     // color: Colors.pink,
-      alignment: Alignment.center,
-          height: 320,
+    //  color: Colors.pink,
+      alignment: Alignment.topCenter,
+          height: 355,
           width: cont.maxWidth,
-          margin: const EdgeInsets.only(left: 20,right: 20),
+          margin: const EdgeInsets.only(left: 20,right: 20 , top: 0 ),
           child: GridView(
             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: MediaQuery.of(context).size.width*0.7,
-              childAspectRatio: 1.1,
-              mainAxisSpacing: 3,
+              maxCrossAxisExtent: MediaQuery.of(context).size.width*0.6,
+              childAspectRatio: 1.05,
+              mainAxisSpacing: 1,
               crossAxisSpacing: 20,
               ),
               children: 
               ill.map((item) => Container(
-                 margin: EdgeInsets.only(bottom: 5),
+                 margin: EdgeInsets.only(bottom: 10),
                 child: InkWell(
                   overlayColor: MaterialStatePropertyAll(Colors.white.withOpacity(0)),
                   onTap: (){
                       contr.setselectill(int.parse(item['id']));
                       },
                   child: Container(
-                    margin: const EdgeInsets.only(left: 5,right: 5,bottom: 10),
+                    margin: const EdgeInsets.only(left: 5,right: 5,bottom: 0),
                     height:MediaQuery.of(context).size.height*0.16,
                     width:MediaQuery.of(context).size.width*0.4,
                     decoration: BoxDecoration(
@@ -153,7 +153,7 @@ class Illness extends StatelessWidget {
                         const SizedBox(height: 5,),
                         Text(item["name"],style: const TextStyle(
                           fontFamily: Constans.fontFamily,
-                          fontSize: 15,
+                          fontSize: 14,
                           fontWeight: FontWeight.bold,
                           wordSpacing: 2,
                           color: Colors.black

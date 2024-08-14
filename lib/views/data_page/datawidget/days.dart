@@ -13,19 +13,21 @@ class Days extends StatelessWidget {
         builder: (ctx, cont) => SizedBox(
               height: cont.maxHeight,
               width: cont.maxWidth,
-              child: Column(children: [
-                Container(
-                    width: cont.maxWidth,
-                    height: cont.maxHeight*0.2,
-                    alignment: Alignment.center,
-                    margin: const EdgeInsets.only(top: 10),
-                    child: Question(
-                      que: "Set your weekly goal ",
-                      subt: "Achieving goals comes through discipline",
-                    )),
-                select_days(cont),
-                select_clock(cont, context)
-              ]), 
+              child: SingleChildScrollView(
+                child: Column(children: [
+                  Container(
+                      width: cont.maxWidth,
+                      height: cont.maxHeight*0.2,
+                      alignment: Alignment.center,
+                      margin: const EdgeInsets.only(top: 10),
+                      child: Question(
+                        que: "Set your weekly goal ",
+                        subt: "Achieving goals comes through discipline",
+                      )),
+                  select_days(cont),
+                  select_clock(cont, context)
+                ]),
+              ), 
             ));
   }
 
@@ -53,7 +55,8 @@ class Days extends StatelessWidget {
                         overlayColor: MaterialStatePropertyAll(
                           Colors.white.withOpacity(0)),
                       onTap: () {
-                        showTimePicker(context: context, initialTime: TimeOfDay.now()).then((value) {
+                        showTimePicker(context: context,
+                         initialTime: TimeOfDay.now()).then((value) {
                           contr.setclock(value!);
                         });
                       },
