@@ -8,7 +8,6 @@ import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/shop/ads_model.dart';
 import 'package:fitnessapp/models/shop/product_model.dart';
 import 'package:fitnessapp/utils/app_images.dart';
-import 'package:fitnessapp/views/shops/home_page/widgets/trend_product_list.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
