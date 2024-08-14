@@ -13,7 +13,7 @@ class CustomPasswordTextField extends StatefulWidget {
       required this.fillColor,
       required this.focusedBorderColor,
       required this.onSaved,
-      required this.validatpass,
+       this.validatpass,
       required this.enabledBorderColor,
       this.controllerText,
       this.suffixIconColor});

@@ -8,8 +8,9 @@ class CustomTextFieldOutline extends StatelessWidget {
     required this.labelText,
     required this.onSaved,
     required this.validation,
+    required this.textCon,
   });
-
+  TextEditingController textCon;
   String? labelText;
   Function(dynamic)? onSaved;
   String? Function(String?) validation;
@@ -20,6 +21,7 @@ class CustomTextFieldOutline extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
       child: TextFormField(
+        controller: textCon,
         onSaved: onSaved,
         validator: validation,
         keyboardType: TextInputType.number,
@@ -51,6 +53,7 @@ class CustomTextFieldUnderline extends StatelessWidget {
     required this.validation,
     required this.icon,
     required this.iconColor,
+    required this.con,
   });
 
   String? labelText;
@@ -59,11 +62,13 @@ class CustomTextFieldUnderline extends StatelessWidget {
   IconData? icon;
   Color? iconColor;
   GlobalKey<FormState>? formKey = GlobalKey();
+  TextEditingController con;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 5),
       child: TextFormField(
+        controller: con,
         onSaved: onSaved,
         validator: validation,
         keyboardType: TextInputType.name,

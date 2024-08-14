@@ -7,9 +7,7 @@ import 'package:fitnessapp/views/food/meal_page.dart';
 import 'package:fitnessapp/views/food/widgets/meal_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:get/get_state_manager/src/simple/get_state.dart';
+import 'package:get/get.dart';
 import 'package:shimmer/shimmer.dart';
 
 // ignore: must_be_immutable
@@ -23,6 +21,7 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryPageState extends State<CategoryPage> {
+  ControllerCategory mealCont = Get.put(ControllerCategory(), permanent: true);
   Future<List<Meal>?>? allMealsFuture;
   Future<List<Meal>?>? sugarMealsFuture;
   Future<List<Meal>?>? vegMealsFuture;
@@ -106,8 +105,7 @@ class _CategoryPageState extends State<CategoryPage> {
                         ),
                       );
                     } else if (snapshot.hasData) {
-                      List<Meal> categorylist
-                       = snapshot.data!;
+                      List<Meal> categorylist = snapshot.data!;
                       return categorylist.isNotEmpty
                           ? Padding(
                               padding: const EdgeInsets.only(left: 7, right: 5),
@@ -131,6 +129,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                     childCount: categorylist.length,
                                     (context, index) => MealCard(
                                         onTap: () {
+                                          mealCont.getMealId(
+                                              categorylist[index].id);
                                           Get.to(
                                             () => MealPage(
                                               meal: categorylist[index],
@@ -295,6 +295,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                     childCount: typeList.length,
                                     (context, index) => MealCard(
                                         onTap: () {
+                                          mealCont
+                                              .getMealId(typeList[index].id);
                                           Get.to(
                                             () => MealPage(
                                               meal: typeList[index],
@@ -455,6 +457,8 @@ class _CategoryPageState extends State<CategoryPage> {
                                     childCount: typeList.length,
                                     (context, index) => MealCard(
                                         onTap: () {
+                                          mealCont
+                                              .getMealId(typeList[index].id);
                                           Get.to(
                                             () => MealPage(
                                               meal: typeList[index],

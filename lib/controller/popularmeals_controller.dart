@@ -11,7 +11,8 @@ class ControllerPopular extends GetxController {
   Future<List<Meal>?> getPopularMeal() async {
     try {
       Map<dynamic, dynamic> jsonData = await Api().get(
-          url: "${Constans.baseUrl}admin/meal/popular", token: userInfo?.getString("token"));
+          url: "${Constans.baseUrl}admin/meal/popular",
+          token: userInfo?.getString("token"));
 
       for (var i = 0; i < jsonData["data"].length; i++) {
         popularList.add(Meal.fromJson(jsonData["data"], i));

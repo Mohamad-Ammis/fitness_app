@@ -41,60 +41,60 @@ class _PostWidgetState extends State<PostWidget> {
               children: [
                 Row(
                   children: [
-                    // GestureDetector(
-                    //   onTap: () {
-                    //     controller1.navigateToProfile(widget.post.userId,
-                    //         widget.post.username, widget.post.userimage, false);
-                    //   },
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.only(top: 5, left: 5),
-                    //     child: Container(
-                    //       height: 60,
-                    //       width: 60,
-                    //       clipBehavior: Clip.antiAlias,
-                    //       decoration: const BoxDecoration(
-                    //           color: Colors.white, shape: BoxShape.circle),
-                    //       child: widget.post.userimage != null
-                    //           ? CachedNetworkImage(
-                    //               width: MediaQuery.of(context).size.width,
-                    //               imageUrl:
-                    //                   "http://${Constans.host}:8000/uploads/${widget.post.userimage}",
-                    //               fit: BoxFit.cover)
-                    //           : Image.asset(
-                    //               "assets/images/pers.png",
-                    //               fit: BoxFit.cover,
-                    //             ),
-                    //     ),
-                    //   ),
-                    // ),
-                    // SizedBox(
-                    //   width: MediaQuery.of(context).size.width * 0.7,
-                    //   child: Padding(
-                    //     padding: const EdgeInsets.only(left: 7, top: 10),
-                    //     child: Column(
-                    //       crossAxisAlignment: CrossAxisAlignment.start,
-                    //       children: [
-                    //         Text(
-                    //           widget.post.username!,
-                    //           style: const TextStyle(
-                    //             fontSize: 22,
-                    //             fontFamily: Constans.fontFamily,
-                    //             fontWeight: FontWeight.bold,
-                    //             color: Colors.black,
-                    //           ),
-                    //         ),
-                    //         Text(
-                    //           "${getTimeAgo()} ago",
-                    //           style: const TextStyle(
-                    //             fontSize: 13,
-                    //             fontFamily: Constans.fontFamily,
-                    //             color: Colors.grey,
-                    //           ),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ),
-                    // ),
+                    GestureDetector(
+                      onTap: () {
+                        controller1.navigateToProfile(widget.post.userId,
+                            widget.post.username, widget.post.userimage, false);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 5, left: 5),
+                        child: Container(
+                          height: 60,
+                          width: 60,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: const BoxDecoration(
+                              color: Colors.white, shape: BoxShape.circle),
+                          child: widget.post.userimage != null
+                              ? CachedNetworkImage(
+                                  width: MediaQuery.of(context).size.width,
+                                  imageUrl:
+                                      "${Constans.mainbaseUrlimage}uploads/${widget.post.userimage}",
+                                  fit: BoxFit.cover)
+                              : Image.asset(
+                                  "assets/images/pers.png",
+                                  fit: BoxFit.cover,
+                                ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.7,
+                      child: Padding(
+                        padding: const EdgeInsets.only(left: 7, top: 10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              widget.post.username!,
+                              style: const TextStyle(
+                                fontSize: 22,
+                                fontFamily: Constans.fontFamily,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Text(
+                              "${getTimeAgo()} ago",
+                              style: const TextStyle(
+                                fontSize: 13,
+                                fontFamily: Constans.fontFamily,
+                                color: Colors.grey,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                     widget.post.username == userInfo!.getString("name")
                         ? GestureDetector(
                             onTap: () {
@@ -290,7 +290,7 @@ class _PostWidgetState extends State<PostWidget> {
                                   child: CachedNetworkImage(
                                     width: MediaQuery.of(context).size.width,
                                     imageUrl:
-                                        "http://${Constans.host}:8000/uploads/${widget.post.imagesPost![ind].path}",
+                                        "${Constans.mainbaseUrlimage}uploads/${widget.post.imagesPost![ind].path}",
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -329,10 +329,9 @@ class _PostWidgetState extends State<PostWidget> {
                                           widget.post.imagesPost!.isNotEmpty
                                       ? GestureDetector(
                                           onTap: () {
-                                            print(
-                                                "like: ${widget.post.imagesPost![ind].path}");
+                                          
                                             saveAsset(
-                                                "http://${Constans.host}:8000/uploads/${widget.post.imagesPost![ind].path}",
+                                                "${Constans.mainbaseUrlimage}uploads/${widget.post.imagesPost![ind].path}",
                                                 context);
                                           },
                                           child: const Padding(
@@ -391,7 +390,6 @@ class _PostWidgetState extends State<PostWidget> {
                                     : "assets/images/care.png",
                                 color: widget.post.islike == true
                                     ? const Color(0xff83a4d4)
-                                    // ? const Color.fromARGB(255, 128, 173, 242)
                                     : Colors.black,
                               )),
                         ),

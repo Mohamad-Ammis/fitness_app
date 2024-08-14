@@ -113,7 +113,7 @@ class _LoginFormState extends State<LoginForm> {
                           var data = jsonDecode(response.body);
                           var token = data['token'];
                           userInfo?.setString('token', token);
-                          var id = data['user'];
+                          var id = data['user']['id'];
                           userInfo?.setString('id', id.toString());
                           debugPrint('token = ${userInfo?.getString('token')}');
                           Get.offAll(Data());

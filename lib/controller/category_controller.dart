@@ -50,4 +50,11 @@ class ControllerCategory extends GetxController {
       return null;
     }
   }
+
+  Future<void> getMealId(int? mealId) async {
+    await Api().get(
+        url: "${Constans.baseUrl}meal/byId/$mealId",
+        token: userInfo?.getString("token"));
+        
+  }
 }

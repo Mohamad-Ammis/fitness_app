@@ -3,7 +3,7 @@ import 'package:fitnessapp/models/menuitems.dart';
 import 'package:fitnessapp/views/chatgpt/chat.dart';
 import 'package:fitnessapp/views/food/food.dart';
 import 'package:fitnessapp/views/gym_pre/pre.dart';
-import 'package:fitnessapp/views/media/media.dart';
+import 'package:fitnessapp/views/media/media_home.dart';
 import 'package:fitnessapp/views/shops/home_page/shop.dart';
 import 'package:fitnessapp/views/workout_page/workout_page.dart';
 import 'package:fitnessapp/widgets/menu.dart';
@@ -52,11 +52,11 @@ class _HomeState extends State<Home> {
       case Menuitems.shop:
         return Shop();
       case Menuitems.food:
-        return const Food();
+        return Food();
       case Menuitems.media:
-        return  const Media();
+        return MediaHome();
       // case Menuitems.chat:
-      //   return  const Chat();  
+      //   return  const Chat();
       default:
         return Pre();
     }

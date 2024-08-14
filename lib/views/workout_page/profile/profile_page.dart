@@ -1,14 +1,50 @@
+import 'dart:convert';
+
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/controller/datacont.dart';
+import 'package:fitnessapp/controller/edit_userinfo_controller.dart';
+import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/views/workout_page/profile/edit_profile_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 
 // ignore: must_be_immutable
-class Profile extends StatelessWidget {
+class Profile extends StatefulWidget {
   Profile({super.key});
+
+  @override
+  State<Profile> createState() => _ProfileState();
+}
+
+class _ProfileState extends State<Profile> {
+  Datacontroller conProfile = Get.put(Datacontroller(), permanent: true);
+  Controller conNumber = Get.put(Controller(), permanent: true);
+
   Color bPrimer = const Color(0xfff3f4f6);
+
   Color kPrimer = const Color.fromARGB(255, 38, 164, 170);
+
+  @override
+  void initState() {
+    super.initState();
+
+    loadDataNumber();
+  }
+
+  void loadDataNumber() async {
+    conNumber.isLoadingTure();
+    try {
+      await conNumber.getReportInfo();
+      conNumber.update();
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        'No Internet. Please try again later.',
+      );
+    }
+    conNumber.isLoadingFalse();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +59,7 @@ class Profile extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.only(bottom: 100),
                   color: kPrimer.withOpacity(.8),
-                  height: 215,
+                  height: MediaQuery.of(context).size.height * 0.242,
                   alignment: Alignment.center,
                 ),
               ),
@@ -32,7 +68,7 @@ class Profile extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.only(bottom: 20),
                   color: kPrimer.withOpacity(.3),
-                  height: 180,
+                  height: MediaQuery.of(context).size.height * 0.23,
                   alignment: Alignment.center,
                 ),
               ),
@@ -48,133 +84,151 @@ class Profile extends StatelessWidget {
                   ),
                 ),
               ),
-              const Positioned(
-                top: 145,
-                left: 128,
-                child: CircleAvatar(
-                  radius: 75,
-                  backgroundColor: Colors.white,
-                  child: CircleAvatar(
-                      radius: 75,
-                      backgroundImage: AssetImage("assets/images/mee.jpg")),
-                ),
-              ),
-              const Positioned(
-                top: 305,
-                left: 120,
-                child: Text(
-                  "Sedra Nadr",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 30,
-                      fontFamily: Constans.fontFamily,
-                      color: Colors.black,
-                      fontWeight: FontWeight.w500),
-                ),
+              GetBuilder<Controller>(
+                builder: (controller) {
+                  return Positioned(
+                    top: MediaQuery.of(context).size.height * 0.14,
+                    left: MediaQuery.of(context).size.width * 0.29,
+                    child: Container(
+                        width: MediaQuery.of(context).size.width * 0.44,
+                        height: MediaQuery.of(context).size.height * 0.26,
+                        clipBehavior: Clip.antiAlias,
+                        decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.white,
+                        ),
+                        child: conProfile.base64String == null
+                            ? Image.asset(
+                                "assets/images/pers.png",
+                                fit: BoxFit.cover,
+                              )
+                            : Image.memory(
+                                base64Decode(conProfile.base64String!),
+                                fit: BoxFit.cover,
+                              )),
+                  );
+                },
               ),
             ],
           ),
           const SizedBox(
-            height: 115,
+            height: 120,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(
+          GetBuilder<Controller>(
+            builder: (controller) {
+              return Text(
+                userInfo!.getString("name")!,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: 30,
+                    fontFamily: Constans.fontFamily,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500),
+              );
+            },
+          ),
+          GetBuilder<Controller>(
+            builder: (controller) {
+              return Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  CircleAvatar(
-                      radius: 30,
-                      backgroundColor: kPrimer,
-                      child: const Icon(FontAwesomeIcons.fire,
-                          size: 35, color: Colors.white70)),
-                  const SizedBox(
-                    height: 8,
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      CircleAvatar(
+                          radius: 30,
+                          backgroundColor: kPrimer,
+                          child: const Icon(FontAwesomeIcons.fire,
+                              size: 35, color: Colors.white70)),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        controller.calories.toString(),
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: Constans.fontFamily),
+                      ),
+                      const Text(
+                        "Calories",
+                        style: TextStyle(
+                            color: Color(0xFF1F1E28),
+                            fontSize: 18,
+                            fontFamily: Constans.fontFamily),
+                      ),
+                    ],
                   ),
-                  const Text(
-                    "90",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: Constans.fontFamily),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 60),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        CircleAvatar(
+                            radius: 30,
+                            backgroundColor: kPrimer,
+                            child: const Icon(Icons.sports_gymnastics,
+                                size: 35, color: Colors.white70)),
+                        const SizedBox(
+                          height: 8,
+                        ),
+                        Text(
+                          controller.exercices.toString(),
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: Constans.fontFamily),
+                        ),
+                        const Text(
+                          "Exercises",
+                          style: TextStyle(
+                              color: Color(0xFF1F1E28),
+                              fontSize: 18,
+                              fontFamily: Constans.fontFamily),
+                        ),
+                      ],
+                    ),
                   ),
-                  const Text(
-                    "Calories",
-                    style: TextStyle(
-                        color: Color(0xFF1F1E28),
-                        fontSize: 18,
-                        fontFamily: Constans.fontFamily),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      CircleAvatar(
+                          radius: 30,
+                          backgroundColor: kPrimer,
+                          child: const Icon(Icons.timelapse_sharp,
+                              size: 35, color: Colors.white70)),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      Text(
+                        controller.minutes.toString(),
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: Constans.fontFamily),
+                      ),
+                      const Text(
+                        "Minutes",
+                        style: TextStyle(
+                            color: Color(0xFF1F1E28),
+                            fontSize: 18,
+                            fontFamily: Constans.fontFamily),
+                      ),
+                    ],
                   ),
                 ],
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 60),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    CircleAvatar(
-                        radius: 30,
-                        backgroundColor: kPrimer,
-                        child: const Icon(Icons.sports_gymnastics,
-                            size: 35, color: Colors.white70)),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    const Text(
-                      "10",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: Constans.fontFamily),
-                    ),
-                    const Text(
-                      "Exercises",
-                      style: TextStyle(
-                          color: Color(0xFF1F1E28),
-                          fontSize: 18,
-                          fontFamily: Constans.fontFamily),
-                    ),
-                  ],
-                ),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CircleAvatar(
-                      radius: 30,
-                      backgroundColor: kPrimer,
-                      child: const Icon(Icons.timelapse_sharp,
-                          size: 35, color: Colors.white70)),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  const Text(
-                    "5",
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                        fontFamily: Constans.fontFamily),
-                  ),
-                  const Text(
-                    "Minutes",
-                    style: TextStyle(
-                        color: Color(0xFF1F1E28),
-                        fontSize: 18,
-                        fontFamily: Constans.fontFamily),
-                  ),
-                ],
-              ),
-            ],
+              );
+            },
           ),
           const SizedBox(
             height: 40,
           ),
           Container(
               decoration: const BoxDecoration(
-                color: Colors.white,
+                color: Constans.screen,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(25),
                     topRight: Radius.circular(25)),
@@ -183,17 +237,17 @@ class Profile extends StatelessWidget {
               width: 380,
               child: Column(
                 children: [
-                  CustomListTile(
-                    text: "Setting",
-                    icon: Icons.settings,
-                  ),
-                  const Divider(
-                    height: 0.2,
-                    thickness: 0.1,
-                    indent: 20,
-                    endIndent: 20,
-                    color: Colors.black54,
-                  ),
+                  // CustomListTile(
+                  //   text: "Setting",
+                  //   icon: Icons.settings,
+                  // ),
+                  // const Divider(
+                  //   height: 0.2,
+                  //   thickness: 0.1,
+                  //   indent: 20,
+                  //   endIndent: 20,
+                  //   color: Colors.black54,
+                  // ),
                   CustomListTile(
                     text: "Notifications",
                     icon: Icons.notifications_active_sharp,
@@ -212,17 +266,17 @@ class Profile extends StatelessWidget {
                       Get.to(() => const EditProfile());
                     },
                   ),
-                  const Divider(
-                    height: 0.2,
-                    thickness: 0.1,
-                    indent: 20,
-                    endIndent: 20,
-                    color: Colors.black54,
-                  ),
-                  CustomListTile(
-                    text: "Logout",
-                    icon: Icons.logout_sharp,
-                  ),
+                  // const Divider(
+                  //   height: 0.2,
+                  //   thickness: 0.1,
+                  //   indent: 20,
+                  //   endIndent: 20,
+                  //   color: Colors.black54,
+                  // ),
+                  // CustomListTile(
+                  //   text: "Logout",
+                  //   icon: Icons.logout_sharp,
+                  // ),
                   // Padding(
                   //   padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
                   //   child: Divider(

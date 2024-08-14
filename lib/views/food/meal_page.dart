@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quickalert/quickalert.dart';
 
-
 // ignore: must_be_immutable
 class MealPage extends StatefulWidget {
   Meal meal = Meal();
@@ -46,7 +45,7 @@ class _MealPageState extends State<MealPage> {
                           opacity: 0.6,
                           child: CachedNetworkImage(
                               imageUrl:
-                                  "http://${Constans.host}:8000/uploads/${widget.meal.image}",
+                                  "${Constans.mainbaseUrlimage}uploads/${widget.meal.image}",
                               fit: BoxFit.cover)
                           //  Image.asset("assets/images/chicken.jpg",
                           ))),
@@ -334,7 +333,7 @@ class _MealPageState extends State<MealPage> {
                               ),
                               child: CachedNetworkImage(
                                 imageUrl:
-                                    "http://${Constans.host}:8000/uploads/${widget.meal.ingredient![ind].image}",
+                                    "${Constans.mainbaseUrlimage}uploads/${widget.meal.ingredient![ind].image}",
                                 fit: BoxFit.cover,
                                 errorWidget: (context, url, error) =>
                                     const Icon(Icons.error),

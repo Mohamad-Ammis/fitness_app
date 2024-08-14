@@ -13,14 +13,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 
-class Media extends StatefulWidget {
-  const Media({super.key});
+class MediaHome extends StatefulWidget {
+  const MediaHome({super.key});
 
   @override
-  State<Media> createState() => _MediaState();
+  State<MediaHome> createState() => _MediahState();
 }
 
-class _MediaState extends State<Media> {
+class _MediahState extends State<MediaHome> {
   ControllerAddPost con = Get.put(ControllerAddPost(), permanent: true);
   Datacontroller conImage = Get.put(Datacontroller(), permanent: true);
   String? userIdShared = userInfo?.getString('id');
@@ -39,7 +39,7 @@ class _MediaState extends State<Media> {
     return Scaffold(
       backgroundColor: Constans.screen,
       appBar: AppBar(
-        toolbarHeight: 65,
+        // toolbarHeight: 65,
         backgroundColor: Colors.white,
         elevation: 0,
         actions: [
@@ -61,12 +61,7 @@ class _MediaState extends State<Media> {
                   clipBehavior: Clip.antiAlias,
                   decoration: const BoxDecoration(
                       color: Colors.white, shape: BoxShape.circle),
-                  // child: widget.post.userimage != null
-                  //     ? CachedNetworkImage(
-                  //         width: MediaQuery.of(context).size.width,
-                  //         imageUrl:
-                  //             "http://${Constans.host}:8000/uploads/${widget.post.userimage}",
-                  //         fit: BoxFit.cover)
+            
                   child: conImage.base64String == null
                       ? Image.asset(
                           "assets/images/pers.png",
@@ -82,7 +77,12 @@ class _MediaState extends State<Media> {
         leading: Row(
           children: [
             InkWell(
-              onTap: () => ZoomDrawer.of(context)!.toggle(),
+              onTap: () {
+                if (ZoomDrawer.of(context) != null) {
+                  ZoomDrawer.of(context)!.toggle() ;
+                  
+                } 
+              },
               child: Container(
                   margin: const EdgeInsets.only(left: 5),
                   height: MediaQuery.of(context).size.height * 0.11,
