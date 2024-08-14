@@ -91,7 +91,9 @@ class _SportpartState extends State<Sportpart> {
                padding: const EdgeInsets.only(top: 10),
                child: ElevatedButton(onPressed: (){
                 control.setexerspesday(controller.exer);
-                Get.to(PlayingExercises());
+                Get.to(PlayingExercises(
+                  isCoachExercise: true,
+                ));
                },
                style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 50, 144, 173),

@@ -59,6 +59,14 @@ class _PreState extends State<Pre> {
     super.initState();
   }
 
+
+@override
+void didChangeDependencies() {
+     print("ggggggggggg");
+    super.didChangeDependencies();
+  }
+
+
 @override
   void dispose() {
      controller.disposeexpanded();
@@ -153,7 +161,7 @@ class _PreState extends State<Pre> {
                                   ),
                                 ),
                                 Container(
-                                    height: 100,
+                                    height: 105,
                                     alignment: Alignment.topLeft,
                                     width: MediaQuery.of(context).size.width *
                                         0.46,
@@ -184,7 +192,7 @@ class _PreState extends State<Pre> {
                                               width: double.infinity,
                                               margin: const EdgeInsets.only(
                                                   left: 15),
-                                              height: 65,
+                                              height: 70,
                                               child: Stack(children: [
                                                 AnimatedOpacity(
                                                     duration: const Duration(
@@ -198,7 +206,7 @@ class _PreState extends State<Pre> {
                                                                         context)
                                                                     .size
                                                                     .width *
-                                                                0.028,
+                                                                0.024,
                                                             color:
                                                                 /* Colors.black54 */control.color,
                                                             fontFamily:
@@ -215,7 +223,7 @@ class _PreState extends State<Pre> {
                                                                         context)
                                                                     .size
                                                                     .width *
-                                                                0.028,
+                                                                0.024,
                                                             color:
                                                                 Colors.black54,
                                                             fontFamily:

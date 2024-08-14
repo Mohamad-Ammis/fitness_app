@@ -3,6 +3,7 @@ import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/exercise_page_controller.dart';
 import 'package:fitnessapp/controller/exercontrol.dart';
 import 'package:fitnessapp/controller/playing_controller.dart';
+import 'package:fitnessapp/controller/spec_day_controller.dart';
 import 'package:fitnessapp/controller/workout_page_controller.dart';
 import 'package:fitnessapp/models/exersice.dart';
 import 'package:fitnessapp/views/exercise_page/widgets/exercise_page_body.dart';
@@ -17,15 +18,18 @@ class InfoSection extends StatelessWidget {
     required this.outerPageController,
     required this.index,
     required this.lastIndex,
-    required this.model,
+    required this.model, required this.isCoachExercise,
   }) : _controller = controller;
   final int index;
   final int lastIndex;
   final ExerciseModel model;
   final CustomTimerController _controller;
   final PageController outerPageController;
+  final bool isCoachExercise;
   final workoutPageController = Get.put(WorkoutPageController());
   final exerController = Get.put(Exercontroller());
+  final specController = Get.put(SpecDay(),permanent: true);
+
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PlayingController>(
@@ -124,7 +128,13 @@ class InfoSection extends StatelessWidget {
                             Get.back();
                             Get.back();
                             await workoutPageController.updateReport();
-                          } else {
+                            if(isCoachExercise){
+                              print("areej is here");
+                             await specController.unlockedday();
+                             print("deal"); 
+                          } 
+                          }
+                          else {
                             _controller.start();
                           }
                         },

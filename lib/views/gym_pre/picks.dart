@@ -117,7 +117,9 @@ class _PicksState extends State<Picks> {
                padding: const EdgeInsets.only(top: 10),
                child: ElevatedButton(onPressed: (){
                  control.setexerspesday(controller.exer);
-                Get.to(PlayingExercises());
+                Get.to(PlayingExercises(
+                  isCoachExercise: false,
+                ));
                },
                style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 38, 164, 170),

@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/reportcontroller.dart';
 import 'package:fitnessapp/shimmer/shimmergym.dart';
@@ -52,9 +51,9 @@ class _WeeklyState extends State<Weekly> {
          shrinkWrap: true,
          children: [
           info(context),
-          weight(context),
+         isloading==false?weight(context):loadchart(),
           const SizedBox(height: 10,),
-          calories(context), 
+         isloading==false? calories(context):loadchart(), 
           const SizedBox(height: 10,),
           const Bmi(),   
           const SizedBox(height: 20,),
@@ -103,14 +102,14 @@ class _WeeklyState extends State<Weekly> {
                   LineChartSample2(leftTitleWidgets: leftTitleWidgets,
                   minY: controller.mincalories-((controller.maxcalories+controller.mincalories)/8),
                   maxY: controller.maxcalories+((controller.maxcalories+controller.mincalories)/8),
-                  flspot:  const [
-                      FlSpot(1, 300),
-                      FlSpot(2, 200),
-                      FlSpot(3, 500),
-                      FlSpot(4, 310),
-                      FlSpot(5, 400),
-                      FlSpot(6, 300),
-                      FlSpot(7, 400),],
+                  flspot:   [
+                      FlSpot(1,controller.caloriesdiagram[0]),
+                      FlSpot(2, controller.caloriesdiagram[1]),
+                      FlSpot(3,controller.caloriesdiagram[2]),
+                      FlSpot(4,controller.caloriesdiagram[3]),
+                      FlSpot(5,controller.caloriesdiagram[4]),
+                      FlSpot(6,controller.caloriesdiagram[5]),
+                      FlSpot(7,controller.caloriesdiagram[6]),],
                       h: (controller.maxcalories+controller.mincalories)/4,
                       fldot:  FlDotData(show: false,),
                        grad:const [
@@ -164,7 +163,7 @@ class _WeeklyState extends State<Weekly> {
                         margin:const EdgeInsets.only(right: 10 , top: 5),
                         height:50 ,
                         width: 140,
-                        child:const Column(
+                        child: Column(
                           children: [
                             Row(children: [
                               Text("Heaviest:  ",style: TextStyle(
@@ -173,7 +172,7 @@ class _WeeklyState extends State<Weekly> {
                                 color: Colors.black87
                               ),),
                               SizedBox(width: 5,),
-                              Text("45.7 Kg",style: TextStyle(
+                              Text("${controller.wieghtmax} Kg",style: TextStyle(
                                 fontFamily: Constans.fontFamily,
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
@@ -187,7 +186,7 @@ class _WeeklyState extends State<Weekly> {
                                 color: Colors.black87
                               ),),
                               SizedBox(width: 5,),
-                              Text("42.7 Kg",style: TextStyle(
+                              Text("${controller.wieghtmin} Kg",style: TextStyle(
                                 fontFamily: Constans.fontFamily,
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
@@ -204,7 +203,7 @@ class _WeeklyState extends State<Weekly> {
                   minY: controller.currentweight*10-15,
                   maxY: controller.currentweight*10+15,
                   flspot:  [
-                    FlSpot(1, controller.currentweight*10-5),
+                    FlSpot(1,controller.wieghtdiagram[0]*10 ),
                     FlSpot(7, controller.currentweight*10),
                   ],
                   h: 3,
@@ -253,7 +252,7 @@ class _WeeklyState extends State<Weekly> {
     );
     String text;
     if(value.toInt()==controller.currentweight*10-10){
-      text = (controller.currentweight-0.1).toString();
+      text = (controller.currentweight-1).toString();
       return Text(text, style: style, textAlign: TextAlign.center);
     }else if (value.toInt()==controller.currentweight*10-5){
        text = (controller.currentweight-0.5).toString();
@@ -265,7 +264,7 @@ class _WeeklyState extends State<Weekly> {
        text = (controller.currentweight+0.5).toString();
        return Text(text, style: style, textAlign: TextAlign.center);
     }else if(value.toInt()==controller.currentweight*10+10){
-       text = (controller.currentweight+0.1).toString();
+       text = (controller.currentweight+1).toString();
        return Text(text, style: style, textAlign: TextAlign.center);
     }else{
         return Container();
@@ -274,7 +273,7 @@ class _WeeklyState extends State<Weekly> {
 
  Container info(BuildContext context) {
     return Container(
-            height: MediaQuery.of(context).size.height*0.45,
+            height: MediaQuery.of(context).size.height*0.47,
             width: MediaQuery.of(context).size.width,
             margin:const EdgeInsets.symmetric(horizontal: 10),
             child:  GridView.custom(
@@ -285,9 +284,9 @@ class _WeeklyState extends State<Weekly> {
                 mainAxisSpacing: 0,
                 crossAxisSpacing: 0.5,
                 pattern: [
-                  const WovenGridTile(1.05),
+                   const WovenGridTile(1),
                   const WovenGridTile(
-                    1.3,
+                    1.2,
                     crossAxisRatio: 0.97,
                     alignment: AlignmentDirectional.centerEnd,
                   ),
@@ -295,11 +294,15 @@ class _WeeklyState extends State<Weekly> {
               ),
               childrenDelegate: SliverChildBuilderDelegate(
                   childCount: 4,
-                  (context, index) =>index==0? Steps(daily: false,):
-                  index == 1?Timee():
+                  (context, index) =>
+                   (index==0&&isloading==false)? Steps(daily: false,steps:controller.stepweek,):
+                   (index==0&&isloading==true)?loadbmi():
+                  (index == 1&&isloading == false)?Timee(time: controller.timeweek , totaltime: controller.timetotaweek,):
+                  (index == 1&&isloading == true)?loadbmi():
                   (index ==2&&isloading==false)? Number(num: controller.numexerweek):
                   (index ==2&&isloading==true)?loadbmi():
-                  Calories()),
+                  (index ==3&&isloading==false)? Calories(calories: controller.calweek,totalcalories: controller.caltotalweek,):loadbmi()
+                  ),
             ),
           );
   }
@@ -315,6 +318,23 @@ class _WeeklyState extends State<Weekly> {
               cc: Colors.white,
               radius: 25,
              height: MediaQuery.of(context).size.height*0.185,
+              width: MediaQuery.of(context).size.width,),
+              );
+  }
+
+
+  Widget loadchart(){
+    return Card(
+            elevation: 3,
+             color: Colors.white,
+             margin:const EdgeInsets.only(left: 15 , right: 15 , top: 10),
+             shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(25)
+             ),
+              child:Shimmergym.Rectangle(
+              cc: Colors.white,
+              radius: 25,
+             height: MediaQuery.of(context).size.height*0.3,
               width: MediaQuery.of(context).size.width,),
               );
   }

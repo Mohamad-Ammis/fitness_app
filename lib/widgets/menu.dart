@@ -3,7 +3,6 @@
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/auth_controller.dart';
 import 'package:fitnessapp/controller/datacont.dart';
-import 'package:fitnessapp/helper/custom_toast_notification.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/menuItem.dart';
 import 'package:fitnessapp/models/menuitems.dart';
@@ -11,6 +10,7 @@ import 'package:fitnessapp/views/on_boarding/on_boarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+// ignore: must_be_immutable
 class Menupage extends StatelessWidget {
   final Menuitem currentitem;
   final ValueChanged<Menuitem> onselecteditem;
@@ -19,6 +19,7 @@ class Menupage extends StatelessWidget {
 
   final controller = Get.put(Datacontroller(), permanent: true);
   final authController = Get.put(AuthController());
+  String fcm = "" ;
   @override
   Widget build(BuildContext context) {
     return Theme(
@@ -70,9 +71,12 @@ class Menupage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(40)
               ),
                child: TextButton(onPressed: (){
-               // userInfo!.clear();
-               userInfo!.remove("token");
-               userInfo!.remove("man");
+              //  userInfo!.clear();
+               fcm = userInfo!.getString('fcm_token')!;
+               userInfo!.clear();
+               userInfo!.setString('fcm_token', fcm);
+               //userInfo!.remove("token");
+               //userInfo!.remove("man");
                 controller.setlogout();
                 Get.offAll(OnBoarding());
                },

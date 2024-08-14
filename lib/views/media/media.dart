@@ -39,7 +39,6 @@ class _MediaState extends State<Media> {
     return Scaffold(
       backgroundColor: Constans.screen,
       appBar: AppBar(
-        toolbarHeight: 65,
         backgroundColor: Colors.white,
         elevation: 0,
         actions: [
@@ -82,7 +81,7 @@ class _MediaState extends State<Media> {
         leading: Row(
           children: [
             InkWell(
-              onTap: () => ZoomDrawer.of(context)!.toggle(),
+              onTap: () => ZoomDrawer.of(context)!.toggle() ,
               child: Container(
                   margin: const EdgeInsets.only(left: 5),
                   height: MediaQuery.of(context).size.height * 0.11,

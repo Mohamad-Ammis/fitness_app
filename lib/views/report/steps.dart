@@ -3,9 +3,13 @@ import 'package:fitnessapp/views/report/circleprogress.dart';
 import 'package:fitnessapp/views/report/step_part.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class Steps extends StatefulWidget {
   final bool daily ;
-  const Steps({super.key,required this.daily});
+   int steps ;
+   Steps({super.key,required this.daily ,
+  required this.steps
+  });
 
   @override
   State<Steps> createState() => _StepsState();
@@ -20,7 +24,11 @@ class _StepsState extends State<Steps> {
         if(widget.daily){
            showDialog(context: context,
         barrierDismissible: false,
-         builder: (context)=>StepCalculate());
+         builder: (context)=>StepCalculate()).then(( ff){
+          setState(() {
+            widget.steps+= int.parse(ff);
+          });
+         });
         }
       },
       child: Card(
@@ -68,10 +76,10 @@ class _StepsState extends State<Steps> {
                 height:widget.daily == true? 0:5,
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 3),
+                padding: const EdgeInsets.only(top: 0),
                 child: Circleprogress(
                     color: Constans.test,
-                    red: 58,
+                    red: 55,
                     width: 10,
                     wid:  SizedBox(
                       height: 70,
@@ -81,34 +89,40 @@ class _StepsState extends State<Steps> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                            SizedBox(
-                             height: 45,
-                             width: 50,
+                             height: 40,
+                             width: 45,
                              child: Image.asset("assets/images/step2.png",fit: BoxFit.contain,),
                            ), 
-                         const Text(
-                            "450",
+                          Text(
+                           widget.steps.toString() ,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Color.fromARGB(255, 133, 100, 3),
                               fontFamily: Constans.fontFamily,
-                              fontSize: 14,
+                              fontSize: 13,
                             ),
                           )
                         ],
                       ),
                     ),
-                    per: 450 / 1000,
+                    per:widget.daily==true? widget.steps / 1000:widget.steps/7000,
                     colors:const[
                       Color(0xffF9CF4D),
                       Color(0xffE99C40)
                     ],
                     ),
               ),
-              Container(
-                height: 10,
-                width: 40,
-                color: Colors.amber,
-              )
+             widget.daily? Container(
+                margin: EdgeInsets.only(top: 6),
+                height: 17,
+                width: 70,
+                alignment: Alignment.center,
+                child: Text("Click here" , style: TextStyle(
+                  fontFamily: Constans.fontFamily,
+                  color: Color(0xffE99C40),
+                  fontSize: 10
+                ),),
+              ):Container()
             ],
           ),
         ),
