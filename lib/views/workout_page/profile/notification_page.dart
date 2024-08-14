@@ -1,9 +1,13 @@
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/controller/notification_controller.dart';
+import 'package:fitnessapp/views/workout_page/profile/widgets/notification_card.dart';
+import 'package:fitnessapp/widgets/shimmer/shimmer_custom_container.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NotificationPage extends StatelessWidget {
-  const NotificationPage({super.key});
-
+  NotificationPage({super.key});
+  final controller = Get.put(NotificationController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,31 +21,28 @@ class NotificationPage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: ListView.builder(
-          itemCount: 5,
-          itemBuilder: (context, index) {
-            return Container(
-              margin: EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-              decoration: BoxDecoration(
-                  color: Colors.white, borderRadius: BorderRadius.circular(16)),
-              child: ListTile(
-                leading: Icon(
-                  Icons.notifications_active,
-                  color: Constans.test,
-                ),
-                title: Text(
-                  'title',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontFamily: Constans.fontFamily,
-                      fontSize: 20),
-                ),
-                subtitle: Text(
-                  'sub',
-                  style: TextStyle(fontFamily: Constans.fontFamily),
-                ),
-              ),
-            );
+      body: FutureBuilder(
+          future: controller.getAllNotifications(),
+          builder: (context, snapshot) {
+            return GetBuilder<NotificationController>(builder: (controller) {
+              return ListView.builder(
+                  itemCount: controller.notificationLoading
+                      ? 5
+                      : controller.notificationsList.length,
+                  itemBuilder: (context, index) {
+                    return controller.notificationLoading
+                        ? ShimmerContainer(
+                            width: MediaQuery.sizeOf(context).width,
+                            height: 100,
+                            circularRadius: 20,
+                            margin: EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 6),
+                          )
+                        : NotificationCard(
+                            model: controller.notificationsList[index],
+                          );
+                  });
+            });
           }),
     );
   }
