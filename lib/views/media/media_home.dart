@@ -61,7 +61,6 @@ class _MediahState extends State<MediaHome> {
                   clipBehavior: Clip.antiAlias,
                   decoration: const BoxDecoration(
                       color: Colors.white, shape: BoxShape.circle),
-            
                   child: conImage.base64String == null
                       ? Image.asset(
                           "assets/images/pers.png",
@@ -79,9 +78,8 @@ class _MediahState extends State<MediaHome> {
             InkWell(
               onTap: () {
                 if (ZoomDrawer.of(context) != null) {
-                  ZoomDrawer.of(context)!.toggle() ;
-                  
-                } 
+                  ZoomDrawer.of(context)!.toggle();
+                }
               },
               child: Container(
                   margin: const EdgeInsets.only(left: 5),
