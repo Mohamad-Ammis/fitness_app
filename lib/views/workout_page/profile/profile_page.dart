@@ -118,7 +118,7 @@ class _ProfileState extends State<Profile> {
           GetBuilder<Controller>(
             builder: (controller) {
               return Text(
-                userInfo!.getString("name")!,
+                userInfo!.getString("name").toString(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                     fontSize: 30,
@@ -250,7 +250,7 @@ class _ProfileState extends State<Profile> {
                   //   color: Colors.black54,
                   // ),
                   GestureDetector(
-                    onTap: () => Get.to(()=>NotificationPage()),
+                    onTap: () => Get.to(() => NotificationPage()),
                     child: CustomListTile(
                       text: "Notifications",
                       icon: Icons.notifications_active_sharp,

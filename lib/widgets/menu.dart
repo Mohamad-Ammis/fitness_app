@@ -94,8 +94,9 @@ class Menupage extends StatelessWidget {
                           fcm = userInfo!.getString('fcm_token')!;
                           userInfo!.clear();
                           userInfo!.setString('fcm_token', fcm);
+                          userInfo!.setBool('firstUse', false);
                           controller.setlogout();
-                          Get.offAll(LogInPage());
+                          Get.offAll(() => LogInPage());
                         } else {
                           showErrorSnackBar(
                               "Error Happened", "please try again ");

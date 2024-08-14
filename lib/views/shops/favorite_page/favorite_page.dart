@@ -6,9 +6,24 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
-class FavoritePage extends StatelessWidget {
+class FavoritePage extends StatefulWidget {
   FavoritePage({super.key});
+
+  @override
+  State<FavoritePage> createState() => _FavoritePageState();
+}
+
+class _FavoritePageState extends State<FavoritePage> {
   final controller = Get.put(ShopController());
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await controller.getHomePageProducts();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
