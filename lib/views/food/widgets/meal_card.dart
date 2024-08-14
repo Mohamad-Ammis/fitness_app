@@ -50,8 +50,7 @@ class _RecentlyCardState extends State<RecentlyCard> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
             child: Stack(children: [
               CachedNetworkImage(
-                imageUrl:
-                    "${Constans.mainbaseUrlimage}uploads/${widget.image}",
+                imageUrl: "${Constans.mainbaseUrlimage}uploads/${widget.image}",
                 height: cont.maxHeight,
                 width: 290,
                 fit: BoxFit.cover,
