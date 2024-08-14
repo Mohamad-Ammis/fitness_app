@@ -8,6 +8,7 @@ import 'package:fitnessapp/controller/workout_page_controller.dart';
 import 'package:fitnessapp/models/exersice.dart';
 import 'package:fitnessapp/views/exercise_page/widgets/exercise_page_body.dart';
 import 'package:fitnessapp/views/exercises_playing_page/widgets/custom_timer_button.dart';
+import 'package:fitnessapp/views/exercises_playing_page/widgets/finish_exercise_bottom_sheet.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -40,6 +41,7 @@ class InfoSection extends StatelessWidget {
             children: [
               GestureDetector(
                 onTap: () => Get.bottomSheet(
+
                     enterBottomSheetDuration: const Duration(milliseconds: 700),
                     exitBottomSheetDuration: const Duration(milliseconds: 700),
                     isScrollControlled: true,
@@ -115,6 +117,8 @@ class InfoSection extends StatelessWidget {
                             _controller.pause();
                           } else if (state == CustomTimerState.finished &&
                               index == lastIndex - 1) {
+                            var fullTime = 0;
+                            var allCalories = 0;
                             debugPrint(
                                 'workoutPageController.alltime: ${workoutPageController.alltime}');
                             for (var i = 0;
@@ -122,19 +126,30 @@ class InfoSection extends StatelessWidget {
                                 i++) {
                               workoutPageController.totalCalories += int.parse(
                                   exerController.all_exer[i].calories);
+                              allCalories += int.parse(
+                                  exerController.all_exer[i].calories);
+                              fullTime +=
+                                  int.parse(exerController.all_exer[i].time);
                             }
                             debugPrint(
                                 'workoutPageController.totalCalories: ${workoutPageController.totalCalories}');
                             Get.back();
                             Get.back();
-                            await workoutPageController.updateReport();
-                            if(isCoachExercise){
+                            Get.bottomSheet(FinishExerciseBottomSheet(
+                              exerciseNumber:
+                                  exerController.all_exer.length.toString(),
+                              totalTime:
+                                  workoutPageController.alltime.toString(),
+                              totalCalories: workoutPageController.totalCalories
+                                  .toString(),
+                            ));
+                            await workoutPageController.updateReport(
+                                allCalories, fullTime);if(isCoachExercise){
                               print("areej is here");
                              await specController.unlockedday();
                              print("deal"); 
                           } 
-                          }
-                          else {
+                          } else {
                             _controller.start();
                           }
                         },

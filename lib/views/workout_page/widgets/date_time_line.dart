@@ -1,6 +1,9 @@
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/workout_page_controller.dart';
+import 'package:fitnessapp/utils/app_images.dart';
+import 'package:fitnessapp/views/auth_pages/widgets/auth_custom_button.dart';
+import 'package:fitnessapp/views/exercise_page/widgets/custom_info_column.dart';
 import 'package:fitnessapp/widgets/shimmer/shimmer_custom_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,14 +28,16 @@ class DateTimeLine extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                 
-                  controller.shimmerLoading?const ShimmerContainer(width: 40, height: 20, circularRadius: 12): Text(
-                    '0/4',
-                    style: TextStyle(
-                        color: Constans.test,
-                        fontFamily: Constans.fontFamily,
-                        fontWeight: FontWeight.bold),
-                  )
+                  controller.shimmerLoading
+                      ? const ShimmerContainer(
+                          width: 40, height: 20, circularRadius: 12)
+                      : Text(
+                          '0/4',
+                          style: TextStyle(
+                              color: Constans.test,
+                              fontFamily: Constans.fontFamily,
+                              fontWeight: FontWeight.bold),
+                        )
                 ],
               ),
             ),
@@ -55,43 +60,43 @@ class DateTimeLine extends StatelessWidget {
                         }),
                   )
                 : EasyDateTimeLine(
-                    disabledDates: controller.disabledDates(),
-                    initialDate: DateTime.now(),
-                    onDateChange: (selectedDate) {
-                      //`selectedDate` the new date selected.
-                    },
-                    headerProps: const EasyHeaderProps(
-                      showHeader: false,
-                    ),
-                    dayProps: EasyDayProps(
-                      width: 60,
-                      height: 85,
-                      dayStructure: DayStructure.dayNumDayStr,
-                      activeDayStyle: DayStyle(
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(999)),
-                          color: Constans.test,
-                        ),
+                  disabledDates: controller.disabledDates(),
+                  initialDate: DateTime.now(),
+                  onDateChange: (selectedDate) {
+                    //`selectedDate` the new date selected.
+                  },
+                  headerProps: const EasyHeaderProps(
+                    showHeader: false,
+                  ),
+                  dayProps: EasyDayProps(
+                    width: 60,
+                    height: 85,
+                    dayStructure: DayStructure.dayNumDayStr,
+                    activeDayStyle: DayStyle(
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(999)),
+                        color: Constans.test,
                       ),
-                      disabledDayStyle: DayStyle(
-                        decoration: BoxDecoration(
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(999)),
-                          gradient: LinearGradient(
-                            begin: Alignment.topCenter,
-                            end: Alignment.bottomCenter,
-                            colors: [
-                              const Color.fromARGB(255, 124, 182, 245)
-                                  .withOpacity(0.05),
-                              const Color.fromARGB(255, 42, 140, 245)
-                                  .withOpacity(0.05),
-                            ],
-                          ),
+                    ),
+                    disabledDayStyle: DayStyle(
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(999)),
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            const Color.fromARGB(255, 124, 182, 245)
+                                .withOpacity(0.05),
+                            const Color.fromARGB(255, 42, 140, 245)
+                                .withOpacity(0.05),
+                          ],
                         ),
                       ),
                     ),
                   ),
+                ),
           ],
         ),
       );

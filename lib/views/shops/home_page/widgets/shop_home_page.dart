@@ -20,76 +20,92 @@ class ShopHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              controller.adsLoading
-                  ? ShimmerContainer(
-                      width: MediaQuery.sizeOf(context).width,
-                      height: 230,
-                      circularRadius: 16,
-                      margin: const EdgeInsets.symmetric(
-                          vertical: 8, horizontal: 16),
-                    )
-                  : Container(
-                      height: 230,
-                      width: MediaQuery.of(context).size.width,
-                      margin: const EdgeInsets.all(0),
-                      clipBehavior: Clip.hardEdge,
-                      decoration:
-                          BoxDecoration(borderRadius: BorderRadius.circular(0)),
-                      child: Stack(
-                        children: [
-                          OffersPageView(
-                            dotPageController: controller.pageController,
-                            adsList: controller.adsList,
+    return GetBuilder<ShopController>(builder: (controller) {
+      return RefreshIndicator(
+        onRefresh: () async {
+          await controller.getHomePageProducts();
+          controller.update();
+          return Future.delayed(Duration(milliseconds: 200));
+        },
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  controller.adsLoading
+                      ? ShimmerContainer(
+                          width: MediaQuery.sizeOf(context).width,
+                          height: 230,
+                          circularRadius: 16,
+                          margin: const EdgeInsets.symmetric(
+                              vertical: 8, horizontal: 16),
+                        )
+                      : Container(
+                          height: 230,
+                          width: MediaQuery.of(context).size.width,
+                          margin: const EdgeInsets.all(0),
+                          clipBehavior: Clip.hardEdge,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(0)),
+                          child: Stack(
+                            children: [
+                              OffersPageView(
+                                dotPageController: controller.pageController,
+                                adsList: controller.adsList,
+                              ),
+                              Positioned.fill(
+                                  child: Align(
+                                alignment: Alignment.topCenter,
+                                child: OffersCardIndicator(
+                                  dotPageController: controller.pageController,
+                                  adsList: controller.adsList,
+                                ),
+                              ))
+                            ],
                           ),
-                          OffersCardIndicator(
-                            dotPageController: controller.pageController,
-                            adsList: controller.adsList,
-                          )
-                        ],
-                      ),
+                        ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      'Categories',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: Constans.fontFamily,
+                          fontWeight: FontWeight.bold),
                     ),
-              const SizedBox(
-                height: 10,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  CategoryListView(),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      'Products',
+                      style: TextStyle(
+                          fontSize: 20,
+                          fontFamily: Constans.fontFamily,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  const FilterProductsList()
+                ],
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Text(
-                  'Categories',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontFamily: Constans.fontFamily,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              const SizedBox(
-                height: 8,
-              ),
-              CategoryListView(),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: Text(
-                  'Products',
-                  style: TextStyle(
-                      fontSize: 20,
-                      fontFamily: Constans.fontFamily,
-                      fontWeight: FontWeight.bold),
-                ),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              const FilterProductsList()
-            ],
-          ),
+            ),
+            TrendProductList(),
+          ],
         ),
-        TrendProductList(),
-      ],
-    );
+      );
+    });
   }
 }

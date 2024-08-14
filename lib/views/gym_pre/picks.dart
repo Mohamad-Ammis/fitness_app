@@ -112,126 +112,144 @@ class _PicksState extends State<Picks> {
   Container button(BuildContext context) {
     final workoutController = Get.put(WorkoutPageController());
     return Container(
-               height: MediaQuery.of(context).size.height*0.11,
-               alignment: Alignment.topCenter,
-               padding: const EdgeInsets.only(top: 10),
-               child: ElevatedButton(onPressed: (){
-                 control.setexerspesday(controller.exer);
-                Get.to(PlayingExercises(
+      height: MediaQuery.of(context).size.height * 0.11,
+      alignment: Alignment.topCenter,
+      padding: const EdgeInsets.only(top: 10),
+      child: ElevatedButton(
+          onPressed: () {
+            control.setexerspesday(controller.exer);
+            workoutController.alltime = 0;
+            workoutController.totalCalories = 0;
+
+            Get.to(PlayingExercises(
                   isCoachExercise: false,
                 ));
-               },
-               style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 38, 164, 170),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),),
-                child: Container(
-                  alignment: Alignment.center,
-                  padding:const EdgeInsets.symmetric(horizontal: 20 , vertical: 8),
-                  height: 60,
-                  width: 250,
-                  child: const Text("start" , style:  TextStyle(
-                    fontFamily: Constans.fontFamily,
-                    fontSize: 25 ,
-                    fontWeight: FontWeight.w600 ,
-                    color: Colors.white
-                  ),),
-                 )),
-              );
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: const Color.fromARGB(255, 38, 164, 170),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+          ),
+          child: Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+            height: 60,
+            width: 250,
+            child: const Text(
+              "start",
+              style: TextStyle(
+                  fontFamily: Constans.fontFamily,
+                  fontSize: 25,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white),
+            ),
+          )),
+    );
   }
 
   Column allexer(BuildContext context, ExerciseModel item) {
     return Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 0 , bottom: 5 , left: 15 , right: 15),
-                  height: MediaQuery.of(context).size.height*0.1,
-                  width: MediaQuery.of(context).size.width,
-                 // color: Colors.amber,
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(top: 4 , ),
-                        width: MediaQuery.of(context).size.width*0.35,
-                        height: MediaQuery.of(context).size.height*0.1,
-                      //  color: Colors.pink,
-                        child:CachedNetworkImage(imageUrl:"${Constans.mainbaseUrlimage}uploads/${item.image}", fit: BoxFit.contain,)
-                      ),
-                      Expanded(child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: MediaQuery.of(context).size.height*0.07,
-                          //  color: Colors.black,
-                            alignment: Alignment.centerLeft,
-                            child: Text(item.name , style: const TextStyle(
-                              fontFamily: Constans.fontFamily,
-                              fontSize: 19,
-                              color: Colors.black
-                            ),),
-                          ),
-                          Text("00:${item.time}" , style: const TextStyle(
-                            fontFamily: Constans.fontFamily,
-                            fontSize: 16,
-                            color: Colors.black54
-                          ),)
-                        ],
-                      ))
-                    ],
+      children: [
+        Container(
+          margin: const EdgeInsets.only(top: 0, bottom: 5, left: 15, right: 15),
+          height: MediaQuery.of(context).size.height * 0.1,
+          width: MediaQuery.of(context).size.width,
+          // color: Colors.amber,
+          child: Row(
+            children: [
+              Container(
+                  padding: const EdgeInsets.only(
+                    top: 4,
                   ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: const Divider())
-              ],
-             );
+                  width: MediaQuery.of(context).size.width * 0.35,
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  //  color: Colors.pink,
+                  child: CachedNetworkImage(
+                    imageUrl:
+                        "${Constans.mainbaseUrlimage}uploads/${item.image}",
+                    fit: BoxFit.contain,
+                  )),
+              Expanded(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.07,
+                    //  color: Colors.black,
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      item.name,
+                      style: const TextStyle(
+                          fontFamily: Constans.fontFamily,
+                          fontSize: 19,
+                          color: Colors.black),
+                    ),
+                  ),
+                  Text(
+                    "00:${item.time}",
+                    style: const TextStyle(
+                        fontFamily: Constans.fontFamily,
+                        fontSize: 16,
+                        color: Colors.black54),
+                  )
+                ],
+              ))
+            ],
+          ),
+        ),
+        Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: const Divider())
+      ],
+    );
   }
 
   Column loadallexer(BuildContext context) {
     return Column(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(top: 0 , bottom: 5 , left: 15 , right: 15),
-                  height: MediaQuery.of(context).size.height*0.1,
-                  width: MediaQuery.of(context).size.width,
-                  child: Row(
-                    children: [
-                      Container(
-                        padding: const EdgeInsets.only(top: 4 ,left: 16,right: 16 ),
-                        width: MediaQuery.of(context).size.width*0.35,
-                        height: MediaQuery.of(context).size.height*0.1,
-                        child: Shimmergym.Rectangle(height: MediaQuery.of(context).size.height*0.1,
-                         width:MediaQuery.of(context).size.width*0.25,
-                         cc: Colors.grey[300],
-                        radius: 30),
-                      ),
-                      Expanded(child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: MediaQuery.of(context).size.height*0.07,
-                            alignment: Alignment.centerLeft,
-                            child: Shimmergym.Rectangle(height:  MediaQuery.of(context).size.height*0.04,
-                            cc: Colors.grey[300],
-                             width: 190,
-                            radius: 10)
-                          ),
-                          Shimmergym.Rectangle(
-                            height: MediaQuery.of(context).size.height*0.03,
-                            cc: Colors.grey[300],
-                            width: 60,
-                            radius: 10)
-                          
-                        ],
-                      ))
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: const Divider())
-              ],
-             );
+      children: [
+        Container(
+          margin: const EdgeInsets.only(top: 0, bottom: 5, left: 15, right: 15),
+          height: MediaQuery.of(context).size.height * 0.1,
+          width: MediaQuery.of(context).size.width,
+          child: Row(
+            children: [
+              Container(
+                padding: const EdgeInsets.only(top: 4, left: 16, right: 16),
+                width: MediaQuery.of(context).size.width * 0.35,
+                height: MediaQuery.of(context).size.height * 0.1,
+                child: Shimmergym.Rectangle(
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    width: MediaQuery.of(context).size.width * 0.25,
+                    cc: Colors.grey[300],
+                    radius: 30),
+              ),
+              Expanded(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                      height: MediaQuery.of(context).size.height * 0.07,
+                      alignment: Alignment.centerLeft,
+                      child: Shimmergym.Rectangle(
+                          height: MediaQuery.of(context).size.height * 0.04,
+                          cc: Colors.grey[300],
+                          width: 190,
+                          radius: 10)),
+                  Shimmergym.Rectangle(
+                      height: MediaQuery.of(context).size.height * 0.03,
+                      cc: Colors.grey[300],
+                      width: 60,
+                      radius: 10)
+                ],
+              ))
+            ],
+          ),
+        ),
+        Container(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: const Divider())
+      ],
+    );
   }
 }
