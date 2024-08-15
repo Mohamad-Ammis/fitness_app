@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:math';
+import 'dart:math';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:get/get.dart';
@@ -44,6 +45,7 @@ Future<void> getreportdaily() async {
         'Accept': 'application/json',
         'Authorization': 'Bearer ${userInfo!.getString('token')}',
       });
+      
       if (res.statusCode == 200) {
         final resdata = json.decode(res.body);
         bmi = resdata["new_bmi"].toString();
