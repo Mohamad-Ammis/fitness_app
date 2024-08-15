@@ -54,6 +54,7 @@ class Illness extends StatelessWidget {
 
   Widget lastitem(Datacontroller contr, BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(top: 10),
     //  color: Colors.amber,
       child: InkWell(
                   overlayColor: MaterialStatePropertyAll(Colors.white.withOpacity(0)),
@@ -62,7 +63,7 @@ class Illness extends StatelessWidget {
                       },
                   child: Container(
                     margin: const EdgeInsets.all(5),
-                    height:MediaQuery.of(context).size.height*0.18,
+                    height:140,
                     width:MediaQuery.of(context).size.width*0.45,
                     decoration: BoxDecoration(
                       gradient:(contr.checkill(3))? LinearGradient(colors: [
@@ -89,7 +90,7 @@ class Illness extends StatelessWidget {
                         const SizedBox(height: 5,),
                        const Text("shortness of breath",style: TextStyle(
                           fontFamily: Constans.fontFamily,
-                          fontSize: 14,
+                          fontSize: 13,
                           fontWeight: FontWeight.bold,
                           wordSpacing: 2,
                           color: Colors.black
@@ -105,12 +106,12 @@ class Illness extends StatelessWidget {
     return Container(
     //  color: Colors.pink,
       alignment: Alignment.topCenter,
-          height: 355,
+          height: MediaQuery.of(context).size.height*0.4,
           width: cont.maxWidth,
           margin: const EdgeInsets.only(left: 20,right: 20 , top: 0 ),
           child: GridView(
             gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: MediaQuery.of(context).size.width*0.6,
+              maxCrossAxisExtent: 170,
               childAspectRatio: 1.05,
               mainAxisSpacing: 1,
               crossAxisSpacing: 20,
@@ -124,8 +125,8 @@ class Illness extends StatelessWidget {
                       contr.setselectill(int.parse(item['id']));
                       },
                   child: Container(
-                    margin: const EdgeInsets.only(left: 5,right: 5,bottom: 0),
-                    height:MediaQuery.of(context).size.height*0.16,
+                    margin: const EdgeInsets.only(left: 5,right: 5,bottom: 10),
+                    height:100,
                     width:MediaQuery.of(context).size.width*0.4,
                     decoration: BoxDecoration(
                       gradient:(contr.checkill(int.parse(item["id"])))? LinearGradient(colors: [
@@ -146,7 +147,7 @@ class Illness extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
-                        height: MediaQuery.of(context).size.height*0.12,
+                        height: 80,
                         width: MediaQuery.of(context).size.width*0.27,
                         child: Image.asset(item["image"],fit:BoxFit.contain,),
                         ),

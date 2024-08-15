@@ -89,7 +89,7 @@ class Menupage extends StatelessWidget {
                 child: GetBuilder<AuthController>(builder: (authController) {
                   return TextButton(
                       onPressed: () async {
-                        var status = await authController.logout();
+                       var status = await authController.logout();
                         if (status) {
                           fcm = userInfo!.getString('fcm_token')!;
                           userInfo!.clear();

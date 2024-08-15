@@ -81,8 +81,8 @@ class Weekcard extends StatelessWidget {
         }
       },
       child: Container(
-        height: contr.maxHeight*0.35,
-        width: contr.maxHeight*0.35,
+        height: 40,
+        width: 40,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(70),
           border: Border.all(

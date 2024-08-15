@@ -204,7 +204,7 @@ class _ExerciseState extends State<Exercise> {
                     "00:${item["time"]}",
                     style: const TextStyle(
                         fontFamily: "WorkSans",
-                        fontSize: 16,
+                        fontSize: 14,
                         color: Colors.black54),
                   )
                 ],

@@ -161,7 +161,7 @@ void didChangeDependencies() {
                                   ),
                                 ),
                                 Container(
-                                    height: 105,
+                                    height: 100,
                                     alignment: Alignment.topLeft,
                                     width: MediaQuery.of(context).size.width *
                                         0.46,
@@ -192,7 +192,7 @@ void didChangeDependencies() {
                                               width: double.infinity,
                                               margin: const EdgeInsets.only(
                                                   left: 15),
-                                              height: 70,
+                                              height: 65,
                                               child: Stack(children: [
                                                 AnimatedOpacity(
                                                     duration: const Duration(
