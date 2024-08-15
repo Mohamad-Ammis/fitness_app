@@ -6,9 +6,11 @@ import 'package:get/get.dart';
 
 // ignore: must_be_immutable
 class AddPostWidget extends StatefulWidget {
-  AddPostWidget({super.key, this.ontap, });
+  AddPostWidget({
+    super.key,
+    this.ontap,
+  });
   void Function()? ontap;
-
 
   @override
   State<AddPostWidget> createState() => _AddPostWidgetState();
@@ -46,7 +48,6 @@ class _AddPostWidgetState extends State<AddPostWidget> {
                     shape: BoxShape.circle,
                     color: Colors.white,
                   ),
-                
                   child: conImage.base64String == null
                       ? Image.asset(
                           "assets/images/pers.png",
@@ -88,7 +89,6 @@ class _AddPostWidgetState extends State<AddPostWidget> {
               ),
             ),
           ),
-       
         ]),
       ),
     );

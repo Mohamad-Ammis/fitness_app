@@ -1,12 +1,13 @@
 import 'dart:convert';
 import 'dart:math';
+import 'dart:math';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class Reportcontroller extends GetxController {
-  double currentweight = 60 ;
+  double? currentweight = 60 ;
   int mincalories = 0 ;
   int maxcalories = 0 ;
 
@@ -44,8 +45,7 @@ Future<void> getreportdaily() async {
         'Accept': 'application/json',
         'Authorization': 'Bearer ${userInfo!.getString('token')}',
       });
-      print(url);
-      print(userInfo!.getString('token'));
+      
       if (res.statusCode == 200) {
         final resdata = json.decode(res.body);
         bmi = resdata["new_bmi"].toString();
@@ -56,6 +56,16 @@ Future<void> getreportdaily() async {
         calday = resdata["calories"];
         caltotalday = resdata["total-calories"];
         stepday = resdata["steps"];
+        print("hereeeeee");
+      }else if(res.statusCode == 404){
+         bmi = "18";
+        bmicat = "No thing Yet";
+        numexerday = 0;
+        timeday = 0;
+        timetotalday = 0;
+        calday = 0;
+        caltotalday =0;
+        stepday =0;
       } else {
         print("***********8");
         throw "Something wrong , please try again";
@@ -73,9 +83,12 @@ Future<void> getreportweekly() async {
         'Accept': 'application/json',
         'Authorization': 'Bearer ${userInfo!.getString('token')}',
       });
+      print(url);
+      print(userInfo!.getString('token'));
       if (res.statusCode == 200) {
         helper = [];
         caloriesdiagram = [];
+        wieghtdiagram = [];
         final resdata = json.decode(res.body);
         numexerweek = resdata["exercises"];
         stepweek = resdata["total_steps"];
@@ -95,6 +108,8 @@ Future<void> getreportweekly() async {
           }
         }
         currentweight = wieghtdiagram[6];
+        print(maxcalories);
+
       } else {
         throw "Something wrong , please try again";
       }

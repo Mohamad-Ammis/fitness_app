@@ -108,31 +108,53 @@ class _FoodState extends State<Food> {
       body: ListView(children: [
         Padding(
           padding: const EdgeInsets.only(top: 15, left: 15),
-          child: Stack(clipBehavior: Clip.none, children: [
-            const Text(
-              "Balance Healthy Eating, with Plenty of  ",
-              maxLines: 2,
-              softWrap: true,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
+          child: Container(
+            child: RichText(
+              text: TextSpan(
+                style: TextStyle(
                   fontSize: 25,
                   fontFamily: "Lora",
                   color: Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
-            Positioned(
-              top: MediaQuery.of(context).size.height * 0.044, //36,
-              left: MediaQuery.of(context).size.width * 0.29,
-              child: const Text(
-                "Physical Exercise ",
-                style: TextStyle(
-                    fontSize: 25,
-                    fontFamily: "Lora",
-                    color: Constans.foodblue,
-                    fontWeight: FontWeight.bold),
+                  fontWeight: FontWeight.bold,
+                ),
+                children: const<TextSpan>[
+                  TextSpan(text: "Balance Healthy Eating, with Plenty of "),
+                  TextSpan(
+                    text: "Physical Exercise",
+                    style: TextStyle(color: Constans.foodblue),
+                  ),
+                ],
               ),
+              maxLines: 2,
+              softWrap: true,
+              overflow: TextOverflow.ellipsis,
             ),
-          ]),
+          ),
+          // child: Stack(clipBehavior: Clip.none, children: [
+          //   const Text(
+          //     "Balance Healthy Eating, with Plenty of  ",
+          //     maxLines: 2,
+          //     softWrap: true,
+          //     overflow: TextOverflow.ellipsis,
+          //     style: TextStyle(
+          //         fontSize: 25,
+          //         fontFamily: "Lora",
+          //         color: Colors.black,
+          //         fontWeight: FontWeight.bold),
+          //   ),
+          //   Positioned(
+          //     top: MediaQuery.of(context).size.height * 0.055, //36,
+          //     left: MediaQuery.of(context).size.width * 0.3,
+          //     child: const Text(
+          //       "Physical Exercise ",
+          //       style: TextStyle(
+          //           fontSize: 25,
+          //           fontFamily: "Lora",
+          //           color: Constans.foodblue,
+          //           fontWeight: FontWeight.bold),
+          //     ),
+          //   ),
+          // ]),
         ),
         Padding(
           padding: const EdgeInsets.only(top: 30, left: 20, right: 20),

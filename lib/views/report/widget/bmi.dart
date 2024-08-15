@@ -18,7 +18,7 @@ class _BmiState extends State<Bmi> {
 
   @override
   void initState() {
-     if(double.parse(control.bmi)> 15 && double.parse(control.bmi) <16){
+     if( double.parse(control.bmi) <16){
         color = Color(0xff2D47D0) ;
      }else if(double.parse(control.bmi)> 16 && double.parse(control.bmi) <18.5){
          color =Color(0xff3A81F2) ;
