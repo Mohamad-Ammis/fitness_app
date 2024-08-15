@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 class Constans {
   static const String fontFamily = 'Work Sans';
   static const String host = '192.168.40.117';
-  static const String baseUrl = 'https://de68-138-199-7-163.ngrok-free.app/api/trainer/';
-  static const String mainbaseUrl = 'https://de68-138-199-7-163.ngrok-free.app/api/';
-  static const String mainbaseUrlimage = 'https://de68-138-199-7-163.ngrok-free.app/';
+  static const String baseUrl = 'https://48c4-146-70-246-155.ngrok-free.app/api/trainer/';
+  static const String mainbaseUrl = 'https://48c4-146-70-246-155.ngrok-free.app/api/';
+  static const String mainbaseUrlimage = 'https://48c4-146-70-246-155.ngrok-free.app/';
   static const String apikey =
       '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';
 

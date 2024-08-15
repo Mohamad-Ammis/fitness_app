@@ -278,7 +278,7 @@ class _FoodState extends State<Food> {
                           cal: popularList[index].calories,
                           protien: popularList[index].protein,
                           warning: popularList[index].warning != null
-                              ? Icon(
+                              ?popularList[index].warning ==""?Container(): Icon(
                                   Icons.warning_rounded,
                                   color: Colors.white.withOpacity(0.8),
                                   size: 40,

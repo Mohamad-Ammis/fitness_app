@@ -20,6 +20,7 @@ class FavoritePage extends StatefulWidget {
 }
 
 class _FavoritePageState extends State<FavoritePage> {
+  ControllerPopular conFav = Get.put(ControllerPopular(), permanent: true);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,6 +140,7 @@ class _FavoritePageState extends State<FavoritePage> {
                                                           .then((value) {
                                                         favoriteList[index]
                                                             .isfavorite = false;
+                                                        
 
                                                         cardController1
                                                             .update();
