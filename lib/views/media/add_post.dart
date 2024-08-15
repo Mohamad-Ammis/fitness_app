@@ -4,9 +4,10 @@ import 'dart:io';
 import 'package:fitnessapp/controller/add_post_controller.dart';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
-import 'package:fitnessapp/views/media/media.dart';
+import 'package:fitnessapp/views/media/media_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 
 class AddPost extends StatefulWidget {
   const AddPost({super.key});
@@ -27,7 +28,7 @@ class _AddPostState extends State<AddPost> {
           backgroundColor: Colors.white,
           leading: IconButton(
             onPressed: () {
-              Get.off(const Media());
+              Get.off(const MediaHome());
             },
             icon: const Icon(
               Icons.arrow_back_ios_new,
@@ -327,87 +328,7 @@ class _AddPostState extends State<AddPost> {
                                       ],
                                     ),
                                   )
-                                : Container()
-                            // Container(
-                            //   height: MediaQuery.of(context).size.height * 0.295,
-                            //   width: MediaQuery.of(context).size.width,
-                            //   child: Column(
-                            //     crossAxisAlignment: CrossAxisAlignment.start,
-                            //     children: [
-                            //       Padding(
-                            //         padding: const EdgeInsets.only(
-                            //             left: 12, top: 3, bottom: 0),
-                            //         child: ShaderMask(
-                            //           blendMode: BlendMode.srcATop,
-                            //           shaderCallback: (bounds) => const LinearGradient(
-                            //             begin: Alignment.topLeft,
-                            //             end: Alignment.bottomRight,
-                            //             colors: [
-                            //               Color.fromARGB(255, 11, 45, 75),
-                            //               Color.fromARGB(255, 75, 113, 168),
-                            //               Color.fromARGB(255, 116, 135, 185)
-                            //             ],
-                            //           ).createShader(bounds),
-                            //           child: const Text(
-                            //             "Video",
-                            //             style: TextStyle(
-                            //                 fontSize: 22,
-                            //                 fontFamily: Constans.fontFamily,
-                            //                 fontWeight: FontWeight.bold),
-                            //           ),
-                            //         ),
-                            //       ),
-                            //       SizedBox(
-                            //         height: MediaQuery.of(context).size.height * 0.25,
-                            //         child: ListView.builder(
-                            //           scrollDirection: Axis.horizontal,
-                            //           shrinkWrap: true,
-                            //           physics: const AlwaysScrollableScrollPhysics(),
-                            //           itemCount: 1,
-                            //           itemBuilder: (context, index) => Padding(
-                            //             padding: const EdgeInsets.only(
-                            //                 left: 10, top: 8, bottom: 5),
-                            //             child: Stack(clipBehavior: Clip.none, children: [
-                            //               Container(
-                            //                 height:
-                            //                     MediaQuery.of(context).size.height * 0.25,
-                            //                 width:
-                            //                     MediaQuery.of(context).size.width * 0.5,
-                            //                 clipBehavior: Clip.antiAlias,
-                            //                 decoration: BoxDecoration(
-                            //                     color: Constans.screen,
-                            //                     borderRadius: BorderRadius.circular(12)),
-                            //                 child: const Image(
-                            //                   fit: BoxFit.cover,
-                            //                   image: AssetImage("assets/images/mee.jpg"),
-                            //                 ),
-                            //               ),
-                            //               Positioned(
-                            //                 top: MediaQuery.of(context).size.height *
-                            //                     0.001,
-                            //                 left:
-                            //                     MediaQuery.of(context).size.width * 0.41,
-                            //                 child: CircleAvatar(
-                            //                     radius: 0,
-                            //                     backgroundColor: Colors.white,
-                            //                     child: IconButton(
-                            //                       onPressed: () {},
-                            //                       icon: const Icon(
-                            //                         Icons.cancel_outlined,
-                            //                         size: 28,
-                            //                         color: Colors.white,
-                            //                       ),
-                            //                       padding: const EdgeInsets.all(2),
-                            //                     )),
-                            //               )
-                            //             ]),
-                            //           ),
-                            //         ),
-                            //       ),
-                            //     ],
-                            //   ),
-                            // ),
-                            ,
+                                : Container(),
                             SizedBox(
                               height: MediaQuery.of(context).size.height * 0.06,
                               width: MediaQuery.of(context).size.width,
@@ -442,21 +363,6 @@ class _AddPostState extends State<AddPost> {
                                               )),
                                         ),
                                       ),
-                                      // GestureDetector(
-                                      //   onTap: () {
-                                      //     controller.getAllPosts();
-                                      //   },
-                                      //   child: Padding(
-                                      //     padding: const EdgeInsets.only(
-                                      //         top: 0, left: 10, bottom: 0),
-                                      //     child: SizedBox(
-                                      //         height: 24,
-                                      //         width: 24,
-                                      //         child: Image.asset(
-                                      //           "assets/images/video (1).png",
-                                      //         )),
-                                      //   ),
-                                      // ),
                                       GestureDetector(
                                         onTap: () async {
                                           print(controller.textPost.text);
@@ -468,7 +374,6 @@ class _AddPostState extends State<AddPost> {
                                           try {
                                             int statusCode =
                                                 await controller.addPostFun();
-                                            // print(statusCode);
                                             if (statusCode == 200) {
                                               Get.snackbar('Success',
                                                   'Post added successfully');

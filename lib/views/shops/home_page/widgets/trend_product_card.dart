@@ -34,7 +34,9 @@ class _TrendProductCardState extends State<TrendProductCard> {
     return Container(
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
-            color: Colors.black, borderRadius: BorderRadius.circular(28)),
+          color: const Color(0xFFF3F4F6),
+          borderRadius: BorderRadius.circular(28),
+        ),
         child: Stack(
           children: [
             CachedNetworkImage(
@@ -43,11 +45,12 @@ class _TrendProductCardState extends State<TrendProductCard> {
                 imageBuilder: (context, imageProvider) => Container(
                         decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: imageProvider,
-                          fit: BoxFit.cover,
-                          colorFilter: const ColorFilter.mode(
-                              Color.fromARGB(255, 10, 0, 0),
-                              BlendMode.lighten)),
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                        // colorFilter: const ColorFilter.mode(
+                        //     Color.fromARGB(255, 10, 0, 0),
+                        //     BlendMode.lighten)
+                      ),
                     ))),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -75,13 +78,13 @@ class _TrendProductCardState extends State<TrendProductCard> {
                                     await controller.deleteFromFavorites(
                                         widget.model.id, context);
                                     setState(() {
-                                      isFavorite = false;
+                                      widget.model.isFavorite = false;
                                     });
                                   } else {
                                     await controller.addToFavorites(
                                         widget.model.id, context);
                                     setState(() {
-                                      isFavorite = true;
+                                      widget.model.isFavorite = true;
                                     });
                                   }
                                 } catch (e) {
@@ -90,7 +93,7 @@ class _TrendProductCardState extends State<TrendProductCard> {
                               },
                               icon: Icon(
                                 Icons.favorite,
-                                color: isFavorite
+                                color: widget.model.isFavorite
                                     ? Colors.red
                                     : Colors.white.withOpacity(.9),
                               )))

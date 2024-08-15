@@ -16,7 +16,7 @@ class CategoryListView extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: SizedBox(
-        height: 110,
+        // height: 110,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [

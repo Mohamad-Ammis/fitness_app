@@ -1,4 +1,3 @@
-
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/shop_controller.dart';
 import 'package:flutter/material.dart';
@@ -16,13 +15,13 @@ class ShopCategoryCard extends StatelessWidget {
     return Column(
       children: [
         Container(
-          width: 52,
-          height: 52,
-          margin: const EdgeInsets.all(10),
+          width: 68,
+          height: 68,
+          margin: const EdgeInsets.all(4),
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(999),
+              color: Constans.shopColor,
+              borderRadius: BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
                     offset: const Offset(0, 3),
@@ -30,7 +29,10 @@ class ShopCategoryCard extends StatelessWidget {
                     color: Colors.black.withOpacity(0.3))
               ]),
           child: Image(
-            image: AssetImage(controller.categoryImages[index]),
+            image: AssetImage(
+              controller.categoryImages[index],
+            ),
+            color: Colors.white,
           ),
         ),
         Text(
@@ -38,7 +40,7 @@ class ShopCategoryCard extends StatelessWidget {
           style: const TextStyle(
               height: 0,
               color: Colors.black,
-              fontSize: 12,
+              fontSize: 14,
               fontFamily: Constans.fontFamily,
               fontWeight: FontWeight.bold),
         ),

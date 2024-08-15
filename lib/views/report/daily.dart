@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:fitnessapp/controller/reportcontroller.dart';
 import 'package:fitnessapp/shimmer/shimmergym.dart';
 import 'package:fitnessapp/views/report/calories.dart';
@@ -59,7 +58,8 @@ class _DailyState extends State<Daily> {
 
  Container info(BuildContext context) {
     return Container(
-            height: MediaQuery.of(context).size.height*0.45,
+          //  color: Colors.amber,
+            height: MediaQuery.of(context).size.height*0.47,
             width: MediaQuery.of(context).size.width,
             margin:const EdgeInsets.symmetric(horizontal: 10),
             child:  GridView.custom(
@@ -68,11 +68,11 @@ class _DailyState extends State<Daily> {
                             gridDelegate: SliverWovenGridDelegate.count(
                               crossAxisCount: 2,
                               mainAxisSpacing: 0,
-                              crossAxisSpacing: 0.5,
+                              crossAxisSpacing: 0,
                               pattern: [
-                                const WovenGridTile(1.05),
+                                const WovenGridTile(1),
                                 const WovenGridTile(
-                                  1.3,
+                                  1.2,
                                   crossAxisRatio: 0.97,
                                   alignment: AlignmentDirectional.centerEnd,
                                 ),
@@ -80,11 +80,20 @@ class _DailyState extends State<Daily> {
                             ),
                             childrenDelegate: SliverChildBuilderDelegate(
                                 childCount: 4,
-                                (context, index) =>index==0? Steps(daily: true,):
-                                index == 1? Timee():
+                                (context, index) =>
+                                (index==0&&isloading==false)? Steps(daily: true,steps: control.stepday,):
+                                (index==0&&isloading==true)?loadbmi():
+                               (index ==1&&isloading==false)? Timee(
+                                time: control.timeday,
+                                totaltime: control.timetotalday,
+                               ):
+                                 (index ==1&&isloading==true)?loadbmi():
                                 (index ==2&&isloading==false)? Number(num: control.numexerday):
                                  (index ==2&&isloading==true)?loadbmi()
-                                :Calories()
+                                :(index ==3&&isloading==false)? Calories(
+                                  calories: control.calday,
+                                  totalcalories: control.caltotalday,
+                                ):loadbmi()
                                 ),
                           ),
           );

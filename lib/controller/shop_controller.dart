@@ -13,6 +13,7 @@ import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class ShopController extends GetxController {
+  late bool isProductFavorite = false;
   final images = const [
     Assets.imagesShop1,
     Assets.imagesShop2,
@@ -50,7 +51,12 @@ class ShopController extends GetxController {
     );
 
     var data = jsonDecode(response.body);
-    return data['data'];
+    if (response.statusCode == 200) {
+      if (data['data'] != null) {
+        return data['data'];
+      }
+    }
+    return [];
   }
 
   Future<List<dynamic>> getCommonProduct() async {
@@ -64,8 +70,13 @@ class ShopController extends GetxController {
     );
 
     var data = jsonDecode(response.body);
-
-    return data['data'];
+    debugPrint('data: ${data}');
+    if (response.statusCode == 200) {
+      if (data['data'] != null) {
+        return data['data'];
+      }
+    }
+    return [];
   }
 
   Future<List<dynamic>> getMostSalesProduct() async {
@@ -78,7 +89,12 @@ class ShopController extends GetxController {
       },
     );
     var data = jsonDecode(response.body);
-    return data['data'];
+    if (response.statusCode == 200) {
+      if (data['data'] != null) {
+        return data['data'];
+      }
+    }
+    return [];
   }
 
   List allProducts = [];
@@ -397,18 +413,28 @@ class ShopController extends GetxController {
     debugPrint(jsonDecode(response.body).toString());
   }
 
+  bool refreshLoading = false;
+  Future getHomePageProducts() async {
+    refreshLoading = true;
+    update();
+    allProducts = await getAllProduct();
+    showedList = allProducts;
+
+    mostSalesProducts = await getMostSalesProduct();
+    commonProducts = await getCommonProduct();
+    adsList = await getAllAds();
+    refreshLoading = false;
+    update();
+  }
+
   @override
   onInit() {
     super.onInit();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      allProducts = await getAllProduct();
+      await getHomePageProducts();
       debugPrint('allProducts: ${allProducts.length}');
-      commonProducts = await getCommonProduct();
       debugPrint('commonProducts: ${commonProducts.length}');
-      mostSalesProducts = await getMostSalesProduct();
       debugPrint('mostSalesProducts: ${mostSalesProducts.length}');
-      showedList = allProducts;
-      await getAllAds();
       update();
       debugPrint('allAds: ${adsList.length}');
     });

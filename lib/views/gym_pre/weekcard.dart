@@ -77,7 +77,7 @@ class Weekcard extends StatelessWidget {
       onTap: (){
         if(controller.plans.contains(d.id)){
            control.updateday(d.id);
-           Get.to(Dayplanpage(d: d,));
+           Get.off(Dayplanpage(d: d,));
         }
       },
       child: Container(

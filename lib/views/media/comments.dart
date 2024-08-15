@@ -222,8 +222,7 @@ class _CommentViewState extends State<CommentView> {
                                       hintText: "Write Something here...",
                                       contentPadding: EdgeInsets.only(left: 10),
                                     ),
-                                    onChanged: (value) {
-                                      print(conComment.textComment.text);
+                                    onChanged: (value) {                                     
                                       setState(() {
                                         conComment.textComment.text = value;
                                       });
@@ -491,7 +490,7 @@ class _CommentViewState extends State<CommentView> {
                         ? CachedNetworkImage(
                             fit: BoxFit.cover,
                             imageUrl:
-                                "http://${Constans.host}:8000/uploads/$imageuser",
+                                "${Constans.mainbaseUrlimage}uploads/$imageuser",
                           )
                         : const Image(
                             fit: BoxFit.cover,
@@ -542,42 +541,9 @@ class _CommentViewState extends State<CommentView> {
                                 width: MediaQuery.of(context).size.width * 0.65,
                                 fit: BoxFit.contain,
                                 imageUrl:
-                                    "http://${Constans.host}:8000/uploads/$imageComment",
+                                    "${Constans.mainbaseUrlimage}uploads/$imageComment",
                               ))
-                          : Container(),
-                      // Padding(
-                      //   padding: const EdgeInsets.only(top: 3, bottom: 7),
-                      //   child: GestureDetector(
-                      //     onTap: () {},
-                      //     child: Container(
-                      //       padding: const EdgeInsets.symmetric(horizontal: 10),
-                      //       height: 28,
-                      //       width: 80,
-                      //       decoration: BoxDecoration(
-                      //         color: Colors.grey[350],
-                      //         borderRadius: const BorderRadius.all(
-                      //           Radius.circular(6),
-                      //         ),
-                      //       ),
-                      //       child: const Row(
-                      //         children: [
-                      //           Icon(
-                      //             Icons.reply_sharp,
-                      //             size: 15,
-                      //           ),
-                      //           Text(
-                      //             "Replay",
-                      //             style: TextStyle(
-                      //                 fontSize: 13,
-                      //                 fontFamily: Constans.fontFamily,
-                      //                 color: Colors.black,
-                      //                 fontWeight: FontWeight.bold),
-                      //           ),
-                      //         ],
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
+                          : Container(),                
                     ],
                   ),
                 ),
@@ -601,148 +567,6 @@ class _CommentViewState extends State<CommentView> {
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Padding commentReplayWidget({String? text, String? image}) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 25, top: 14),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 5,
-                ),
-                child: Container(
-                  clipBehavior: Clip.antiAlias,
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: const Image(
-                    fit: BoxFit.cover,
-                    image: AssetImage("assets/images/mee.jpg"),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 0, right: 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text(
-                      "Areej Mahfouz",
-                      style: TextStyle(
-                        fontSize: 17,
-                        fontFamily: Constans.fontFamily,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
-                      ),
-                    ),
-                    text != null
-                        ? SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.6,
-                            child: SingleChildScrollView(
-                              child: Text(
-                                text,
-                                style: const TextStyle(
-                                  fontSize: 14,
-                                  fontFamily: Constans.fontFamily,
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ),
-                          )
-                        : Container(),
-                    image != null
-                        ? Container(
-                            margin: const EdgeInsets.only(
-                                left: 0, right: 0, top: 4, bottom: 4),
-                            clipBehavior: Clip.antiAlias,
-                            decoration: const BoxDecoration(
-                              color: Constans.screen,
-                            ),
-                            height: MediaQuery.of(context).size.height * 0.23,
-                            width: MediaQuery.of(context).size.width * 0.58,
-                            child: Image.asset(
-                              image,
-                              fit: BoxFit.contain,
-                            ),
-                          )
-                        : Container(),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 3, bottom: 7),
-                      child: GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10),
-                          height: 22,
-                          width: 70,
-                          decoration: BoxDecoration(
-                            color: Colors.grey[350],
-                            borderRadius: const BorderRadius.all(
-                              Radius.circular(6),
-                            ),
-                          ),
-                          child: const Row(
-                            children: [
-                              Icon(
-                                Icons.reply_sharp,
-                                size: 12,
-                              ),
-                              Text(
-                                "Replay",
-                                style: TextStyle(
-                                    fontSize: 11,
-                                    fontFamily: Constans.fontFamily,
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const Padding(
-                padding: const EdgeInsets.only(bottom: 0),
-                child: Column(
-                  children: [
-                    // IconButton(
-                    //     onPressed: () {
-                    //       setState(() {
-                    //         current1 = !current1;
-                    //       });
-                    //     },
-                    //     icon: Icon(
-                    //         current1 == false
-                    //             ? Icons.favorite_border
-                    //             : Icons.favorite,
-                    //         size: 23,
-                    //         color:
-                    //             current1 == false ? Colors.grey : Colors.red)),
-                    const Text(
-                      "123",
-                      style: TextStyle(
-                        fontSize: 11,
-                        fontFamily: Constans.fontFamily,
-                        color: Colors.grey,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ],
       ),
     );
   }

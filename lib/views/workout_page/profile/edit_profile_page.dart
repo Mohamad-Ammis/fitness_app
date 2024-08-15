@@ -3,6 +3,7 @@
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/edit_userinfo_controller.dart';
 import 'package:fitnessapp/helper/validation.dart';
+import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/views/workout_page/profile/widgets/alertdialog.dart';
 import 'package:fitnessapp/views/workout_page/profile/widgets/checkbox.dart';
 import 'package:fitnessapp/views/workout_page/profile/widgets/container.dart';
@@ -148,6 +149,7 @@ class _EditProfileState extends State<EditProfile> {
                           padding: const EdgeInsets.only(
                               left: 3, right: 3, bottom: 15),
                           child: CustomTextFieldUnderline(
+                            con: controller.bioCon,
                             labelText: "Bio",
                             onSaved: (value) {
                               controller.bio = value!;
@@ -164,6 +166,7 @@ class _EditProfileState extends State<EditProfile> {
                           padding: const EdgeInsets.only(
                               left: 3, right: 3, bottom: 15),
                           child: CustomTextFieldUnderline(
+                            con: controller.nameCon,
                             labelText: "Name",
                             onSaved: (value) {
                               controller.name = value!;
@@ -189,6 +192,8 @@ class _EditProfileState extends State<EditProfile> {
                                       children: [
                                         TextButton(
                                             onPressed: () {
+                                              print(userInfo!
+                                                  .getString('fcm_token'));
                                               Get.back();
                                             },
                                             child: const Text(
@@ -208,14 +213,23 @@ class _EditProfileState extends State<EditProfile> {
                                                     .formKeypass.currentState!
                                                     .save();
                                                 try {
-                                                  await controller.postPassword(
-                                                      controller
-                                                          .currentpassword,
-                                                      controller.newpassword,
-                                                      controller
-                                                          .confimnewpassword);
-                                                  Get.snackbar('Success',
-                                                      'Password changed successfully');
+                                                  int stautusCode =
+                                                      await controller.postPass(
+                                                          controller
+                                                              .currentpassword,
+                                                          controller
+                                                              .newpassword,
+                                                          controller
+                                                              .confimnewpassword);
+                                                  if (stautusCode == 200) {
+                                                    Get.snackbar('Success',
+                                                        'Password changed successfully');
+                                                    controller.currentPass
+                                                        .clear();
+                                                    controller.confimPass
+                                                        .clear();
+                                                    controller.newPass.clear();
+                                                  }
                                                 } catch (e) {
                                                   Get.snackbar(
                                                     'Error',
@@ -224,10 +238,6 @@ class _EditProfileState extends State<EditProfile> {
                                                 }
 
                                                 controller.isLoadingFalse();
-
-                                                controller.currentPass.clear();
-                                                controller.confimPass.clear();
-                                                controller.newPass.clear();
                                               }
                                             },
                                             child: const Text(
@@ -254,14 +264,15 @@ class _EditProfileState extends State<EditProfile> {
                                           autovalidateMode:
                                               AutovalidateMode.disabled,
                                           child: SizedBox(
-                                              width: 400,
-                                              child: Column(
-                                                mainAxisSize: MainAxisSize.min,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.85,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.35,
+                                              child: ListView(
                                                 children: [
                                                   CustomPasswordTextField(
                                                     textStyle: const TextStyle(
@@ -285,21 +296,6 @@ class _EditProfileState extends State<EditProfile> {
                                                       controller
                                                               .currentpassword =
                                                           value!;
-                                                    },
-                                                    validatpass: (value) {
-                                                      if (value != null) {
-                                                        if (value.isEmpty) {
-                                                          return "Required Field";
-                                                        } else if (controller
-                                                                .oldPassword !=
-                                                            value) {
-                                                          return " Your old password \n was entered incorrectly";
-                                                        } else {
-                                                          return null;
-                                                        }
-                                                      } else {
-                                                        return null;
-                                                      }
                                                     },
                                                     controllerText:
                                                         controller.currentPass,
@@ -386,10 +382,10 @@ class _EditProfileState extends State<EditProfile> {
                           children: [
                             Expanded(
                               child: CustomTextFieldOutline(
+                                textCon: controller.heightCon,
                                 labelText: "Height",
                                 onSaved: (value) {
                                   controller.height = value;
-                                  // print(value);
                                 },
                                 validation: (value) {
                                   return FormValidators()
@@ -399,10 +395,10 @@ class _EditProfileState extends State<EditProfile> {
                             ),
                             Expanded(
                               child: CustomTextFieldOutline(
+                                textCon: controller.weightCon,
                                 labelText: "Weight",
                                 onSaved: (value) {
                                   controller.weight = value;
-                                  // print(value);
                                 },
                                 validation: (value) {
                                   return FormValidators()
@@ -498,19 +494,16 @@ class _EditProfileState extends State<EditProfile> {
                                     isLoading = true;
                                   });
                                   controller.formKeyAll.currentState!.save();
-                                  for (int i = 0;
-                                      i < controller.days.length;
-                                      i++) {
-                                    controller.data["training_days[${i + 1}]"] =
-                                        controller.days[i].toString();
-                                  }
-                                  controller.setData();
+
                                   try {
                                     int status =
                                         await controller.postUserInfo();
                                     if (status == 200) {
                                       Get.snackbar('Success',
                                           'Data updated successfully');
+                                      controller.image = null;
+                                      controller.update();
+                                      
                                     }
                                   } catch (e) {
                                     Get.snackbar(
@@ -523,14 +516,6 @@ class _EditProfileState extends State<EditProfile> {
                                     isLoading = false;
                                   });
                                 }
-
-                                // print(controller.currentpassword);
-                                // print(controller.newpassword);
-                                // print(controller.confimnewpassword);
-                                // print(controller.name);
-                                // print(controller.bio);
-                                // print(controller.height);
-                                // print(controller.weight);
                               },
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: kPrimer,

@@ -1,11 +1,12 @@
+import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/on_boarding_model.dart';
 import 'package:fitnessapp/utils/app_images.dart';
 import 'package:fitnessapp/views/on_boarding/on_boarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class OnBoardingController extends GetxController{
-    final pages = [
+class OnBoardingController extends GetxController {
+  final pages = [
     OnBoardingModel(
         title: "Welcome To",
         subTitle: 'Your personal fitness Assistant',
@@ -13,7 +14,8 @@ class OnBoardingController extends GetxController{
         haveUniqueTitle: true,
         buttonText: 'Next',
         onTap: () {
-          pageController.animateToPage(1, duration: const Duration(seconds: 1),curve: Curves.decelerate);
+          pageController.animateToPage(1,
+              duration: const Duration(seconds: 1), curve: Curves.decelerate);
         },
         image: Assets.imagesAthleteMan),
     OnBoardingModel(
@@ -23,7 +25,8 @@ class OnBoardingController extends GetxController{
         haveUniqueTitle: false,
         buttonText: 'Next',
         onTap: () {
-          pageController.animateToPage(2, duration:const  Duration(seconds: 1),curve: Curves.decelerate);
+          pageController.animateToPage(2,
+              duration: const Duration(seconds: 1), curve: Curves.decelerate);
         },
         image: Assets.imagesBoxingGirl),
     OnBoardingModel(
@@ -33,7 +36,8 @@ class OnBoardingController extends GetxController{
         haveUniqueTitle: false,
         buttonText: 'Next',
         onTap: () {
-          pageController.animateToPage(3, duration:const  Duration(seconds: 1),curve: Curves.decelerate);
+          pageController.animateToPage(3,
+              duration: const Duration(seconds: 1), curve: Curves.decelerate);
         },
         image: Assets.imagesAthleteMan2),
     OnBoardingModel(
@@ -43,6 +47,7 @@ class OnBoardingController extends GetxController{
         haveUniqueTitle: false,
         buttonText: 'Get Started',
         onTap: () {
+          userInfo!.setBool('firstUse', false);
           Get.offAllNamed('/login');
         },
         image: Assets.imagesFruits)

@@ -35,7 +35,10 @@ Future subscribe (int coachid)async{
      if(res.statusCode==200){
        final resdata = json.decode(res.body);
        idsub = resdata["data"]["id"];
-     }else{
+     }else if(res.statusCode==400){
+      throw "No plan available now ";
+     }
+     else{
       throw "Something wrong , please try again";
      }
       }catch(error){

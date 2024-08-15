@@ -9,12 +9,13 @@ class CustomExerciseTimer extends StatefulWidget {
     required this.outerPageController,
     required this.index,
     required this.lastIndex,
-    required this.model,
+    required this.model, required this.isCoachExercise,
   });
   final PageController outerPageController;
   final int index;
   final int lastIndex;
   final ExerciseModel model;
+  final bool isCoachExercise;
   @override
   State<CustomExerciseTimer> createState() => _CustomExerciseTimerState();
 }
@@ -54,6 +55,7 @@ class _CustomExerciseTimerState extends State<CustomExerciseTimer>
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 24.0),
             child: InfoSection(
+              isCoachExercise: widget.isCoachExercise,
               controller: _controller,
               outerPageController: widget.outerPageController,
               index: widget.index,

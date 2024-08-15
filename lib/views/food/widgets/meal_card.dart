@@ -50,8 +50,7 @@ class _RecentlyCardState extends State<RecentlyCard> {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
             child: Stack(children: [
               CachedNetworkImage(
-                imageUrl:
-                    "http://${Constans.host}:8000/uploads/${widget.image}",
+                imageUrl: "${Constans.mainbaseUrlimage}uploads/${widget.image}",
                 height: cont.maxHeight,
                 width: 290,
                 fit: BoxFit.cover,
@@ -177,7 +176,7 @@ class _MealCardState extends State<MealCard> {
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           child: Stack(children: [
             CachedNetworkImage(
-              imageUrl: "http://${Constans.host}:8000/uploads/${widget.image}",
+              imageUrl: "${Constans.mainbaseUrlimage}uploads/${widget.image}",
               height: cont.maxHeight,
               width: cont.maxWidth,
               fit: BoxFit.cover,
@@ -310,7 +309,7 @@ class _PopularCardState extends State<PopularCard> {
                   child: Stack(clipBehavior: Clip.none, children: [
                     CachedNetworkImage(
                       imageUrl:
-                          "http://${Constans.host}:8000/uploads/${widget.image}",
+                          "${Constans.mainbaseUrlimage}uploads/${widget.image}",
                       height: cont.maxHeight,
                       width: cont.maxWidth,
                       fit: BoxFit.cover,

@@ -31,7 +31,7 @@ class Button extends StatelessWidget {
                                   if (cont.man != 0) {
                                     controller.control.nextPage(
                                         duration: const Duration(seconds: 1),
-                                        curve: Curves.bounceOut);
+                                        curve: Curves.decelerate);
                                     controller.nextpercent();
                                   }
                                 } else if (cont.index == 1) {
@@ -39,26 +39,26 @@ class Button extends StatelessWidget {
                                   } else {
                                     controller.control.nextPage(
                                         duration: const Duration(seconds: 1),
-                                        curve: Curves.bounceOut);
+                                        curve: Curves.decelerate);
                                     controller.nextpercent();
                                   }
                                 } else if (cont.index == 2) {
                                   controller.control.nextPage(
                                       duration: const Duration(seconds: 1),
-                                      curve: Curves.bounceOut);
+                                     curve: Curves.decelerate);
                                   controller.nextpercent();
                                 } else if (cont.index == 3) {
                                   if (controller.activity != 0) {
                                     controller.control.nextPage(
-                                        duration: const Duration(seconds: 1),
-                                        curve: Curves.bounceOut);
+                                      duration: const Duration(seconds: 1),
+                                      curve: Curves.decelerate);
                                     controller.nextpercent();
                                   }
                                 }else if (cont.index == 4) {
                                   if (controller.level != 0) {
                                     controller.control.nextPage(
-                                        duration: const Duration(seconds: 1),
-                                        curve: Curves.bounceOut);
+                                       duration: const Duration(seconds: 1),
+                                        curve: Curves.decelerate);
                                     controller.nextpercent();
                                   }
                                 }
@@ -66,7 +66,7 @@ class Button extends StatelessWidget {
                                   if (cont.selectfocusarea != 0) {
                                     controller.control.nextPage(
                                         duration: const Duration(seconds: 1),
-                                        curve: Curves.bounceOut);
+                                        curve: Curves.decelerate);
                                     controller.nextpercent();
                                   }
                                 } else if (cont.index == 6) {
@@ -74,7 +74,7 @@ class Button extends StatelessWidget {
                                controller.control.nextPage(duration: const Duration(seconds: 1), curve: Curves.bounceOut);
                                controller.nextpercent();
                             } */
-                             controller.control.nextPage(duration: const Duration(seconds: 1), curve: Curves.bounceOut);
+                             controller.control.nextPage(duration: const Duration(seconds: 1), curve: Curves.decelerate);
                                controller.nextpercent();
                           }
                           
