@@ -29,12 +29,12 @@ class Api {
             },
       body: jsonEncode(body),
     );
-    
-    var respnseDecode=jsonDecode(response.body);
+
+    var respnseDecode = jsonDecode(response.body);
     debugPrint('response: $respnseDecode');
     debugPrint('response: ${response.statusCode}');
-    var data=response;
-    if (response.statusCode == 200||response.statusCode==201) {
+    var data = response;
+    if (response.statusCode == 200 || response.statusCode == 201) {
       // ScaffoldMessenger.of(context)
       //   ..hideCurrentSnackBar()
       //   ..showSnackBar(CustomSnackBar().customSnackBar(
@@ -57,17 +57,23 @@ class Api {
       return data;
     }
   }
-  Future getData(String? token,String url) async {
-    final response=await http.get(Uri.parse(url),headers: token != null
+
+  Future getData(String? token, String url) async {
+    final response = await http.get(
+      Uri.parse(url),
+      headers: token != null
           ? <String, String>{
               'Content-Type': 'application/json',
               'Authorization': 'Bearer $token'
             }
           : <String, String>{
               'Content-Type': 'application/json',
-            },);
-            if(response.statusCode==200){
-              return jsonDecode(response.body);
-            }
+            },
+    );
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      return [];
+    }
   }
 }

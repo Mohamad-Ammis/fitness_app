@@ -25,7 +25,7 @@ class ChallengeGifSection extends StatelessWidget {
               bottomRight: Radius.circular(35))),
       child: CachedNetworkImage(
         imageUrl:
-            "http://${Constans.host}:8000/Uploads/${model.gif}",
+            "${Constans.mainbaseUrlimage}Uploads/${model.gif}",
         imageBuilder: (context, imageProvider) => Container(
           decoration: BoxDecoration(
             image: DecorationImage(

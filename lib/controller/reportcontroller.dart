@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:math';
-import 'dart:math';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:get/get.dart';

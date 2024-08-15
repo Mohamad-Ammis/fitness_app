@@ -41,7 +41,7 @@ class _TrendProductCardState extends State<TrendProductCard> {
           children: [
             CachedNetworkImage(
                 imageUrl:
-                    "http://${Constans.host}:8000/Uploads/${widget.model.image}",
+                    "${Constans.mainbaseUrlimage}Uploads/${widget.model.image}",
                 imageBuilder: (context, imageProvider) => Container(
                         decoration: BoxDecoration(
                       image: DecorationImage(

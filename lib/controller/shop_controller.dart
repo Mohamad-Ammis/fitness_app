@@ -36,6 +36,12 @@ class ShopController extends GetxController {
     "Sports",
     "food",
   ];
+  List allProducts = [];
+  List commonProducts = [];
+  List mostSalesProducts = [];
+  List showedList = [];
+
+  List favoriteProducts = [];
   bool buyNow = false;
   bool checkout = false;
   final PageController pageController = PageController();
@@ -97,12 +103,6 @@ class ShopController extends GetxController {
     return [];
   }
 
-  List allProducts = [];
-  List commonProducts = [];
-  List mostSalesProducts = [];
-  List showedList = [];
-
-  List favoriteProducts = [];
   Future<List<dynamic>> getFavoritesProduct() async {
     const url = '${Constans.baseUrl}products/GetFavoritesList';
     final response = await http.get(
@@ -419,7 +419,6 @@ class ShopController extends GetxController {
     update();
     allProducts = await getAllProduct();
     showedList = allProducts;
-
     mostSalesProducts = await getMostSalesProduct();
     commonProducts = await getCommonProduct();
     adsList = await getAllAds();
@@ -427,14 +426,18 @@ class ShopController extends GetxController {
     update();
   }
 
+  bool HomeLoading = false;
   @override
   onInit() {
     super.onInit();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      HomeLoading = true;
+      update();
       await getHomePageProducts();
       debugPrint('allProducts: ${allProducts.length}');
       debugPrint('commonProducts: ${commonProducts.length}');
       debugPrint('mostSalesProducts: ${mostSalesProducts.length}');
+      HomeLoading = false;
       update();
       debugPrint('allAds: ${adsList.length}');
     });

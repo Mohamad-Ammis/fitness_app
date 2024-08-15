@@ -85,7 +85,7 @@ class _OffersPageViewState extends State<OffersPageView> {
                       )
                     : CachedNetworkImage(
                         imageUrl:
-                            "http://${Constans.host}:8000/Uploads/${controller.adsList[index].image}",
+                            "${Constans.mainbaseUrlimage}Uploads/${controller.adsList[index].image}",
                         imageBuilder: (context, imageProvider) => Container(
                           decoration: BoxDecoration(
                             image: DecorationImage(

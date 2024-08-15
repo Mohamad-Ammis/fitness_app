@@ -14,7 +14,7 @@ class ExerciseGifSection extends StatelessWidget {
     return SizedBox(
         width: double.infinity,
         child: CachedNetworkImage(
-  imageUrl: "http://${Constans.host}:8000/Uploads/${model.image}",
+  imageUrl: "${Constans.mainbaseUrlimage}Uploads/${model.image}",
   imageBuilder: (context, imageProvider) => Container(
     decoration: BoxDecoration(
       image: DecorationImage(

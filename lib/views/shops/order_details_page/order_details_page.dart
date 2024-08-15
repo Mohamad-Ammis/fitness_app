@@ -64,7 +64,7 @@ class OrderDetailsPage extends StatelessWidget {
                                     }
                                   },
                                   child: Container(
-                                    height: 35,
+                                    height: 45,
                                     width: 180,
                                     padding:
                                         EdgeInsets.symmetric(horizontal: 16),

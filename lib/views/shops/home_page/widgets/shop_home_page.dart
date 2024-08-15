@@ -102,7 +102,7 @@ class ShopHomePage extends StatelessWidget {
                 ],
               ),
             ),
-            TrendProductList(),
+            controller.HomeLoading ? SizedBox() : TrendProductList(),
           ],
         ),
       );

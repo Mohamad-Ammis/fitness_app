@@ -14,7 +14,7 @@ class ProductModel {
   final dynamic salesCount;
   final dynamic viewCount;
   final dynamic expiredDate;
-   dynamic isFavorite;
+   dynamic? isFavorite;
   dynamic count = 0;
   final List<ColorsModel> colors;
   final List<SizeModel> sizes;

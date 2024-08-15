@@ -29,7 +29,7 @@ class PlayingExercisePage extends StatelessWidget {
           decoration: const BoxDecoration(
               border: Border(bottom: BorderSide(width: 0.1))),
           child: CachedNetworkImage(
-  imageUrl: "http://${Constans.host}:8000/Uploads/${model.image}",
+  imageUrl: "${Constans.mainbaseUrlimage}Uploads/${model.image}",
   imageBuilder: (context, imageProvider) => Container(
     decoration: BoxDecoration(
       image: DecorationImage(
