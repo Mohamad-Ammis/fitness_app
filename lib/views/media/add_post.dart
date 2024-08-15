@@ -62,8 +62,8 @@ class _AddPostState extends State<AddPost> {
                     builder: (controller) {
                       return Container(
                         height: controller.images.isEmpty
-                            ? MediaQuery.of(context).size.height * 0.19
-                            : MediaQuery.of(context).size.height * 0.5,
+                            ? MediaQuery.of(context).size.height * 0.2
+                            : MediaQuery.of(context).size.height * 0.51,
                         width: MediaQuery.of(context).size.width * 0.94,
                         decoration: BoxDecoration(
                             border: Border.all(color: Colors.black26),
@@ -73,8 +73,7 @@ class _AddPostState extends State<AddPost> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
-                              height:
-                                  MediaQuery.of(context).size.height * 0.125,
+                              height: MediaQuery.of(context).size.height * 0.14,
                               width: MediaQuery.of(context).size.width,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -330,7 +329,7 @@ class _AddPostState extends State<AddPost> {
                                   )
                                 : Container(),
                             SizedBox(
-                              height: MediaQuery.of(context).size.height * 0.06,
+                              height: MediaQuery.of(context).size.height * 0.04,
                               width: MediaQuery.of(context).size.width,
                               child: Padding(
                                   padding: const EdgeInsets.only(
@@ -399,7 +398,7 @@ class _AddPostState extends State<AddPost> {
                                             left: MediaQuery.of(context)
                                                     .size
                                                     .width *
-                                                0.49,
+                                                0.42,
                                           ),
                                           child: Container(
                                             height: 35,

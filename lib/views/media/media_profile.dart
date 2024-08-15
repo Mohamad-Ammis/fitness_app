@@ -176,7 +176,7 @@ class _MediaProfileState extends State<MediaProfile> {
                           ? Container(
                               color: Colors.white,
                               width: MediaQuery.of(context).size.width,
-                              height: MediaQuery.of(context).size.height * 0.14,
+                              height: MediaQuery.of(context).size.height * 0.15,
                               child: Column(
                                 children: [
                                   const Padding(

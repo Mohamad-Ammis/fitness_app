@@ -56,6 +56,7 @@ class ShopController extends GetxController {
         return data['data'];
       }
     }
+    debugPrint(data.toString());
     return [];
   }
 
@@ -76,6 +77,8 @@ class ShopController extends GetxController {
         return data['data'];
       }
     }
+    debugPrint(data.toString());
+
     return [];
   }
 
@@ -94,6 +97,8 @@ class ShopController extends GetxController {
         return data['data'];
       }
     }
+    debugPrint(data.toString());
+
     return [];
   }
 
@@ -168,7 +173,7 @@ class ShopController extends GetxController {
       }
       return false;
     } else {
-      throw Exception();
+      return false;
     }
   }
 
@@ -193,7 +198,9 @@ class ShopController extends GetxController {
       return adsList;
     } else {
       debugPrint('error when get all Ads');
-      return;
+          debugPrint(data.toString());
+
+      return [];
     }
   }
 

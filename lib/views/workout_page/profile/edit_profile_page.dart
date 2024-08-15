@@ -29,9 +29,11 @@ class _EditProfileState extends State<EditProfile> {
 
   bool? isLoading = false;
   bool? isLoadingPass = false;
+  String? currentRadio;
 
   @override
   Widget build(BuildContext context) {
+    // String? currentRadio = "Lo";
     return Scaffold(
       backgroundColor: bPrimer,
       body: SingleChildScrollView(
@@ -424,6 +426,21 @@ class _EditProfileState extends State<EditProfile> {
                                       style: TextStyle(
                                           color: Colors.black,
                                           fontFamily: Constans.fontFamily),
+                                    )),
+                                TextButton(
+                                    onPressed: () {
+                                      showTimePicker(
+                                              context: context,
+                                              initialTime: TimeOfDay.now())
+                                          .then((value) {
+                                        controller.time = value;
+                                      });
+                                    },
+                                    child: const Text(
+                                      "ُTime Edit",
+                                      style: TextStyle(
+                                          color: Colors.black,
+                                          fontFamily: Constans.fontFamily),
                                     ))
                               ],
                               titleText: "Weekly goal",
@@ -478,8 +495,207 @@ class _EditProfileState extends State<EditProfile> {
                                 );
                               })),
                         ),
+                        InkWell(
+                          onTap: () {
+                            showDialog(
+                                barrierDismissible: false,
+                                context: context,
+                                builder: (context) {
+                                  return GetBuilder<Controller>(
+                                    builder: (controller) {
+                                      return AlertDialog(
+                                        actions: [
+                                          TextButton(
+                                              onPressed: () {
+                                                Get.back();
+                                              },
+                                              child: const Text(
+                                                "Close",
+                                                style: TextStyle(
+                                                    color: Colors.black,
+                                                    fontFamily:
+                                                        Constans.fontFamily),
+                                              )),
+                                        ],
+                                        title: Text(
+                                          "Goal",
+                                          style: const TextStyle(
+                                              fontFamily: Constans.fontFamily),
+                                        ),
+                                        content: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            RadioListTile(
+                                                title: Text("Lose wieght"),
+                                                value: "lose_weight",
+                                                groupValue:
+                                                    controller.currentRadio,
+                                                onChanged: (value) {
+                                                  controller.updateTaget(value);
+                                                  controller.target = value;
+                                                  print(controller.target);
+                                                }),
+                                            RadioListTile(
+                                                title: Text("Keep fit"),
+                                                value: "keep_fit",
+                                                groupValue:
+                                                    controller.currentRadio,
+                                                onChanged: (value) {
+                                                  controller.updateTaget(value);
+                                                  controller.target = value;
+                                                  print(controller.target);
+                                                }),
+                                            RadioListTile(
+                                                title: Text("Build muscle"),
+                                                value: "build_muscle",
+                                                groupValue:
+                                                    controller.currentRadio,
+                                                onChanged: (value) {
+                                                  controller.updateTaget(value);
+                                                  controller.target = value;
+                                                  print(controller.target);
+                                                }),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
+                                });
+                          },
+                          overlayColor: WidgetStatePropertyAll(
+                            kPrimer.withOpacity(0.1),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 30, vertical: 5),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey.withOpacity(0.1),
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(10),
+                                ),
+                              ),
+                              padding: const EdgeInsets.only(left: 15, top: 15),
+                              height: 55,
+                              width: double.infinity,
+                              child: Padding(
+                                padding: const EdgeInsets.only(bottom: 15),
+                                child: Row(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 8),
+                                      child: Icon(
+                                        Icons.star,
+                                        color: kPrimer,
+                                      ),
+                                    ),
+                                    Text(
+                                      "Target",
+                                      textAlign: TextAlign.start,
+                                      style: TextStyle(
+                                          color: Colors.black.withAlpha(120),
+                                          fontSize: 18,
+                                          fontFamily: Constans.fontFamily),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        // CustomContainer(
+                        //   text: "Target",
+                        //   icon: Icons.star,
+                        //   widget: CustomAlertDialog(
+                        //       action: [
+                        //         TextButton(
+                        //             onPressed: () {
+                        //               Get.back();
+                        //               print(controller.days);
+                        //             },
+                        //             child: const Text(
+                        //               "Close",
+                        //               style: TextStyle(
+                        //                   color: Colors.black,
+                        //                   fontFamily: Constans.fontFamily),
+                        //             )),
+                        //       ],
+                        //       titleText: "Goal",
+                        //       content: Column(
+                        //         mainAxisSize: MainAxisSize.min,
+                        //         children: [
+                        //           RadioListTile(
+                        //               title: Text("Lose wieght"),
+                        //               value: "Lose wieght",
+                        //               groupValue: currentRadio,
+                        //               onChanged: (value) {
+                        //                 setState(() {
+                        //                   print(currentRadio);
+                        //                   currentRadio = value;
+                        //                 });
+                        //               }),
+                        //           RadioListTile(
+                        //               title: Text("LO"),
+                        //               value: "LO",
+                        //               groupValue: currentRadio,
+                        //               onChanged: (value) {
+                        //                 setState(() {
+                        //                   print(currentRadio);
+                        //                   currentRadio = value;
+                        //                 });
+                        //               }),
+                        //           RadioListTile(
+                        //               title: Text("LOw"),
+                        //               value: "LOw",
+                        //               groupValue: currentRadio,
+                        //               onChanged: (value) {
+                        //                 setState(() {
+                        //                   print(currentRadio);
+                        //                   currentRadio = value;
+                        //                 });
+                        //               }),
+                        //           // ListTile(
+                        //           //   title: Text("Lose W"),
+                        //           //   trailing: Radio(
+                        //           //       value: "Lose W",
+                        //           //       groupValue: CurrentRadio,
+                        //           //       onChanged: (value) {
+                        //           //         setState(() {
+                        //           //           print(CurrentRadio);
+                        //           //           CurrentRadio = value;
+                        //           //         });
+                        //           //       }),
+                        //           // ),
+                        //           // ListTile(
+                        //           //   title: Text("Lose Wiaght"),
+                        //           //   trailing: Radio(
+                        //           //       value: "Lose Wiaght",
+                        //           //       groupValue: CurrentRadio,
+                        //           //       onChanged: (value) {
+                        //           //         setState(() {
+                        //           //           print(CurrentRadio);
+                        //           //           CurrentRadio = value;
+                        //           //         });
+                        //           //       }),
+                        //           // ),
+                        //           // ListTile(
+                        //           //   title: Text("Lose"),
+                        //           //   trailing: Radio(
+                        //           //       value: "Lose",
+                        //           //       groupValue: CurrentRadio,
+                        //           //       onChanged: (value) {
+                        //           //         setState(() {
+                        //           //           // print(CurrentRadio);
+                        //           //           print(value);
+                        //           //           CurrentRadio = value;
+                        //           //         });
+                        //           //       }),
+                        //           // )
+                        //         ],
+                        //       )),
+                        // ),
                         const SizedBox(
-                          height: 30,
+                          height: 16,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 0),
@@ -503,7 +719,6 @@ class _EditProfileState extends State<EditProfile> {
                                           'Data updated successfully');
                                       controller.image = null;
                                       controller.update();
-                                      
                                     }
                                   } catch (e) {
                                     Get.snackbar(

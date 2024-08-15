@@ -77,7 +77,7 @@ class _CategoryPageState extends State<CategoryPage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 buildRowCategory(
-                    0, MediaQuery.of(context).size.width * 0.18, "All"),
+                    0, MediaQuery.of(context).size.width * 0.2, "All"),
                 buildRowCategory(
                     1, MediaQuery.of(context).size.width * 0.32, "Suger Free"),
                 buildRowCategory(
@@ -621,7 +621,7 @@ class _CategoryPageState extends State<CategoryPage> {
   Column buildRowCategory(index, width, text) {
     return Column(children: [
       Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
+          padding: const EdgeInsets.symmetric(horizontal: 0),
           child: OutlinedButton(
             onPressed: () {
               setState(() {

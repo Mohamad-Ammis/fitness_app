@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/auth_controller.dart';
 import 'package:fitnessapp/main.dart';
@@ -128,7 +130,7 @@ class _RegisterPageFormState extends State<RegisterPageForm> {
                     if (response.statusCode >= 200 &&
                         response.statusCode < 300) {
                       isLoading = false;
-                      setState(() {});
+                   
                       userInfo!.setString("name", authController.userName);
                       Get.to(VerificationPage());
                     }

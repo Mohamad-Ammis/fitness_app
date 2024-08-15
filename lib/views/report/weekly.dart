@@ -27,6 +27,7 @@ class _WeeklyState extends State<Weekly> {
 
 @override
    void initState() {
+    print(controller.currentweight);
        setState(() {
         isloading = true;
       });
@@ -46,7 +47,7 @@ class _WeeklyState extends State<Weekly> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return (controller.maxcalories!=0 && controller.currentweight!=null )? ListView(
          physics: const NeverScrollableScrollPhysics(),
          shrinkWrap: true,
          children: [
@@ -54,6 +55,15 @@ class _WeeklyState extends State<Weekly> {
          isloading==false?weight(context):loadchart(),
           const SizedBox(height: 10,),
          isloading==false? calories(context):loadchart(), 
+          const SizedBox(height: 10,),
+          const Bmi(),   
+          const SizedBox(height: 20,),
+         ],
+    ): ListView(
+         physics: const NeverScrollableScrollPhysics(),
+         shrinkWrap: true,
+         children: [
+          info(context),
           const SizedBox(height: 10,),
           const Bmi(),   
           const SizedBox(height: 20,),
@@ -200,11 +210,11 @@ class _WeeklyState extends State<Weekly> {
                   ),
                  ),
                   LineChartSample2(leftTitleWidgets:leftTitleWidgetsweight ,
-                  minY: controller.currentweight*10-15,
-                  maxY: controller.currentweight*10+15,
+                  minY: controller.currentweight!*10-15,
+                  maxY: controller.currentweight!*10+15,
                   flspot:  [
                     FlSpot(1,controller.wieghtdiagram[0]*10 ),
-                    FlSpot(7, controller.currentweight*10),
+                    FlSpot(7, controller.currentweight!*10),
                   ],
                   h: 3,
                   fldot:  FlDotData(
@@ -251,20 +261,20 @@ class _WeeklyState extends State<Weekly> {
       fontSize: 13,
     );
     String text;
-    if(value.toInt()==controller.currentweight*10-10){
-      text = (controller.currentweight-1).toString();
+    if(value.toInt()==controller.currentweight!*10-10){
+      text = (controller.currentweight!-1).toString();
       return Text(text, style: style, textAlign: TextAlign.center);
-    }else if (value.toInt()==controller.currentweight*10-5){
-       text = (controller.currentweight-0.5).toString();
+    }else if (value.toInt()==controller.currentweight!*10-5){
+       text = (controller.currentweight!-0.5).toString();
        return Text(text, style: style, textAlign: TextAlign.center);
-    }else if(value.toInt()==controller.currentweight*10){
+    }else if(value.toInt()==controller.currentweight!*10){
        text = (controller.currentweight).toString();
        return Text(text, style: style, textAlign: TextAlign.center);
-    }else if(value.toInt()==controller.currentweight*10+5){
-       text = (controller.currentweight+0.5).toString();
+    }else if(value.toInt()==controller.currentweight!*10+5){
+       text = (controller.currentweight!+0.5).toString();
        return Text(text, style: style, textAlign: TextAlign.center);
-    }else if(value.toInt()==controller.currentweight*10+10){
-       text = (controller.currentweight+1).toString();
+    }else if(value.toInt()==controller.currentweight!*10+10){
+       text = (controller.currentweight!+1).toString();
        return Text(text, style: style, textAlign: TextAlign.center);
     }else{
         return Container();
@@ -284,7 +294,7 @@ class _WeeklyState extends State<Weekly> {
                 mainAxisSpacing: 0,
                 crossAxisSpacing: 0.5,
                 pattern: [
-                   const WovenGridTile(1),
+                  const WovenGridTile(1),
                   const WovenGridTile(
                     1.2,
                     crossAxisRatio: 0.97,

@@ -1,9 +1,11 @@
 import 'dart:convert';
 // ignore_for_file: avoid_print
-import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/controller/edit_userinfo_controller.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class Api {
+  
   Future get({required String url, String? token}) async {
     Map<String, String> headers = {};
     if (token != null) {
@@ -17,13 +19,12 @@ class Api {
     try {
       final response = await http.get(Uri.parse(url), headers: headers);
       if (response.statusCode == 200) {
-     
-
         return jsonDecode(response.body);
       }
       if (response.statusCode == 201) {
         return jsonDecode(response.body);
       }
+    
       if (response.statusCode == 500) {
         print("sucNO");
 
@@ -51,7 +52,6 @@ class Api {
       http.Response response =
           await http.post(Uri.parse(url), body: body, headers: headers);
 
-          
       if (response.statusCode == 200) {
         return jsonDecode(response.body);
       }
