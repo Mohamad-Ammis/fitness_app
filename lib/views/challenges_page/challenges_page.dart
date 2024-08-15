@@ -25,7 +25,7 @@ class ChallengePage extends StatelessWidget {
                 color: Colors.black,
                 image: DecorationImage(
                     image: NetworkImage(
-                        "http://${Constans.host}:8000/Uploads/${model.secondryImage}"),
+                        "${Constans.mainbaseUrlimage}Uploads/${model.secondryImage}"),
                     fit: BoxFit.cover,
                     opacity: 0.2),
               ),

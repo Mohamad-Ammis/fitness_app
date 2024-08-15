@@ -198,7 +198,7 @@ class ShopController extends GetxController {
       return adsList;
     } else {
       debugPrint('error when get all Ads');
-          debugPrint(data.toString());
+      debugPrint(data.toString());
 
       return [];
     }

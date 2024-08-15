@@ -35,7 +35,7 @@ class FavoritePageCard extends StatelessWidget {
                     child: CachedNetworkImage(
                         height: 150,
                         imageUrl:
-                            "http://${Constans.host}:8000/Uploads/${model.image}",
+                            "${Constans.mainbaseUrlimage}Uploads/${model.image}",
                         imageBuilder: (context, imageProvider) => Container(
                                 decoration: BoxDecoration(
                               image: DecorationImage(

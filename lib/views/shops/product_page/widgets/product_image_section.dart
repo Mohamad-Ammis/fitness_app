@@ -47,7 +47,7 @@ class _ProductPageImageSectionState extends State<ProductPageImageSection> {
                 margin: const EdgeInsets.only(top: 100),
                 child: CachedNetworkImage(
                     imageUrl:
-                        "http://${Constans.host}:8000/Uploads/${widget.model.image}",
+                        "${Constans.mainbaseUrlimage}Uploads/${widget.model.image}",
                     imageBuilder: (context, imageProvider) => Container(
                             decoration: BoxDecoration(
                           image: DecorationImage(

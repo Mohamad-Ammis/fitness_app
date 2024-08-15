@@ -13,6 +13,7 @@ import 'package:fitnessapp/views/on_boarding/on_boarding.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
 @pragma('vm:entry-point')
 Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // If you're going to use other Firebase services in the background, such as Firestore,
@@ -37,33 +38,34 @@ Future<void> initApp() async {
   }).onError((err) {
     debugPrint('error on refresh token');
   });
-  
+
   listenToNotification();
   FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
-  
+
   debugPrint('token ${userInfo?.getString('token').toString()}');
-  
+
   userInfo = await SharedPreferences.getInstance();
   debugPrint('userInfo: ${userInfo!.getString('token')}');
 }
-void handlePageTransition() {
-    final controller = Get.put(Datacontroller(), permanent: true);
 
-    Timer(const Duration(seconds: 3), () {
-      if (userInfo!.getInt("man") != null) {
-        controller.setmemoryman(userInfo!.getInt("man")!);
-        if (userInfo!.getString("image") != null) {
-          controller.setmemoryimage(userInfo!.getString("image")!);
-        }
-        // Get.offAll(OnBoarding());
-        Get.offAll(Home());
-      } else {
-        if (userInfo!.getBool('firstUse') == false) {
-          Get.offAll(LogInPage());
-        } else {
-          Get.offAll(OnBoarding());
-        }
+void handlePageTransition() {
+  final controller = Get.put(Datacontroller(), permanent: true);
+
+  Timer(const Duration(seconds: 3), () {
+    if (userInfo!.getInt("man") != null) {
+      controller.setmemoryman(userInfo!.getInt("man")!);
+      if (userInfo!.getString("image") != null) {
+        controller.setmemoryimage(userInfo!.getString("image")!);
       }
-      //  Get.offAll(Media()) ;
-    });
-  }
+      // Get.offAll(OnBoarding());
+      Get.offAll(LogInPage());
+    } else {
+      if (userInfo!.getBool('firstUse') == false) {
+        Get.offAll(LogInPage());
+      } else {
+        Get.offAll(OnBoarding());
+      }
+    }
+    //  Get.offAll(Media()) ;
+  });
+}

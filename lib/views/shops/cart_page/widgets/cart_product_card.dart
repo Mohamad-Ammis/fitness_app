@@ -34,7 +34,7 @@ class CartProductCard extends StatelessWidget {
           Expanded(
             child: CachedNetworkImage(
               height: 130,
-              imageUrl: "http://${Constans.host}:8000/Uploads/${model.image}",
+              imageUrl: "${Constans.mainbaseUrlimage}Uploads/${model.image}",
               imageBuilder: (context, imageProvider) => Container(
                 decoration: BoxDecoration(
                   image: DecorationImage(
