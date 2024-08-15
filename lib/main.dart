@@ -1,7 +1,9 @@
+import 'package:device_preview/device_preview.dart';
 import 'package:fitnessapp/helper/initApp.dart';
 import 'package:fitnessapp/splash_screen.dart';
 import 'package:fitnessapp/views/auth_pages/login_page/login_page.dart';
 import 'package:fitnessapp/views/auth_pages/register_page/register_page.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -11,7 +13,10 @@ SharedPreferences? userInfo;
 
 void main() async {
   await initApp();
-  runApp(const MyApp());
+  runApp(DevicePreview(
+    enabled: !kReleaseMode,
+    builder: (context) => MyApp(), // Wrap your app
+  ),);
 }
 
 class MyApp extends StatefulWidget {

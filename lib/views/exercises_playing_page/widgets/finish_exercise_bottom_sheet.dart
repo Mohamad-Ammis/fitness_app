@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:confetti/confetti.dart';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/utils/app_images.dart';

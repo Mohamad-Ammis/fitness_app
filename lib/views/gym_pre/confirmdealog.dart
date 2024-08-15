@@ -71,7 +71,7 @@ final controller = Get.put(Precontroller(), permanent: true);
                                 borderRadius: BorderRadius.circular(30),
                               ),
                             ),
-                            child: childbutton(" Cancel ", 50, 70, 0, 15)),
+                            child: childbutton(" Cancel ", 50, 60, 0, 15)),
                           const  Spacer(),
                              ElevatedButton(
                         onPressed: () {
@@ -83,7 +83,7 @@ final controller = Get.put(Precontroller(), permanent: true);
                             borderRadius: BorderRadius.circular(30),
                           ),
                         ),
-                        child: childbutton("Confirm ", 50, 70, 0, 15)),
+                        child: childbutton("Confirm ", 50, 60, 0, 15)),
                       const  Spacer(),
                       ],
                     ),

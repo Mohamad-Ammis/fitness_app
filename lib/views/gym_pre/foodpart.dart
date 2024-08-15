@@ -117,7 +117,7 @@ class _FoodpartState extends State<Foodpart> {
                   opacity:0.5,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30),
-                    child:Image.network("http://${Constans.host}:8000/uploads/${meal.image!}", fit: BoxFit.cover,),
+                    child:Image.network("${Constans.mainbaseUrlimage}uploads/${meal.image!}", fit: BoxFit.cover,),
                   ),
                    ),
               ),
@@ -158,7 +158,7 @@ class _FoodpartState extends State<Foodpart> {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30),
-                    child: Image.network("http://${Constans.host}:8000/uploads/${meal.image!}", fit: BoxFit.cover,),
+                    child: Image.network("${Constans.mainbaseUrlimage}uploads/${meal.image!}", fit: BoxFit.cover,),
                   ),
                 ),
                 Positioned(
@@ -235,7 +235,7 @@ class _FoodpartState extends State<Foodpart> {
             },
             child: ClipRRect(
               borderRadius: BorderRadius.circular(30),
-              child: Image.network("http://${Constans.host}:8000/uploads/${meal.image!}", fit: BoxFit.cover,),
+              child: Image.network("${Constans.mainbaseUrlimage}uploads/${meal.image!}", fit: BoxFit.cover,),
             ),
           ),
         )).toList(),
@@ -268,7 +268,7 @@ class _FoodpartState extends State<Foodpart> {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(25),
-                child: Image.network("http://${Constans.host}:8000/uploads/${meal.image!}", fit: BoxFit.cover,),
+                child: Image.network("${Constans.mainbaseUrlimage}uploads/${meal.image!}", fit: BoxFit.cover,),
               ),
             ),
           )).toList(),
