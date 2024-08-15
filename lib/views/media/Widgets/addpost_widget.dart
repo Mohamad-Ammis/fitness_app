@@ -1,6 +1,4 @@
 import 'dart:convert';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:flutter/material.dart';
@@ -48,28 +46,7 @@ class _AddPostWidgetState extends State<AddPostWidget> {
                     shape: BoxShape.circle,
                     color: Colors.white,
                   ),
-                  // child: widget.userImage != null
-                  //     ? widget.isImage == false
-                  //         ? CachedNetworkImage(
-                  //             width: MediaQuery.of(context).size.width,
-                  //             imageUrl:
-                  //                 "http://${Constans.host}:8000/uploads/${widget.userImage}",
-                  //             fit: BoxFit.cover)
-                  //         : Image.memory(
-                  //             base64Decode(widget.userImage!),
-                  //             fit: BoxFit.cover,
-                  //           )
-                  //     : Image.asset(
-                  //         "assets/images/pers.png",
-                  //         fit: BoxFit.cover,
-                  //       ),
-
-                  // child: widget.post.userimage != null
-                  //     ? CachedNetworkImage(
-                  //         width: MediaQuery.of(context).size.width,
-                  //         imageUrl:
-                  //             "http://${Constans.host}:8000/uploads/${widget.post.userimage}",
-                  //         fit: BoxFit.cover)
+                
                   child: conImage.base64String == null
                       ? Image.asset(
                           "assets/images/pers.png",
@@ -111,23 +88,7 @@ class _AddPostWidgetState extends State<AddPostWidget> {
               ),
             ),
           ),
-          // Positioned(
-          //   top: MediaQuery.of(context).size.height * 0.009,
-          //   left: MediaQuery.of(context).size.width * 0.81,
-          //   child: Container(
-          //     height: 40,
-          //     width: 40,
-          //     padding: const EdgeInsets.only(left: 2, right: 2),
-          //     decoration: BoxDecoration(
-          //         color: Colors.white, borderRadius: BorderRadius.circular(25)),
-          //     child: const Padding(
-          //       padding: EdgeInsets.all(6.0),
-          //       child: Image(
-          //         image: AssetImage("assets/images/video (1).png"),
-          //       ),
-          //     ),
-          //   ),
-          // ),
+       
         ]),
       ),
     );

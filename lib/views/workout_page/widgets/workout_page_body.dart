@@ -2,6 +2,7 @@ import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/controller/workout_page_controller.dart';
 import 'package:fitnessapp/main.dart';
+import 'package:fitnessapp/views/exercises_playing_page/widgets/finish_exercise_bottom_sheet.dart';
 import 'package:fitnessapp/views/workout_page/widgets/challenge_list_view.dart';
 import 'package:fitnessapp/views/workout_page/widgets/date_time_line.dart';
 import 'package:fitnessapp/views/workout_page/widgets/exercises_category_list_view.dart';
@@ -25,11 +26,17 @@ class WorkoutPageBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            DateTimeLine(),
+            GestureDetector(
+                onTap: () => Get.bottomSheet(
+                    backgroundColor: Colors.white,
+                    FinishExerciseBottomSheet(
+                        exerciseNumber: '10',
+                        totalTime: '10',
+                        totalCalories: '10')),
+                child: DateTimeLine()),
             const SectionTitle(title: 'CHALLENGES'),
             FutureBuilder(
-                future: controller.getChallenge(
-                    userInfo!.getString('token'),
+                future: controller.getChallenge(userInfo!.getString('token'),
                     'http://${Constans.host}:8000/api/trainer/challenge/getAll'),
                 builder: (context, snapshot) {
                   return ChallengesListView(data: snapshot.data);

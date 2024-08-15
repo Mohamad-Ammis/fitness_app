@@ -116,7 +116,7 @@ class _MediaProfileState extends State<MediaProfile> {
                                                     .size
                                                     .width,
                                                 imageUrl:
-                                                    "http://${Constans.host}:8000/uploads/${widget.userImage}",
+                                                    "${Constans.mainbaseUrlimage}uploads/${widget.userImage}",
                                                 fit: BoxFit.cover)
                                             : Image.memory(
                                                 base64Decode(widget.userImage!),
@@ -152,7 +152,9 @@ class _MediaProfileState extends State<MediaProfile> {
                           physics: const AlwaysScrollableScrollPhysics(),
                           child: Text(
                             conUser.userPostAndBio.bio != null
-                                ? conUser.userPostAndBio.bio!
+                                ? conUser.userPostAndBio.bio! == "null"
+                                    ? "  "
+                                    : conUser.userPostAndBio.bio!
                                 : "  ",
                             style: const TextStyle(
                               fontSize: 16,
@@ -194,7 +196,6 @@ class _MediaProfileState extends State<MediaProfile> {
                                     ),
                                   ),
                                   AddPostWidget(
-                                  
                                     ontap: () {
                                       conUser.navigateToAddPost();
                                     },

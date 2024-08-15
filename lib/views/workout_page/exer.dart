@@ -135,7 +135,9 @@ class _ExerciseState extends State<Exercise> {
             workoutController.totalCalories = 0;
             //control.all_exer
             debugPrint(controller.all_exer.toString());
-            Get.to(const PlayingExercises());
+            Get.to(const PlayingExercises(
+              isCoachExercise: false,
+            ));
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color.fromARGB(255, 38, 164, 170),

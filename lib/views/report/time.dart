@@ -1,8 +1,14 @@
 import 'package:fitnessapp/constans.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class Timee extends StatefulWidget {
-  const Timee({super.key});
+  final int time ;
+  final int totaltime ;
+  const Timee({super.key,
+  required this.time,
+  required this.totaltime
+  });
 
   @override
   State<Timee> createState() => _TimeeState();
@@ -57,9 +63,9 @@ class _TimeeState extends State<Timee> {
               ],
             ),
            const Spacer(),
-           const Row(
+            Row(
               children: [
-                Text("50",style: TextStyle(
+                Text(widget.time.toString(),style: TextStyle(
                   color: Colors.black,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -73,15 +79,15 @@ class _TimeeState extends State<Timee> {
                 ),)
               ],
             ),
-            const Row(
+             Row(
               children: [
-                Text("from",style: TextStyle(
+              const  Text("from",style: TextStyle(
                   color: Colors.black,
                   fontSize: 15,
                   fontFamily: Constans.fontFamily
                 ),),
-                SizedBox(width: 8,),
-                 Text("83",style: TextStyle(
+              const  SizedBox(width: 8,),
+                 Text(widget.totaltime.toString(),style: TextStyle(
                   color: Colors.black,
                   fontSize: 18,
                   fontWeight: FontWeight.bold,

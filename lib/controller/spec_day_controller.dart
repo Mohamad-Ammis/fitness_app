@@ -72,10 +72,6 @@ final controller = Get.put(Precontroller() , permanent: true);
         specdayexer["choose"] = "no_equipment" ;
       }
    }
-
-
-   
-
    Future getmeal ()async{
     helper = [] ;
    helperint = [];
@@ -154,6 +150,7 @@ final controller = Get.put(Precontroller() , permanent: true);
      body: specdayexer
      );
      print(specdayexer);
+     print(coachid);
      if(res.statusCode==200){
      final resdata = json.decode(res.body);
       helperexer = resdata["data"] as List<dynamic >;
@@ -205,8 +202,36 @@ List Focusid(List FF){
    }
    return focus;
   }
+ 
+ String equ = "" ;
 
-
+Future unlockedday() async {
+    String url = '${Constans.baseUrl}subscription/progress/updateDay';
+    if (userInfo!.getInt("equ[$coachid]") == 1) {
+      equ = "equipment";
+    } else {
+      equ = "no_equipment";
+    }
+    try {
+      final res = await http.post(Uri.parse(url), headers: {
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ${userInfo!.getString('token')}',
+      }, body: {
+        "choose": equ ,
+        "coach_id":coachid.toString()
+      });
+      print({
+        "choose": equ ,
+        "coach_id":coachid.toString()
+      });
+      final resdata = json.decode(res.body);
+      if (res.statusCode == 200) {} else {
+        throw "Something wrong , please try again";
+      }
+    } catch (error) {
+      throw '$error';
+    }
+  }
 
 
 }

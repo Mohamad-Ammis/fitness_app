@@ -2,6 +2,7 @@ import 'package:fitnessapp/controller/shop_controller.dart';
 import 'package:fitnessapp/models/shop/product_model.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/trend_product_card.dart';
 import 'package:fitnessapp/views/shops/product_page/product_page.dart';
+import 'package:fitnessapp/widgets/shimmer/shimmer_custom_container.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
@@ -33,15 +34,19 @@ class TrendProductList extends StatelessWidget {
           delegate: SliverChildBuilderDelegate(
             (context, index) => GestureDetector(
                 onTap: () => Get.to(
-                      ProductPage(
+                      () => ProductPage(
                         model:
                             ProductModel.fromJson(controller.showedList[index]),
                       ),
                       duration: const Duration(seconds: 1),
                     ),
-                child: TrendProductCard(
-                  model: ProductModel.fromJson(controller.showedList[index]),
-                )),
+                child: controller.refreshLoading
+                    ? ShimmerContainer(
+                        width: 100, height: 100, circularRadius: 16)
+                    : TrendProductCard(
+                        model:
+                            ProductModel.fromJson(controller.showedList[index]),
+                      )),
             childCount: controller.showedList.length,
           ),
         ),

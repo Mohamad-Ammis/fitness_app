@@ -32,38 +32,42 @@ class Data extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(
-          children:[
-           const Back(),
-             GetBuilder<Datacontroller>(
-              builder: (con) => con.isloading==false? Column(
-                 mainAxisAlignment: MainAxisAlignment.center,
-                 children: [
-                   Catrow(),
-                   Expanded(child:  PageView(
-                       onPageChanged: (value) {
-                        controller.changed(value);
-                       },
-                       physics:const NeverScrollableScrollPhysics(),
-                       controller: con.control,
-                       children: pages.map((item) => Container(
-                         child: item,
-                       ) ).toList(),
+    return Scaffold(
+      body: Stack(
+        children:[
+         const Back(),
+           GetBuilder<Datacontroller>(
+            builder: (con) => con.isloading==false? SingleChildScrollView(
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: Column(
+                   mainAxisAlignment: MainAxisAlignment.center,
+                   children: [
+                     Catrow(),
+                     Expanded(child:  PageView(
+                         onPageChanged: (value) {
+                          controller.changed(value);
+                         },
+                         physics:const NeverScrollableScrollPhysics(),
+                         controller: con.control,
+                         children: pages.map((item) => Container(
+                           child: item,
+                         ) ).toList(),
+                       ),
                      ),
-                   ),
-                   Button(),
-                 ],
-               ):Center(
-                child: SizedBox(
-                  height: MediaQuery.of(context).size.height*0.3,
-                  width: MediaQuery.of(context).size.width*0.6,
-                  child: /* CircularProgressIndicator() */Image.asset("assets/images/loading.gif"),
-                ),
-               ),
-             ),]
-        ),
+                     Button(),
+                   ],
+                 ),
+              ),
+            ):Center(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height*0.3,
+                width: MediaQuery.of(context).size.width*0.6,
+                child: /* CircularProgressIndicator() */Image.asset("assets/images/loading.gif"),
+              ),
+             ),
+           ),]
       ),
     );
   }

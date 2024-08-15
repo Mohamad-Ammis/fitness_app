@@ -35,13 +35,13 @@ class Api {
     debugPrint('response: ${response.statusCode}');
     var data=response;
     if (response.statusCode == 200||response.statusCode==201) {
-      ScaffoldMessenger.of(context)
-        ..hideCurrentSnackBar()
-        ..showSnackBar(CustomSnackBar().customSnackBar(
-            successTitle ?? 'Congratulations',
-            successDesc ?? 'You have been logged in Successfully',
-            successContentType ?? ContentType.success));
-
+      // ScaffoldMessenger.of(context)
+      //   ..hideCurrentSnackBar()
+      //   ..showSnackBar(CustomSnackBar().customSnackBar(
+      //       successTitle ?? 'Congratulations',
+      //       successDesc ?? 'You have been logged in Successfully',
+      //       successContentType ?? ContentType.success));
+      debugPrint(jsonDecode(response.body).toString());
       return data;
     } else if (response.statusCode == 500) {
       ScaffoldMessenger.of(context)

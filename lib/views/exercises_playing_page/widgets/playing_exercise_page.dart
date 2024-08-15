@@ -10,6 +10,7 @@ class PlayingExercisePage extends StatelessWidget {
   const PlayingExercisePage({
     super.key,
     required this.innerPageController,
+    required this.isCoachExercise,
     required this.outerPageController, required this.index, required this.lastIndex, required this.model,
   });
   final int index;
@@ -17,6 +18,7 @@ class PlayingExercisePage extends StatelessWidget {
   final PageController innerPageController;
   final PageController outerPageController;
   final ExerciseModel model;
+  final bool isCoachExercise;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -53,7 +55,7 @@ class PlayingExercisePage extends StatelessWidget {
                   size: 30,
                   color: Colors.black,
                 ))),
-        BottomPageView(innerPageController: innerPageController, outerPageController: outerPageController, index: index, lastIndex: lastIndex, model: model,),
+        BottomPageView(isCoachExercise:isCoachExercise,innerPageController: innerPageController, outerPageController: outerPageController, index: index, lastIndex: lastIndex, model: model,),
       ],
     );
   }

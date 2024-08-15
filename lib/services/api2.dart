@@ -17,7 +17,7 @@ class Api {
     try {
       final response = await http.get(Uri.parse(url), headers: headers);
       if (response.statusCode == 200) {
-        print("suc");
+     
 
         return jsonDecode(response.body);
       }
@@ -50,8 +50,9 @@ class Api {
     try {
       http.Response response =
           await http.post(Uri.parse(url), body: body, headers: headers);
+
+          
       if (response.statusCode == 200) {
-        print(Constans.token);
         return jsonDecode(response.body);
       }
       if (response.statusCode == 500) {

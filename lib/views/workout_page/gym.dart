@@ -300,8 +300,8 @@ final execontrol = Get.put(Exercontroller() , permanent: true);
             );
           }).toList(),
           options: CarouselOptions(
-            /*  autoPlay: true,
-          autoPlayInterval: Duration(seconds: 5), */
+             autoPlay: true,
+          autoPlayInterval: Duration(seconds: 3),
             height: MediaQuery.of(context).size.height * 0.27,
             initialPage: 0,
             enlargeCenterPage: true,

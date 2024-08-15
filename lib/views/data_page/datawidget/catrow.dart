@@ -26,7 +26,7 @@ class Catrow extends StatelessWidget {
                          ),
                         onPressed: (){
                         contr.previouspercent();
-                        controller.control.previousPage(duration: const Duration(seconds: 1), curve: Curves.bounceOut);
+                        controller.control.previousPage(duration: const Duration(seconds: 1), curve: Curves.decelerate);
                       }, child: const Icon(Icons.arrow_back , size: 40, color: Color(0xff281537),)):null,
                     ),
                     LinearPercentIndicator(

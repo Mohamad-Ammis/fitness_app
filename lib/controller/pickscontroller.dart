@@ -57,7 +57,10 @@ class Pickscotroller extends GetxController {
          time+=int.parse(test.time);
        }
       numexer=exer.length;
-     }else{
+     }else if(res.statusCode==403){
+        throw "You have to subscribe with any coach befor ";
+     }
+     else{
       throw "Something wrong , please try again";
      }
       }catch(error){

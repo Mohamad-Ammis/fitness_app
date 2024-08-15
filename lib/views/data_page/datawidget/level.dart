@@ -88,12 +88,12 @@ class Level extends StatelessWidget {
                 children: [
                   Container(
                     alignment: Alignment.centerLeft,
-                    margin: const EdgeInsets.only(top: 8,left: 5),
-                    height: MediaQuery.of(context).size.height*0.05,
+                    margin: const EdgeInsets.only(top: 4,left: 5),
+                    height: MediaQuery.of(context).size.height*0.04,
                     width: MediaQuery.of(context).size.width*0.45,
                     child: Text(name , style: TextStyle(
                       fontFamily: Constans.fontFamily,
-                        fontSize: MediaQuery.of(context).size.width*0.054 ,
+                        fontSize: MediaQuery.of(context).size.width*0.052 ,
                         fontWeight: FontWeight.bold ,
                         wordSpacing: 2 ,
                         color: controller.twocolor
@@ -101,12 +101,12 @@ class Level extends StatelessWidget {
                   ),
                   Container(
                     alignment: Alignment.centerLeft,
-                    margin: const EdgeInsets.only(top: 3,left: 5),
-                    height: MediaQuery.of(context).size.height*0.06,
+                    margin: const EdgeInsets.only(top: 0,left: 5),
+                    height: MediaQuery.of(context).size.height*0.075,
                     width: MediaQuery.of(context).size.width*0.55,
                     child: Text(des , style: TextStyle(
                       fontFamily: Constans.fontFamily,
-                      fontSize: MediaQuery.of(context).size.width*0.035 ,
+                      fontSize: MediaQuery.of(context).size.width*0.032 ,
                        wordSpacing: 2 ,
                        color: const Color.fromARGB(255, 66, 66, 66)
                     ),),
