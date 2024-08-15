@@ -111,6 +111,7 @@ class _VerificationPageState extends State<VerificationPage> {
                             authController.otpReadOnly = true;
                             authController.otpAutoFocuse = false;
                             var data = jsonDecode(response.body);
+                            userInfo!.setString('id', data['user']['id']);
                             userInfo!.setString('token', data['token']);
                             await Future.delayed(const Duration(seconds: 1));
                             Get.to(Data());
