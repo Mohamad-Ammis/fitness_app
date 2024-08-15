@@ -8,6 +8,7 @@ import 'package:fitnessapp/views/media/media_home.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+
 class AddPost extends StatefulWidget {
   const AddPost({super.key});
 

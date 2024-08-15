@@ -57,8 +57,7 @@ class WorkoutPageController extends GetxController {
     allExercise = [];
     print("wwwwwwwwwwwwwwwwwwwwwwwwwwwwwww");
     final beginnerResponse = await http.get(
-      Uri.parse(
-          'http://${Constans.host}:8000/api/muscle/allArea?level=beginner'),
+      Uri.parse('${Constans.mainbaseUrl}muscle/allArea?level=beginner'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ${userInfo!.getString('token')}',
@@ -66,8 +65,7 @@ class WorkoutPageController extends GetxController {
     );
     print(beginnerResponse.body);
     final intermediateResponse = await http.get(
-      Uri.parse(
-          'http://${Constans.host}:8000/api/muscle/allArea?level=intermediate'),
+      Uri.parse('${Constans.mainbaseUrl}muscle/allArea?level=intermediate'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ${userInfo!.getString('token')}',
@@ -75,8 +73,7 @@ class WorkoutPageController extends GetxController {
     );
     // print(intermediateResponse.body);
     final advancedResponse = await http.get(
-      Uri.parse(
-          'http://${Constans.host}:8000/api/muscle/allArea?level=advanced'),
+      Uri.parse('${Constans.mainbaseUrl}muscle/allArea?level=advanced'),
       headers: <String, String>{
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ${userInfo!.getString('token')}',
