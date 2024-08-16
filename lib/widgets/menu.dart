@@ -89,18 +89,18 @@ class Menupage extends StatelessWidget {
                 child: GetBuilder<AuthController>(builder: (authController) {
                   return TextButton(
                       onPressed: () async {
-                        // var status = await authController.logout();
-                        // if (status) {
+                        var status = await authController.logout();
+                        if (status) {
                           fcm = userInfo!.getString('fcm_token')!;
                           userInfo!.clear();
-                          // userInfo!.setString('fcm_token', fcm);
-                          // userInfo!.setBool('firstUse', false);
+                          userInfo!.setString('fcm_token', fcm);
+                          userInfo!.setBool('firstUse', false);
                           controller.setlogout();
                           Get.offAll(() => LogInPage());
-                        // } else {
-                        //   showErrorSnackBar(
-                        //       "Error Happened", "please try again ");
-                        // }
+                        } else {
+                          showErrorSnackBar(
+                              "Error Happened", "please try again ");
+                        }
                       },
                       child: Text("Logout",
                           style: TextStyle(
