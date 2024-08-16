@@ -41,7 +41,7 @@ class _OffersPageViewState extends State<OffersPageView> {
 //function to handle ads scroll
   void _startAutoSlide() {
     _timer?.cancel();
-    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 15), (timer) {
       if (widget.dotPageController.hasClients) {
         final nextPage = (currentIndex + 1) %
             (controller.adsList.isEmpty ? 0 : controller.adsList.length);
@@ -85,7 +85,7 @@ class _OffersPageViewState extends State<OffersPageView> {
                       )
                     : CachedNetworkImage(
                         imageUrl:
-                            "http://${Constans.host}:8000/Uploads/${controller.adsList[index].image}",
+                            "${Constans.mainbaseUrlimage}Uploads/${controller.adsList[index].image}",
                         imageBuilder: (context, imageProvider) => Container(
                           decoration: BoxDecoration(
                             image: DecorationImage(

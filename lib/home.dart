@@ -1,3 +1,4 @@
+import 'package:fitnessapp/chat/ChatPage.dart';
 import 'package:fitnessapp/models/menuItem.dart';
 import 'package:fitnessapp/models/menuitems.dart';
 import 'package:fitnessapp/views/chatgpt/chat.dart';
@@ -55,8 +56,8 @@ class _HomeState extends State<Home> {
         return Food();
       case Menuitems.media:
         return MediaHome();
-      // case Menuitems.chat:
-      //   return  const Chat();
+      case Menuitems.chat:
+        return   ChatPage();
       default:
         return Pre();
     }

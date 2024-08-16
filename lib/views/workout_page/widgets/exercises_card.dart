@@ -19,11 +19,14 @@ class ExcercisesCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Get.to(Exercise(image:userInfo!.getInt("man")==1? model.muscleImageMan!:model.muscleImageWoman!, title: model.muscleName!,
-         des: model.dess!,
-          id: model.id.toString(),
-          level:model.level
-          ));
+        Get.to(Exercise(
+            image: userInfo!.getInt("man") == 1
+                ? model.muscleImageMan!
+                : model.muscleImageWoman!,
+            title: model.muscleName!,
+            des: model.dess!,
+            id: model.id.toString(),
+            level: model.level));
       },
       child: Container(
         width: double.infinity,
@@ -43,27 +46,29 @@ class ExcercisesCard extends StatelessWidget {
         ),
         child: Stack(
           children: [
-             CachedNetworkImage(
-  imageUrl: "http://${Constans.host}:8000/Uploads/${userInfo!.getInt("man")==1? model.muscleImageMan!:model.muscleImageWoman!}",
-  imageBuilder: (context, imageProvider) => Container(
-    decoration: BoxDecoration(
-      image: DecorationImage(
-          image: imageProvider,
-          fit: BoxFit.cover,
-          colorFilter:
-              const ColorFilter.mode(
-                Color.fromARGB(255, 10, 0, 0), BlendMode.lighten)),))),
-             Column(
+            CachedNetworkImage(
+                imageUrl:
+                    "${Constans.mainbaseUrlimage}Uploads/${userInfo!.getInt("man") == 1 ? model.muscleImageMan! : model.muscleImageWoman!}",
+                imageBuilder: (context, imageProvider) => Container(
+                        decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: imageProvider,
+                          fit: BoxFit.cover,
+                          colorFilter: const ColorFilter.mode(
+                              Color.fromARGB(255, 10, 0, 0),
+                              BlendMode.lighten)),
+                    ))),
+            Column(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 20, top: 10),
-                  child: ExerciseCardHeader(model:model),
+                  child: ExerciseCardHeader(model: model),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 20, bottom: 10),
-                  child: ExerciseCardBody(model:model),
+                  child: ExerciseCardBody(model: model),
                 )
               ],
             ),
