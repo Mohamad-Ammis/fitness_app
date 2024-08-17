@@ -52,7 +52,7 @@ class _ProductPageImageSectionState extends State<ProductPageImageSection> {
                             decoration: BoxDecoration(
                           image: DecorationImage(
                             image: imageProvider,
-                            fit: BoxFit.fill,
+                            fit: BoxFit.contain,
                           ),
                         ))),
               ),
@@ -69,7 +69,7 @@ class _ProductPageImageSectionState extends State<ProductPageImageSection> {
                           icon: Icons.arrow_back_ios_new_outlined,
                         ),
                         Text(
-                          "Men's Jacjet",
+                          "mens jacket",
                           style: TextStyle(
                               fontFamily: Constans.fontFamily, fontSize: 24),
                         ),

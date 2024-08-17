@@ -8,7 +8,7 @@ class Menuitems{
   static const shop = Menuitem("Shops", Icons.shopify_rounded);
   static const food = Menuitem("Health & food", Icons.food_bank_outlined);
   static const media = Menuitem("media", Icons.mark_unread_chat_alt_outlined);
-  static const chat = Menuitem("Chat Gpt", Icons.android_rounded);
+  static const chat = Menuitem("Chat Commuinty", Icons.mode_comment_rounded);
   
  
 

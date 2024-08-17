@@ -40,7 +40,7 @@ class TrendProductList extends StatelessWidget {
                       ),
                       duration: const Duration(seconds: 1),
                     ),
-                child: controller.refreshLoading
+                child: controller.homeLoading
                     ? ShimmerContainer(
                         width: 100, height: 100, circularRadius: 16)
                     : TrendProductCard(

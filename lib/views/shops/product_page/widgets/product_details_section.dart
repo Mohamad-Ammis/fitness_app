@@ -24,12 +24,17 @@ class ProductPageDetailsSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  model.name,
-                  style: TextStyle(
-                      fontFamily: Constans.fontFamily,
-                      fontSize: 28,
-                      fontWeight: FontWeight.bold),
+                SizedBox(
+                  width: MediaQuery.sizeOf(context).width * 0.75,
+                  child: Text(
+                    model.name,
+                    maxLines: 2,
+                    style: TextStyle(
+                        overflow: TextOverflow.ellipsis,
+                        fontFamily: Constans.fontFamily,
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
                 Text(
                   "\$${model.price}",
