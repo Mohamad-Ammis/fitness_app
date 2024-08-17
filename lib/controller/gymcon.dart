@@ -15,7 +15,7 @@ class Gymcontroller extends GetxController {
   bool load = false;
 
   Future<void> getartical() async {
-    final String url = '${Constans.mainbaseUrl}articl/allArticls';
+    const String url = '${Constans.mainbaseUrl}articl/allArticls';
     try {
       final res = await http.get(Uri.parse(url), headers: {
         'Accept': 'application/json',
@@ -32,7 +32,7 @@ class Gymcontroller extends GetxController {
   }
 
   Future<void> getCat() async {
-    final String url = '${Constans.mainbaseUrl}category/show';
+    const String url = '${Constans.mainbaseUrl}category/show';
     try {
       final res = await http.get(Uri.parse(url), headers: {
         'Accept': 'application/json',
@@ -49,7 +49,7 @@ class Gymcontroller extends GetxController {
   }
 
   Future<void> getrandomexercise() async {
-    final String url = '${Constans.mainbaseUrl}trainer/exerciseType/getType';
+    const String url = '${Constans.mainbaseUrl}trainer/exerciseType/getType';
     try{
      final res = await http.get(Uri.parse(url) ,       
      headers: {

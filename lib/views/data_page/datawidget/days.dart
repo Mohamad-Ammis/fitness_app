@@ -52,7 +52,7 @@ class Days extends StatelessWidget {
                         ),
                       ),
                       InkWell(
-                        overlayColor: MaterialStatePropertyAll(
+                        overlayColor: WidgetStatePropertyAll(
                           Colors.white.withOpacity(0)),
                       onTap: () {
                         showTimePicker(context: context,
@@ -143,7 +143,7 @@ class Days extends StatelessWidget {
         onTap: () {
           contr.setdays(num);
         },
-        overlayColor: MaterialStatePropertyAll(Colors.white.withOpacity(0)),
+        overlayColor: WidgetStatePropertyAll(Colors.white.withOpacity(0)),
         child: Card(
           color: Colors.white,
           shape: const RoundedRectangleBorder(

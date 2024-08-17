@@ -26,12 +26,12 @@ class ProductPageFooter extends StatelessWidget {
                   .add({'product_id': model.id, "quantity": '1'});
               controller.cartProducts.add(model);
               showSuccesSnackBar('Added Successfully', 'product added to cart')
-                ..show(context);
+                .show(context);
             } else {
               debugPrint('Already exists');
               showErrorSnackBar(
                   'Error happened', ' product is Alreday exists in your cart')
-                ..show(context);
+                .show(context);
             }
             // controller.cartProducts.indexOf(widget.model) == -1
 

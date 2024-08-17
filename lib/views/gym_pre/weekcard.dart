@@ -28,7 +28,7 @@ class Weekcard extends StatelessWidget {
             width: 0.1
           )
         ),
-        child: LayoutBuilder(builder: (context , contr)=>Container(
+        child: LayoutBuilder(builder: (context , contr)=>SizedBox(
           height: contr.maxHeight,
           width: contr.maxWidth,
           child: Column(

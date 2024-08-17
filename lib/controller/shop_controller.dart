@@ -71,7 +71,7 @@ class ShopController extends GetxController {
     );
 
     var data = jsonDecode(response.body);
-    debugPrint('data: ${data}');
+    debugPrint('data: $data');
     if (response.statusCode == 200) {
       if (data['data'] != null) {
         return data['data'];
@@ -361,7 +361,7 @@ class ShopController extends GetxController {
       'order_id': orderID
     });
     var data = jsonDecode(response.body);
-    debugPrint('data: ${data}');
+    debugPrint('data: $data');
     if (response.statusCode == 200) {
       return data['Data']['InvoiceURL'];
     } else {
@@ -384,6 +384,7 @@ class ShopController extends GetxController {
       return data['data'];
     } else {
       debugPrint('Error when get orders');
+      debugPrint('data $data');
       return [];
     }
   }
@@ -405,7 +406,8 @@ class ShopController extends GetxController {
       showSuccesSnackBar('تم بنجاح', data['message'].toString()).show(context);
       return true;
     } else {
-      showErrorSnackBar('حدث خطأ', data['message'].toString()).show(context);
+      debugPrint(data.toString());
+      // showErrorSnackBar('حدث خطأ', data['message'].toString()).show(context);
       return false;
     }
   }

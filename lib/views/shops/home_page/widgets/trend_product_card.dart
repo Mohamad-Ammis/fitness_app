@@ -25,7 +25,7 @@ class _TrendProductCardState extends State<TrendProductCard> {
   @override
   void initState() {
     super.initState();
-    isFavorite = widget.model.isFavorite;
+    isFavorite = widget.model.isFavorite??false;
     debugPrint(widget.model.image.toString());
   }
 
@@ -93,7 +93,7 @@ class _TrendProductCardState extends State<TrendProductCard> {
                               },
                               icon: Icon(
                                 Icons.favorite,
-                                color: widget.model.isFavorite
+                                color: widget.model.isFavorite??false
                                     ? Colors.red
                                     : Colors.white.withOpacity(.9),
                               )))

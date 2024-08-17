@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
 import 'dart:convert';
 
@@ -5,14 +7,13 @@ import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/auth_controller.dart';
 import 'package:fitnessapp/helper/custom_toast_notification.dart';
 import 'package:fitnessapp/main.dart';
-import 'package:fitnessapp/views/auth_pages/login_page/login_page.dart';
 import 'package:fitnessapp/views/data_page/data.dart';
 import 'package:fitnessapp/widgets/custom_otp_text_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class VerificationPage extends StatefulWidget {
-  VerificationPage({super.key});
+  const VerificationPage({super.key});
 
   @override
   State<VerificationPage> createState() => _VerificationPageState();
@@ -25,7 +26,7 @@ class _VerificationPageState extends State<VerificationPage> {
 
   void startTimer() {
     _start = 30;
-    const oneSec = const Duration(seconds: 1);
+    const oneSec = Duration(seconds: 1);
     _timer = Timer.periodic(
       oneSec,
       (Timer timer) {
@@ -45,7 +46,6 @@ class _VerificationPageState extends State<VerificationPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     startTimer();
   }

@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:io';
 import 'dart:convert';
 import 'package:fitnessapp/constans.dart';
@@ -312,7 +314,7 @@ bool checkill(int num ){
   }
 
  Future Setdata ()async{
-  final String url = '${Constans.baseUrl}info';
+  const String url = '${Constans.baseUrl}info';
   try{
      final request = http.MultipartRequest('POST',Uri.parse(url));
     

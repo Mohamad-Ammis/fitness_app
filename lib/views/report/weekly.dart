@@ -244,6 +244,7 @@ class _WeeklyState extends State<Weekly> {
       text = (controller.maxcalories.toInt()).toString();
       return Text(text, style: style, textAlign: TextAlign.center);
     }else if(value.toInt()==((controller.maxcalories+controller.mincalories)/2)){
+      // ignore: division_optimization
       text = ((controller.maxcalories+controller.mincalories)/2).toInt().toString();
       return Text(text, style: style, textAlign: TextAlign.center);
     }else if(value.toInt()==controller.mincalories){

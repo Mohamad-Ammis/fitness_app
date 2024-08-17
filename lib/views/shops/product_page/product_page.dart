@@ -1,14 +1,13 @@
 import 'package:fitnessapp/controller/product_page_controller.dart';
 import 'package:fitnessapp/controller/shop_controller.dart';
 import 'package:fitnessapp/models/shop/product_model.dart';
-import 'package:fitnessapp/views/shops/home_page/widgets/shop_category_card.dart';
 import 'package:fitnessapp/views/shops/product_page/widgets/product_details_section.dart';
 import 'package:fitnessapp/views/shops/product_page/widgets/product_image_section.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProductPage extends StatefulWidget {
-  ProductPage({super.key, required this.model});
+  const ProductPage({super.key, required this.model});
   final ProductModel model;
 
   @override
@@ -25,7 +24,6 @@ class _ProductPageState extends State<ProductPage> {
   );
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
       await shopController.showProduct(widget.model.id);

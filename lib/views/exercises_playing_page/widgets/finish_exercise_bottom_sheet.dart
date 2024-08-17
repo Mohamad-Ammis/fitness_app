@@ -28,14 +28,12 @@ class _FinishExerciseBottomSheetState extends State<FinishExerciseBottomSheet> {
   final _controller = ConfettiController();
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _controller.dispose();
   }
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _controller.play();
   }

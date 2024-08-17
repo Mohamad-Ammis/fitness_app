@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 class Constans {
   static const String fontFamily = 'Work Sans';
-  static const String host = '192.168.40.117';
-  static const String baseUrl = 'https://35c9-109-236-81-161.ngrok-free.app/api/trainer/';
-  static const String mainbaseUrl = 'https://35c9-109-236-81-161.ngrok-free.app/api/';
-  static const String mainbaseUrlimage = 'https://35c9-109-236-81-161.ngrok-free.app/';
+  static const String host = '192.168.252.225';
+  static const String baseUrl = 'http://$host:8000/api/trainer/';
+  static const String mainbaseUrl = 'http://$host:8000/api/';
+  static const String mainbaseUrlimage = 'http://$host:8000/';
   static const String apikey =
       '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';
 

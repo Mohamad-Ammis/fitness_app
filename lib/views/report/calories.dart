@@ -1,7 +1,6 @@
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/views/report/circleprogress.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class Calories extends StatefulWidget {
   final int calories ;

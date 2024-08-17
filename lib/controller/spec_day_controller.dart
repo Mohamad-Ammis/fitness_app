@@ -141,9 +141,6 @@ class SpecDay extends GetxController {
             'Authorization': 'Bearer ${userInfo!.getString('token')}',
           },
           body: specdayexer);
-      print(specdayexer);
-      print(specdayexer);
-      print(coachid);
       if (res.statusCode == 200) {
         final resdata = json.decode(res.body);
         helperexer = resdata["data"] as List<dynamic>;

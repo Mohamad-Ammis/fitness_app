@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/controller/workout_page_controller.dart';
@@ -9,7 +11,6 @@ import 'package:fitnessapp/views/workout_page/widgets/exercises_category_list_vi
 import 'package:fitnessapp/views/workout_page/widgets/exercises_list_view.dart';
 import 'package:fitnessapp/views/workout_page/widgets/section_title.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class WorkoutPageBody extends StatelessWidget {

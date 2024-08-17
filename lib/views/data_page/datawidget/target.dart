@@ -64,7 +64,7 @@ class Target extends StatelessWidget {
             child:  Question( que: "What are your main goals ? " , subt: "",)
            ),
           ...(contr.man==2? goalsw:goalsm).map((e) =>InkWell(
-            overlayColor: MaterialStatePropertyAll(Colors.white.withOpacity(0)),
+            overlayColor: WidgetStatePropertyAll(Colors.white.withOpacity(0)),
             onTap: (){
               contr.setselectgoal(e['id']);
             },
@@ -108,7 +108,7 @@ class Target extends StatelessWidget {
               ),
              ),
           ),
-           ).toList(),
+           ),
            ],
         ),
       )

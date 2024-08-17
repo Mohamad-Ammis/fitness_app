@@ -1,9 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/product_page_controller.dart';
 import 'package:fitnessapp/controller/shop_controller.dart';
-import 'package:fitnessapp/utils/app_images.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/category_list_view.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/filter_product_list.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/offers_card_indicator.dart';

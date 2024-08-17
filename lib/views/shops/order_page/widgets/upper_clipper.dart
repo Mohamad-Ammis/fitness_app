@@ -15,7 +15,7 @@ class UpperClipper extends StatelessWidget {
         clipper: MyCustomClipper(),
         child: Container(
           decoration: const BoxDecoration(
-              gradient: const LinearGradient(colors: [
+              gradient: LinearGradient(colors: [
             Color.fromARGB(255, 179, 196, 255),
             Constans.shopColor
           ])),

@@ -51,7 +51,7 @@ class Level extends StatelessWidget {
 
   Widget active(BuildContext context , String id , String name , String image , String des) {
     return InkWell(
-      overlayColor: MaterialStatePropertyAll(Colors.amber.withOpacity(0)),
+      overlayColor: WidgetStatePropertyAll(Colors.amber.withOpacity(0)),
       onTap: () {
         controller.setlevel(int.parse(id));
       },

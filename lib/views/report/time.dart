@@ -1,6 +1,5 @@
 import 'package:fitnessapp/constans.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class Timee extends StatefulWidget {
   final int time ;

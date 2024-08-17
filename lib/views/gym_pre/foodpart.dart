@@ -1,5 +1,6 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/spec_day_controller.dart';
 import 'package:fitnessapp/shimmer/shimmergym.dart';
@@ -98,7 +99,7 @@ class _FoodpartState extends State<Foodpart> {
       children: controller.dinner
           .map((meal) => InkWell(
                 overlayColor:
-                    MaterialStatePropertyAll(Colors.white.withOpacity(0)),
+                    WidgetStatePropertyAll(Colors.white.withOpacity(0)),
                 onTap: () {
                   Get.to(MealPage(meal: meal));
                 },
@@ -151,7 +152,7 @@ class _FoodpartState extends State<Foodpart> {
         children: controller.lunch
             .map((meal) => InkWell(
                   overlayColor:
-                      MaterialStatePropertyAll(Colors.white.withOpacity(0)),
+                      WidgetStatePropertyAll(Colors.white.withOpacity(0)),
                   onTap: () {
                     Get.to(MealPage(meal: meal));
                   },
@@ -262,7 +263,7 @@ class _FoodpartState extends State<Foodpart> {
                   ),
                   child: InkWell(
                     overlayColor:
-                        MaterialStatePropertyAll(Colors.white.withOpacity(0)),
+                        WidgetStatePropertyAll(Colors.white.withOpacity(0)),
                     onTap: () {
                       Get.to(MealPage(meal: meal));
                     },
@@ -290,7 +291,7 @@ class _FoodpartState extends State<Foodpart> {
         children: controller.breakfast
             .map((meal) => InkWell(
                   overlayColor:
-                      MaterialStatePropertyAll(Colors.white.withOpacity(0)),
+                      WidgetStatePropertyAll(Colors.white.withOpacity(0)),
                   onTap: () {
                     Get.to(MealPage(meal: meal));
                   },

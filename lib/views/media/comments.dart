@@ -425,6 +425,7 @@ class _CommentViewState extends State<CommentView> {
                                                 Get.snackbar('Success',
                                                     'Comment deleted successfully');
 
+                                                // ignore: use_build_context_synchronously
                                                 Navigator.pop(context);
                                                 widget.commentsList!
                                                     .removeWhere((comment) =>

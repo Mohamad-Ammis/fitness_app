@@ -1,9 +1,6 @@
 import 'package:easy_date_timeline/easy_date_timeline.dart';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/workout_page_controller.dart';
-import 'package:fitnessapp/utils/app_images.dart';
-import 'package:fitnessapp/views/auth_pages/widgets/auth_custom_button.dart';
-import 'package:fitnessapp/views/exercise_page/widgets/custom_info_column.dart';
 import 'package:fitnessapp/widgets/shimmer/shimmer_custom_container.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

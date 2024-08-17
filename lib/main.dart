@@ -1,8 +1,7 @@
-import 'package:fitnessapp/helper/initApp.dart';
+import 'package:fitnessapp/helper/init_app.dart';
 import 'package:fitnessapp/splash_screen.dart';
 import 'package:fitnessapp/views/auth_pages/login_page/login_page.dart';
 import 'package:fitnessapp/views/auth_pages/register_page/register_page.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';

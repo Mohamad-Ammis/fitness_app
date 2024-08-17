@@ -7,7 +7,6 @@ import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/views/auth_pages/forgot_password/forgot_password.dart';
 import 'package:fitnessapp/views/auth_pages/widgets/auth_custom_button.dart';
 import 'package:fitnessapp/views/auth_pages/widgets/auth_footer.dart';
-import 'package:fitnessapp/views/data_page/data.dart';
 
 import 'package:fitnessapp/widgets/custom_pass_text_field.dart';
 import 'package:fitnessapp/widgets/custom_text_field.dart';

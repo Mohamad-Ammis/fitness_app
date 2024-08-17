@@ -9,6 +9,7 @@ class Menuitems{
   static const food = Menuitem("Health & food", Icons.food_bank_outlined);
   static const media = Menuitem("media", Icons.mark_unread_chat_alt_outlined);
   static const chat = Menuitem("Chat Commuinty", Icons.mode_comment_rounded);
+  static const aboutUs = Menuitem("About us", Icons.info);
   
  
 
@@ -18,7 +19,8 @@ class Menuitems{
   shop ,
   food ,
   media,
-  chat
+  chat,
+  aboutUs
  ];
 
 

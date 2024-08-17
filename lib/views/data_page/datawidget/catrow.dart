@@ -21,7 +21,7 @@ class Catrow extends StatelessWidget {
                       width: 85,
                       child:contr.index>0? TextButton(
                          style: ButtonStyle(
-                          overlayColor: MaterialStatePropertyAll(Colors.white.withOpacity(0)),
+                          overlayColor: WidgetStatePropertyAll(Colors.white.withOpacity(0)),
                           
                          ),
                         onPressed: (){

@@ -108,7 +108,7 @@ class _TimerChallengeBodyState extends State<TimerChallengeBody>
                             .toString();
                         debugPrint('int.parse(time.minutes): ${int.parse(time.minutes)}');
                         debugPrint('time.minutes: ${time.minutes}');
-                    debugPrint('updateTime: ${updateTime}');
+                    debugPrint('updateTime: $updateTime');
                     await controller.updateChallenge(
                         widget.model.id.toString(),
                         widget.model.type.toString(),

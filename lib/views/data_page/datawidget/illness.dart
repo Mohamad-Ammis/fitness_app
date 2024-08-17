@@ -53,52 +53,49 @@ class Illness extends StatelessWidget {
   }
 
   Widget lastitem(Datacontroller contr, BuildContext context) {
-    return Container(
-    //  color: Colors.amber,
-      child: InkWell(
-                  overlayColor: MaterialStatePropertyAll(Colors.white.withOpacity(0)),
-                  onTap: (){
-                      contr.setselectill(3);
-                      },
-                  child: Container(
-                    margin: const EdgeInsets.all(5),
-                    height:MediaQuery.of(context).size.height*0.18,
-                    width:MediaQuery.of(context).size.width*0.45,
-                    decoration: BoxDecoration(
-                      gradient:(contr.checkill(3))? LinearGradient(colors: [
-                              contr.deepcolor.withOpacity(0.25),
-                             const Color.fromARGB(255, 165, 213, 222).withOpacity(0.3),
-                               Colors.black.withOpacity(0.2)
-                            ] ,
-                            begin: Alignment.topLeft ,
-                            end: Alignment.bottomRight
-                            ):null,
-                                border: Border.all(
-                  width: 1 ,
-                  color: Colors.black54),
-                  borderRadius: BorderRadius.circular(40)
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                        height: MediaQuery.of(context).size.height*0.11,
-                        width: MediaQuery.of(context).size.width*0.27,
-                        child: Image.asset("assets/images/tt.png",fit:BoxFit.contain,),
-                        ),
-                        const SizedBox(height: 5,),
-                       const Text("shortness of breath",style: TextStyle(
-                          fontFamily: Constans.fontFamily,
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          wordSpacing: 2,
-                          color: Colors.black
-                        ))
-                      ],
-                    ),
+    return InkWell(
+                overlayColor: WidgetStatePropertyAll(Colors.white.withOpacity(0)),
+                onTap: (){
+                    contr.setselectill(3);
+                    },
+                child: Container(
+                  margin: const EdgeInsets.all(5),
+                  height:MediaQuery.of(context).size.height*0.18,
+                  width:MediaQuery.of(context).size.width*0.45,
+                  decoration: BoxDecoration(
+                    gradient:(contr.checkill(3))? LinearGradient(colors: [
+                            contr.deepcolor.withOpacity(0.25),
+                           const Color.fromARGB(255, 165, 213, 222).withOpacity(0.3),
+                             Colors.black.withOpacity(0.2)
+                          ] ,
+                          begin: Alignment.topLeft ,
+                          end: Alignment.bottomRight
+                          ):null,
+                              border: Border.all(
+                width: 1 ,
+                color: Colors.black54),
+                borderRadius: BorderRadius.circular(40)
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                      height: MediaQuery.of(context).size.height*0.11,
+                      width: MediaQuery.of(context).size.width*0.27,
+                      child: Image.asset("assets/images/tt.png",fit:BoxFit.contain,),
+                      ),
+                      const SizedBox(height: 5,),
+                     const Text("shortness of breath",style: TextStyle(
+                        fontFamily: Constans.fontFamily,
+                        fontSize: 14,
+                        fontWeight: FontWeight.bold,
+                        wordSpacing: 2,
+                        color: Colors.black
+                      ))
+                    ],
                   ),
                 ),
-    );
+              );
   }
 
   Container allitem(BoxConstraints cont, BuildContext context, Datacontroller contr) {
@@ -119,7 +116,7 @@ class Illness extends StatelessWidget {
               ill.map((item) => Container(
                  margin: EdgeInsets.only(bottom: 10),
                 child: InkWell(
-                  overlayColor: MaterialStatePropertyAll(Colors.white.withOpacity(0)),
+                  overlayColor: WidgetStatePropertyAll(Colors.white.withOpacity(0)),
                   onTap: (){
                       contr.setselectill(int.parse(item['id']));
                       },

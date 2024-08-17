@@ -39,7 +39,7 @@ final controller = Get.put(Precontroller(), permanent: true);
               unselectedLabelColor: Colors.black54,
               indicatorColor: Colors.white,
               padding: EdgeInsets.only(top: 10),
-              overlayColor: MaterialStatePropertyAll(Colors.white.withOpacity(0)),
+              overlayColor: WidgetStatePropertyAll(Colors.white.withOpacity(0)),
               dividerHeight: 0,
               tabs: [
                 Tab(

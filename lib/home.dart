@@ -1,9 +1,8 @@
-import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/menuItem.dart';
 import 'package:fitnessapp/models/menuitems.dart';
+import 'package:fitnessapp/views/about_us.dart';
 import 'package:fitnessapp/views/chat/chat_controller.dart';
 import 'package:fitnessapp/views/chat/chat_page.dart';
-import 'package:fitnessapp/views/chatgpt/chat.dart';
 import 'package:fitnessapp/views/food/food.dart';
 import 'package:fitnessapp/views/gym_pre/pre.dart';
 import 'package:fitnessapp/views/media/media_home.dart';
@@ -45,9 +44,8 @@ class _HomeState extends State<Home> {
       mainScreen: getscreen(),
       borderRadius: 40,
       showShadow: true,
-      angle:  -8.0,
-      drawerShadowsBackgroundColor: 
-          const Color.fromARGB(255, 62, 82, 83),
+      angle: -8.0,
+      drawerShadowsBackgroundColor: const Color.fromARGB(255, 62, 82, 83),
       slideWidth: MediaQuery.of(context).size.width * 0.73,
     );
   }
@@ -64,7 +62,8 @@ class _HomeState extends State<Home> {
         return MediaHome();
       case Menuitems.chat:
         return !chatController.canAccessPage() ? ChatBannedPage() : ChatPage();
-
+      case Menuitems.aboutUs:
+        return AboutUs();
       default:
         return Pre();
     }

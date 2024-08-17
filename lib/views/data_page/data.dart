@@ -38,7 +38,7 @@ class Data extends StatelessWidget {
          const Back(),
            GetBuilder<Datacontroller>(
             builder: (con) => con.isloading==false? SingleChildScrollView(
-              child: Container(
+              child: SizedBox(
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 child: Column(

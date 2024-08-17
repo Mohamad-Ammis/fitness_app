@@ -108,27 +108,25 @@ class _FoodState extends State<Food> {
       body: ListView(children: [
         Padding(
           padding: const EdgeInsets.only(top: 15, left: 15),
-          child: Container(
-            child: RichText(
-              text: TextSpan(
-                style: TextStyle(
-                  fontSize: 25,
-                  fontFamily: "Lora",
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-                children: const <TextSpan>[
-                  TextSpan(text: "Balance Healthy Eating, with Plenty of "),
-                  TextSpan(
-                    text: "Physical Exercise",
-                    style: TextStyle(color: Constans.foodblue),
-                  ),
-                ],
+          child: RichText(
+            text: TextSpan(
+              style: TextStyle(
+                fontSize: 25,
+                fontFamily: "Lora",
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
               ),
-              maxLines: 2,
-              softWrap: true,
-              overflow: TextOverflow.ellipsis,
+              children: const <TextSpan>[
+                TextSpan(text: "Balance Healthy Eating, with Plenty of "),
+                TextSpan(
+                  text: "Physical Exercise",
+                  style: TextStyle(color: Constans.foodblue),
+                ),
+              ],
             ),
+            maxLines: 2,
+            softWrap: true,
+            overflow: TextOverflow.ellipsis,
           ),
           // child: Stack(clipBehavior: Clip.none, children: [
           //   const Text(

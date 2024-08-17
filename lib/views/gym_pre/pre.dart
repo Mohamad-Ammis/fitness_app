@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitnessapp/constans.dart';
@@ -691,7 +693,7 @@ class _PreState extends State<Pre> {
                             wordSpacing: 2,
                             letterSpacing: 0.8),
                       ),
-                      Container(
+                      SizedBox(
                         height: 30,
                         width: 50,
                         child: Image.asset(

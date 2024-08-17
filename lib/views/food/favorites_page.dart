@@ -1,7 +1,6 @@
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/favorites_controller.dart';
 import 'package:fitnessapp/controller/popularmeals_controller.dart';
-import 'package:fitnessapp/controller/recenlymeals_controller.dart';
 import 'package:fitnessapp/models/meal.dart';
 import 'package:fitnessapp/views/food/meal_page.dart';
 import 'package:fitnessapp/views/food/widgets/meal_card.dart';

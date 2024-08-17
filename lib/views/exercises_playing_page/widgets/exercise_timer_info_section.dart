@@ -1,6 +1,5 @@
 import 'package:custom_timer/custom_timer.dart';
 import 'package:fitnessapp/constans.dart';
-import 'package:fitnessapp/controller/exercise_page_controller.dart';
 import 'package:fitnessapp/controller/exercontrol.dart';
 import 'package:fitnessapp/controller/playing_controller.dart';
 import 'package:fitnessapp/controller/spec_day_controller.dart';
@@ -91,7 +90,7 @@ class InfoSection extends StatelessWidget {
                     var minuts =
                         _controller.begin.inMinutes - int.parse(time.minutes);
                     var totalTime = seconds + minuts;
-                    debugPrint('totalTime: ${totalTime}');
+                    debugPrint('totalTime: $totalTime');
                     debugPrint(
                         'workoutPageController.alltime: ${workoutPageController.alltime}');
                   }
@@ -145,9 +144,7 @@ class InfoSection extends StatelessWidget {
                             ));
                             await workoutPageController.updateReport(
                                 allCalories, fullTime);if(isCoachExercise){
-                              print("areej is here");
                              await specController.unlockedday();
-                             print("deal"); 
                           } 
                           } else {
                             _controller.start();

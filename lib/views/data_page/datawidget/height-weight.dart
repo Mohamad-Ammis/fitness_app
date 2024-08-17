@@ -234,7 +234,7 @@ class Height extends StatelessWidget {
                     alignment: Alignment.bottomRight,
                     height: 25,
                     child: InkWell(
-                      overlayColor: MaterialStatePropertyAll(
+                      overlayColor: WidgetStatePropertyAll(
                           Colors.white.withOpacity(0)),
                       onTap: () {
                         contr.fetchimage();

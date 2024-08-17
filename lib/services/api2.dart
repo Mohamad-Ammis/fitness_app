@@ -1,7 +1,5 @@
 import 'dart:convert';
 // ignore_for_file: avoid_print
-import 'package:fitnessapp/controller/edit_userinfo_controller.dart';
-import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class Api {

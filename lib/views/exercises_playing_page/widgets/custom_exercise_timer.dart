@@ -26,9 +26,9 @@ class _CustomExerciseTimerState extends State<CustomExerciseTimer>
   late int totalTime;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     int secondes = int.parse(widget.model.time) % 60;
+    // ignore: division_optimization
     int minutes = (int.parse(widget.model.time) / 60).toInt();
     _controller = CustomTimerController(
       vsync: this,

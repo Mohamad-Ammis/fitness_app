@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,7 +15,6 @@ class GallerySaverHelper {
       Uint8List.fromList(response.data),
       quality: 80,
       name: "hello");
-  print(result);
   if (result['isSuccess'] == true) {
     ScaffoldMessenger.of(context)
         .showSnackBar(SnackBar(content: Text('Saved to gallery')));
@@ -22,7 +23,6 @@ class GallerySaverHelper {
         .showSnackBar(SnackBar(content: Text('some thing went wrong')));
   }
 } catch (e) {
-  print(e.toString());
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('some thing went wrong')));
 }
@@ -33,7 +33,6 @@ class GallerySaverHelper {
       var data = (await rootBundle.load(path)).buffer.asUint8List();
       final result = await ImageGallerySaver.saveImage(Uint8List.fromList(data),
           quality: 80, name: "hello");
-      print(result);
       if (result['isSuccess'] == true) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('Saved to gallery')));
@@ -42,7 +41,6 @@ class GallerySaverHelper {
             .showSnackBar(SnackBar(content: Text('some thing went wrong')));
       }
     } catch (e) {
-      print(e.toString());
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('some thing went wrong')));
     }
@@ -51,14 +49,12 @@ class GallerySaverHelper {
   saveNetworkVideoFile(String path, BuildContext context) async {
     try {
       var appDocDir = await getTemporaryDirectory();
-      String savePath = appDocDir.path + "/temp.mp4";
+      String savePath = "${appDocDir.path}/temp.mp4";
       String fileUrl = path;
       await Dio().download(fileUrl, savePath,
           onReceiveProgress: (count, total) {
-        print((count / total * 100).toStringAsFixed(0) + "%");
       });
       final result = await ImageGallerySaver.saveFile(savePath);
-      print(result);
       if (result['isSuccess'] == true) {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text('Saved to gallery')));
@@ -67,7 +63,6 @@ class GallerySaverHelper {
             .showSnackBar(SnackBar(content: Text('some thing went wrong')));
       }
     } catch (e) {
-      print(e.toString());
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('some thing went wrong')));
     }

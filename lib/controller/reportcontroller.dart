@@ -48,7 +48,6 @@ Future<void> getreportdaily() async {
       
       if (res.statusCode == 200) {
         final resdata = json.decode(res.body);
-        print(resdata);
         bmi = resdata["new_bmi"].toString();
         bmicat = resdata["bmi_category"];
         numexerday = resdata["Number_of_exercises"];

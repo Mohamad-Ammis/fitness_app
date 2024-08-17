@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/precontroller.dart';
 import 'package:fitnessapp/controller/ratecontroller.dart';

@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/add_post_controller.dart';
@@ -416,10 +418,6 @@ class _PostWidgetState extends State<PostWidget> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          print(widget.post.username.toString());
-                          print(userInfo!.getString("name").toString());
-                          print(widget.post.username ==
-                              userInfo!.getString("name"));
                           showModalBottomSheet(
                             clipBehavior: Clip.antiAlias,
                             backgroundColor: Constans.screen,

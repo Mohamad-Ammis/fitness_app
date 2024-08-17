@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/payment_coach_controller.dart';
 import 'package:fitnessapp/controller/precontroller.dart';
@@ -9,7 +11,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class Dealogcoach extends StatefulWidget {
   final int coachid ;
-  Dealogcoach({super.key , required this.coachid});
+  const Dealogcoach({super.key , required this.coachid});
 
   @override
   State<Dealogcoach> createState() => _DealogcoachState();

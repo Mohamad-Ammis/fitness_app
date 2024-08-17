@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -8,7 +10,7 @@ class Shimmergym extends StatelessWidget {
   final double radius;
   final Color? cc  ; 
 
-  const Shimmergym.Rectangle({
+  const Shimmergym.Rectangle({super.key, 
     required this.height,
     required this.width,
     required this.radius,

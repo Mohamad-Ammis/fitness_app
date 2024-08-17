@@ -4,12 +4,8 @@ import 'dart:io';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/main.dart';
-import 'package:fitnessapp/services/api2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 import 'package:http/http.dart' as http;
 import 'package:image_picker/image_picker.dart';
 
@@ -145,7 +141,7 @@ class Controller extends GetxController {
       }
       if (target != null) {
         request.fields['target'] = target!;
-        print("is ${target}");
+        print("is $target");
       }
       if (time != null) {
         request.fields['preferred_time'] =

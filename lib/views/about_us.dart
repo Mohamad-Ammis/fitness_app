@@ -1,9 +1,9 @@
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/aboutus_controller.dart';
 import 'package:fitnessapp/models/developer_model.dart';
-import 'package:fitnessapp/utils/app_images.dart';
 import 'package:fitnessapp/views/auth_pages/widgets/auth_custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -14,6 +14,12 @@ class AboutUs extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () => ZoomDrawer.of(context)!.toggle(),
+            icon: const Icon(
+              Icons.menu,
+              color: Colors.black,
+            )),
         backgroundColor: const Color(0xFFF3F4F6),
         scrolledUnderElevation: 0,
         title: Text(
@@ -29,25 +35,39 @@ class AboutUs extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
-            child: Container(
-              padding: EdgeInsets.all(16),
-              child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
-                      // childAspectRatio: 0.7,
-                      childAspectRatio: 0.65,
-                      mainAxisSpacing: 10,
-                      crossAxisSpacing: 10),
-                  itemCount: controller.developers.length,
-                  itemBuilder: (context, index) {
-                    return IntrinsicHeight(
-                        child:
-                            DeveloperCard(model: controller.developers[index]));
-                  }),
-            ),
+            child: AboutUsGridView(controller: controller),
           )
         ],
       ),
+    );
+  }
+}
+
+class AboutUsGridView extends StatelessWidget {
+  const AboutUsGridView({
+    super.key,
+    required this.controller,
+  });
+
+  final AboutusController controller;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(16),
+      child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              // childAspectRatio: 0.7,
+              childAspectRatio: 0.65,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10),
+          itemCount: controller.developers.length,
+          itemBuilder: (context, index) {
+            return IntrinsicHeight(
+                child:
+                    DeveloperCard(model: controller.developers[index]));
+          }),
     );
   }
 }
@@ -120,7 +140,7 @@ class DeveloperCard extends StatelessWidget {
                   style: TextStyle(
                     height: 1,
                     color: Colors.white,
-                    fontSize: 16,
+                    fontSize: 14,
                     // fontWeight: FontWeight.bold,
                     fontFamily: Constans.fontFamily,
                   ),

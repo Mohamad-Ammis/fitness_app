@@ -2,7 +2,6 @@
 
 import 'dart:convert';
 import 'package:fitnessapp/controller/datacont.dart';
-import 'package:fitnessapp/controller/exercise_page_controller.dart';
 import 'package:fitnessapp/controller/exercontrol.dart';
 import 'package:fitnessapp/main.dart';
 import '../constans.dart';
@@ -30,8 +29,8 @@ class WorkoutPageController extends GetxController {
   }
 
   Future updateReport(exersicesTotalCalories, exersicesTotalTime) async {
-    debugPrint("al l  "+exersicesTotalCalories.toString());
-    debugPrint("play "+totalCalories.toString());
+    debugPrint("al l  $exersicesTotalCalories");
+    debugPrint("play $totalCalories");
     final response = await http.post(
         Uri.parse('${Constans.baseUrl}report/creatReport'),
         headers: <String, String>{
@@ -46,7 +45,7 @@ class WorkoutPageController extends GetxController {
           'total_time': "00:${formattedTime(timeInSecond: exersicesTotalTime)}"
         });
     var data = jsonDecode(response.body);
-    debugPrint('data: ${data}');
+    debugPrint('data: $data');
   }
 
   @override

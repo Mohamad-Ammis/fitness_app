@@ -1,6 +1,6 @@
+
 import 'dart:async';
 
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:fitnessapp/controller/datacont.dart';
@@ -8,7 +8,6 @@ import 'package:fitnessapp/firebase_options.dart';
 import 'package:fitnessapp/home.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/services/notification.dart';
-import 'package:fitnessapp/views/about_us.dart';
 import 'package:fitnessapp/views/auth_pages/login_page/login_page.dart';
 import 'package:fitnessapp/views/on_boarding/on_boarding.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +20,8 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
   // make sure you call `initializeApp` before using other Firebase services.
   await Firebase.initializeApp();
 
-  print("Handling a background message: ${message.messageId}");
+  debugPrint("Handling a background message: ${message.messageId}");
+  
 }
 
 Future<void> initApp() async {
@@ -29,9 +29,8 @@ Future<void> initApp() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  FirebaseAnalytics analytics = FirebaseAnalytics.instance;
   FirebaseMessaging.instance.getToken().then(((value) {
-    print(value);
+    debugPrint(value);
     userInfo!.setString('fcm_token', value.toString());
   }));
   FirebaseMessaging.instance.onTokenRefresh.listen((fcmToken) {
@@ -61,13 +60,11 @@ void handlePageTransition() {
       // Get.offAll(OnBoarding());
       Get.offAll(Home());
     } else {
-      if(userInfo!.getBool('firstUse')!=null){
-      if (userInfo!.getBool('firstUse') == false) {
-        Get.offAll(LogInPage());
-      } 
-
-      }
-      else {
+      if (userInfo!.getBool('firstUse') != null) {
+        if (userInfo!.getBool('firstUse') == false) {
+          Get.offAll(LogInPage());
+        }
+      } else {
         Get.offAll(OnBoarding());
       }
     }

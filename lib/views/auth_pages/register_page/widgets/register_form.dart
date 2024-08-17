@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/auth_controller.dart';

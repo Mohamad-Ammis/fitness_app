@@ -27,7 +27,7 @@ class NotificationController extends GetxController {
     notificationLoading = false;
     update();
     var data = jsonDecode(response.body);
-    debugPrint('data: ${data}');
+    debugPrint('data: $data');
     if (response.statusCode == 200) {
       for (var i = 0; i < data.length; i++) {
         notificationsList.add(NotificationModel.fromJson(data[i]));

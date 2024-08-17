@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/shop_controller.dart';

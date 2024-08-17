@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
-import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/views/chat/message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

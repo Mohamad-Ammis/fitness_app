@@ -44,6 +44,7 @@ class Api {
       debugPrint(jsonDecode(response.body).toString());
       return data;
     } else if (response.statusCode == 500) {
+      
       ScaffoldMessenger.of(context)
         ..hideCurrentSnackBar()
         ..showSnackBar(CustomSnackBar().customSnackBar(

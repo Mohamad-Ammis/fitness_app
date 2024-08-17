@@ -4,11 +4,10 @@ import 'package:fitnessapp/controller/shop_controller.dart';
 import 'package:fitnessapp/models/shop/product_model.dart';
 import 'package:fitnessapp/views/shops/product_page/widgets/appbar_icon.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class ProductPageImageSection extends StatefulWidget {
-  ProductPageImageSection({
+  const ProductPageImageSection({
     super.key,
     required this.model,
     required this.isFavorite,
@@ -24,7 +23,6 @@ class ProductPageImageSection extends StatefulWidget {
 class _ProductPageImageSectionState extends State<ProductPageImageSection> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
   }
 

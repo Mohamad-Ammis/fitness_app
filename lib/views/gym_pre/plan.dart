@@ -61,7 +61,7 @@ class _PlanState extends State<Plan> {
                 child: top(context)),
                 Positioned(
                 top:185 ,
-                child:Container(
+                child:SizedBox(
                 height: 855,
                 width: MediaQuery.of(context).size.width,
                 child: Padding(
@@ -81,7 +81,7 @@ class _PlanState extends State<Plan> {
             ) ),
             Positioned(
                 top:295 ,
-                child:Container(
+                child:SizedBox(
                 height: 855,
                 width: MediaQuery.of(context).size.width,
                 child: Padding(

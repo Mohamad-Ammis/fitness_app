@@ -24,7 +24,6 @@ class _ChatPageState extends State<ChatPage> {
   final ScrollController _controllerList = ScrollController();
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     formKey = GlobalKey();
   }
@@ -80,7 +79,7 @@ class _ChatPageState extends State<ChatPage> {
               child: TextFormField(
                 onChanged: (value) {
                   message = value;
-                  debugPrint('message: ${message}');
+                  debugPrint('message: $message');
                 },
                 validator: (value) {
                   if (value == null || value.isEmpty) {
