@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/add_post_controller.dart';
 import 'package:fitnessapp/controller/datacont.dart';
+import 'package:fitnessapp/home.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/post_model.dart';
 import 'package:fitnessapp/shimmer/shimmergym.dart';
@@ -79,7 +80,10 @@ class _MediahState extends State<MediaHome> {
               onTap: () {
                 if (ZoomDrawer.of(context) != null) {
                   ZoomDrawer.of(context)!.toggle();
+                }else{
+                  Get.offAll(Home());
                 }
+               
               } ,
               child: Container(
                   margin: const EdgeInsets.only(left: 5),

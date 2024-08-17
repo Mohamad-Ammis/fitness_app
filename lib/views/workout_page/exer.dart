@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/datacont.dart';
 import 'package:fitnessapp/controller/exercontrol.dart';
@@ -46,7 +44,6 @@ class _ExerciseState extends State<Exercise> {
           control.gender();
           await control.getexer(widget.id, widget.level);
         } else {
-          print("from random");
           await control.getexrciserandom(widget.id);
         }
       } catch (error) {

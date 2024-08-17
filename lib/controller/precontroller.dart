@@ -264,17 +264,12 @@ class Precontroller extends GetxController {
         "choose": equ ,
         "coach_id":coachid.toString()
       });
-      print({
-        "choose": equ ,
-        "coach_id":coachid.toString()
-      });
       final resdata = json.decode(res.body);
       if (res.statusCode == 200) {
         helperdays = resdata["data"] as List<dynamic>;
         for (int i = 0; i < helperdays.length; i++) {
           plans.add(int.parse(helperdays[i]["day"]));
         }
-        print(plans);
       } else {
         throw "Something wrong , please try again";
       }

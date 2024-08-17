@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:math';
-import 'dart:math';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:get/get.dart';
@@ -21,6 +20,7 @@ class Reportcontroller extends GetxController {
   int stepday = 0 ;
 
   int stepss = 0 ;
+  String level = "Beginner";
 
 
   int numexerweek = 0 ;
@@ -39,7 +39,7 @@ class Reportcontroller extends GetxController {
 
 
 Future<void> getreportdaily() async {
-    final String url = '${Constans.baseUrl}report/getDailyReport';
+    const String url = '${Constans.baseUrl}report/getDailyReport';
     try {
       final res = await http.get(Uri.parse(url), headers: {
         'Accept': 'application/json',
@@ -48,6 +48,7 @@ Future<void> getreportdaily() async {
       
       if (res.statusCode == 200) {
         final resdata = json.decode(res.body);
+        print(resdata);
         bmi = resdata["new_bmi"].toString();
         bmicat = resdata["bmi_category"];
         numexerday = resdata["Number_of_exercises"];
@@ -56,9 +57,10 @@ Future<void> getreportdaily() async {
         calday = resdata["calories"];
         caltotalday = resdata["total-calories"];
         stepday = resdata["steps"];
-        print("hereeeeee");
+        level = resdata["level"];
+        update();
       }else if(res.statusCode == 404){
-         bmi = "18";
+         bmi = "0.0";
         bmicat = "No thing Yet";
         numexerday = 0;
         timeday = 0;
@@ -66,8 +68,8 @@ Future<void> getreportdaily() async {
         calday = 0;
         caltotalday =0;
         stepday =0;
+        level = "Beginner";
       } else {
-        print("***********8");
         throw "Something wrong , please try again";
       }
     } catch (errore) {
@@ -83,8 +85,6 @@ Future<void> getreportweekly() async {
         'Accept': 'application/json',
         'Authorization': 'Bearer ${userInfo!.getString('token')}',
       });
-      print(url);
-      print(userInfo!.getString('token'));
       if (res.statusCode == 200) {
         helper = [];
         caloriesdiagram = [];
@@ -97,19 +97,19 @@ Future<void> getreportweekly() async {
         timeweek=resdata["time"];
         timetotaweek = resdata["total_time_seconds"];
         helper = resdata["daily_reports"];
+         maxcalories =helper[0]["calories"];
+        mincalories = helper[0]["calories"];
         for(int i=0 ; i<helper.length ; i++){
           caloriesdiagram.add(double.parse(helper[i]["calories"].toString()));
           wieghtdiagram.add(double.parse(helper[i]["weight"].toString()));
           if(i>0){
-            maxcalories = max(caloriesdiagram[i-1].toInt(), caloriesdiagram[i].toInt());
-            mincalories = min(caloriesdiagram[i-1].toInt(), caloriesdiagram[i].toInt());
+            maxcalories = max(maxcalories, caloriesdiagram[i].toInt());
+            mincalories = min(mincalories, caloriesdiagram[i].toInt());
             wieghtmax = max(wieghtdiagram[i-1].toInt(), wieghtdiagram[i].toInt());
             wieghtmin = min(wieghtdiagram[i-1].toInt(), wieghtdiagram[i].toInt());
           }
         }
         currentweight = wieghtdiagram[6];
-        print(maxcalories);
-
       } else {
         throw "Something wrong , please try again";
       }
@@ -132,11 +132,6 @@ Future setsteps (String steps)async{
      }
      );
       stepss+=int.parse(steps);
-      print(url);
-      print(userInfo!.getString('token'));
-      print({
-      "steps":steps.toString()
-     });
      if(res.statusCode==200){}else{
       throw "Something wrong , please try again";
      }

@@ -1,6 +1,5 @@
 import 'package:fitnessapp/models/menuItem.dart';
 import 'package:fitnessapp/models/menuitems.dart';
-import 'package:fitnessapp/views/chatgpt/chat.dart';
 import 'package:fitnessapp/views/food/food.dart';
 import 'package:fitnessapp/views/gym_pre/pre.dart';
 import 'package:fitnessapp/views/media/media_home.dart';
@@ -38,8 +37,8 @@ class _HomeState extends State<Home> {
       mainScreen: getscreen(),
       borderRadius: 40,
       showShadow: true,
-      angle: /* -12.0 */ -8.0,
-      drawerShadowsBackgroundColor: /* Color.fromARGB(255, 103, 185, 189) */
+      angle:  -8.0,
+      drawerShadowsBackgroundColor: 
           const Color.fromARGB(255, 62, 82, 83),
       slideWidth: MediaQuery.of(context).size.width * 0.73,
     );

@@ -31,7 +31,19 @@ class _DailyState extends State<Daily> {
         try{
           await control.getreportdaily();
         }catch(error){
-          print(error);
+          showDialog(
+              context: context,
+              builder: (ctxx) => AlertDialog(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(40)),
+                    title: const Text(
+                      'Warning',
+                      style: TextStyle(
+                          color: Color.fromARGB(255, 252, 93, 93), fontSize: 25),
+                      textAlign: TextAlign.center,
+                    ),
+                    content: Text(error.toString()),
+                  ));
         }
         setState(() {
           isloading = false ;

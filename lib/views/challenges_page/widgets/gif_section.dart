@@ -19,13 +19,13 @@ class ChallengeGifSection extends StatelessWidget {
       height: MediaQuery.sizeOf(context).height / 3 + 45,
       clipBehavior: Clip.hardEdge,
       decoration: const BoxDecoration(
-          color: Colors.red,
+        //  color: Colors.red,
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(35),
               bottomRight: Radius.circular(35))),
       child: CachedNetworkImage(
         imageUrl:
-            "http://${Constans.host}:8000/Uploads/${model.gif}",
+            "${Constans.mainbaseUrlimage}Uploads/${model.gif}",
         imageBuilder: (context, imageProvider) => Container(
           decoration: BoxDecoration(
             image: DecorationImage(

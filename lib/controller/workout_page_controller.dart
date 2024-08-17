@@ -30,6 +30,8 @@ class WorkoutPageController extends GetxController {
   }
 
   Future updateReport(exersicesTotalCalories, exersicesTotalTime) async {
+    debugPrint("al l  "+exersicesTotalCalories.toString());
+    debugPrint("play "+totalCalories.toString());
     final response = await http.post(
         Uri.parse('${Constans.baseUrl}report/creatReport'),
         headers: <String, String>{

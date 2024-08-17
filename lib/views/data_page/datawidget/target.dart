@@ -67,7 +67,6 @@ class Target extends StatelessWidget {
             overlayColor: MaterialStatePropertyAll(Colors.white.withOpacity(0)),
             onTap: (){
               contr.setselectgoal(e['id']);
-              print(contr.selectgoal);
             },
             child: Container(
               height: cont.maxHeight*0.23,

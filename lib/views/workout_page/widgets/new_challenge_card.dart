@@ -54,7 +54,7 @@ class NewChallengeCard extends StatelessWidget {
                           padding:
                               const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                           alignment: Alignment.topRight,
-                          child:model.image!=null? CachedNetworkImage(imageUrl: 'http://${Constans.host}:8000/Uploads/${model.image}') :const Icon(
+                          child:model.image!=null? CachedNetworkImage(imageUrl: '${Constans.mainbaseUrlimage}Uploads/${model.image}') :const Icon(
                             Icons.home,
                             color: Colors.white,
                           )),

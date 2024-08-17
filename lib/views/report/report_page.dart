@@ -1,8 +1,9 @@
 import 'package:fitnessapp/constans.dart';
+import 'package:fitnessapp/controller/reportcontroller.dart';
 import 'package:fitnessapp/views/report/daily.dart';
 import 'package:fitnessapp/views/report/weekly.dart';
-import 'package:fitnessapp/views/report/widget/top.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class Reportpage extends StatefulWidget {
   const Reportpage({super.key});
@@ -21,7 +22,26 @@ class _ReportpageState extends State<Reportpage> {
       backgroundColor:const Color(0xffE7E8EC) ,
       body:ListView(
         children: [
-          const Top(color:Colors.black, text: "My Activity", top: 5),
+          GetBuilder(
+            init: Reportcontroller(),
+            builder:(contr)=>Row(
+              children: [
+                top( "My Activity",5,Colors.black),
+                Container(
+                  margin: EdgeInsets.only(left: 9),
+                  height: 40,
+                  
+                  alignment: Alignment.center,
+                  child: Text("( ${contr.level} )" , style: TextStyle(
+                    fontFamily: Constans.fontFamily,
+                    color: /* Constans.test */Colors.black,
+                    fontSize:MediaQuery.of(context).size.width*0.06 ,
+                    fontWeight: FontWeight.bold
+                  ),),
+                )
+              ],
+            ),
+          ),
           choose(context),
           const SizedBox(height: 20,),
           select==1?Daily():Weekly()
@@ -29,6 +49,22 @@ class _ReportpageState extends State<Reportpage> {
       )
     );
   }
+
+
+Widget top(String text , double top , Color color){
+  return Container(
+            height: MediaQuery.of(context).size.height*0.06,
+            margin: EdgeInsets.only(top: top),
+            padding:const EdgeInsets.only(top: 3 , left: 10),
+            child: Text(text , style: TextStyle(
+              color: color,
+              fontSize: MediaQuery.of(context).size.width*0.065,
+              fontWeight: FontWeight.bold,
+              fontFamily: "Work Sans"
+            ),),
+          );
+}
+
 
   Card choose(BuildContext context) {
     return Card(

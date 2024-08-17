@@ -44,7 +44,7 @@ class ExcercisesCard extends StatelessWidget {
         child: Stack(
           children: [
              CachedNetworkImage(
-  imageUrl: "http://${Constans.host}:8000/Uploads/${userInfo!.getInt("man")==1? model.muscleImageMan!:model.muscleImageWoman!}",
+  imageUrl: "${Constans.mainbaseUrlimage}Uploads/${userInfo!.getInt("man")==1? model.muscleImageMan!:model.muscleImageWoman!}",
   imageBuilder: (context, imageProvider) => Container(
     decoration: BoxDecoration(
       image: DecorationImage(

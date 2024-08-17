@@ -154,7 +154,7 @@ Widget build(BuildContext context , double shrinkOffset , bool overlapsContent){
         children: [
         icon==null? Container():  Icon(icon , color: Colors.white,),
           const SizedBox(width:4 ),
-          Text(text, style: const TextStyle(fontSize: 21 , fontFamily: Constans.fontFamily, color: Colors.white )),
+          Text(text, style: const TextStyle(fontSize: 17 , fontFamily: Constans.fontFamily, color: Colors.white )),
         ],
       );
 

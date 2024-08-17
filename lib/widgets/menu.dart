@@ -92,7 +92,9 @@ class Menupage extends StatelessWidget {
                         var status = await authController.logout();
                         if (status) {
                           fcm = userInfo!.getString('fcm_token')!;
-                          userInfo!.clear();
+                        //  userInfo!.clear();
+                         userInfo!.remove("token");
+                          userInfo!.remove("man");
                           userInfo!.setString('fcm_token', fcm);
                           userInfo!.setBool('firstUse', false);
                           controller.setlogout();
@@ -100,7 +102,7 @@ class Menupage extends StatelessWidget {
                         } else {
                           showErrorSnackBar(
                               "Error Happened", "please try again ");
-                        }
+                        } 
                       },
                       child: Text("Logout",
                           style: TextStyle(

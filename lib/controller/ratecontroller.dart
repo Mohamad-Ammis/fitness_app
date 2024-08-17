@@ -21,11 +21,6 @@ Future setrate (double rate)async{
       "rating":rate.toInt().toString()
      }
      );
-     print(userInfo!.getString('token'));
-     print({
-      "rating":rate.toInt().toString()
-     });
-     print(control.coachid.toString());
      if(res.statusCode==200){}else{
       throw "Something wrong , please try again";
      }

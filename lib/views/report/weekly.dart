@@ -27,7 +27,6 @@ class _WeeklyState extends State<Weekly> {
 
 @override
    void initState() {
-    print(controller.currentweight);
        setState(() {
         isloading = true;
       });

@@ -71,6 +71,7 @@ final controller = Get.put(Precontroller() , permanent: true);
       }else{
         specdayexer["choose"] = "no_equipment" ;
       }
+   //   print(specdayexer["choose"]);
    }
    Future getmeal ()async{
     helper = [] ;
@@ -104,6 +105,7 @@ final controller = Get.put(Precontroller() , permanent: true);
           preparation: helper[i]["preparation_method"],
         );
         helperint = helper[i]["ingredients"]  as List<dynamic >;
+        inte = [];
         for(int i = 0 ; i < helperint.length ; i++){
           Ingredient test =Ingredient(
             name: helperint[i]["name"],
@@ -149,8 +151,6 @@ final controller = Get.put(Precontroller() , permanent: true);
      },
      body: specdayexer
      );
-     print(specdayexer);
-     print(coachid);
      if(res.statusCode==200){
      final resdata = json.decode(res.body);
       helperexer = resdata["data"] as List<dynamic >;
@@ -220,11 +220,7 @@ Future unlockedday() async {
         "choose": equ ,
         "coach_id":coachid.toString()
       });
-      print({
-        "choose": equ ,
-        "coach_id":coachid.toString()
-      });
-      final resdata = json.decode(res.body);
+  //    final resdata = json.decode(res.body);
       if (res.statusCode == 200) {} else {
         throw "Something wrong , please try again";
       }

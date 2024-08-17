@@ -102,7 +102,6 @@ final execontrol = Get.put(Exercontroller() , permanent: true);
                     width: MediaQuery.of(context).size.width * 0.2,
                     child: InkWell(
                       onTap: (){
-                      //  print(preference!.getInt("man"));
                        Get.to(Exercise(image:userInfo!.getInt("man")==2? item["women_image"]:item["men_image"],
                         title: item["category_name"], des: item["description"],
                         id: item["id"].toString(),
@@ -300,6 +299,7 @@ final execontrol = Get.put(Exercontroller() , permanent: true);
             );
           }).toList(),
           options: CarouselOptions(
+            
              autoPlay: true,
           autoPlayInterval: Duration(seconds: 3),
             height: MediaQuery.of(context).size.height * 0.27,

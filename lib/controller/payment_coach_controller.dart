@@ -28,10 +28,6 @@ Future subscribe (int coachid)async{
       "choose":equ
      }
      );
-     print({
-      "coach_id":coachid.toString(),
-      "choose":equ
-     });
      if(res.statusCode==200){
        final resdata = json.decode(res.body);
        idsub = resdata["data"]["id"];
@@ -63,7 +59,6 @@ Future subscribe (int coachid)async{
      if(res.statusCode==200){
        final resdata = json.decode(res.body);
        urll = resdata["Data"]["InvoiceURL"];
-       print(urll);
      }else{
       throw "Something wrong , please try again";
      }

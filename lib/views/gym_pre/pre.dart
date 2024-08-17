@@ -61,13 +61,6 @@ class _PreState extends State<Pre> {
 
 
 @override
-void didChangeDependencies() {
-     print("ggggggggggg");
-    super.didChangeDependencies();
-  }
-
-
-@override
   void dispose() {
      controller.disposeexpanded();
     super.dispose();
@@ -359,7 +352,6 @@ void didChangeDependencies() {
                                                   controller.disposeexpanded();
                                                   await controller.getallcoaches();
                                                   await controller.getmycoaches();
-                                                  print("dealll");
                                                 }catch(error){
                                                   showDialog(
                                                     context: context,
@@ -397,7 +389,19 @@ void didChangeDependencies() {
                                             });
                                         });
                                       }catch(error){
-                                        print(error);
+                                         showDialog(
+                                            context: context,
+                                            builder: (ctxx) => AlertDialog(
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius: BorderRadius.circular(40)),
+                                                  title: const Text(
+                                                    'Warning',
+                                                    style: TextStyle(
+                                                        color: Color.fromARGB(255, 252, 93, 93), fontSize: 25),
+                                                    textAlign: TextAlign.center,
+                                                  ),
+                                                  content: Text(error.toString()),
+                                                ));
                                       }
                                      }
                                     },

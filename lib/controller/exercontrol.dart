@@ -22,7 +22,6 @@ class Exercontroller extends GetxController {
 
   void fromrandom() {
     random = true;
-    // print(random);
     update();
   }
 
@@ -61,18 +60,14 @@ class Exercontroller extends GetxController {
           body: level == null
               ? {'category_id': id, 'gender': gen}
               : {'muscle_id': id, 'gender': gen, 'level': level});
-      // print(controller.token);
-      // print(res);
       if (res.statusCode == 200) {
         final resdata = json.decode(res.body);
-        //  print(resdata);
         if (level == null) {
           exercise = resdata[0]["exercises"] as List<dynamic>;
           time = resdata[0]["total_time"].toString();
           numexer = resdata[0]["exercise_count"].toString();
           calories = resdata[0]["total_calories"].toString();
         } else {
-          // print(resdata["exercise"][0]["exercises"]);
           exercise = resdata["exercise"][0]["exercises"] as List<dynamic>;
           time = resdata["exercise"][0]["total_time"].toString();
           numexer = resdata["exercise"][0]["exercise_count"].toString();
@@ -124,18 +119,6 @@ class Exercontroller extends GetxController {
             all_exer.add(test);
           }
         }
-        //  print(all_exer[0].image);
-        //  print(all_exer[0].calories);
-        //  print(all_exer[0].choose);
-        //  print(all_exer[0].des);
-        //  print(all_exer[0].focus_area);
-        //  print(all_exer[0].diseases);
-        //  print(all_exer[0].focus_area_name);
-        //  print(all_exer[0].gender);
-        //  print(all_exer[0].id);
-        //  print(all_exer[0].level);
-        //  print(all_exer[0].name);
-        //  print(all_exer[0].pivot);
       } else {
         throw "Something wrong , please try again";
       }

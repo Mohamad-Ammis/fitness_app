@@ -173,7 +173,6 @@ class _DealogcoachState extends State<Dealogcoach> {
   if (await canLaunchUrl(Uri.parse(url))) {
     await launchUrl(Uri.parse(url));
    // await launchUrl(Uri.parse('your-app-scheme://'));
-    print("deal");
   } else {
   }
 }

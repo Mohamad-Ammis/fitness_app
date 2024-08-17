@@ -30,7 +30,6 @@ class Pickscotroller extends GetxController {
       'Authorization': 'Bearer ${userInfo!.getString('token')}',
      },
      );
-     print(userInfo!.getString('token'));
      if(res.statusCode==200){
      final resdata = json.decode(res.body);
       helperexer = resdata["data"] as List<dynamic >;

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/spec_day_controller.dart';
 import 'package:fitnessapp/shimmer/shimmergym.dart';
@@ -117,7 +118,8 @@ class _FoodpartState extends State<Foodpart> {
                   opacity:0.5,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30),
-                    child:Image.network("http://${Constans.host}:8000/uploads/${meal.image!}", fit: BoxFit.cover,),
+                    child:CachedNetworkImage(
+                      imageUrl: "${Constans.mainbaseUrlimage}uploads/${meal.image!}", fit: BoxFit.cover,),
                   ),
                    ),
               ),
@@ -158,7 +160,7 @@ class _FoodpartState extends State<Foodpart> {
                   ),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(30),
-                    child: Image.network("http://${Constans.host}:8000/uploads/${meal.image!}", fit: BoxFit.cover,),
+                    child: CachedNetworkImage(imageUrl: "${Constans.mainbaseUrlimage}uploads/${meal.image!}", fit: BoxFit.cover,),
                   ),
                 ),
                 Positioned(
@@ -235,7 +237,7 @@ class _FoodpartState extends State<Foodpart> {
             },
             child: ClipRRect(
               borderRadius: BorderRadius.circular(30),
-              child: Image.network("http://${Constans.host}:8000/uploads/${meal.image!}", fit: BoxFit.cover,),
+              child: CachedNetworkImage(imageUrl: "${Constans.mainbaseUrlimage}uploads/${meal.image!}", fit: BoxFit.cover,),
             ),
           ),
         )).toList(),
@@ -268,7 +270,7 @@ class _FoodpartState extends State<Foodpart> {
               ),
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(25),
-                child: Image.network("http://${Constans.host}:8000/uploads/${meal.image!}", fit: BoxFit.cover,),
+                child: CachedNetworkImage(imageUrl: "${Constans.mainbaseUrlimage}uploads/${meal.image!}", fit: BoxFit.cover,),
               ),
             ),
           )).toList(),
