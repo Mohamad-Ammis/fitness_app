@@ -28,7 +28,7 @@ class ShopController extends GetxController {
     "shorts",
     "pants",
     "shirts",
-    "T-shirts",
+    "T-shirt",
     "socks",
   ];
   final filterNames = const [
@@ -198,7 +198,7 @@ class ShopController extends GetxController {
       return adsList;
     } else {
       debugPrint('error when get all Ads');
-          debugPrint(data.toString());
+      debugPrint(data.toString());
 
       return [];
     }
@@ -228,7 +228,7 @@ class ShopController extends GetxController {
           'category': cat,
         });
     var data = jsonDecode(response.body);
-    debugPrint('All Products: $data');
+    debugPrint('All Prasdasdoducts: $data');
     if (response.statusCode == 200) {
       viewAllProductsLoading = false;
       viewAllProducts = data['data']['products'];
@@ -420,29 +420,27 @@ class ShopController extends GetxController {
     debugPrint(jsonDecode(response.body).toString());
   }
 
-  bool refreshLoading = false;
   Future getHomePageProducts() async {
-    refreshLoading = true;
-    update();
+    adsList = await getAllAds();
     allProducts = await getAllProduct();
     showedList = allProducts;
-
     mostSalesProducts = await getMostSalesProduct();
     commonProducts = await getCommonProduct();
-    adsList = await getAllAds();
-    refreshLoading = false;
-    update();
   }
 
+  bool homeLoading = false;
   @override
   onInit() {
     super.onInit();
     WidgetsBinding.instance.addPostFrameCallback((_) async {
+      homeLoading = true;
+      update();
       await getHomePageProducts();
+      homeLoading = false;
+      update();
       debugPrint('allProducts: ${allProducts.length}');
       debugPrint('commonProducts: ${commonProducts.length}');
       debugPrint('mostSalesProducts: ${mostSalesProducts.length}');
-      update();
       debugPrint('allAds: ${adsList.length}');
     });
   }

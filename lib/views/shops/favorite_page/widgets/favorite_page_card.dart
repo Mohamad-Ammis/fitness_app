@@ -33,9 +33,9 @@ class FavoritePageCard extends StatelessWidget {
                   child: Container(
                     color: Constans.shopLightColor,
                     child: CachedNetworkImage(
-                        height: 150,
+                        height: 160,
                         imageUrl:
-                            "http://${Constans.host}:8000/Uploads/${model.image}",
+                            "${Constans.mainbaseUrlimage}Uploads/${model.image}",
                         imageBuilder: (context, imageProvider) => Container(
                                 decoration: BoxDecoration(
                               image: DecorationImage(
@@ -61,7 +61,7 @@ class FavoritePageCard extends StatelessWidget {
                             maxLines: 2,
                             style: const TextStyle(
                                 fontFamily: Constans.fontFamily,
-                                fontSize: 24,
+                                fontSize: 21,
                                 fontWeight: FontWeight.bold),
                           ),
                         ),

@@ -42,8 +42,8 @@ class _OffersPageViewState extends State<OffersPageView> {
 //function to handle ads scroll
   void _startAutoSlide() {
     _timer?.cancel();
-    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
-      if (widget.dotPageController.hasClients) {
+    _timer = Timer.periodic(const Duration(seconds: 15), (timer) {
+      if (widget.dotPageController.hasClients||!(controller.homeLoading)) {
         final nextPage = (currentIndex + 1) %
             (controller.adsList.isEmpty ? 0 : controller.adsList.length);
         widget.dotPageController.animateToPage(
@@ -72,9 +72,7 @@ class _OffersPageViewState extends State<OffersPageView> {
               topLeft: Radius.circular(12), topRight: Radius.circular(12))),
       child: PageView.builder(
           controller: widget.dotPageController,
-          itemCount: controller.adsList.isEmpty
-              ? controller.images.length
-              : controller.adsList.length,
+          itemCount: controller.adsList.isEmpty ? 0 : controller.adsList.length,
           itemBuilder: (context, index) {
             return Stack(
               children: [
@@ -106,3 +104,5 @@ class _OffersPageViewState extends State<OffersPageView> {
     );
   }
 }
+
+  

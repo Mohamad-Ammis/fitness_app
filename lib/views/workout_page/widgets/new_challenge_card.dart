@@ -14,7 +14,9 @@ class NewChallengeCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:(){Get.to(ChallengePage(model:model));},
+      onTap: () {
+        Get.to(ChallengePage(model: model));
+      },
       child: Container(
         height: 150,
         width: 200,
@@ -47,17 +49,21 @@ class NewChallengeCard extends StatelessWidget {
                       clipBehavior: Clip.hardEdge,
                       decoration: BoxDecoration(
                         color: Constans.test,
-                        borderRadius:
-                            const BorderRadius.only(bottomLeft: Radius.circular(999)),
+                        borderRadius: const BorderRadius.only(
+                            bottomLeft: Radius.circular(999)),
                       ),
                       child: Container(
-                          padding:
-                              const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 4),
                           alignment: Alignment.topRight,
-                          child:model.image!=null? CachedNetworkImage(imageUrl: '${Constans.mainbaseUrlimage}Uploads/${model.image}') :const Icon(
-                            Icons.home,
-                            color: Colors.white,
-                          )),
+                          child: model.image != null
+                              ? CachedNetworkImage(
+                                  imageUrl:
+                                      '${Constans.mainbaseUrlimage}Uploads/${model.image}')
+                              : const Icon(
+                                  Icons.home,
+                                  color: Colors.white,
+                                )),
                     )
                   ],
                 ),

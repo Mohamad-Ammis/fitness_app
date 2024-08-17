@@ -118,6 +118,8 @@ class _LoginFormState extends State<LoginForm> {
                           userInfo?.setString('id', id.toString());
                           userInfo?.setString(
                               'name', data['user']['name'].toString());
+                          userInfo?.setString(
+                              'email', authController.email);
                           int isMan = data['user']['gender'] == 'male' ? 1 : 2;
                           userInfo!.setInt("man", isMan);
                           userInfo!.setString(

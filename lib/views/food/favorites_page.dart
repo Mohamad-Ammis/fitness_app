@@ -1,5 +1,7 @@
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/favorites_controller.dart';
+import 'package:fitnessapp/controller/popularmeals_controller.dart';
+import 'package:fitnessapp/controller/recenlymeals_controller.dart';
 import 'package:fitnessapp/models/meal.dart';
 import 'package:fitnessapp/views/food/meal_page.dart';
 import 'package:fitnessapp/views/food/widgets/meal_card.dart';
@@ -18,6 +20,7 @@ class FavoritePage extends StatefulWidget {
 }
 
 class _FavoritePageState extends State<FavoritePage> {
+  ControllerPopular conFav = Get.put(ControllerPopular(), permanent: true);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -137,6 +140,8 @@ class _FavoritePageState extends State<FavoritePage> {
                                                           .then((value) {
                                                         favoriteList[index]
                                                             .isfavorite = false;
+                                                        conFav.getPopularMeal();
+
                                                         cardController1
                                                             .update();
                                                       });
@@ -171,12 +176,14 @@ class _FavoritePageState extends State<FavoritePage> {
                                       protien: favoriteList[index].protein,
                                       warning: favoriteList[index].warning !=
                                               null
-                                          ? Icon(
-                                              Icons.warning_rounded,
-                                              color:
-                                                  Colors.white.withOpacity(0.8),
-                                              size: 37,
-                                            )
+                                          ? favoriteList[index].warning == ""
+                                              ? Container()
+                                              : Icon(
+                                                  Icons.warning_rounded,
+                                                  color: Colors.white
+                                                      .withOpacity(0.8),
+                                                  size: 37,
+                                                )
                                           : Container())),
                             ),
                           )

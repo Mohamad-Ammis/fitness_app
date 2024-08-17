@@ -1,5 +1,9 @@
+import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/models/menuItem.dart';
 import 'package:fitnessapp/models/menuitems.dart';
+import 'package:fitnessapp/views/chat/chat_controller.dart';
+import 'package:fitnessapp/views/chat/chat_page.dart';
+import 'package:fitnessapp/views/chatgpt/chat.dart';
 import 'package:fitnessapp/views/food/food.dart';
 import 'package:fitnessapp/views/gym_pre/pre.dart';
 import 'package:fitnessapp/views/media/media_home.dart';
@@ -8,6 +12,9 @@ import 'package:fitnessapp/views/workout_page/workout_page.dart';
 import 'package:fitnessapp/widgets/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_zoom_drawer/flutter_zoom_drawer.dart';
+import 'package:get/get.dart';
+
+import 'views/chat/chat_banned_page.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -18,6 +25,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Menuitem currentitem = Menuitems.home;
+  final chatController = Get.put(ChatController());
   @override
   Widget build(BuildContext context) {
     return ZoomDrawer(
@@ -54,8 +62,9 @@ class _HomeState extends State<Home> {
         return Food();
       case Menuitems.media:
         return MediaHome();
-      // case Menuitems.chat:
-      //   return  const Chat();
+      case Menuitems.chat:
+        return !chatController.canAccessPage() ? ChatBannedPage() : ChatPage();
+
       default:
         return Pre();
     }

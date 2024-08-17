@@ -119,39 +119,41 @@ class _MealPageState extends State<MealPage> {
                     ),
                   )),
               widget.meal.warning != null
-                  ? Positioned(
-                      top: 25,
-                      right: 0,
-                      left: 320,
-                      child: TextButton(
-                        onPressed: () {
-                          QuickAlert.show(
-                              confirmBtnText: "Ok",
-                              confirmBtnColor: const Color(0xff007d81),
-                              barrierDismissible: false,
-                              barrierColor: Colors.white.withOpacity(0.9),
-                              context: context,
-                              type: QuickAlertType.warning,
-                              widget: SingleChildScrollView(
-                                child: Text(
-                                  widget.meal.warning!,
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    fontFamily: Constans.fontFamily,
-                                    color: Colors.black,
+                  ? widget.meal.warning == ""
+                      ? Container()
+                      : Positioned(
+                          top: 25,
+                          right: 0,
+                          left: 320,
+                          child: TextButton(
+                            onPressed: () {
+                              QuickAlert.show(
+                                  confirmBtnText: "Ok",
+                                  confirmBtnColor: const Color(0xff007d81),
+                                  barrierDismissible: false,
+                                  barrierColor: Colors.white.withOpacity(0.9),
+                                  context: context,
+                                  type: QuickAlertType.warning,
+                                  widget: SingleChildScrollView(
+                                    child: Text(
+                                      widget.meal.warning!,
+                                      style: const TextStyle(
+                                        fontSize: 18,
+                                        fontFamily: Constans.fontFamily,
+                                        color: Colors.black,
+                                      ),
+                                    ),
                                   ),
-                                ),
-                              ),
-                              title: 'Warning!',
-                              titleColor: const Color(0xff007d81));
-                        },
-                        child: const Image(
-                          image: AssetImage("assets/images/warning.png"),
-                          height: 34,
-                          width: 34,
-                        ),
-                      ),
-                    )
+                                  title: 'Warning!',
+                                  titleColor: const Color(0xff007d81));
+                            },
+                            child: const Image(
+                              image: AssetImage("assets/images/warning.png"),
+                              height: 34,
+                              width: 34,
+                            ),
+                          ),
+                        )
                   : Container()
             ],
           ),

@@ -237,15 +237,17 @@ class _SearchPageState extends State<SearchPage> {
                                         text: searchlist[index].name,
                                         cal: searchlist[index].calories,
                                         protien: searchlist[index].protein,
-                                        warning:
-                                            searchlist[index].warning != null
-                                                ? Icon(
+                                        warning: searchlist[index].warning !=
+                                                null
+                                            ? searchlist[index].warning == ""
+                                                ? Container()
+                                                : Icon(
                                                     Icons.warning_rounded,
                                                     color: Colors.white
                                                         .withOpacity(0.8),
                                                     size: 37,
                                                   )
-                                                : Container())),
+                                            : Container())),
                               ),
                             )
                           : Center(

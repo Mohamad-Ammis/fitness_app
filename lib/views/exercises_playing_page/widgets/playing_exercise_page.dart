@@ -11,7 +11,10 @@ class PlayingExercisePage extends StatelessWidget {
     super.key,
     required this.innerPageController,
     required this.isCoachExercise,
-    required this.outerPageController, required this.index, required this.lastIndex, required this.model,
+    required this.outerPageController,
+    required this.index,
+    required this.lastIndex,
+    required this.model,
   });
   final int index;
   final int lastIndex;
@@ -43,21 +46,31 @@ class PlayingExercisePage extends StatelessWidget {
             child: IconButton(
                 onPressed: () {
                   Get.bottomSheet(
-                      enterBottomSheetDuration: const Duration(milliseconds: 700),
-                      exitBottomSheetDuration: const Duration(milliseconds: 700),
+                      enterBottomSheetDuration:
+                          const Duration(milliseconds: 700),
+                      exitBottomSheetDuration:
+                          const Duration(milliseconds: 700),
                       isScrollControlled: true,
                       SizedBox(
                           height: MediaQuery.sizeOf(context).height - 50,
-                          child: ExercisePageBody(model: model,)));
+                          child: ExercisePageBody(
+                            model: model,
+                          )));
                 },
                 icon: const Icon(
                   Icons.info_outline,
                   size: 30,
                   color: Colors.black,
                 ))),
-        BottomPageView(isCoachExercise:isCoachExercise,innerPageController: innerPageController, outerPageController: outerPageController, index: index, lastIndex: lastIndex, model: model,),
+        BottomPageView(
+          isCoachExercise: isCoachExercise,
+          innerPageController: innerPageController,
+          outerPageController: outerPageController,
+          index: index,
+          lastIndex: lastIndex,
+          model: model,
+        ),
       ],
     );
   }
 }
-

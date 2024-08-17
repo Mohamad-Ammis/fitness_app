@@ -212,15 +212,17 @@ class _CategoryPageState extends State<CategoryPage> {
                                         text: categorylist[index].name,
                                         cal: categorylist[index].calories,
                                         protien: categorylist[index].protein,
-                                        warning:
-                                            categorylist[index].warning != null
-                                                ? Icon(
+                                        warning: categorylist[index].warning !=
+                                                null
+                                            ? categorylist[index].warning == ""
+                                                ? Container()
+                                                : Icon(
                                                     Icons.warning_rounded,
                                                     color: Colors.white
                                                         .withOpacity(0.8),
                                                     size: 37,
                                                   )
-                                                : Container())),
+                                            : Container())),
                               ),
                             )
                           : Center(
@@ -376,12 +378,14 @@ class _CategoryPageState extends State<CategoryPage> {
                                         cal: typeList[index].calories,
                                         protien: typeList[index].protein,
                                         warning: typeList[index].warning != null
-                                            ? Icon(
-                                                Icons.warning_rounded,
-                                                color: Colors.white
-                                                    .withOpacity(0.8),
-                                                size: 35,
-                                              )
+                                            ? typeList[index].warning == ""
+                                                ? Container()
+                                                : Icon(
+                                                    Icons.warning_rounded,
+                                                    color: Colors.white
+                                                        .withOpacity(0.8),
+                                                    size: 35,
+                                                  )
                                             : Container())),
                               ),
                             )
@@ -538,12 +542,14 @@ class _CategoryPageState extends State<CategoryPage> {
                                         cal: typeList[index].calories,
                                         protien: typeList[index].protein,
                                         warning: typeList[index].warning != null
-                                            ? Icon(
-                                                Icons.warning_rounded,
-                                                color: Colors.white
-                                                    .withOpacity(0.8),
-                                                size: 35,
-                                              )
+                                            ? typeList[index].warning == ""
+                                                ? Container()
+                                                : Icon(
+                                                    Icons.warning_rounded,
+                                                    color: Colors.white
+                                                        .withOpacity(0.8),
+                                                    size: 35,
+                                                  )
                                             : Center(
                                                 child: Container(),
                                               ))),

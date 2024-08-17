@@ -111,7 +111,7 @@ class Menupage extends StatelessWidget {
                             fontFamily: Constans.fontFamily,
                           )));
                 }),
-              ),
+),
               const Spacer(
                 flex: 2,
               ),

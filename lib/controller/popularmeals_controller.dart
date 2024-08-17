@@ -17,6 +17,7 @@ class ControllerPopular extends GetxController {
       for (var i = 0; i < jsonData["data"].length; i++) {
         popularList.add(Meal.fromJson(jsonData["data"], i));
       }
+      update();
       return popularList;
     } catch (e) {
       Get.snackbar(
