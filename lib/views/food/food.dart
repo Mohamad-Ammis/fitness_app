@@ -117,7 +117,7 @@ class _FoodState extends State<Food> {
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
-                children: const<TextSpan>[
+                children: const <TextSpan>[
                   TextSpan(text: "Balance Healthy Eating, with Plenty of "),
                   TextSpan(
                     text: "Physical Exercise",
@@ -183,7 +183,7 @@ class _FoodState extends State<Food> {
           ),
         ),
         const Padding(
-          padding: EdgeInsets.only(top: 25, left: 10, bottom: 10),
+          padding: EdgeInsets.only(top: 15, left: 10, bottom: 10),
           child: Row(
             children: [
               Text(
@@ -278,11 +278,13 @@ class _FoodState extends State<Food> {
                           cal: popularList[index].calories,
                           protien: popularList[index].protein,
                           warning: popularList[index].warning != null
-                              ?popularList[index].warning ==""?Container(): Icon(
-                                  Icons.warning_rounded,
-                                  color: Colors.white.withOpacity(0.8),
-                                  size: 40,
-                                )
+                              ? popularList[index].warning == ""
+                                  ? Container()
+                                  : Icon(
+                                      Icons.warning_rounded,
+                                      color: Colors.white.withOpacity(0.8),
+                                      size: 40,
+                                    )
                               : Container(),
                         );
                       },
@@ -321,7 +323,7 @@ class _FoodState extends State<Food> {
           ],
         ),
         const Padding(
-          padding: EdgeInsets.only(top: 35, left: 10, bottom: 10),
+          padding: EdgeInsets.only(top: 20, left: 10, bottom: 10),
           child: Row(
             children: [
               Text(
@@ -493,11 +495,13 @@ class _FoodState extends State<Food> {
                           cal: recentlyList[index].calories,
                           protien: recentlyList[index].protein,
                           warning: recentlyList[index].warning != null
-                              ? Icon(
-                                  Icons.warning_rounded,
-                                  color: Colors.white.withOpacity(0.8),
-                                  size: 39,
-                                )
+                              ? recentlyList[index].warning == ""
+                                  ? Container()
+                                  : Icon(
+                                      Icons.warning_rounded,
+                                      color: Colors.white.withOpacity(0.8),
+                                      size: 39,
+                                    )
                               : Container(),
                         );
                       }),

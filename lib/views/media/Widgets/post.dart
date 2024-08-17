@@ -95,7 +95,8 @@ class _PostWidgetState extends State<PostWidget> {
                         ),
                       ),
                     ),
-                    widget.post.username == userInfo!.getString("name")
+                    widget.post.username.toString() ==
+                            userInfo!.getString("name").toString()
                         ? GestureDetector(
                             onTap: () {
                               showModalBottomSheet(
@@ -329,7 +330,6 @@ class _PostWidgetState extends State<PostWidget> {
                                           widget.post.imagesPost!.isNotEmpty
                                       ? GestureDetector(
                                           onTap: () {
-                                          
                                             saveAsset(
                                                 "${Constans.mainbaseUrlimage}uploads/${widget.post.imagesPost![ind].path}",
                                                 context);
@@ -416,6 +416,10 @@ class _PostWidgetState extends State<PostWidget> {
                       ),
                       GestureDetector(
                         onTap: () {
+                          print(widget.post.username.toString());
+                          print(userInfo!.getString("name").toString());
+                          print(widget.post.username ==
+                              userInfo!.getString("name"));
                           showModalBottomSheet(
                             clipBehavior: Clip.antiAlias,
                             backgroundColor: Constans.screen,

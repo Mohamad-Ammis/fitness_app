@@ -58,7 +58,7 @@ void handlePageTransition() {
         controller.setmemoryimage(userInfo!.getString("image")!);
       }
       // Get.offAll(OnBoarding());
-      Get.offAll(LogInPage());
+      Get.offAll(Home());
     } else {
       if (userInfo!.getBool('firstUse') == false) {
         Get.offAll(LogInPage());

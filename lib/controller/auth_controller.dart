@@ -113,22 +113,22 @@ class AuthController extends GetxController {
     return data;
   }
 
-  Future<bool> logout() async {
-    debugPrint('token ${userInfo!.getString('token').toString()}');
-    final response = await http.get(
-      Uri.parse('${Constans.baseUrl}logout'),
-      headers: <String, String>{
-        'Accept': 'application/json',
-        'Authorization': 'Bearer ${userInfo!.getString('token')}',
-      },
-    );
-    if (response.statusCode == 200) {
-      return true;
-    } else {
-      debugPrint(jsonDecode(response.body).toString());
-      return false;
-    }
-  }
+  // Future<bool> logout() async {
+  //   debugPrint('token ${userInfo!.getString('token').toString()}');
+  //   final response = await http.get(
+  //     Uri.parse('${Constans.baseUrl}logout'),
+  //     headers: <String, String>{
+  //       'Accept': 'application/json',
+  //       'Authorization': 'Bearer ${userInfo!.getString('token')}',
+  //     },
+  //   );
+  //   if (response.statusCode == 200) {
+  //     return true;
+  //   } else {
+  //     debugPrint(jsonDecode(response.body).toString());
+  //     return false;
+  //   }
+  // }
 
   Future<bool> resendCode() async {
     final response = await http.post(
