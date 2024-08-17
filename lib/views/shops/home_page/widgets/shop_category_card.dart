@@ -13,6 +13,8 @@ class ShopCategoryCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
           width: 68,
@@ -35,14 +37,17 @@ class ShopCategoryCard extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        Text(
-          controller.categoryNames[index],
-          style: const TextStyle(
-              height: 0,
-              color: Colors.black,
-              fontSize: 14,
-              fontFamily: Constans.fontFamily,
-              fontWeight: FontWeight.bold),
+        Center(
+          child: Text(
+            controller.categoryNames[index],
+            style: const TextStyle(
+              
+                height: 0,
+                color: Colors.black,
+                fontSize: 12,
+                fontFamily: Constans.fontFamily,
+                fontWeight: FontWeight.bold),
+          ),
         ),
       ],
     );

@@ -25,13 +25,13 @@ class OffersCardIndicator extends StatelessWidget {
       child: SmoothPageIndicator(
         controller: dotPageController,
         count: controller.adsList.isEmpty
-            ? controller.images.length
+            ? 0
             : controller.adsList.length,
         effect: CustomizableEffect(
           spacing: 8,
           dotDecoration: DotDecoration(
               width: (MediaQuery.sizeOf(context).width /
-                      (controller.images.length + 1)) -
+                      (controller.adsList.length + 1)) -
                   8,
               height: 5,
               color: Colors.white.withOpacity(0.2),

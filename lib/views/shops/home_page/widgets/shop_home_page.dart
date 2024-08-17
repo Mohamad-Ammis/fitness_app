@@ -1,6 +1,9 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:fitnessapp/constans.dart';
 import 'package:fitnessapp/controller/product_page_controller.dart';
 import 'package:fitnessapp/controller/shop_controller.dart';
+import 'package:fitnessapp/utils/app_images.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/category_list_view.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/filter_product_list.dart';
 import 'package:fitnessapp/views/shops/home_page/widgets/offers_card_indicator.dart';
@@ -24,7 +27,7 @@ class ShopHomePage extends StatelessWidget {
       return RefreshIndicator(
         onRefresh: () async {
           await controller.getHomePageProducts();
-          controller.update();
+          // controller.update();
           return Future.delayed(Duration(milliseconds: 200));
         },
         child: CustomScrollView(
@@ -33,7 +36,7 @@ class ShopHomePage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  controller.adsLoading
+                  controller.homeLoading
                       ? ShimmerContainer(
                           width: MediaQuery.sizeOf(context).width,
                           height: 230,
@@ -48,7 +51,41 @@ class ShopHomePage extends StatelessWidget {
                           clipBehavior: Clip.hardEdge,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(0)),
-                          child: Stack(
+                          child:
+                              //  CarouselSlider(
+                              //     items: controller.adsList.map((e) {
+                              //       return CachedNetworkImage(
+                              //         width: MediaQuery.sizeOf(context).width,
+                              //         imageUrl:
+                              //             "${Constans.mainbaseUrlimage}Uploads/${e.image}",
+                              //         imageBuilder: (context, imageProvider) =>
+                              //             Container(
+                              //           decoration: BoxDecoration(
+                              //             image: DecorationImage(
+                              //               image: imageProvider,
+                              //               fit: BoxFit.cover,
+                              //             ),
+                              //           ),
+                              //         ),
+                              //         placeholder: (context, url) =>
+                              //             const CircularProgressIndicator(),
+                              //         errorWidget: (context, url, error) =>
+                              //             const Icon(Icons.error),
+                              //       );
+                              //     }).toList(),
+                              //     options: CarouselOptions(
+                              //       onPageChanged: (index, reason) {
+                              //         debugPrint(index.toString());
+                              //       },
+
+                              //       autoPlay: true,
+                              //       autoPlayInterval: Duration(seconds: 3),
+                              //       // height:
+                              //       //     MediaQuery.of(context).size.height * 0.27,
+                              //       initialPage: 0,
+                              //       enlargeCenterPage: true,
+                              //     ))
+                              Stack(
                             children: [
                               OffersPageView(
                                 dotPageController: controller.pageController,

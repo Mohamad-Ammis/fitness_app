@@ -8,6 +8,7 @@ import 'package:fitnessapp/firebase_options.dart';
 import 'package:fitnessapp/home.dart';
 import 'package:fitnessapp/main.dart';
 import 'package:fitnessapp/services/notification.dart';
+import 'package:fitnessapp/views/about_us.dart';
 import 'package:fitnessapp/views/auth_pages/login_page/login_page.dart';
 import 'package:fitnessapp/views/on_boarding/on_boarding.dart';
 import 'package:flutter/material.dart';
@@ -58,11 +59,15 @@ void handlePageTransition() {
         controller.setmemoryimage(userInfo!.getString("image")!);
       }
       // Get.offAll(OnBoarding());
-      Get.offAll(LogInPage());
+      Get.offAll(AboutUs());
     } else {
+      if(userInfo!.getBool('firstUse')!=null){
       if (userInfo!.getBool('firstUse') == false) {
         Get.offAll(LogInPage());
-      } else {
+      } 
+
+      }
+      else {
         Get.offAll(OnBoarding());
       }
     }
